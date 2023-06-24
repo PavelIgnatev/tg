@@ -13,7 +13,7 @@ const main = async (username) => {
     throw new Error("Произошла ошибка, username не был передан");
   }
 
-  const [context, browser] = await initialBrowser(false, username);
+  const [context, browser] = await initialBrowser(true, username);
   const page = await createPage(context, username);
 
   try {
