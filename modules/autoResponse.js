@@ -7,22 +7,22 @@ const { getUserInfo } = require("./getUserInfo");
 const { postResponse } = require("../db/responses");
 
 async function makePostRequest(result, myName, userName) {
-  const dialogue = `${myName}: Я пользователь с ИИ, созданный пользователем с ником @webgrow в Telegram.
+  const dialogue = `
   ${result.join("\n")}. \n
-  Продолжи диалог под именем ${myName}, ответь на вопросы пользоваетеля ${userName} , а после предложи провести zoom-встречу, на которой ${myName} расскажет как можно использовать ИИ для разития продукта  ${userName}, также будь человечнее, будь не сильно вежлиывм, если ты уже приветствовал собеседника, то второй раз уже не стоит, максимальная длина ответа 300 символов`;
+  Продолжи диалог под именем ${myName}, ответь на вопросы пользоваетеля ${userName} , а после предложи провести zoom-встречу, на которой ${myName} расскажет как можно использовать ИИ для разития продукта  ${userName}, также будь человечнее, будь не сильно вежлиывм, если ты уже приветствовал собеседника, то второй раз уже не стоит, максимальная длина ответа 300 символов, формат результата, который я ожидаю: "${myName}: (после двоеточия будет сообщение)" `;
   console.log(dialogue);
 
   while (true) {
     try {
       const response = await axios.get(
-        `http://95.163.229.224/answer/?dialogue=${dialogue}`
+        `http://localhost/answer/?dialogue=${dialogue}`
       );
 
       const { data } = response;
 
       const message = data.replace("\n", "");
 
-      if (message.includes(`${userName}:`)) {
+      if (!message.includes(`${myName}:`) || message.includes(`${userName}:`)) {
         throw new Error();
       }
 
@@ -56,10 +56,9 @@ const autoResponse = async (page) => {
       console.log(`Текущее имя у Пользователя: ${userName}`);
 
       if (userName.includes("Telegram")) {
-        console.log('skip tg')
+        console.log("skip tg");
         continue;
       }
-
 
       await page.waitForSelector(".Message", { timeout: 1500 });
 
@@ -90,10 +89,8 @@ const autoResponse = async (page) => {
         }
       }
 
-      console.log(result.join("\n"));
-
       const message = await makePostRequest(result, myName, userName);
-
+      console.log(message);
       result.push(`${myName}: ${message}`);
 
       console.log("Начинаю отправку автоответного сообщения");

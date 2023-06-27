@@ -7,6 +7,7 @@ const { default: axios } = require("axios");
 const { autoSender } = require("./modules/autoSender");
 const { disableTagRoleDialog } = require("./utils/disableTagRoleDialog");
 const { accountSetup } = require("./utils/accountSetup");
+const { bannedAccount } = require("./utils/bannedAccount");
 
 const main = async (username) => {
   if (!username) {
@@ -18,6 +19,10 @@ const main = async (username) => {
 
   try {
     await page.goto("https://web.telegram.org/a/");
+
+    await page.waitForLoadState("networkidle");
+
+    await bannedAccount(page, username);
 
     await accountSetup(page, username);
 
@@ -31,8 +36,6 @@ const main = async (username) => {
   } catch (e) {
     console.log(e.message);
   }
-
-  await page.waitForTimeout(100000);
 
   try {
     await destroyBrowser(username, page, context, browser);

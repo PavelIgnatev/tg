@@ -4,15 +4,18 @@ const { getRandomName } = require("./getRandomName");
 const { getRandomImageFromFolder } = require("./getRandomUrlImage");
 const { replaceRussianLetters } = require("./replaceRussianLetters");
 
-function containsEnglishAlphabet(str) {
-  const regex = /[a-zA-Z1-9]/;
-  return regex.test(str);
-}
-
 const accountSetup = async (page, accountId) => {
   const { setup } = await readAccount(accountId);
 
   console.log("Проверяю сетап для аккаунта: ", accountId);
+
+  if (setup) {
+    console.log(`Сетап для пользователя ${accountId} присутствует`);
+
+    return;
+  }
+
+  console.log(`Сетап для пользователя ${accountId} отсутсвует`);
 
   const settingsButton = await page?.waitForSelector(
     ".DropdownMenu.main-menu",
@@ -110,17 +113,6 @@ const accountSetup = async (page, accountId) => {
   const firstNameValue = await firstName?.getProperty("value");
   const name = await firstNameValue?.jsonValue();
 
-  if (setup && !containsEnglishAlphabet(name)) {
-    console.log(`Сетап для пользователя ${name} существует`);
-    const buttonElements = await page?.$$('button[title="Go back"]');
-
-    await buttonElements[1].click();
-    await buttonElements[0].click();
-    return;
-  }
-
-  console.log(`Сетап для пользователя ${name} отсутсвует`);
-
   try {
     const image = getRandomImageFromFolder(
       "/Users/pikcelll/Documents/cold/telegram/images"
@@ -154,8 +146,6 @@ const accountSetup = async (page, accountId) => {
     { delay: 100 }
   );
 
-  await page.waitForTimeout(5000);
-
   try {
     const buttonSave = await page.waitForSelector('button[title="Save"]', {
       state: "attached",
@@ -164,7 +154,11 @@ const accountSetup = async (page, accountId) => {
 
     await buttonSave?.click();
 
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(3000);
+
+    await page.waitForFunction((button) => !button.disabled, buttonSave);
+
+    await page.waitForTimeout(3000);
   } catch (e) {
     console.log(e);
   }

@@ -98,4 +98,4 @@ const startMainLoop = async () => {
 //   console.log(i);
 // });
 
-getAllUsernames().then((e) => e.forEach((k) => deleteAccount(k)));
+// getAllUsernames().then((e) => e.forEach((k) => deleteAccount(k)));

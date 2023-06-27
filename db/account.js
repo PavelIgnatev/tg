@@ -38,7 +38,8 @@ class AccountService {
   async getAllUsernames() {
     await this.connect();
 
-    const usernames = await this.collection.distinct("username");
+    const filter = { banned: { $ne: true } }; 
+    const usernames = await this.collection.distinct("username", filter);
     return usernames;
   }
 
@@ -66,7 +67,7 @@ class AccountService {
   // метод для обновления данных аккаунта
   async updateAccount(username, updatedData) {
     await this.connect();
-    
+
     await this.collection.updateOne({ username }, { $set: updatedData });
   }
 
