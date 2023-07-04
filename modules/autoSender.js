@@ -1,3 +1,5 @@
+const { default: axios } = require("axios");
+
 const { updateAccountRemainingTime, readAccount } = require("../db/account");
 const { readMessage, deleteMessage, updateMessage } = require("../db/message");
 const { generateRandomTime } = require("../utils/getRandomTime");
@@ -5,6 +7,28 @@ const { returnToChatList } = require("../utils/returnToChatList");
 const { searchByUsername } = require("../utils/searchByUsername");
 const { sendMessage } = require("../utils/sendMessage");
 const { getUserInfo } = require("./getUserInfo");
+
+async function makePostRequest(accountData, description) {
+  const dialogue = [
+    `Привет, я хочу начать диалог с пользователем, чтобы установить контакт и заинтересовать его. Пожалуйста, предложи мне хороший первый вопрос, связанный с его деятельностью, который поможет нам начать продуктивный разговор. Имя пользователя: ${accountData} Описание пользователя: ${description}`,
+  ];
+
+  while (true) {
+    try {
+      const response = await axios.post("http://localhost/answer/", {
+        dialogue,
+      });
+
+      const { data } = response;
+
+      const message = data.replace("\n", "");
+
+      return message;
+    } catch (error) {
+      console.log(`Ошибка запроса. ${error.message}`);
+    }
+  }
+}
 
 const autoSender = async (page, accountId) => {
   let username, message;
@@ -32,11 +56,21 @@ const autoSender = async (page, accountId) => {
 
   // Получаем рандомное сообщение для отправки
   try {
-    const { username: randomUsername, message: randomMessage } =
-      await readMessage();
+    const {
+      username: randomUsername,
+      accountData,
+      description,
+      ...props
+    } = await readMessage();
+
+    console.log('Данные пользователя для отправки: ', randomUsername, accountData, description, props);
+
+    const messageData = await makePostRequest(accountData, description);
+
+    console.log(messageData)
 
     username = randomUsername;
-    message = randomMessage;
+    message = messageData;
 
     console.log("Найдено сообщение для отправки");
   } catch (e) {

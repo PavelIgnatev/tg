@@ -1,14 +1,10 @@
 const { createPage } = require("./helpers/createPage");
 const { destroyBrowser } = require("./helpers/destroyBrowser");
 const { initialBrowser } = require("./helpers/initialBrowser");
-const {
-  getAllUsernames,
-  readAccounts,
-  deleteAccount,
-} = require("./db/account");
+const { getAllUsernames } = require("./db/account");
 const { scrollBottom } = require("./utils/scrollBottom");
 const { getUserInfo } = require("./modules/getUserInfo");
-const { getSentMessages } = require("./db/message");
+
 
 const main = async (username) => {
   if (!username) {
@@ -99,3 +95,5 @@ const startMainLoop = async () => {
 // });
 
 // getAllUsernames().then((e) => e.forEach((k) => deleteAccount(k)));
+
+// getAllUsernames().then((e) => console.log(e.length))

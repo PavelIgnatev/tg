@@ -2,12 +2,10 @@ const { createPage } = require("./helpers/createPage");
 const { destroyBrowser } = require("./helpers/destroyBrowser");
 const { initialBrowser } = require("./helpers/initialBrowser");
 const { autoResponse } = require("./modules/autoResponse");
-const { getAllUsernames } = require("./db/account");
+const { getAllUsernames, updateAccount } = require("./db/account");
 const { default: axios } = require("axios");
 const { autoSender } = require("./modules/autoSender");
-const { disableTagRoleDialog } = require("./utils/disableTagRoleDialog");
 const { accountSetup } = require("./utils/accountSetup");
-const { bannedAccount } = require("./utils/bannedAccount");
 
 const main = async (username) => {
   if (!username) {
@@ -19,22 +17,26 @@ const main = async (username) => {
 
   try {
     await page.goto("https://web.telegram.org/a/");
-
     await page.waitForLoadState("networkidle");
 
-    await bannedAccount(page, username);
-
     await accountSetup(page, username);
-
-    try {
-      await disableTagRoleDialog();
-    } catch {}
 
     await autoResponse(page);
 
     await autoSender(page, username);
+
+    try {
+      console.log("Аккаунт не в бане");
+      await updateAccount(username, { banned: false });
+    } catch {}
+    
   } catch (e) {
     console.log(e.message);
+
+    if (e.message?.includes("DropdownMenu.main-menu")) {
+      console.log("Аккаунт в бане");
+      await updateAccount(username, { banned: true });
+    }
   }
 
   try {

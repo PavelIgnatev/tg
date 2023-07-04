@@ -1,9 +1,8 @@
-const { MongoClient, ObjectId } = require("mongodb");
+const { MongoClient } = require("mongodb");
 
 const dbName = "telegram";
 const collectionName = "responses";
-const uri =
-  "mongodb+srv://qwerty:qwerty123@atlascluster.2ry9k50.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb://qwerty:qwerty123@ac-llvczxo-shard-00-00.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-01.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-02.2ry9k50.mongodb.net:27017/?ssl=true&replicaSet=atlas-b2xf0l-shard-0&authSource=admin&retryWrites=true&w=majority";
 
 class ResponsesService {
   constructor() {

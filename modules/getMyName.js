@@ -41,7 +41,7 @@ const getMyName = async (page) => {
   await buttonElements[1].click();
   await buttonElements[0].click();
 
-  return name ?? "менеджер";
+  return name.trim().length > 0 ? name : "менеджер";
 };
 
 module.exports = { getMyName };

@@ -27,7 +27,7 @@ const getUserName = async (page) => {
 
   await closeButton.click();
 
-  return name ?? "товарищ";
+  return name.trim().length > 0 ? name : "пользователь";
 };
 
 module.exports = { getUserName };

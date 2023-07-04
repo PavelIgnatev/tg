@@ -2,8 +2,7 @@ const { MongoClient } = require("mongodb");
 
 const dbName = "telegram";
 const collectionName = "accounts";
-const uri =
-  "mongodb+srv://qwerty:qwerty123@atlascluster.2ry9k50.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb://qwerty:qwerty123@ac-llvczxo-shard-00-00.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-01.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-02.2ry9k50.mongodb.net:27017/?ssl=true&replicaSet=atlas-b2xf0l-shard-0&authSource=admin&retryWrites=true&w=majority";
 
 class AccountService {
   constructor() {
@@ -38,8 +37,7 @@ class AccountService {
   async getAllUsernames() {
     await this.connect();
 
-    const filter = { banned: { $ne: true } }; 
-    const usernames = await this.collection.distinct("username", filter);
+    const usernames = await this.collection.distinct("username");
     return usernames;
   }
 
@@ -67,7 +65,7 @@ class AccountService {
   // метод для обновления данных аккаунта
   async updateAccount(username, updatedData) {
     await this.connect();
-
+    
     await this.collection.updateOne({ username }, { $set: updatedData });
   }
 
