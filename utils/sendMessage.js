@@ -35,7 +35,9 @@ const sendMessage = async (page, message) => {
       `.ListItem.Chat:has-text("${fullUserNameText}")`
     );
 
-    await element.click({ modifiers: ["Control"] });
+    await page.keyboard.down("Control");
+    await element.click();
+    await page.keyboard.up("Control");
 
     await page.waitForTimeout(3500);
 
