@@ -25,29 +25,27 @@ const sendMessage = async (page, message) => {
     throw new Error("Сообщение не доставлено");
   }
 
-  try {
-    const fullUserName = await page.waitForSelector(
-      ".chat-info-wrapper .fullName"
-    );
-    const fullUserNameText = await fullUserName.textContent();
+  // try {
+  //   const fullUserName = await page.waitForSelector(
+  //     ".chat-info-wrapper .fullName"
+  //   );
+  //   const fullUserNameText = await fullUserName.textContent();
 
-    const element = await page.waitForSelector(
-      `.ListItem.Chat:has-text("${fullUserNameText}")`
-    );
+  //   const element = await page.waitForSelector(
+  //     `.ListItem.Chat:has-text("${fullUserNameText}")`
+  //   );
 
-    await page.keyboard.down("Control");
-    await element.click();
-    await page.keyboard.up("Control");
+  //   await element.click({ modifiers: ["Control"] });
 
-    await page.waitForTimeout(3500);
+  //   await page.waitForTimeout(3500);
 
-    const archive = await page.waitForSelector(
-      '.MenuItem.compact:has-text("Archive")'
-    );
-    await archive.click();
-  } catch (e) {
-    console.log(e.message);
-  }
+  //   const archive = await page.waitForSelector(
+  //     '.MenuItem.compact:has-text("Archive")'
+  //   );
+  //   await archive.click();
+  // } catch (e) {
+  //   console.log(e.message);
+  // }
 
   await page.waitForSelector(`.ListItem.Chat:has-text("Telegram")`);
 };
