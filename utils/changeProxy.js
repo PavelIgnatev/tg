@@ -15,6 +15,7 @@ async function changeProxy() {
         await new Promise((resolve) => setTimeout(resolve, 10000));
       } else {
         console.log(result.data);
+        await new Promise((resolve) => setTimeout(resolve, 10000));
         break; // Прерываем цикл, если успешно получили данные
       }
     } catch {
