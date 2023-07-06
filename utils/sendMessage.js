@@ -1,11 +1,10 @@
-const { searchByUsername } = require("./searchByUsername");
-
 const sendMessage = async (page, message) => {
+  const filtredMessage = message.replace(/\n/g, "").replace(/['"`]/g, "");
   const input = await page.waitForSelector("#editable-message-text", {
     state: "attached",
   });
 
-  await input.type(("         " + message.replace(/\n/g, '')).replace(/"/g, ""), { delay: 10 });
+  await input.type("         " + filtredMessage, { delay: 10 });
 
   const buttonElement = await page.waitForSelector(
     'button[title="Send Message"]',
@@ -17,34 +16,38 @@ const sendMessage = async (page, message) => {
   await buttonElement.click();
 
   try {
-    await page.waitForSelector(`.Message:has-text("${message}")`);
+    await page.waitForSelector(`.Message:has-text("${filtredMessage}")`);
     await page.waitForSelector(
       `.Message:last-child .icon-message-succeeded, .Message:last-child .icon-message-read`
     );
   } catch (e) {
-    console.log(e);
+    console.log(e.message);
     throw new Error("Сообщение не доставлено");
   }
 
-  const fullUserName = await page.waitForSelector(
-    ".chat-info-wrapper .fullName"
-  );
-  const fullUserNameText = await fullUserName.textContent();
+  try {
+    const fullUserName = await page.waitForSelector(
+      ".chat-info-wrapper .fullName"
+    );
+    const fullUserNameText = await fullUserName.textContent();
 
-  const element = await page.waitForSelector(
-    `.ListItem.Chat:has-text("${fullUserNameText}")`
-  );
+    const element = await page.waitForSelector(
+      `.ListItem.Chat:has-text("${fullUserNameText}")`
+    );
 
-  await element.click({ modifiers: ["Control"] });
+    await element.click({ modifiers: ["Control"] });
 
-  const archive = await page.waitForSelector(
-    '.MenuItem.compact:has-text("Archive")'
-  );
-  await archive.click();
+    await page.waitForTimeout(3500);
 
-  await page.waitForSelector(
-    `.ListItem.Chat:has-text("Telegram")`
-  );
+    const archive = await page.waitForSelector(
+      '.MenuItem.compact:has-text("Archive")'
+    );
+    await archive.click();
+  } catch (e) {
+    console.log(e.message);
+  }
+
+  await page.waitForSelector(`.ListItem.Chat:has-text("Telegram")`);
 };
 
 module.exports = { sendMessage };

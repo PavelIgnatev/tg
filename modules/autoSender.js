@@ -10,7 +10,7 @@ const { getUserInfo } = require("./getUserInfo");
 
 async function makePostRequest(accountData, description) {
   const dialogue = [
-    `Привет, я хочу начать диалог с пользователем, чтобы установить контакт и заинтересовать его. Пожалуйста, предложи мне хороший первый вопрос, связанный с его деятельностью, который поможет нам начать продуктивный разговор. Имя пользователя: ${accountData} Описание пользователя: ${description}`,
+    `Привет, я хочу начать диалог с пользователем, чтобы установить контакт и заинтересовать его. Пожалуйста, предложи мне хороший первый вопрос, связанный с его деятельностью, который поможет нам начать продуктивный разговор. Сформируй глубокий вопрос на основе его деятельности (исходя из описания), который будет для пользователя действительно интересен. Будь искренне заинтересованным в диалоге и живым. Имя пользователя: ${accountData} Описание пользователя: ${description}`,
   ];
 
   while (true) {
@@ -63,11 +63,17 @@ const autoSender = async (page, accountId) => {
       ...props
     } = await readMessage();
 
-    console.log('Данные пользователя для отправки: ', randomUsername, accountData, description, props);
+    console.log(
+      "Данные пользователя для отправки: ",
+      randomUsername,
+      accountData,
+      description,
+      props
+    );
 
     const messageData = await makePostRequest(accountData, description);
 
-    console.log(messageData)
+    console.log(messageData);
 
     username = randomUsername;
     message = messageData;
@@ -91,6 +97,8 @@ const autoSender = async (page, accountId) => {
       `ERROR: Поиск пользователя ${username} не удался. Ошибка: ${e.message}`
     );
 
+    await updateMessage(username, { failed: true });
+
     return;
   }
 
@@ -104,6 +112,10 @@ const autoSender = async (page, accountId) => {
       }
     } catch {
       console.log("Ошибка при получении информации о пользователе");
+        
+      await updateMessage(username, { failed: true });
+
+      return;
     }
 
     await sendMessage(page, message);
@@ -111,6 +123,8 @@ const autoSender = async (page, accountId) => {
     await updateAccountRemainingTime(accountId, generateRandomTime());
     console.log(`Сообщение успешно отправлено пользователю ${username}`);
   } catch (e) {
+    await updateMessage(username, { failed: true });
+
     console.log(
       `ERROR: Отправка сообщения пользователю ${username} не удалась. Ошибка: ${e.message}`
     );

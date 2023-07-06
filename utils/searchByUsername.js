@@ -7,7 +7,7 @@ const searchByUsername = async (page, username) => {
 
   await searchInput.click();
 
-  await searchInput.type(username, { delay: 1599 });
+  await searchInput.type(username, { delay: 1599, timeout: 60000 });
 
   await page.waitForSelector(".ListItem.search-result", {
     state: "attached",
@@ -15,6 +15,7 @@ const searchByUsername = async (page, username) => {
   await page.waitForSelector(".Button.tiny.translucent.round", {
     state: "attached",
   });
+
   try {
     const showMore = await page.waitForSelector('a:has-text("Show more")', {
       state: "attached",

@@ -2,7 +2,8 @@ const { MongoClient } = require("mongodb");
 
 const dbName = "telegram";
 const collectionName = "messages";
-const uri = "mongodb://qwerty:qwerty123@ac-llvczxo-shard-00-00.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-01.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-02.2ry9k50.mongodb.net:27017/?ssl=true&replicaSet=atlas-b2xf0l-shard-0&authSource=admin&retryWrites=true&w=majority";
+const uri =
+  "mongodb://qwerty:qwerty123@ac-llvczxo-shard-00-00.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-01.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-02.2ry9k50.mongodb.net:27017/?ssl=true&replicaSet=atlas-b2xf0l-shard-0&authSource=admin&retryWrites=true&w=majority";
 
 class MessageService {
   constructor() {
@@ -36,21 +37,14 @@ class MessageService {
   async readMessage() {
     await this.connect();
 
-    const count = await this.collection.countDocuments({
-      $or: [{ send: { $exists: false } }, { send: false }],
-    });
-
-    const randomIndex = Math.floor(Math.random() * count);
-
-    return await this.collection
-      .aggregate([
-        { $match: { $or: [{ send: { $exists: false } }, { send: false }] } },
-        { $skip: randomIndex },
-        { $limit: 1 },
-      ])
+    const message = await this.collection
+      .find({ send: { $ne: true }, failed: { $ne: true } })
+      .sort({ count: -1 })
+      .limit(1)
       .next();
-  }
 
+    return message;
+  }
   async getAllUsernames() {
     await this.connect();
 
@@ -85,10 +79,10 @@ class MessageService {
   }
 
   // метод для обновления состояния отправки сообщения
-  async updateMessage(username) {
+  async updateMessage(username, defaultSet = { send: true }) {
     await this.connect();
 
-    await this.collection.updateOne({ username }, { $set: { send: true } });
+    await this.collection.updateOne({ username }, { $set: defaultSet });
   }
 
   async deleteMessage(username) {

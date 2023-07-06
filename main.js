@@ -6,6 +6,7 @@ const { getAllUsernames, updateAccount } = require("./db/account");
 const { default: axios } = require("axios");
 const { autoSender } = require("./modules/autoSender");
 const { accountSetup } = require("./utils/accountSetup");
+const { changeProxy } = require("./utils/changeProxy");
 
 const main = async (username) => {
   if (!username) {
@@ -29,7 +30,6 @@ const main = async (username) => {
       console.log("Аккаунт не в бане");
       await updateAccount(username, { banned: false });
     } catch {}
-    
   } catch (e) {
     console.log(e.message);
 
@@ -68,17 +68,11 @@ const startMainLoop = async () => {
 
       console.log(usernames);
       for (const username of randomSort(usernames)) {
-        try {
-          try {
-            const result = await axios.get(
-              "https://frigate-proxy.ru/ru/change_ip/82d68ac1341d35f48d503c735d9a6149/1014889"
-            );
+        console.time("startMainLoop"); 
 
-            console.log(result.data);
-          } catch {
-            console.log("Ошибка при смене прокси");
-          }
-          await new Promise((res) => setTimeout(res, 10000));
+        try {
+          await changeProxy();
+
           console.log("Начинаю вход в аккаунт: ", username);
 
           await main(username);
@@ -87,6 +81,7 @@ const startMainLoop = async () => {
             `Ошибка обработки для пользователя ${username}: ${error}`
           );
         }
+        console.timeEnd("startMainLoop");
       }
     } catch (e) {
       console.log(e.message, "ошибка в цикле");
