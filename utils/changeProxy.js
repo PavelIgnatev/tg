@@ -10,16 +10,20 @@ async function changeProxy() {
       );
 
       if (result.data.includes("Слишком частая смена")) {
-        console.log("Слишком частая смена proxy. Повторный запрос... Ждем 10 секунд...");
+        console.log(
+          "Слишком частая смена proxy. Повторный запрос... Ждем 10 секунд..."
+        );
         retryCount++;
         await new Promise((resolve) => setTimeout(resolve, 10000));
       } else {
         console.log(result.data);
         await new Promise((resolve) => setTimeout(resolve, 10000));
-        break; // Прерываем цикл, если успешно получили данные
+        break;
       }
     } catch {
-      console.log("Ошибка при смене прокси. Повторный запрос... Ждем 10 секунд...");
+      console.log(
+        "Ошибка при смене прокси. Повторный запрос... Ждем 10 секунд..."
+      );
       retryCount++;
       await new Promise((resolve) => setTimeout(resolve, 10000));
     }
