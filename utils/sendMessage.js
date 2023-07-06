@@ -35,9 +35,10 @@ const sendMessage = async (page, message) => {
       `.ListItem.Chat:has-text("${fullUserNameText}")`
     );
 
+    await page.keyboard.down("Control");
     await element.click();
-    await page.keyboard.press('Control');
-    
+    await page.keyboard.up("Control");
+
     await page.waitForTimeout(3500);
 
     const archive = await page.waitForSelector(
