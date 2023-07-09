@@ -124,7 +124,7 @@ const autoSender = async (page, accountId) => {
 
     await sendMessage(page, message);
     await updateMessage(username);
-    await incrementMessageCount(username);
+    await incrementMessageCount(accountId);
     await updateAccountRemainingTime(accountId, generateRandomTime());
     console.log(`Сообщение успешно отправлено пользователю ${username}`);
   } catch (e) {
