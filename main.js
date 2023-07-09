@@ -26,13 +26,12 @@ const main = async (username) => {
 
       console.log("Взаимодействие с аккаунтом успешно, бана нет");
 
-      try {
-        if (isSpam) {
-          await updateAccount(username, { banned: false, spam: true });
-        } else {
-          await updateAccount(username, { banned: false, spam: false });
-        }
-      } catch {}
+      if (isSpam) {
+        await updateAccount(username, { banned: false, spam: true });
+        throw new Error('Спамблок')
+      } else {
+        await updateAccount(username, { banned: false, spam: false });
+      }
     } catch (e) {
       if (e.message?.includes("telegram-search-input")) {
         console.log("Взаимодействие с аккаунтом неуспешно, бан есть");
