@@ -17,6 +17,7 @@ const sendMessage = async (page, message) => {
 
   try {
     await page.waitForSelector(`.Message:has-text("${filtredMessage}")`);
+    await page.waitForTimeout(3000);
     await page.waitForSelector(
       `.Message:last-child .icon-message-succeeded, .Message:last-child .icon-message-read`
     );

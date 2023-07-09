@@ -7,6 +7,7 @@ const { default: axios } = require("axios");
 const { autoSender } = require("./modules/autoSender");
 const { accountSetup } = require("./utils/accountSetup");
 const { changeProxy } = require("./utils/changeProxy");
+const { checkSpam } = require("./modules/checkSpam");
 
 const main = async (username) => {
   if (!username) {
@@ -20,23 +21,35 @@ const main = async (username) => {
     await page.goto("https://web.telegram.org/a/");
     await page.waitForLoadState("networkidle");
 
+    try {
+      const isSpam = await checkSpam(page);
+
+      console.log("Взаимодействие с аккаунтом успешно, бана нет");
+
+      try {
+        if (isSpam) {
+          await updateAccount(username, { banned: false, spam: true });
+        } else {
+          await updateAccount(username, { banned: false, spam: false });
+        }
+      } catch {}
+    } catch (e) {
+      if (e.message?.includes("telegram-search-input")) {
+        console.log("Взаимодействие с аккаунтом неуспешно, бан есть");
+
+        await updateAccount(username, { banned: true });
+      }
+
+      throw new Error(e.message);
+    }
+
     await accountSetup(page, username);
 
     await autoResponse(page);
 
     await autoSender(page, username);
-
-    try {
-      console.log("Аккаунт не в бане");
-      await updateAccount(username, { banned: false });
-    } catch {}
   } catch (e) {
     console.log(e.message);
-
-    if (e.message?.includes("DropdownMenu.main-menu")) {
-      console.log("Аккаунт в бане");
-      await updateAccount(username, { banned: true });
-    }
   }
 
   try {
@@ -68,7 +81,7 @@ const startMainLoop = async () => {
 
       console.log(usernames);
       for (const username of randomSort(usernames)) {
-        console.time("startMainLoop"); 
+        console.time("startMainLoop");
 
         try {
           await changeProxy();

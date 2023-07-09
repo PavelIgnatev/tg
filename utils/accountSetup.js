@@ -1,5 +1,4 @@
 const { updateAccount, readAccount } = require("../db/account");
-const { getMyName } = require("../modules/getMyName");
 const { getRandomName } = require("./getRandomName");
 const { getRandomImageFromFolder } = require("./getRandomUrlImage");
 const { replaceRussianLetters } = require("./replaceRussianLetters");

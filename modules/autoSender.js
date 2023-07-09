@@ -1,6 +1,10 @@
 const { default: axios } = require("axios");
 
-const { updateAccountRemainingTime, readAccount } = require("../db/account");
+const {
+  updateAccountRemainingTime,
+  readAccount,
+  incrementMessageCount,
+} = require("../db/account");
 const { readMessage, deleteMessage, updateMessage } = require("../db/message");
 const { generateRandomTime } = require("../utils/getRandomTime");
 const { returnToChatList } = require("../utils/returnToChatList");
@@ -112,7 +116,7 @@ const autoSender = async (page, accountId) => {
       }
     } catch {
       console.log("Ошибка при получении информации о пользователе");
-        
+
       await updateMessage(username, { failed: true });
 
       return;
@@ -120,10 +124,14 @@ const autoSender = async (page, accountId) => {
 
     await sendMessage(page, message);
     await updateMessage(username);
+    await incrementMessageCount(username);
     await updateAccountRemainingTime(accountId, generateRandomTime());
     console.log(`Сообщение успешно отправлено пользователю ${username}`);
   } catch (e) {
-    await updateMessage(username, { failed: true });
+    if (e.message !== "Сообщение не доставлено") {
+      console.log("Добавляем статус failed для сообщения в базу");
+      await updateMessage(username, { failed: true });
+    }
 
     console.log(
       `ERROR: Отправка сообщения пользователю ${username} не удалась. Ошибка: ${e.message}`

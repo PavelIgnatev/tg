@@ -2,7 +2,8 @@ const { MongoClient } = require("mongodb");
 
 const dbName = "telegram";
 const collectionName = "accounts";
-const uri = "mongodb://qwerty:qwerty123@ac-llvczxo-shard-00-00.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-01.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-02.2ry9k50.mongodb.net:27017/?ssl=true&replicaSet=atlas-b2xf0l-shard-0&authSource=admin&retryWrites=true&w=majority";
+const uri =
+  "mongodb://qwerty:qwerty123@ac-llvczxo-shard-00-00.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-01.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-02.2ry9k50.mongodb.net:27017/?ssl=true&replicaSet=atlas-b2xf0l-shard-0&authSource=admin&retryWrites=true&w=majority";
 
 class AccountService {
   constructor() {
@@ -19,6 +20,7 @@ class AccountService {
     this.deleteAccount = this.deleteAccount.bind(this);
     this.updateAccountRemainingTime =
       this.updateAccountRemainingTime.bind(this);
+    this.incrementMessageCount = this.incrementMessageCount.bind(this);
   }
 
   async connect() {
@@ -65,7 +67,23 @@ class AccountService {
   // метод для обновления данных аккаунта
   async updateAccount(username, updatedData) {
     await this.connect();
-    
+
+    await this.collection.updateOne({ username }, { $set: updatedData });
+  }
+
+  async incrementMessageCount(username) {
+    await this.connect();
+
+    const account = await this.collection.findOne({ username });
+
+    if (!account) {
+      throw new Error(`Account with username ${username} not found`);
+    }
+
+    const updatedData = {
+      messageCount: (account.messageCount || 0) + 1,
+    };
+
     await this.collection.updateOne({ username }, { $set: updatedData });
   }
 
