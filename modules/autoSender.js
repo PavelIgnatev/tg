@@ -126,6 +126,7 @@ const autoSender = async (page, accountId) => {
     await updateMessage(username);
     await incrementMessageCount(accountId);
     await updateAccountRemainingTime(accountId, generateRandomTime());
+    
     console.log(`Сообщение успешно отправлено пользователю ${username}`);
   } catch (e) {
     if (e.message !== "Сообщение не доставлено") {
