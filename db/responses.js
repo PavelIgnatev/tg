@@ -2,7 +2,8 @@ const { MongoClient } = require("mongodb");
 
 const dbName = "telegram";
 const collectionName = "responses";
-const uri = "mongodb://qwerty:qwerty123@ac-llvczxo-shard-00-00.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-01.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-02.2ry9k50.mongodb.net:27017/?ssl=true&replicaSet=atlas-b2xf0l-shard-0&authSource=admin&retryWrites=true&w=majority";
+const uri =
+  "mongodb://qwerty:qwerty123@ac-llvczxo-shard-00-00.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-01.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-02.2ry9k50.mongodb.net:27017/?ssl=true&replicaSet=atlas-b2xf0l-shard-0&authSource=admin&retryWrites=true&w=majority";
 
 class ResponsesService {
   constructor() {
@@ -31,14 +32,13 @@ class ResponsesService {
 
   async postResponse(response) {
     await this.connect();
-    
+
     await this.collection.updateOne(
       { username: response.username },
       { $set: response },
       { upsert: true }
     );
   }
-  
 
   async getResponse(username) {
     await this.connect();

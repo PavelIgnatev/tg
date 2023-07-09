@@ -37,14 +37,26 @@ class MessageService {
   async readMessage() {
     await this.connect();
 
+    const query = {
+      send: { $ne: true },
+      failed: { $ne: true },
+      description: {
+        $not: {
+          $regex: ["сайт", "разработ", 'web', 'haveTelegram', 'астролог', 'таро', 'шаман', 'биохакер', 'исцелител', 'медитац', 'копирай', 'freela', 'фитнес', 'фриланс', 'инвайт','рассыл', 'develop', 'design', 'арбитраж', 'нумерол', 'таргет', 'приват', 'иксы', 'секс', 'soft', 'софт', 'разработчик', 'энерг', 'crypto', 'crypto', 'it', 'hr', 'рекрутер', 'recruter', 'digital', 'ml', 'code', 'yandex', 'google', 'exchan', 'money', 'buy', 'обмен', 'ретрит', 'йог', 'сакрал', 'стикер', 'валют', 'manager', 'product', 'инженер', 'machine', 'learing', 'no-code', 'nocode', 'мл', 'ноукод', 'bp', 'крипт', 'dev', 'эззотер', 'дизайн', 'поиск', 'smm', 'маркет', 'reels', 'графич', 'вор', 'ux', 'ui', 'массаж', 'аяз', 'реклама', 'продажи', 'маникюр', 'педикюр', 'стилист', 'красота', 'нлп', 'нейро', 'программи', 'marketing', 'мастер', 'здоров', 'молож', 'коррек', 'доход', 'crm', 'продаж', 'спорт', 'питан', 'wb', 'маркетпле', 'будд','магия','директ', 'вкон','трафф', 'ищу', 'траф','психол', 'wild', 'искусственный', 'интеллект'].join('|'), 
+          $options: 'i'
+        }
+      }
+    };
+  
     const message = await this.collection
-      .find({ send: { $ne: true }, failed: { $ne: true } })
+      .find(query)
       .sort({ count: -1 })
       .limit(1)
       .next();
-
+  
     return message;
   }
+
   async getAllUsernames() {
     await this.connect();
 

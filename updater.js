@@ -1,10 +1,9 @@
 const { createPage } = require("./helpers/createPage");
 const { destroyBrowser } = require("./helpers/destroyBrowser");
 const { initialBrowser } = require("./helpers/initialBrowser");
-const { getAllUsernames } = require("./db/account");
+const { getAllUsernames, readAccounts } = require("./db/account");
 const { scrollBottom } = require("./utils/scrollBottom");
 const { getUserInfo } = require("./modules/getUserInfo");
-
 
 const main = async (username) => {
   if (!username) {
@@ -97,3 +96,13 @@ const startMainLoop = async () => {
 // getAllUsernames().then((e) => e.forEach((k) => deleteAccount(k)));
 
 // getAllUsernames().then((e) => console.log(e.length))
+// let banned = 0;
+// readAccounts().then((e) =>
+//   e.slice(126).forEach((k) => {
+//     if (k.banned) {
+//       banned += 1;
+//       console.log(banned);
+//     }
+//   })
+// );
+// // 1
