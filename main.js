@@ -76,7 +76,7 @@ function randomSort(array) {
 const startMainLoop = async () => {
   while (true) {
     try {
-      const usernames = (await getAllUsernames()).slice(60);
+      const usernames = await getAllUsernames()
 
       console.log(usernames);
       for (const username of usernames) {
