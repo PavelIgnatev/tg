@@ -14,7 +14,7 @@ const main = async (username) => {
     throw new Error("Произошла ошибка, username не был передан");
   }
 
-  const [context, browser] = await initialBrowser(true, username);
+  const [context, browser] = await initialBrowser(false, username);
   const page = await createPage(context, username);
 
   try {
@@ -79,7 +79,7 @@ const startMainLoop = async () => {
       const usernames = (await getAllUsernames()).slice(60);
 
       console.log(usernames);
-      for (const username of randomSort(usernames)) {
+      for (const username of usernames) {
         console.time("startMainLoop");
 
         try {
@@ -87,7 +87,7 @@ const startMainLoop = async () => {
 
           console.log("Начинаю вход в аккаунт: ", username);
 
-          await main(username);
+          await main(17472580104);
         } catch (error) {
           console.error(
             `Ошибка обработки для пользователя ${username}: ${error}`
