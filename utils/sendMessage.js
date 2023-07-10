@@ -4,7 +4,7 @@ const sendMessage = async (page, message) => {
     state: "attached",
   });
 
-  await input.type("         " + filtredMessage, { delay: 10 });
+  await input.type("         " + filtredMessage);
 
   const buttonElement = await page.waitForSelector(
     'button[title="Send Message"]',
