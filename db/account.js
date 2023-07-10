@@ -40,7 +40,7 @@ class AccountService {
     await this.connect();
 
     const usernames = await this.collection.distinct("username", {
-      $or: [{ banned: { $ne: true } }, { spam: { $ne: true } }],
+      $or: [{ banned: { $ne: true } } }],
     });
     return usernames;
   }
