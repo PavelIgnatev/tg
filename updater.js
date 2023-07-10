@@ -98,11 +98,11 @@ const startMainLoop = async () => {
 // getAllUsernames().then((e) => console.log(e.length))
 // let banned = 0;
 // readAccounts().then((e) =>
-//   e.slice(126).forEach((k) => {
+//   e.slice(134).forEach((k) => {
 //     if (k.banned) {
 //       banned += 1;
 //       console.log(banned);
 //     }
 //   })
 // );
-// // 1
+// 1
