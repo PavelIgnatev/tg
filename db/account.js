@@ -39,7 +39,9 @@ class AccountService {
   async getAllUsernames() {
     await this.connect();
 
-    const usernames = await this.collection.distinct("username");
+    const usernames = await this.collection.distinct("username", {
+      $or: [{ banned: { $ne: true } }, { spam: { $ne: true } }],
+    });
     return usernames;
   }
 
