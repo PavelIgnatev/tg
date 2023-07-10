@@ -14,7 +14,7 @@ const main = async (username) => {
     throw new Error("Произошла ошибка, username не был передан");
   }
 
-  const [context, browser] = await initialBrowser(false, username);
+  const [context, browser] = await initialBrowser(true, username);
   const page = await createPage(context, username);
 
   try {
@@ -87,7 +87,7 @@ const startMainLoop = async () => {
 
           console.log("Начинаю вход в аккаунт: ", username);
 
-          await main(13678642761);
+          await main(username);
         } catch (error) {
           console.error(
             `Ошибка обработки для пользователя ${username}: ${error}`
