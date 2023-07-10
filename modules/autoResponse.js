@@ -102,7 +102,8 @@ const autoResponse = async (page) => {
 
       console.log("Начал сохранение истории диалога");
       await postResponse({
-        username: phone ? phone : userNameTG ? userNameTG : "Not defined",
+        username: userNameTG,
+        phone: phone ? phone : "",
         messages: result,
         viewed: false,
       });
