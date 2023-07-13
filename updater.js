@@ -101,7 +101,7 @@ let banned = 0;
 readAccounts().then((e) => {
   // console.log(e.slice(126).length)
   e.slice(126).forEach((k) => {
-    console.log(k.spam);
+    console.log(k.messageCount);
 
     // if (k.banned) {
     //   banned += 1;
