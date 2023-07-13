@@ -31,7 +31,7 @@ async function makePostRequest(result, myName, userName) {
         .replace(`, ${myName}`, "")
         .replace(`, я ${userName}`, "");
     } catch (error) {
-      console.log(`Ошибка запроса. ${e.message}`);
+      console.log(`Ошибка запроса. ${error.message}`);
     }
   }
 }

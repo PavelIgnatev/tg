@@ -99,11 +99,10 @@ const startMainLoop = async () => {
 let banned = 0;
 
 readAccounts().then((e) => {
-  console.log(e.slice(126).length)
-  e.slice(134).forEach((k) => {
-    if(k.banned){
-      console.log(k.username);
-    }
+  // console.log(e.slice(126).length)
+  e.slice(126).forEach((k) => {
+    console.log(k.spam);
+
     // if (k.banned) {
     //   banned += 1;
     //   console.log(banned);
