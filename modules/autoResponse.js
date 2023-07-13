@@ -22,7 +22,7 @@ async function makePostRequest(result, myName, userName) {
       });
 
       const { data } = response;
-sdasads
+
       const message = data.replace("\n", "");
 
       return message
@@ -31,7 +31,7 @@ sdasads
         .replace(`, ${myName}`, "")
         .replace(`, я ${userName}`, "");
     } catch (error) {
-      console.log(`Ошибка запроса.`);
+      console.log(`Ошибка запроса. ${e.message}`);
     }
   }
 }
