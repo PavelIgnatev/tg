@@ -48,22 +48,6 @@ const sendMessage = async (page, message) => {
   //   console.log(e.message);
   // }
 
-  const tg = await page.waitForSelector(`.ListItem.Chat:has-text("Telegram")`);
-  await tg.click();
-  const inputTG = await page.waitForSelector("#editable-message-text", {
-    state: "attached",
-  });
-
-  await inputTG.type("q");
-
-  const buttonElementTG = await page.waitForSelector(
-    'button[title="Send Message"]',
-    {
-      state: "attached",
-    }
-  );
-
-  await buttonElementTG.click();
 };
 
 module.exports = { sendMessage };
