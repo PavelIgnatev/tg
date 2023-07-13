@@ -14,16 +14,19 @@ const { getUserInfo } = require("./getUserInfo");
 
 function filterUnicodeSymbols(str) {
   // Создаем регулярное выражение, которое будет искать все смайлы и символы Unicode
-  const regex = /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1F1E0}-\u{1F1FF}]/ug;
+  const regex =
+    /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1F1E0}-\u{1F1FF}]/gu;
 
   // Возвращаем новую строку, из которой удалены все смайлы и символы Unicode
-  return str.replace(regex, '');
+  return str.replace(regex, "");
 }
 
 async function makePostRequest(accountData, description) {
   const dialogue = [
     `Привет, я хочу начать диалог с пользователем, чтобы установить контакт и заинтересовать его. Пожалуйста, предложи мне хороший первый вопрос, связанный с его деятельностью, который поможет нам начать продуктивный разговор. Сформируй глубокий вопрос на основе его деятельности (исходя из описания), каким образом происходит продажа и взаимодействие с клиентом во время продажи, как происходит обработка входящих запросов и как работают его отдел менеджеров, отдел консультантов, либо техническая поддержка (смотри по описанию что больше подходит). Будь искренне заинтересованным в диалоге и живым. Имя пользователя: ${accountData} Описание пользователя: ${description}.
-    Пожалуйста, не задавай больше одного вопроса, ограничься не более 200 символами. Никнейм пользователя: ${filterUnicodeSymbols(accountData)} Описание пользователя: ${filterUnicodeSymbols(description)}`,
+    Пожалуйста, не задавай больше одного вопроса, ограничься не более 200 символами. Никнейм пользователя: ${filterUnicodeSymbols(
+      accountData
+    )} Описание пользователя: ${filterUnicodeSymbols(description)}`,
   ];
 
   while (true) {
@@ -138,10 +141,8 @@ const autoSender = async (page, accountId) => {
 
     console.log(`Сообщение успешно отправлено пользователю ${username}`);
   } catch (e) {
-    if (e.message !== "Сообщение не доставлено") {
-      console.log("Добавляем статус failed для сообщения в базу");
-      await updateMessage(username, { failed: true });
-    }
+    console.log("Добавляем статус failed для сообщения в базу");
+    await updateMessage(username, { failed: true });
 
     console.log(
       `ERROR: Отправка сообщения пользователю ${username} не удалась. Ошибка: ${e.message}`
