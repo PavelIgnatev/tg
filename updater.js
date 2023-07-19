@@ -100,13 +100,13 @@ let banned = 0;
 
 readAccounts().then((e) => {
   // console.log(e.slice(126).length)
-  e.slice(126).forEach((k) => {
-    console.log(k.messageCount);
+  e.slice(134).forEach((k) => {
+    // console.log(k.messageCount);
 
-    // if (k.banned) {
-    //   banned += 1;
-    //   console.log(banned);
-    // }
+    if (k.banned) {
+      banned += 1;
+      console.log(banned);
+    }
   });
 });
 // 1
