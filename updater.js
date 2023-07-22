@@ -102,7 +102,6 @@ readAccounts().then((e) => {
   // console.log(e.slice(126).length)
   e.slice(134).forEach((k) => {
     // console.log(k.messageCount);
-
     if (k.banned) {
       banned += 1;
       console.log(banned);

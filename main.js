@@ -79,7 +79,7 @@ const startMainLoop = async () => {
       const usernames = await getAllUsernames()
 
       console.log(usernames);
-      for (const username of usernames) {
+      for (const username of randomSort(usernames)) {
         console.time("startMainLoop");
 
         try {

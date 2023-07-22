@@ -58,7 +58,7 @@ const autoResponse = async (page) => {
       const [userNameTG, phone] = await getUserInfo(page);
 
       console.log(`Текущее имя у Пользователя: ${userName}`);
-
+      console.log(userName)
       if (userName.includes("Telegram")) {
         continue;
       }
