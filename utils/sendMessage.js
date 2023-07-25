@@ -1,4 +1,4 @@
-const sendMessage = async (page, message, force = false) => {
+const sendMessage = async (page, message) => {
   const filtredMessage = message.replace(/\n/g, "").replace(/['"`]/g, "");
   const input = await page.waitForSelector("#editable-message-text", {
     state: "attached",
@@ -16,14 +16,11 @@ const sendMessage = async (page, message, force = false) => {
   await buttonElement.click();
 
   try {
-    if (force) {
-      await page.goto(page.url());
-    }
-
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(2500);
     const element = await page.waitForSelector(
       `.Message:has-text("${filtredMessage}")`
     );
+    await page.waitForTimeout(2500);
     await element.waitForSelector(
       `.icon-message-succeeded, .icon-message-read`
     );

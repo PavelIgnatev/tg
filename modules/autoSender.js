@@ -123,7 +123,7 @@ const autoSender = async (accountId, context, aiUsername) => {
       `ERROR: Не удалось получить данные аккаунта ${accountId}. Ошибка: ${e.message}`
     );
     return;
-  } 
+  }
 
   let userInfo;
   let senderPage = await context.newPage();
@@ -140,7 +140,7 @@ const autoSender = async (accountId, context, aiUsername) => {
         await senderPage.goto(
           `https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3Fdomain%3D${username}`
         );
-        
+
         userInfo = await getUserInfo(senderPage);
 
         if (!userInfo || !userInfo.userName) {
@@ -184,7 +184,7 @@ const autoSender = async (accountId, context, aiUsername) => {
 
     // отправляем сообщение
     try {
-      await sendMessage(senderPage, message, true);
+      await sendMessage(senderPage, message);
     } catch (e) {
       console.log("Начинаю добавлять статус failed для сообщения в базу");
       await updateMessage(userInfo.userName, {
@@ -192,8 +192,7 @@ const autoSender = async (accountId, context, aiUsername) => {
         dateUpdated: new Date(),
       });
       console.log("Добавил статус failed для сообщения в базу");
-
-      throw new Error(e.message);
+      console.log(e.message);
     }
 
     // добавляем отправленное сообщение в общий список диалогов
@@ -222,7 +221,9 @@ const autoSender = async (accountId, context, aiUsername) => {
     // увеличиваем лимит времени, через который можно будет снова писать на аккаунте
     await updateAccountRemainingTime(accountId, generateRandomTime());
 
-    console.log(`Сообщение успешно отправлено пользователю ${userName}`);
+    console.log(
+      `Информация о отправке сообщения пользователю ${userName} сохранена`
+    );
   } catch (e) {
     console.error(
       `ERROR: Отправка сообщения пользователю ${userInfo.userName} не удалась. Ошибка: ${e.message}`

@@ -6,6 +6,7 @@ const checkMiniSpam = async (context) => {
   await newPage.goto(
     `https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3Fdomain%3Dspambot`
   );
+  await newPage.waitForLoadState("networkidle");
 
   const input = await newPage.waitForSelector("#editable-message-text", {
     state: "attached",
