@@ -1,5 +1,5 @@
 const getUserName = async (page) => {
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(3000);
 
   const buttonElement = await page?.waitForSelector(
     'button[title="More actions"]',

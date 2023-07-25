@@ -1,34 +1,69 @@
 const getUserInfo = async (page) => {
-  const userInfo = await page.waitForSelector(".chat-info-wrapper");
-  await userInfo.click();
-
-  let phone = "",
-    userName = "";
+  await page.waitForTimeout(3000);
 
   try {
-    const phoneContent = await page.waitForSelector(
-      '.multiline-item:has-text("Phone")',
-      {
-        timeout: 3000,
-      }
-    );
-    phone = (await phoneContent?.textContent())?.replace("Phone", "");
-  } catch {}
+    const userInfo = await page.waitForSelector(".chat-info-wrapper", {
+      timeout: 3000,
+    });
+    await userInfo.click();
 
-  try {
-    const userNameContent = await page.waitForSelector(
-      '.multiline-item:has-text("Username")',
-      {
-        timeout: 3000,
-      }
-    );
-    userName = (await userNameContent?.textContent())?.replace("Username", "");
-  } catch {}
+    let phone = "",
+      userName = "",
+      userBio = "",
+      userTitle = "";
 
-  const closeButton = await page.waitForSelector(".Button.close-button");
-  await closeButton.click();
+    try {
+      const phoneContent = await page.waitForSelector(
+        '.multiline-item:has-text("Phone")',
+        {
+          timeout: 3000,
+        }
+      );
+      phone = (await phoneContent?.textContent())?.replace("Phone", "");
+    } catch {}
 
-  return [userName, phone];
+    try {
+      const userNameContent = await page.waitForSelector(
+        '.multiline-item:has-text("Username")',
+        {
+          timeout: 3000,
+        }
+      );
+      userName = (await userNameContent?.textContent())?.replace(
+        "Username",
+        ""
+      );
+    } catch {}
+
+    try {
+      const userBioContent = await page.waitForSelector(
+        '.multiline-item:has-text("Bio")',
+        {
+          timeout: 3000,
+        }
+      );
+      userBio = (await userBioContent?.textContent())?.replace("Bio", "");
+    } catch {}
+
+    try {
+      const userTitleContent = await page.waitForSelector(
+        ".ProfileInfo .title",
+        {
+          timeout: 3000,
+        }
+      );
+      userTitle = await userTitleContent?.textContent();
+    } catch {}
+
+    const closeButton = await page.waitForSelector(".Button.close-button", {
+      timeout: 3000,
+    });
+    await closeButton.click();
+
+    return { phone, userName, userBio, userTitle };
+  } catch {
+    return null;
+  }
 };
 
 module.exports = { getUserInfo };

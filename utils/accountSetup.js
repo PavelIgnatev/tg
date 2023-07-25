@@ -3,12 +3,12 @@ const { getRandomName } = require("./getRandomName");
 const { getRandomImageFromFolder } = require("./getRandomUrlImage");
 const { replaceRussianLetters } = require("./replaceRussianLetters");
 
-const accountSetup = async (page, accountId) => {
+const accountSetup = async (page, accountId, force = false) => {
   const { setup } = await readAccount(accountId);
 
   console.log("Проверяю сетап для аккаунта: ", accountId);
 
-  if (setup) {
+  if (setup && !force) {
     console.log(`Сетап для пользователя ${accountId} присутствует`);
 
     return;

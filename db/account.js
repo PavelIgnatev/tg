@@ -4,7 +4,6 @@ const dbName = "telegram";
 const collectionName = "accounts";
 const uri =
   "mongodb://qwerty:qwerty123@ac-llvczxo-shard-00-00.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-01.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-02.2ry9k50.mongodb.net:27017/?ssl=true&replicaSet=atlas-b2xf0l-shard-0&authSource=admin&retryWrites=true&w=majority";
-
 class AccountService {
   constructor() {
     this.client = null;
@@ -39,11 +38,10 @@ class AccountService {
   async getAllUsernames() {
     await this.connect();
 
-    // const usernames = await this.collection.distinct("username", {
-    //   $or: [{ banned: { $ne: true } }],
-    // });
+    const usernames = await this.collection.distinct("username", {
+      $or: [{ banned: { $ne: true } }],
+    });
 
-    const usernames = await this.collection.distinct("username");
 
     return usernames;
   }

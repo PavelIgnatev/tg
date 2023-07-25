@@ -8,51 +8,37 @@ const { autoSender } = require("./modules/autoSender");
 const { accountSetup } = require("./utils/accountSetup");
 const { changeProxy } = require("./utils/changeProxy");
 const { checkSpam } = require("./modules/checkSpam");
+const { getMyName } = require("./modules/getMyName");
 
-const main = async (username) => {
-  if (!username) {
-    throw new Error("Произошла ошибка, username не был передан");
+const main = async (accountId) => {
+  if (!accountId) {
+    throw new Error("Произошла ошибка, accountId не был передан");
   }
 
-  const [context, browser] = await initialBrowser(true, username);
-  const page = await createPage(context, username);
+  const [context, browser] = await initialBrowser(true, accountId);
+  const page = await createPage(context, accountId);
 
   try {
     await page.goto("https://web.telegram.org/a/");
     await page.waitForLoadState("networkidle");
 
-    try {
-      const isSpam = await checkSpam(page);
+    const isSpam = await checkSpam(accountId, context);
+    await accountSetup(page, accountId);
 
-      console.log("Взаимодействие с аккаунтом успешно, бана нет");
+    const { name: aiName, aiUsername } = await getMyName(page, accountId);
 
-      if (isSpam) {
-        await updateAccount(username, { banned: false, spam: true });
-        throw new Error('Спамблок')
-      } else {
-        await updateAccount(username, { banned: false, spam: false });
-      }
-    } catch (e) {
-      if (e.message?.includes("telegram-search-input")) {
-        console.log("Взаимодействие с аккаунтом неуспешно, бан есть");
+    await autoResponse(page, aiName, aiUsername);
 
-        await updateAccount(username, { banned: true });
-      }
-
-      throw new Error(e.message);
+    // делаем отправку только в случае, если аккаунт не в спаме
+    if (!isSpam) {
+      await autoSender(accountId, context, aiUsername);
     }
-
-    await accountSetup(page, username);
-
-    await autoResponse(page);
-
-    await autoSender(page, username);
   } catch (e) {
-    console.log(e.message);
+    console.error(e.message);
   }
 
   try {
-    await destroyBrowser(username, page, context, browser);
+    await destroyBrowser(accountId, page, context, browser);
     return;
   } catch {
     console.log('Ошибка при закрытии браузера "destroyBrowser"');
@@ -76,11 +62,11 @@ function randomSort(array) {
 const startMainLoop = async () => {
   while (true) {
     try {
-      const usernames = await getAllUsernames()
+      const usernames = await getAllUsernames();
 
       console.log(usernames);
       for (const username of randomSort(usernames)) {
-        console.time("startMainLoop");
+        console.time("Время, потраченное на обработку аккаунта");
 
         try {
           await changeProxy();
@@ -93,7 +79,7 @@ const startMainLoop = async () => {
             `Ошибка обработки для пользователя ${username}: ${error}`
           );
         }
-        console.timeEnd("startMainLoop");
+        console.timeEnd("Время, потраченное на обработку аккаунта");
       }
     } catch (e) {
       console.log(e.message, "ошибка в цикле");

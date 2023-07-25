@@ -5,28 +5,38 @@ const {
   readAccount,
   incrementMessageCount,
 } = require("../db/account");
-const { readMessage, deleteMessage, updateMessage } = require("../db/message");
+const {
+  updateMessage,
+  getRandomMessage,
+  getFailedUsernames,
+} = require("../db/message");
 const { generateRandomTime } = require("../utils/getRandomTime");
-const { returnToChatList } = require("../utils/returnToChatList");
-const { searchByUsername } = require("../utils/searchByUsername");
 const { sendMessage } = require("../utils/sendMessage");
 const { getUserInfo } = require("./getUserInfo");
+const { getGroupId, createOrUpdateCurrentCount } = require("../db/groupId");
+const {
+  postDialogue,
+  getUsernamesByGroupId,
+  getDialogue,
+} = require("../db/dialogues");
 
 function filterUnicodeSymbols(str) {
-  // Создаем регулярное выражение, которое будет искать все смайлы и символы Unicode
   const regex =
     /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1F1E0}-\u{1F1FF}]/gu;
 
-  // Возвращаем новую строку, из которой удалены все смайлы и символы Unicode
   return str.replace(regex, "");
 }
 
-async function makePostRequest(accountData, description) {
+async function makePostRequest(
+  accountData,
+  description,
+  prompt = `Привет, я хочу начать диалог с пользователем, чтобы установить контакт и заинтересовать его. Пожалуйста, предложи мне хороший первый вопрос, связанный с его деятельностью, который поможет нам начать продуктивный разговор. Сформируй глубокий вопрос на основе его деятельности (исходя из описания), который будет для пользователя действительно интересен. Будь искренне заинтересованным в диалоге и живым.
+Пожалуйста, не задавай больше одного вопроса, ограничься не более 200 символами.`
+) {
   const dialogue = [
-    `Привет, я хочу начать диалог с пользователем, чтобы установить контакт и заинтересовать его. Пожалуйста, предложи мне хороший первый вопрос, связанный с его деятельностью, который поможет нам начать продуктивный разговор. Сформируй глубокий вопрос на основе его деятельности (исходя из описания), который будет для пользователя действительно интересен. Будь искренне заинтересованным в диалоге и живым. Имя пользователя: ${accountData} Описание пользователя: ${description}
-    Пожалуйста, не задавай больше одного вопроса, ограничься не более 200 символами. Никнейм пользователя: ${filterUnicodeSymbols(
-      accountData
-    )} Описание пользователя: ${filterUnicodeSymbols(description)}`,
+    `${prompt}
+    Имя пользователя: ${filterUnicodeSymbols(accountData)}
+    Описание пользователя: ${filterUnicodeSymbols(description)}`,
   ];
 
   while (true) {
@@ -46,10 +56,55 @@ async function makePostRequest(accountData, description) {
   }
 }
 
-const autoSender = async (page, accountId) => {
-  let username, message;
+async function readUserName(groupId, aiUsername, database) {
+  console.log("Начинаю получать username для написания из базы group id");
+  const usersSender = await getUsernamesByGroupId(groupId);
+  const failedUsers = await getFailedUsernames();
 
-  // Получаем данные аккаунта
+  for (let i = 0; i < database.length; i++) {
+    if (
+      !usersSender.includes(database[i]) &&
+      !failedUsers.includes(database[i])
+    ) {
+      // проверяем, имеется ли у нашего ai пользователя уже диалог с данным человеком
+      // независимо от group id
+      const dialoque = await getDialogue(database[i], aiUsername);
+      if (!dialoque) {
+        console.log("Получил username для написания из базы group id");
+        return database[i];
+      }
+    }
+  }
+
+  console.log("Начинаю получать username для написания из общей базы");
+  while (true) {
+    try {
+      const varUsername = await getRandomMessage();
+
+      if (
+        !varUsername ||
+        !varUsername.username ||
+        usersSender.includes(varUsername.username) ||
+        failedUsers.includes(varUsername.username)
+      ) {
+        continue;
+      }
+
+      const dialoque = await getDialogue(varUsername.username, aiUsername);
+
+      if (!dialoque) {
+        console.log("Получил username для написания из общей базы");
+
+        return varUsername.username;
+      }
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
+}
+
+const autoSender = async (accountId, context, aiUsername) => {
+  // Проверяем, можем ли мы писать
   try {
     const { remainingTime } = await readAccount(accountId);
     const remainingDate = new Date(remainingTime);
@@ -64,90 +119,116 @@ const autoSender = async (page, accountId) => {
       }
     }
   } catch (e) {
-    console.log(
+    console.error(
       `ERROR: Не удалось получить данные аккаунта ${accountId}. Ошибка: ${e.message}`
     );
     return;
-  }
+  } 
 
-  // Получаем рандомное сообщение для отправки
+  let userInfo;
+  let senderPage = await context.newPage();
+
+  const { groupId, propmpts, database } = await getGroupId();
+  console.log("Текущий groupId для присваивания к сообщению: ", groupId);
+
+  // Проверяем, существует ли пользователь
   try {
-    const {
-      username: randomUsername,
-      accountData,
-      description,
-      ...props
-    } = await readMessage();
+    while (!userInfo) {
+      try {
+        let username = await readUserName(groupId, aiUsername, database);
 
-    console.log(
-      "Данные пользователя для отправки: ",
-      randomUsername,
-      accountData,
-      description,
-      props
-    );
+        await senderPage.goto(
+          `https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3Fdomain%3D${username}`
+        );
+        
+        userInfo = await getUserInfo(senderPage);
 
-    const messageData = await makePostRequest(accountData, description);
+        if (!userInfo || !userInfo.userName) {
+          console.log(
+            `Пользователь ${username} не найден, добавляю статус failed`
+          );
+          await updateMessage(username, {
+            failed: true,
+            dateUpdated: new Date(),
+          });
 
-    console.log(messageData);
+          await senderPage.goto("about:blank");
+        }
+      } catch (e) {
+        console.log(e.message);
 
-    username = randomUsername;
-    message = messageData;
-
-    console.log("Найдено сообщение для отправки");
+        await senderPage.goto("about:blank");
+      }
+    }
   } catch (e) {
-    console.log(
-      `ERROR: Не удалось получить сообщение для отправки. Ошибка: ${e.message}`
+    console.error(
+      `ERROR: глобальная ошибка в цикле при отправке сообщения. Ошибка: ${e.message}`
     );
-    return;
-  }
-
-  // Поиск пользователя по имени
-  try {
-    await searchByUsername(page, username);
-    console.log(`Пользователь ${username} успешно найден в поиске`);
-  } catch (e) {
-    await returnToChatList(page);
-
-    console.log(
-      `ERROR: Поиск пользователя ${username} не удался. Ошибка: ${e.message}`
-    );
-
-    await updateMessage(username, { failed: true });
-
+    await senderPage.close();
     return;
   }
 
   // Отправка сообщения
   try {
-    try {
-      const [userName] = await getUserInfo(page);
+    console.log("Данные пользователя для отправки: ", userInfo);
+    const { userTitle, userBio, userName, phone } = userInfo;
 
-      if (String(userName) !== String(username)) {
-        throw new Error("Пользователь не найден");
-      }
-    } catch {
-      console.log("Ошибка при получении информации о пользователе");
+    const { first } = propmpts ?? {};
 
-      await updateMessage(username, { failed: true });
-
-      return;
+    if (first) {
+      console.log("Текущий groupId имеет заданный первый промпт.");
     }
 
-    await sendMessage(page, message);
-    await updateMessage(username);
+    const message = await makePostRequest(userTitle, userBio, first);
+    console.log("Текущее сообщение для пользователя: ", message);
+
+    // отправляем сообщение
+    try {
+      await sendMessage(senderPage, message, true);
+    } catch (e) {
+      console.log("Начинаю добавлять статус failed для сообщения в базу");
+      await updateMessage(userInfo.userName, {
+        failed: true,
+        dateUpdated: new Date(),
+      });
+      console.log("Добавил статус failed для сообщения в базу");
+
+      throw new Error(e.message);
+    }
+
+    // добавляем отправленное сообщение в общий список диалогов
+    await postDialogue({
+      groupId,
+      username: userName,
+      aiUsername,
+      bio: userBio,
+      title: userTitle,
+      phone,
+      messages: [`AiSender: ${message}`],
+      viewed: false,
+      dateCreated: new Date(),
+    });
+
+    await updateMessage(userName, {
+      dateUpdated: new Date(),
+    });
+
+    // увеличиваем счетчик отправленных сообщений с groupId на 1
+    await createOrUpdateCurrentCount(groupId);
+
+    // увеличиваем счетчик отправленных сообщений с аккаунт на 1
     await incrementMessageCount(accountId);
+
+    // увеличиваем лимит времени, через который можно будет снова писать на аккаунте
     await updateAccountRemainingTime(accountId, generateRandomTime());
 
-    console.log(`Сообщение успешно отправлено пользователю ${username}`);
+    console.log(`Сообщение успешно отправлено пользователю ${userName}`);
   } catch (e) {
-    console.log("Добавляем статус failed для сообщения в базу");
-    await updateMessage(username, { failed: true });
-
-    console.log(
-      `ERROR: Отправка сообщения пользователю ${username} не удалась. Ошибка: ${e.message}`
+    console.error(
+      `ERROR: Отправка сообщения пользователю ${userInfo.userName} не удалась. Ошибка: ${e.message}`
     );
   }
+  await senderPage.close();
 };
 
 module.exports = { autoSender };

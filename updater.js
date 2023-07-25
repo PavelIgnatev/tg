@@ -96,15 +96,16 @@ const startMainLoop = async () => {
 // getAllUsernames().then((e) => e.forEach((k) => deleteAccount(k)));
 
 // getAllUsernames().then((e) => console.log(e.length))
-let banned = 0;
+let spam = 0;
 
 readAccounts().then((e) => {
   // console.log(e.slice(126).length)
-  e.slice(134).forEach((k) => {
+  e.forEach((k) => {
     // console.log(k.messageCount);
     if (k.banned) {
-      banned += 1;
-      console.log(banned);
+      spam += 1
+
+      console.log(spam);
     }
   });
 });

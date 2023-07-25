@@ -16,9 +16,7 @@ const createPage = async (context, username) => {
           localStorage.setItem(key, data[key]);
         }
       }, localStorageData);
-    } catch (error) {
-      console.error(error.message);
-    }
+    } catch {}
   });
 
   return page;
