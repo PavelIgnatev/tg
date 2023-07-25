@@ -42,7 +42,6 @@ class AccountService {
       $or: [{ banned: { $ne: true } }],
     });
 
-
     return usernames;
   }
 

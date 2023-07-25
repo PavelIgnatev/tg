@@ -22,6 +22,8 @@ const main = async (accountId) => {
     await page.goto("https://web.telegram.org/a/");
     await page.waitForLoadState("networkidle");
 
+    console.log('Аккаунт загружен')
+
     const isSpam = await checkSpam(accountId, context);
     await accountSetup(page, accountId);
 

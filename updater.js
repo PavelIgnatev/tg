@@ -99,6 +99,7 @@ const startMainLoop = async () => {
 let spam = 0;
 
 readAccounts().then((e) => {
+  console.log(e.length)
   // console.log(e.slice(126).length)
   e.forEach((k) => {
     // console.log(k.messageCount);

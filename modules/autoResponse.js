@@ -63,7 +63,10 @@ const autoResponse = async (page, aiName, aiUsername) => {
 
       console.log("Данные пользователя для автоответа: ", userInfo);
 
-      if (userTitle.includes("Telegram") || userTitle.includes("SpamBot")) {
+      if (
+        userTitle.includes("Telegram") ||
+        userTitle.includes("Spam Info Bot")
+      ) {
         console.log("Этот диалог с Telegram, пропускаем");
         continue;
       }
@@ -117,9 +120,13 @@ const autoResponse = async (page, aiName, aiUsername) => {
 
       console.log("Полученное сообщение для автоответа: ", message);
 
-      console.log("Начинаю отправку автоответного сообщения");
-      await sendMessage(page, message);
-      console.log("Автоответное сообщение отправлено");
+      try {
+        console.log("Начинаю отправку автоответного сообщения");
+        await sendMessage(page, message);
+        console.log("Автоответное сообщение отправлено");
+      } catch (e) {
+        console.log(e.message);
+      }
 
       console.log("Начал сохранение истории диалога");
       result.push(`${aiName}: ${message}`);
