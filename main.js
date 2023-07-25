@@ -75,7 +75,7 @@ const startMainLoop = async () => {
 
           console.log("Начинаю вход в аккаунт: ", username);
 
-          await main(username);
+          await main(username); 
         } catch (error) {
           console.error(
             `Ошибка обработки для пользователя ${username}: ${error}`

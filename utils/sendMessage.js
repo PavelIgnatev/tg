@@ -17,13 +17,6 @@ const sendMessage = async (page, message) => {
 
   try {
     await page.waitForTimeout(2500);
-    const element = await page.waitForSelector(
-      `.Message:has-text("${filtredMessage}")`
-    );
-    await page.waitForTimeout(2500);
-    await element.waitForSelector(
-      `.icon-message-succeeded, .icon-message-read`
-    );
   } catch (e) {
     console.log(e.message);
     throw new Error("Сообщение не доставлено");
