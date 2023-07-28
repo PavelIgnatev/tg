@@ -38,13 +38,11 @@ class AccountService {
   async getAllUsernames() {
     await this.connect();
 
-    // const usernames = await this.collection.distinct("username", {
-    //   $or: [{ banned: { $ne: true } }],
-    // });
+    const usernames = await this.collection.distinct("username", {
+      $or: [{ banned: { $ne: true } }],
+    });
 
-    const usernames = await this.collection.distinct("username");
-
-    return usernames.slice(134);
+    return usernames;
   }
 
   // метод для получения всех аккантов
