@@ -196,6 +196,8 @@ const autoSender = async (accountId, context, aiUsername) => {
     }
 
     // добавляем отправленное сообщение в общий список диалогов
+
+    // сохраняю юзернейм типа а должен id диалога и тогда все будет понятно 
     await postDialogue({
       groupId,
       username: userName,

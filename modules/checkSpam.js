@@ -79,7 +79,7 @@ const checkSpam = async (username, context) => {
       e.message?.includes("editable-message-text") ||
       e.message?.includes(".last-in-list:has-text")
     ) {
-      console.log("Взаимодействие с аккаунтом неуспешно, бан есть");
+      console.log("Взаимодействие с аккаунтом неуспешно, возможно бан есть");
 
       await updateAccount(username, { banned: true });
     }
