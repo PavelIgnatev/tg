@@ -48,7 +48,7 @@ const autoResponse = async (page, aiName, aiUsername) => {
     console.log("Начинаю поиск неотвеченных сообщений");
     await page.waitForTimeout(5000);
     const elements = await page.$$(
-      ".ListItem:not(:has-text('Telegram')) .ChatBadge.unread:not(.muted)"
+      ".ListItem:not(:has-text('Spam Info Bot')) .ChatBadge.unread:not(.muted)"
     );
     console.log(`Найдено ${elements.length} неотвеченных сообщений`);
 

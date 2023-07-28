@@ -98,16 +98,18 @@ const startMainLoop = async () => {
 // getAllUsernames().then((e) => console.log(e.length))
 let spam = 0;
 
-readAccounts().then((e) => {
-  console.log(e.length)
-  // console.log(e.slice(126).length)
-  e.slice(134).forEach((k) => {
-    // console.log(k.messageCount);
-    if (k.banned) {
-      spam += 1
+getAllUsernames().then(e => console.log(e.length))
 
-      console.log(spam);
-    }
-  });
-});
-// 1
+// readAccounts().then((e) => {
+//   console.log(e.length)
+//   // console.log(e.slice(126).length)
+//   e.slice(134).forEach((k) => {
+//     // console.log(k.messageCount);
+//     if (k.banned) {
+//       spam += 1
+
+//       console.log(spam);
+//     }
+//   });
+// });
+// // 1
