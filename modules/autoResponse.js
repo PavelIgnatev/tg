@@ -63,9 +63,10 @@ const autoResponse = async (page, aiName, aiUsername) => {
 
       console.log("Данные пользователя для автоответа: ", userInfo);
 
+      console.log(userTitle)
       if (
-        userTitle.includes("Telegram") ||
-        userTitle.includes("Spam Info Bot")
+        userTitle.trim() === "Telegram" ||
+        userTitle.trim() === "Spam Info Bot"
       ) {
         console.log("Этот диалог с Telegram, пропускаем");
         continue;
