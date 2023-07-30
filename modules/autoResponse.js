@@ -158,7 +158,7 @@ async function autoResponseDialogue(context, href, accountId) {
           `\x1b[4mСгенерированное сообщение для автоответа пользователю:\x1b[0m \x1b[34m${message}\x1b[0m`
         );
 
-        dialogues.push(`Клиент: ${message}`);
+        dialogues.push(`Менеджер: ${message}`);
         isSender = true;
 
         try {
