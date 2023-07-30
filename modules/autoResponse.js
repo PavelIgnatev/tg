@@ -87,11 +87,11 @@ async function getDialogues(page) {
       if (textContent) {
         if (isOwnMessage) {
           result.push(
-            `Менеджер: ${textContent.slice(0, -8).replace("edited", "")}`
+            `Менеджер: ${textContent.slice(0, -5).replace("edited", "")}`
           );
         } else {
           result.push(
-            `Клиент: ${textContent.slice(0, -8).replace("edited", "")}`
+            `Клиент: ${textContent.slice(0, -5).replace("edited", "")}`
           );
         }
       }
@@ -132,6 +132,9 @@ async function autoResponseDialogue(context, href, accountId) {
 
         console.log(
           "\x1b[44m\x1b[1mИнформация о пользователе и диалоге:\x1b[0m"
+        );
+        console.log(
+          `\x1b[4mТекущий groupId для автоответного сообщения:\x1b[0m \x1b[31m${groupId}\x1b[0m`
         );
         console.log(
           `\x1b[4mИнформация, полученная о пользователе вручную:\x1b[0m \x1b[33m${JSON.stringify(
