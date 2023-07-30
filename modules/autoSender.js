@@ -159,6 +159,7 @@ const autoSender = async (accountId, context) => {
 
   const { groupId, propmpts, database } = await getGroupId();
   console.log("Текущий groupId для присваивания к сообщению: ", groupId);
+  let retry;
 
   // Проверяем, существует ли пользователь
   try {
@@ -185,9 +186,14 @@ const autoSender = async (accountId, context) => {
           await senderPage.goto("about:blank");
         }
       } catch (e) {
+        retry += 1;
         console.log(e.message);
 
         await senderPage.goto("about:blank");
+
+        if (retry > 4) {
+          throw new Error("Максимально количество ретраев");
+        }
       }
     }
   } catch (e) {
