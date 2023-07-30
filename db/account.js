@@ -20,6 +20,7 @@ class AccountService {
     this.updateAccountRemainingTime =
       this.updateAccountRemainingTime.bind(this);
     this.incrementMessageCount = this.incrementMessageCount.bind(this);
+    this.f = this.f.bind(this);
   }
 
   async connect() {
@@ -33,6 +34,15 @@ class AccountService {
     });
     this.db = this.client.db(dbName);
     this.collection = this.db.collection(collectionName);
+  }
+  async f() {
+    await this.connect();
+
+    const bannedAccounts = await this.collection
+      .find()
+      .toArray();
+
+    return bannedAccounts.map((account) => account.banned);
   }
 
   async getAllUsernames() {

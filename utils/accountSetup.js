@@ -3,18 +3,18 @@ const { getRandomName } = require("./getRandomName");
 const { getRandomImageFromFolder } = require("./getRandomUrlImage");
 const { replaceRussianLetters } = require("./replaceRussianLetters");
 
-const accountSetup = async (page, accountId, force = false) => {
+const accountSetup = async (page, accountId) => {
   const { setup } = await readAccount(accountId);
 
-  console.log("Проверяю сетап для аккаунта: ", accountId);
+  console.log("Проверяю сетап для аккаунта:", accountId);
 
-  if (setup && !force) {
-    console.log(`Сетап для пользователя ${accountId} присутствует`);
+  if (setup) {
+    console.log("Сетап для пользователя", accountId, "присутствует");
 
     return;
   }
 
-  console.log(`Сетап для пользователя ${accountId} отсутсвует`);
+  console.log("Сетап для пользователя", accountId, "отсутсвует");
 
   const settingsButton = await page?.waitForSelector(
     ".DropdownMenu.main-menu",
@@ -109,9 +109,6 @@ const accountSetup = async (page, accountId, force = false) => {
     state: "attached",
   });
 
-  const firstNameValue = await firstName?.getProperty("value");
-  const name = await firstNameValue?.jsonValue();
-
   try {
     const image = getRandomImageFromFolder(
       "/Users/pikcelll/Documents/cold/telegram/images"
@@ -122,7 +119,7 @@ const accountSetup = async (page, accountId, force = false) => {
 
     await page.waitForLoadState();
 
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(25000);
 
     const buttonSave = await page.waitForSelector(
       'button[title="Crop image"]',
@@ -153,11 +150,11 @@ const accountSetup = async (page, accountId, force = false) => {
 
     await buttonSave?.click();
 
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(15000);
 
     await page.waitForFunction((button) => !button.disabled, buttonSave);
 
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(15000);
   } catch (e) {
     console.log(e);
   }
@@ -167,7 +164,7 @@ const accountSetup = async (page, accountId, force = false) => {
   await buttonElements[1].click();
   await buttonElements[0].click();
 
-  console.log("Создал сетап для аккаунта: ", accountId);
+  console.log("Создал сетап для аккаунта:", accountId);
 
   await updateAccount(accountId, {
     setup: true,

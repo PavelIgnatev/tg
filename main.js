@@ -9,6 +9,7 @@ const { accountSetup } = require("./utils/accountSetup");
 const { changeProxy } = require("./utils/changeProxy");
 const { checkSpam } = require("./modules/checkSpam");
 const { getMyName } = require("./modules/getMyName");
+const { checkBanned } = require("./modules/checkBanned");
 
 const main = async (accountId) => {
   if (!accountId) {
@@ -20,20 +21,23 @@ const main = async (accountId) => {
 
   try {
     await page.goto("https://web.telegram.org/a/");
-    await page.waitForLoadState("networkidle");
+    await page.waitForLoadState();
 
-    console.log('Аккаунт загружен')
+    const isBanned = await checkBanned(page, accountId);
 
-    const isSpam = await checkSpam(accountId, context);
+    if (isBanned) {
+      throw new Error("Аккаунт забанен");
+    }
+
+    const isSpam = await checkSpam(context);
+
+    console.log("Аккаунт инициализирован");
     await accountSetup(page, accountId);
 
-    const { name: aiName, aiUsername } = await getMyName(page, accountId);
+    await autoResponse(page, context, accountId);
 
-    await autoResponse(page, aiName, aiUsername);
-
-    // делаем отправку только в случае, если аккаунт не в спаме
     if (!isSpam) {
-      await autoSender(accountId, context, aiUsername);
+      await autoSender(accountId, context);
     }
   } catch (e) {
     console.error(e.message);
@@ -75,7 +79,7 @@ const startMainLoop = async () => {
 
           console.log("Начинаю вход в аккаунт: ", username);
 
-          await main(username); 
+          await main(username);
         } catch (error) {
           console.error(
             `Ошибка обработки для пользователя ${username}: ${error}`

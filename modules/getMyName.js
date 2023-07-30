@@ -55,7 +55,7 @@ const getMyName = async (page, accountId) => {
   await buttonElements[0].click();
 
   if (!aiUsername) {
-    await accountSetup(page, accountId, true);
+    await accountSetup(page, accountId);
     throw new Error("AiUsername не найден");
   }
 

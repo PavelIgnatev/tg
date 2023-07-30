@@ -18,6 +18,7 @@ const {
   postDialogue,
   getUsernamesByGroupId,
   getDialogue,
+  getDialogueUsername,
 } = require("../db/dialogues");
 
 function filterUnicodeSymbols(str) {
@@ -41,7 +42,7 @@ async function makePostRequest(
 
   while (true) {
     try {
-      const response = await axios.post("http://localhost/answer/", {
+      const response = await axios.post("http://95.163.229.224/answer/", {
         dialogue,
       });
 
@@ -56,7 +57,7 @@ async function makePostRequest(
   }
 }
 
-async function readUserName(groupId, aiUsername, database) {
+async function readUserName(groupId, accountId, database) {
   console.log("Начинаю получать username для написания из базы group id");
   const usersSender = await getUsernamesByGroupId(groupId);
   const failedUsers = await getFailedUsernames();
@@ -68,7 +69,7 @@ async function readUserName(groupId, aiUsername, database) {
     ) {
       // проверяем, имеется ли у нашего ai пользователя уже диалог с данным человеком
       // независимо от group id
-      const dialoque = await getDialogue(database[i], aiUsername);
+      const dialoque = await getDialogueUsername(accountId, database[i]);
       if (!dialoque) {
         console.log("Получил username для написания из базы group id");
         return database[i];
@@ -90,7 +91,12 @@ async function readUserName(groupId, aiUsername, database) {
         continue;
       }
 
-      const dialoque = await getDialogue(varUsername.username, aiUsername);
+      // по хорошему сделать диалог поик по href, так более стабильно
+      // люди могут менять юзернейм
+      const dialoque = await getDialogueUsername(
+        accountId,
+        varUsername.username
+      );
 
       if (!dialoque) {
         console.log("Получил username для написания из общей базы");
@@ -103,7 +109,7 @@ async function readUserName(groupId, aiUsername, database) {
   }
 }
 
-const autoSender = async (accountId, context, aiUsername) => {
+const autoSender = async (accountId, context) => {
   // Проверяем, можем ли мы писать
   try {
     const { remainingTime } = await readAccount(accountId);
@@ -113,7 +119,9 @@ const autoSender = async (accountId, context, aiUsername) => {
     if (remainingTime) {
       if (remainingDate > currentDate) {
         console.log(
-          `Время для отправки сообщения аккаунтом ${accountId} ещё не наступило`
+          "Время для отправки сообщения аккаунтом",
+          accountId,
+          "ещё не наступило"
         );
         return;
       }
@@ -133,9 +141,10 @@ const autoSender = async (accountId, context, aiUsername) => {
 
   // Проверяем, существует ли пользователь
   try {
+    // реально сделать ретрай бы
     while (!userInfo) {
       try {
-        let username = await readUserName(groupId, aiUsername, database);
+        let username = await readUserName(groupId, accountId, database);
 
         await senderPage.goto(
           `https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3Fdomain%3D${username}`
@@ -196,12 +205,12 @@ const autoSender = async (accountId, context, aiUsername) => {
     }
 
     // добавляем отправленное сообщение в общий список диалогов
-
-    // сохраняю юзернейм типа а должен id диалога и тогда все будет понятно 
+    const href = await senderPage.url();
     await postDialogue({
       groupId,
+      accountId,
+      href,
       username: userName,
-      aiUsername,
       bio: userBio,
       title: userTitle,
       phone,

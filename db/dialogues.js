@@ -15,6 +15,7 @@ class DialoguesService {
 
     this.postDialogue = this.postDialogue.bind(this);
     this.getDialogue = this.getDialogue.bind(this);
+    this.getDialogueUsername = this.getDialogueUsername.bind(this);
     this.getUsernamesByGroupId = this.getUsernamesByGroupId.bind(this);
   }
 
@@ -35,16 +36,21 @@ class DialoguesService {
     await this.connect();
 
     await this.collection.updateOne(
-      { username: dialogue.username, aiUsername: dialogue.aiUsername },
+      { accountId: dialogue.accountId, href: dialogue.href },
       { $set: dialogue },
       { upsert: true }
     );
   }
 
   // получание по
-  async getDialogue(username, aiUsername) {
+  async getDialogue(accountId, href) {
     await this.connect();
-    return await this.collection.findOne({ username, aiUsername });
+    return await this.collection.findOne({ accountId, href });
+  }
+
+  async getDialogueUsername(accountId, username) {
+    await this.connect();
+    return await this.collection.findOne({ accountId, username });
   }
 
   // все пользователи, которым была отправка по конкретному groupId
