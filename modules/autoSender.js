@@ -48,7 +48,28 @@ async function makePostRequest(
 
       const { data } = response;
 
+      let pattern =
+        /((http|https|www):\/\/.)?([a-zA-Z0-9'\/\.\-])+\.[a-zA-Z]{2,5}([a-zA-Z0-9\/\&\;\:\.\,\?\\=\-\_\+\%\'\~]*)/g;
       const message = data.replace("\n", "");
+      const hasTextLink = message.match(pattern);
+
+      if (hasTextLink) {
+        console.log(
+          `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
+        );
+        throw new Error("В ответе содержится ссылка");
+      }
+
+      if (
+        message.includes("[") ||
+        message.includes("]") ||
+        message.includes("@")
+      ) {
+        console.log(
+          `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
+        );
+        throw new Error("В ответе содержатся подозрительные символы");
+      }
 
       return message;
     } catch (error) {
