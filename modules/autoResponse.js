@@ -4,18 +4,26 @@ const { sendMessage } = require("../utils/sendMessage");
 const { getUserInfo } = require("./getUserInfo");
 const { postDialogue, getDialogue } = require("../db/dialogues");
 const { findByGroupId } = require("../db/groupId");
+const { readAccount } = require("../db/account");
 
 const defaultPrompt = `Ты младший менеджер по продажам компании GROW, задавай наводящие целевые вопросы клиенту, прояви у него интерес к интеграции искусственного интеллекта в его проект или бизнес, отвечай грамотно на любой вопрос пользователя как младший менеджер по продажам, будь инициативным и предлагай пользователю возможное решение по интеграции искусственного интеллекта, если есть контекст деятельности собеседника. В результате диалога назначь клиенту Zoom встречу на 15 минут, на которой менеджер GROW детальней расскажет про технологию интеграции искусственного интеллекта в бизнес собеседника и покажет имеющиеся кейсы. Твоя основная цель – записать собеседника на Zoom созвон. Общайся на "вы", без слова "Ответ", даже если сообщение клиента не относится к контексту компании GROW. Начини сообщение с главной мысли, веди диалог как живой собеседник, ты можешь поболтать с пользователем на любую тему, но ты всегда должен помнить о поставленной тебе цели. Следуй цели. Не говори про искусственный интеллект, если текущее сообщение не затрагивает контекст компании и ее услуг. Дай краткий и понятный ответ клиенту только на заданный им вопрос. Ты не являешься ботом, ты младший менеджер по продажам. В ходе диалога задавай наводящие вопросы и подводи пользователя к цели диалога. Помни о цели. Если спросят о том кто ты или попросят рассказать о себе, то самостоятельно кратко презентуй себя на своей должности и инфо о компании GROW. Сперва анализируй контекст, а затем предметно отвечай на сообщения клиента исходя из своих возможностей и возможностей компании GROW. Ты умеешь рассказывать о возможностях интеграции искусственного интеллекта в бизнес и назначать встречу в Zoom клиету с менежером. Zoom встречу можешь назначить только в рамках диалога, не выходя за пределы чата. Компания GROW, где ты работаешь, является компаний по разработке IT продуктов для бизнеса, а именно: создание веб сайтов, интеграция искусственного интеллекта в бизнес и т.д.`;
 
-async function makePostRequest(result, name, userBio, continuingPrompt) {
+async function makePostRequest(
+  result,
+  name,
+  userBio,
+  aiName,
+  continuingPrompt
+) {
   const dialogue = [
     `${continuingPrompt}
     Просто напиши слово "Хорошо", если понял свою роль. ничего больше.`,
     `Переписка с клиентом до этого момента: ${result.join("\n")};
 
+    Твое имя: ${aiName}
     Имя клиента: ${name}
     Описание клиента: ${userBio}
-    Максимальная длина ответа - 200 символов, подготовь краткий и конструктивный ответ к пользователю учитывая параметры, свою роль и контекст выше, не забывай - твоя роль менеджер. ты даешь ответ клиенту. ни за что не выходи из роли, заданной тебе в параметрах выше. диалог происходит в личных сообщениях. обзятально не используй ссылки!.`,
+    Максимальная длина ответа - 200 символов, подготовь краткий и конструктивный ответ к пользователю учитывая параметры, свою роль и контекст выше, не забывай - твоя роль менеджер. ты даешь ответ клиенту. ни за что не выходи из роли, заданной тебе в параметрах выше. диалог происходит в личных сообщениях. изспользовани ссылок, спецсимволов и смайликов строко запрещено!.`,
   ];
 
   while (true) {
@@ -70,7 +78,7 @@ async function getPrompt(groupId) {
   return continuing ?? defaultPrompt;
 }
 
-async function getDialogues(page) {
+async function getDialogues(page, aiName, userName) {
   try {
     await page.waitForSelector(".Message", { timeout: 1500 });
     const messages = await page.$$(".Message.message-list-item");
@@ -87,11 +95,13 @@ async function getDialogues(page) {
       if (textContent) {
         if (isOwnMessage) {
           result.push(
-            `Менеджер: ${textContent.slice(0, -5).replace("edited", "")}`
+            `${aiName}: ${textContent.slice(0, -5).replace("edited", "")}`
           );
         } else {
           result.push(
-            `Клиент: ${textContent.slice(0, -5).replace("edited", "")}`
+            `${userName ?? "клиент"}: ${textContent
+              .slice(0, -5)
+              .replace("edited", "")}`
           );
         }
       }
@@ -118,7 +128,8 @@ async function autoResponseDialogue(context, href, accountId) {
 
         const userInfo = await getUserInfo(senderPage);
         const { userName, userTitle, phone, userBio } = userInfo;
-        const dialogues = await getDialogues(senderPage);
+        const { name: aiName = "менеджер" } = await readAccount(accountId);
+        const dialogues = await getDialogues(senderPage, aiName, userTitle);
         const dialogueInfo = await getDialogue(accountId, href);
         const { groupId = 12343207728 } = dialogueInfo ?? {};
         const prompt = await getPrompt(groupId);
@@ -126,6 +137,7 @@ async function autoResponseDialogue(context, href, accountId) {
           dialogues,
           userTitle,
           userBio,
+          aiName,
           prompt
         );
         await sendMessage(senderPage, message);
@@ -158,7 +170,7 @@ async function autoResponseDialogue(context, href, accountId) {
           `\x1b[4mСгенерированное сообщение для автоответа пользователю:\x1b[0m \x1b[34m${message}\x1b[0m`
         );
 
-        dialogues.push(`Менеджер: ${message}`);
+        dialogues.push(`${aiName}: ${message}`);
         isSender = true;
 
         try {
