@@ -167,7 +167,7 @@ async function autoResponseDialogue(context, href, accountId) {
             groupId,
             accountId,
             href,
-            actualUsername: userName,
+            username: userName,
             bio: userBio,
             title: userTitle,
             phone,

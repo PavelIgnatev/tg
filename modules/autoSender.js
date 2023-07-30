@@ -83,6 +83,14 @@ async function readUserName(groupId, accountId, database) {
   const usersSender = await getUsernamesByGroupId(groupId);
   const failedUsers = await getFailedUsernames();
 
+  // здесь можно по факту еще проверять есть ли диалог или нет
+  // но на больших объемах врятли будут проблемы
+  // проблемы не будет только в случае, если чел не менял юзернейм
+  // но если поменял - это фиаск, мы напишем ему типо, привяжем к базе,
+  // но он будет обработан первым попавшимся групп айди (на сколько понимаю)
+  // вообще не крит, но по-хорошему обработать кейс потом, когда диалог уже есть
+  // чтобы не было  ебки
+
   for (let i = 0; i < database.length; i++) {
     if (
       !usersSender.includes(database[i]) &&
@@ -112,8 +120,6 @@ async function readUserName(groupId, accountId, database) {
         continue;
       }
 
-      // по хорошему сделать диалог поик по href, так более стабильно
-      // люди могут менять юзернейм
       const dialoque = await getDialogueUsername(
         accountId,
         varUsername.username
