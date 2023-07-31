@@ -63,7 +63,6 @@ async function makePostRequest(
       if (
         message.includes("[") ||
         message.includes("]") ||
-        message.includes("@")
       ) {
         console.log(
           `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
@@ -71,7 +70,7 @@ async function makePostRequest(
         throw new Error("В ответе содержатся подозрительные символы");
       }
 
-      return message;
+      return message.replace('@', '');;
     } catch (error) {
       console.log(`Ошибка запроса. ${error.message}`);
     }
