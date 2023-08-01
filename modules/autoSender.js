@@ -246,7 +246,7 @@ const autoSender = async (accountId, context) => {
       bio: userBio,
       title: userTitle,
       phone,
-      messages: [`AiSender: ${message}`],
+      messages: [`Менеджер: ${message}`],
       viewed: false,
       dateCreated: new Date(),
     });

@@ -98,7 +98,7 @@ async function getDialogues(page, aiName, userName) {
           );
         } else {
           result.push(
-            `${userName ?? "клиент"}: ${textContent
+            `${userName ?? "Клиент"}: ${textContent
               .slice(0, -5)
               .replace("edited", "")}`
           );
@@ -127,7 +127,7 @@ async function autoResponseDialogue(context, href, accountId) {
 
         const userInfo = await getUserInfo(senderPage);
         const { userName, userTitle, phone, userBio } = userInfo;
-        const { name: aiName = "менеджер" } = await readAccount(accountId);
+        const { name: aiName = "Менеджер" } = await readAccount(accountId);
         const dialogues = await getDialogues(senderPage, aiName, userTitle);
         const dialogueInfo = await getDialogue(accountId, href);
         const { groupId = 12343207728 } = dialogueInfo ?? {};
