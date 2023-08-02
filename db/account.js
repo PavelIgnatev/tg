@@ -21,6 +21,7 @@ class AccountService {
       this.updateAccountRemainingTime.bind(this);
     this.incrementMessageCount = this.incrementMessageCount.bind(this);
     this.f = this.f.bind(this);
+    this.getCurrentAccount = this.getCurrentAccount.bind(this);
   }
 
   async connect() {
@@ -38,9 +39,7 @@ class AccountService {
   async f() {
     await this.connect();
 
-    const bannedAccounts = await this.collection
-      .find()
-      .toArray();
+    const bannedAccounts = await this.collection.find().toArray();
 
     return bannedAccounts.map((account) => account.banned);
   }
@@ -116,6 +115,37 @@ class AccountService {
     await this.connect();
 
     await this.collection.deleteOne({ username });
+  }
+
+  async getCurrentAccount() {
+    await this.connect();
+
+    const unprocessedUsers = await this.collection
+      .aggregate([
+        { $match: { locked: { $ne: true }, banned: { $ne: true } } },
+        {
+          $group: {
+            _id: "$username",
+            lastProcessedBy: { $min: "$lastProcessedBy" },
+          },
+        },
+        { $sort: { lastProcessedBy: 1 } },
+      ])
+      .toArray();
+
+    console.log(`Аккаунтов в простое: ${unprocessedUsers.length}`);
+
+    if (unprocessedUsers.length === 0) {
+      return null;
+    }
+
+    const { _id } = unprocessedUsers[0];
+    await this.collection.updateOne(
+      { username: _id },
+      { $set: { locked: true, lastProcessedBy: new Date() } }
+    );
+
+    return _id;
   }
 }
 

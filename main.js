@@ -2,7 +2,11 @@ const { createPage } = require("./helpers/createPage");
 const { destroyBrowser } = require("./helpers/destroyBrowser");
 const { initialBrowser } = require("./helpers/initialBrowser");
 const { autoResponse } = require("./modules/autoResponse");
-const { getAllUsernames, updateAccount } = require("./db/account");
+const {
+  getAllUsernames,
+  updateAccount,
+  getCurrentAccount,
+} = require("./db/account");
 const { default: axios } = require("axios");
 const { autoSender } = require("./modules/autoSender");
 const { accountSetup } = require("./utils/accountSetup");
@@ -16,7 +20,7 @@ const main = async (accountId) => {
     throw new Error("Произошла ошибка, accountId не был передан");
   }
 
-  const [context, browser] = await initialBrowser(false, accountId);
+  const [context, browser] = await initialBrowser(true, accountId);
   const page = await createPage(context, accountId);
 
   try {
@@ -57,36 +61,26 @@ const main = async (accountId) => {
   }
 };
 
-function randomSort(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
 const startMainLoop = async () => {
   while (true) {
     try {
-      const usernames = await getAllUsernames();
+      console.time("Время, потраченное на обработку аккаунта");
+      const username = await getCurrentAccount()
 
-      console.log(usernames);
-      for (const username of randomSort(usernames)) {
-        console.time("Время, потраченное на обработку аккаунта");
+      try {
+        await changeProxy();
+        console.log("Начинаю вход в аккаунт: ", username);
 
-        try {
-          await changeProxy();
-
-          console.log("Начинаю вход в аккаунт: ", username);
-
-          await main(17765899239);
-        } catch (error) {
-          console.error(
-            `Ошибка обработки для пользователя ${username}: ${error}`
-          );
-        }
-        console.timeEnd("Время, потраченное на обработку аккаунта");
+        await main(username);
+        await updateAccount(username, { locked: false });
+      } catch (error) {
+        await updateAccount(username, { locked: false });
+        console.error(
+          `Ошибка обработки для пользователя ${username}: ${error}`
+        );
       }
+
+      console.timeEnd("Время, потраченное на обработку аккаунта");
     } catch (e) {
       console.log(e.message, "ошибка в цикле");
     }

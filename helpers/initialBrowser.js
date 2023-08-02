@@ -28,9 +28,9 @@ const initialBrowser = async (headless, username) => {
       cookies,
     },
     proxy: {
-      server: "217.29.63.159:13219",
-      username: "DDD7gJ",
-      password: "80mHKn",
+      server: "95.31.211.120:40464",
+      username: "54fc976344",
+      password: "56ddc55334",
     },
   });
 
