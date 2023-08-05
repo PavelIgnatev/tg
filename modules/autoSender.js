@@ -50,8 +50,8 @@ async function makePostRequest(
 
       let pattern =
         /((http|https|www):\/\/.)?([a-zA-Z0-9'\/\.\-])+\.[a-zA-Z]{2,5}([a-zA-Z0-9\/\&\;\:\.\,\?\\=\-\_\+\%\'\~]*)/g;
-      const message = data.replace("\n", "");
-      const hasTextLink = message.replace('@', '').match(pattern);
+      const message = data.replace('@', '').replace(accountData, '').replace("\n", "");
+      const hasTextLink = message.match(pattern);
 
       if (hasTextLink) {
         console.log(
@@ -70,7 +70,7 @@ async function makePostRequest(
         throw new Error("В ответе содержатся подозрительные символы");
       }
 
-      return message.replace('@', '');;
+      return message.replace('@', '');
     } catch (error) {
       console.log(`Ошибка запроса. ${error.message}`);
     }
