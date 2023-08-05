@@ -41,7 +41,7 @@ async function makePostRequest(
 
       let pattern =
         /((http|https|www):\/\/.)?([a-zA-Z0-9'\/\.\-])+\.[a-zA-Z]{2,5}([a-zA-Z0-9\/\&\;\:\.\,\?\\=\-\_\+\%\'\~]*)/g;
-      const message = data.replace("@", "").replace(name, "").replace("\n", "");
+      const message = data.replace("\n", "");
       const hasTextLink = message.match(pattern);
 
       if (hasTextLink) {
@@ -65,7 +65,7 @@ async function makePostRequest(
         throw new Error("В ответе содержится слово: 'менеджер'");
       }
 
-      return message.replace("@", "");
+      return message;
     } catch (error) {
       console.log(`Ошибка запроса. ${error.message}`);
     }
