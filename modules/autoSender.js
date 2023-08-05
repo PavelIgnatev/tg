@@ -51,7 +51,7 @@ async function makePostRequest(
       let pattern =
         /((http|https|www):\/\/.)?([a-zA-Z0-9'\/\.\-])+\.[a-zA-Z]{2,5}([a-zA-Z0-9\/\&\;\:\.\,\?\\=\-\_\+\%\'\~]*)/g;
       const message = data.replace("\n", "");
-      const hasTextLink = message.match(pattern);
+      const hasTextLink = message.replace('@', '').match(pattern);
 
       if (hasTextLink) {
         console.log(
