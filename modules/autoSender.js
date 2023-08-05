@@ -21,6 +21,11 @@ const {
   getDialogueUsername,
 } = require("../db/dialogues");
 
+function filterText(text) {
+  var filteredText = text.replace(/[.@]/g, "");
+  return filteredText;
+}
+
 function filterUnicodeSymbols(str) {
   const regex =
     /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1F1E0}-\u{1F1FF}]/gu;
@@ -50,7 +55,10 @@ async function makePostRequest(
 
       let pattern =
         /((http|https|www):\/\/.)?([a-zA-Z0-9'\/\.\-])+\.[a-zA-Z]{2,5}([a-zA-Z0-9\/\&\;\:\.\,\?\\=\-\_\+\%\'\~]*)/g;
-      const message = data.replace('@', '').replace(accountData, '').replace("\n", "");
+      const message = data
+        .replace("@", "")
+        .replace(accountData, "")
+        .replace("\n", "");
       const hasTextLink = message.match(pattern);
 
       if (hasTextLink) {
@@ -60,17 +68,14 @@ async function makePostRequest(
         throw new Error("В ответе содержится ссылка");
       }
 
-      if (
-        message.includes("[") ||
-        message.includes("]")
-      ) {
+      if (message.includes("[") || message.includes("]")) {
         console.log(
           `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
         );
         throw new Error("В ответе содержатся подозрительные символы");
       }
 
-      return message.replace('@', '');
+      return message.replace("@", "");
     } catch (error) {
       console.log(`Ошибка запроса. ${error.message}`);
     }
@@ -220,7 +225,11 @@ const autoSender = async (accountId, context) => {
       console.log("Текущий groupId имеет заданный первый промпт.");
     }
 
-    const message = await makePostRequest(userTitle, userBio, first);
+    const message = await makePostRequest(
+      filterText(userTitle),
+      filterText(userBio),
+      first
+    );
     console.log("Текущее сообщение для пользователя: ", message);
 
     // отправляем сообщение
