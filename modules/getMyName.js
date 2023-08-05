@@ -59,7 +59,7 @@ const getMyName = async (page, accountId) => {
     throw new Error("AiUsername не найден");
   }
 
-  return { name: name.trim().length > 0 ? name : "менеджер", aiUsername };
+  return { name: name.trim().length > 0 ? name : "Менеджер", aiUsername };
 };
 
 module.exports = { getMyName };

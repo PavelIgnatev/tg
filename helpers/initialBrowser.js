@@ -22,7 +22,6 @@ const initialBrowser = async (headless, username) => {
 
   const context = await browser.newContext({
     userAgent,
-
     cursor: "default",
     storageState: {
       cookies,
