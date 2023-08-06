@@ -61,7 +61,8 @@ const getUserInfo = async (page) => {
     await closeButton.click();
 
     return { phone, userName, userBio, userTitle };
-  } catch {
+  } catch (e) {
+    console.log(e.message)
     return null;
   }
 };

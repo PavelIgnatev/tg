@@ -47,9 +47,18 @@ class AccountService {
   async getAllUsernames() {
     await this.connect();
 
-    const usernames = await this.collection.distinct("username", {
-      $or: [{ banned: { $ne: true } }],
-    });
+    const usernames = await this.collection
+      .aggregate([
+        { $match: { locked: { $ne: true }, banned: { $ne: true } } },
+        {
+          $group: {
+            _id: "$username",
+            lastProcessedBy: { $min: "$lastProcessedBy" },
+          },
+        },
+        { $sort: { lastProcessedBy: 1 } },
+      ])
+      .toArray();
 
     return usernames;
   }
