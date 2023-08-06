@@ -67,6 +67,7 @@ const startMainLoop = async () => {
       console.time("Время, потраченное на обработку аккаунта");
       const username = await getCurrentAccount();
       await updateAccount(username, { locked: true });
+        // вернуть баннед
 
       try {
         await changeProxy();

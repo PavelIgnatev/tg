@@ -122,9 +122,7 @@ class AccountService {
 
     const unprocessedUsers = await this.collection
       .aggregate([
-        //        { $match: { locked: { $ne: true }, banned: { $ne: true } } },
-
-        { $match: { locked: { $ne: true } } },
+        { $match: { locked: { $ne: true }, banned: { $ne: true } } },
         {
           $group: {
             _id: "$username",
@@ -140,7 +138,7 @@ class AccountService {
     if (unprocessedUsers.length === 0) {
       return null;
     }
-
+    console.log(unprocessedUsers[0]);
     const { _id } = unprocessedUsers[0];
     await this.collection.updateOne(
       { username: _id },
