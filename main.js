@@ -66,7 +66,6 @@ const startMainLoop = async () => {
     try {
       console.time("Время, потраченное на обработку аккаунта");
       const username = await getCurrentAccount();
-      await updateAccount(username, { locked: true });
         // вернуть баннед
 
       try {
@@ -74,9 +73,7 @@ const startMainLoop = async () => {
         console.log("Начинаю вход в аккаунт: ", username);
 
         await main(username);
-        await updateAccount(username, { locked: false });
       } catch (error) {
-        await updateAccount(username, { locked: false });
         console.error(
           `Ошибка обработки для пользователя ${username}: ${error}`
         );
