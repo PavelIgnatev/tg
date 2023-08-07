@@ -62,14 +62,23 @@ const main = async (accountId) => {
 };
 
 const startMainLoop = async () => {
+  let iterationCount = 0;
+
   while (true) {
+    if (iterationCount >= 10) {
+      console.log(
+        "Достигнуто максимальное количество итераций. Завершение работы аккаунта."
+      );
+      process.exit();
+    }
+
     try {
       console.time("Время, потраченное на обработку аккаунта");
       const username = await getCurrentAccount();
-        // вернуть баннед
+      // вернуть баннед
 
       try {
-        await changeProxy();
+        // await changeProxy();
         console.log("Начинаю вход в аккаунт: ", username);
 
         await main(username);
@@ -80,6 +89,8 @@ const startMainLoop = async () => {
       }
 
       console.timeEnd("Время, потраченное на обработку аккаунта");
+
+      iterationCount++;
     } catch (e) {
       console.log(e.message, "ошибка в цикле");
     }

@@ -81,6 +81,7 @@ async function makePostRequest(
 
 async function readUserName(groupId, accountId, database) {
   console.log("Начинаю получать username для написания из базы group id");
+  // тут пофиксить надо короче будет чтобы мы авафывфывыф 
   const usersSender = await getUsernamesByGroupId(groupId);
   const failedUsers = await getFailedUsernames();
 

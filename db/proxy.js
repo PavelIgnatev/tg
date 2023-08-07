@@ -12,6 +12,7 @@ class ProxyService {
 
     this.connect = this.connect.bind(this);
     this.addAccount = this.addAccount.bind(this);
+    this.assignAccountId = this.assignAccountId.bind(this);
   }
 
   async connect() {
@@ -51,6 +52,36 @@ class ProxyService {
       console.log("New account added:", account);
       return result;
     }
+  }
+
+  async assignAccountId(accountId) {
+    await this.connect();
+
+    // Проверяем, есть ли уже привязанный прокси с данным accountId
+    const existingAccount = await this.collection.findOne({ accountId });
+    if (existingAccount) {
+      console.log(
+        `Proxy already assigned to account ${accountId}:`,
+        existingAccount
+      );
+      return existingAccount;
+    }
+
+    const freeProxy = await this.collection.findOne(
+      { accountId: null },
+      { sort: { _id: -1 } }
+    );
+    if (freeProxy) {
+      await this.collection.updateOne(
+        { _id: freeProxy._id },
+        { $set: { accountId } }
+      );
+      console.log(`Proxy assigned to account ${accountId}:`, freeProxy);
+      return freeProxy;
+    }
+
+    console.log(`No free proxy available for account ${accountId}`);
+    return null;
   }
 }
 
