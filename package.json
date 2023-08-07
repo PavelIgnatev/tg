@@ -6,7 +6,7 @@
     "node": "14.21.1"
   },
   "scripts": {
-    "start": "pm2 kill && pm2 start main.js -f"
+    "start": "pm2 kill && pm2 start main.js -f && pm2 logs"
   },
   "keywords": [],
   "author": "",
