@@ -6,7 +6,7 @@
     "node": "14.21.1"
   },
   "scripts": {
-    "start": "node main.js"
+    "start": "pm2 kill && pm2 start main.js -f"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,7 @@
     "mongodb": "^5.6.0",
     "playwright": "^1.35.1",
     "playwright-extra": "^4.3.6",
+    "pm2": "^5.3.0",
     "puppeteer-extra-plugin-stealth": "^2.11.2"
   }
 }
