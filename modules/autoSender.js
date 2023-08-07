@@ -180,6 +180,19 @@ const autoSender = async (accountId, context) => {
           `https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3Fdomain%3D${username}`
         );
 
+        await senderPage.waitForLoadState();
+        const href = await senderPage.url();
+
+        if (!href || href === "https://web.telegram.org/a/#0") {
+          await postDialogue({
+            groupId,
+            accountId,
+            href,
+            status: "init",
+            dateCreated: new Date(),
+          });
+        }
+
         userInfo = await getUserInfo(senderPage);
 
         if (!userInfo || !userInfo.userName) {
