@@ -16,11 +16,11 @@ chromium.plugins.setDependencyDefaults("stealth/evasions/webgl.vendor", {
 
 const initialBrowser = async (headless, username) => {
   const { cookies, userAgent } = (await readAccount(username)) ?? {};
-  const {
-    server,
-    username: serverUsername,
-    password,
-  } = await assignAccountId(username);
+  // const {
+  //   server,
+  //   username: serverUsername,
+  //   password,
+  // } = await assignAccountId(username);
 
   const browser = await chromium.launch({
     headless: headless,
@@ -33,9 +33,9 @@ const initialBrowser = async (headless, username) => {
       cookies,
     },
     proxy: {
-      server,
-      username: serverUsername,
-      password,
+      server: "95.31.211.120:40464",
+      username: "54fc976344",
+      password: "56ddc55334",
     },
   });
 

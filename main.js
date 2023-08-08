@@ -2,16 +2,12 @@ const { createPage } = require("./helpers/createPage");
 const { destroyBrowser } = require("./helpers/destroyBrowser");
 const { initialBrowser } = require("./helpers/initialBrowser");
 const { autoResponse } = require("./modules/autoResponse");
-const {
-  getCurrentAccount,
-} = require("./db/account");
-const { default: axios } = require("axios");
+const { getCurrentAccount } = require("./db/account");
 const { autoSender } = require("./modules/autoSender");
 const { accountSetup } = require("./utils/accountSetup");
-const { changeProxy } = require("./utils/changeProxy");
 const { checkSpam } = require("./modules/checkSpam");
-const { getMyName } = require("./modules/getMyName");
 const { checkBanned } = require("./modules/checkBanned");
+const { changeProxy } = require("./utils/changeProxy");
 
 const main = async (accountId) => {
   if (!accountId) {
@@ -61,14 +57,12 @@ const main = async (accountId) => {
 
 const startMainLoop = async () => {
   while (true) {
-
     try {
       console.time("Время, потраченное на обработку аккаунта");
       const username = await getCurrentAccount();
-      // вернуть баннед
 
       try {
-        // await changeProxy();
+        await changeProxy();
         console.log("Начинаю вход в аккаунт: ", username);
 
         await main(username);
@@ -79,7 +73,6 @@ const startMainLoop = async () => {
       }
 
       console.timeEnd("Время, потраченное на обработку аккаунта");
-
     } catch (e) {
       console.log(e.message, "ошибка в цикле");
     }

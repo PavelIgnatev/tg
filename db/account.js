@@ -1,10 +1,13 @@
 const { MongoClient } = require("mongodb");
+const { Mutex } = require("async-mutex");
 
 const dbName = "telegram";
 const collectionName = "accounts";
 const uri =
   "mongodb://qwerty:qwerty123@ac-llvczxo-shard-00-00.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-01.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-02.2ry9k50.mongodb.net:27017/?ssl=true&replicaSet=atlas-b2xf0l-shard-0&authSource=admin&retryWrites=true&w=majority";
 class AccountService {
+  lock = new Mutex();
+
   constructor() {
     this.client = null;
     this.db = null;
@@ -118,6 +121,8 @@ class AccountService {
   }
 
   async getCurrentAccount() {
+    await this.lock.acquire();
+
     await this.connect();
 
     const unprocessedUsers = await this.collection
@@ -138,6 +143,8 @@ class AccountService {
     console.log(`Аккаунтов в простое: ${unprocessedUsers.length}`);
 
     if (unprocessedUsers.length === 0) {
+      this.lock.release();
+
       return null;
     }
     console.log(unprocessedUsers[0]);
@@ -146,6 +153,8 @@ class AccountService {
       { username: _id },
       { $set: { lastProcessedBy: new Date() } }
     );
+
+    this.lock.release();
 
     return _id;
   }
