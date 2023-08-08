@@ -3,8 +3,6 @@ const { destroyBrowser } = require("./helpers/destroyBrowser");
 const { initialBrowser } = require("./helpers/initialBrowser");
 const { autoResponse } = require("./modules/autoResponse");
 const {
-  getAllUsernames,
-  updateAccount,
   getCurrentAccount,
 } = require("./db/account");
 const { default: axios } = require("axios");
@@ -63,6 +61,7 @@ const main = async (accountId) => {
 
 const startMainLoop = async () => {
   while (true) {
+
     try {
       console.time("Время, потраченное на обработку аккаунта");
       const username = await getCurrentAccount();
@@ -80,6 +79,7 @@ const startMainLoop = async () => {
       }
 
       console.timeEnd("Время, потраченное на обработку аккаунта");
+
     } catch (e) {
       console.log(e.message, "ошибка в цикле");
     }
