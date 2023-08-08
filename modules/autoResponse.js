@@ -33,7 +33,7 @@ async function makePostRequest(
 
   while (true) {
     try {
-      const response = await axios.post("http://95.163.229.224/answer/", {
+      const response = await axios.post("http://95.163.229.126/answer/", {
         dialogue,
       });
 
