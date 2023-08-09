@@ -17,9 +17,9 @@ const { getGroupId, createOrUpdateCurrentCount } = require("../db/groupId");
 const {
   postDialogue,
   getUsernamesByGroupId,
-  getDialogue,
   getDialogueUsername,
 } = require("../db/dialogues");
+const { checkSpam } = require("../modules/checkSpam");
 
 function filterText(text) {
   var filteredText = text.replace(/[.@]/g, "");
@@ -50,7 +50,7 @@ async function makePostRequest(
       const response = await axios.post("http://95.163.229.126/answer/", {
         dialogue,
       });
- 
+
       const { data } = response;
 
       let pattern =
@@ -158,6 +158,19 @@ const autoSender = async (accountId, context) => {
   } catch (e) {
     console.error(
       `ERROR: Не удалось получить данные аккаунта ${accountId}. Ошибка: ${e.message}`
+    );
+    return;
+  }
+
+  try {
+    const isSpam = await checkSpam(context);
+
+    if (isSpam) {
+      return;
+    }
+  } catch (e) {
+    console.error(
+      `ERROR: Не удалось получить аккаунт в спаме или нет. Ошибка: ${e.message}`
     );
     return;
   }

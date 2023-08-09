@@ -217,8 +217,6 @@ async function autoResponseDialogue(context, href, accountId) {
 const autoResponse = async (page, context, accountId) => {
   try {
     console.log("Начинаю поиск неотвеченных сообщений");
-    await page.waitForTimeout(5000);
-
     const elements = await page.$$(".ListItem-button");
     const links = [];
 

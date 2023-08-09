@@ -33,9 +33,9 @@ const initialBrowser = async (headless, username) => {
       cookies,
     },
     proxy: {
-      server: "95.31.211.120:40464",
-      username: "54fc976344",
-      password: "56ddc55334",
+      server: "fproxy.site:13109",
+      username: "sYSzEC",
+      password: "BEJmaTyppYtk",
     },
   });
 

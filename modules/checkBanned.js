@@ -9,7 +9,7 @@ const checkBanned = async (page, accountId) => {
       state: "hidden",
     });
 
-    const isBanned = await page.waitForSelector(".auth-form");
+    const isBanned = await page.$(".auth-form");
 
     if (isBanned) {
       await updateAccount(accountId, { banned: true });
@@ -18,7 +18,7 @@ const checkBanned = async (page, accountId) => {
     }
   } catch {}
 
-  console.log('Аккаунт свободен от бана')
+  console.log("Аккаунт свободен от бана");
   await updateAccount(accountId, { banned: false });
   return false;
 };
