@@ -9,8 +9,9 @@ async function changeProxy() {
       //   "https://frigate-proxy.ru/ru/change_ip/82d68ac1341d35f48d503c735d9a6149/1014889"
       // );
       const result = await axios.get(
-        "https://changeip.mobileproxy.space/?proxy_key=4cb5992cf633de2b5b7e5d8d2c37d516&format=json"
+        "https://changeip.mobileproxy.space/?proxy_key=d030cc21e0c3f83e5d0146d3efd0a857&format=json"
       );
+      //3|main     | { status: 'err', message: 'Already change IP, please wait' }
       console.log(result.data);
       await new Promise((resolve) => setTimeout(resolve, 5000));
       break;
