@@ -13,7 +13,7 @@ async function changeProxy() {
       );
       //3|main     | { status: 'err', message: 'Already change IP, please wait' }
       console.log(result.data);
-      if (result.data.status === "err") {
+      if (result.data.status === "err" || result.data.status === "ERR") {
         throw new Error("Ошибка");
       }
       await new Promise((resolve) => setTimeout(resolve, 5000));
