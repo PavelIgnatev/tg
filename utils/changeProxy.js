@@ -13,13 +13,18 @@ async function changeProxy() {
       );
       //3|main     | { status: 'err', message: 'Already change IP, please wait' }
       console.log(result.data);
+      if (result.data.status === "err") {
+        throw new Error("Ошибка");
+      }
       await new Promise((resolve) => setTimeout(resolve, 5000));
       break;
     } catch (e) {
       console.log(e.message);
       console.log(
-        "Ошибка при смене прокси. Повторный запрос... Ждем 10 секунд..."
+        "Ошибка при смене прокси. Повторный запрос... Ждем 5 секунд..."
       );
+      await new Promise((resolve) => setTimeout(resolve, 5000));
+
       retryCount++;
     }
   }
