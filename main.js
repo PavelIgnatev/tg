@@ -13,7 +13,7 @@ const main = async (accountId) => {
     throw new Error("Произошла ошибка, accountId не был передан");
   }
 
-  const [context, browser] = await initialBrowser(true, accountId);
+  const [context, browser] = await initialBrowser(false, accountId);
   const page = await createPage(context, accountId);
 
   try {
