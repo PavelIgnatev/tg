@@ -17,6 +17,8 @@ class DialoguesService {
     this.getDialogue = this.getDialogue.bind(this);
     this.getDialogueUsername = this.getDialogueUsername.bind(this);
     this.getUsernamesByGroupId = this.getUsernamesByGroupId.bind(this);
+    this.convertUsernamesToLowerCase =
+      this.convertUsernamesToLowerCase.bind(this);
   }
 
   async connect() {
@@ -50,7 +52,10 @@ class DialoguesService {
 
   async getDialogueUsername(accountId, username) {
     await this.connect();
-    return await this.collection.findOne({ accountId, username });
+    return await this.collection.findOne({
+      accountId,
+      username: username.toLowerCase(),
+    });
   }
 
   // все пользователи, которым была отправка по конкретному groupId
@@ -58,7 +63,30 @@ class DialoguesService {
     await this.connect();
 
     const dialogues = await this.collection.find({ groupId }).toArray();
-    return dialogues.map((dialogue) => dialogue.username);
+    return dialogues.map((dialogue) => dialogue.username.toLowerCase());
+  }
+
+  async convertUsernamesToLowerCase() {
+    await this.connect();
+
+    // Получаем все диалоги
+    const dialogues = await this.collection.find().toArray();
+
+    // Проходимся по каждому диалогу
+    for (const dialogue of dialogues) {
+      // Проверяем, есть ли у диалога поле "username"
+      if (dialogue.username) {
+        // Преобразуем значение поля "username" в нижний регистр
+        dialogue.username = dialogue.username.toLowerCase();
+
+        // Обновляем диалог с новым значением поля "username"
+        await this.collection.updateOne(
+          { _id: dialogue._id },
+          { $set: { username: dialogue.username } }
+        );
+      }
+    }
+    console.log('все')
   }
 }
 

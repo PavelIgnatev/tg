@@ -169,7 +169,7 @@ const accountSetup = async (page, accountId) => {
   await updateAccount(accountId, {
     setup: true,
     name: nameRandom,
-    aiUsername: userName,
+    aiUsername: userName?.toLowerCase(),
   });
 };
 

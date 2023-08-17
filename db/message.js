@@ -192,7 +192,7 @@ class MessageService {
     await this.connect();
 
     const usernames = await this.collection.distinct("username");
-    return usernames;
+    return usernames.map(username => username.toLowerCase());
   }
 
   async getSentMessages() {
@@ -218,7 +218,7 @@ class MessageService {
       .project({ username: 1, _id: 0 })
       .toArray();
 
-    return usernames.map((message) => message.username);
+    return usernames.map((message) => message.username.toLowerCase());
   }
 
   // метод для добавления новой отправки на сообщение
@@ -244,7 +244,7 @@ class MessageService {
     await this.connect();
 
     await this.collection.updateOne(
-      { username },
+      { username: username.toLowerCase() },
       { $set: defaultSet },
       { upsert: true }
     );
@@ -253,7 +253,7 @@ class MessageService {
   async deleteMessage(username) {
     await this.connect();
 
-    await this.collection.deleteOne({ username });
+    await this.collection.deleteOne({ username: username.toLowerCase() });
   }
 }
 

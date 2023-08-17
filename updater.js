@@ -4,6 +4,7 @@ const { initialBrowser } = require("./helpers/initialBrowser");
 const { getAllUsernames, readAccounts } = require("./db/account");
 const { scrollBottom } = require("./utils/scrollBottom");
 const { getUserInfo } = require("./modules/getUserInfo");
+const { convertUsernamesToLowerCase } = require("./db/dialogues");
 
 const main = async (username) => {
   if (!username) {

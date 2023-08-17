@@ -94,16 +94,17 @@ async function readUserName(groupId, accountId, database) {
   // чтобы не было  ебки
 
   for (let i = 0; i < database.length; i++) {
+    const vaUsername = database[i].toLowerCase();
     if (
-      !usersSender.includes(database[i]) &&
-      !failedUsers.includes(database[i])
+      !usersSender.includes(vaUsername) &&
+      !failedUsers.includes(vaUsername)
     ) {
       // проверяем, имеется ли у нашего ai пользователя уже диалог с данным человеком
       // независимо от group id
-      const dialoque = await getDialogueUsername(accountId, database[i]);
+      const dialoque = await getDialogueUsername(accountId, vaUsername);
       if (!dialoque) {
         console.log("Получил username для написания из базы group id");
-        return database[i];
+        return vaUsername;
       }
     }
   }
@@ -116,21 +117,21 @@ async function readUserName(groupId, accountId, database) {
       if (
         !varUsername ||
         !varUsername.username ||
-        usersSender.includes(varUsername.username) ||
-        failedUsers.includes(varUsername.username)
+        usersSender.includes(varUsername.username.toLowerCase()) ||
+        failedUsers.includes(varUsername.username.toLowerCase())
       ) {
         continue;
       }
 
       const dialoque = await getDialogueUsername(
         accountId,
-        varUsername.username
+        varUsername.username.toLowerCase()
       );
-
+        
       if (!dialoque) {
         console.log("Получил username для написания из общей базы");
 
-        return varUsername.username;
+        return varUsername.username.toLowerCase();
       }
     } catch (e) {
       console.log(e.message);
@@ -152,7 +153,7 @@ const autoSender = async (accountId, context) => {
           accountId,
           "ещё не наступило"
         );
-        return;
+        // return;
       }
     }
   } catch (e) {
@@ -262,7 +263,7 @@ const autoSender = async (accountId, context) => {
       groupId,
       accountId,
       href,
-      username: userName,
+      username: userName.toLowerCase(),
       bio: userBio,
       title: userTitle,
       phone,
