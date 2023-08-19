@@ -35,7 +35,7 @@ class groupIdService {
   async createGroupId(target, database = [], propmpts = {}) {
     await this.connect();
 
-    await this.collection.insertOne({
+   return  await this.collection.insertOne({
       groupId: Math.floor(Math.random() * 10 ** 10) + 10 ** 10,
       target,
       currentCount: 0,

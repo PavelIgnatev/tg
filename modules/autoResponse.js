@@ -7,7 +7,7 @@ const { findByGroupId } = require("../db/groupId");
 const { readAccount } = require("../db/account");
 
 function filterText(text) {
-  var filteredText = text.replace(/[.@]/g, "");
+  var filteredText = text.replace(/[.\[\]$@%!#^&*+\\|<>\/{}]/g, "");
   return filteredText;
 }
 

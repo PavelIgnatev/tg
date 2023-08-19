@@ -22,7 +22,7 @@ const {
 const { checkSpam } = require("../modules/checkSpam");
 
 function filterText(text) {
-  var filteredText = text.replace(/[.@]/g, "");
+  var filteredText = text.replace(/[.\[\]$@%!#^&*+\\|<>\/{}]/g, "");
   return filteredText;
 }
 
@@ -127,7 +127,7 @@ async function readUserName(groupId, accountId, database) {
         accountId,
         varUsername.username.toLowerCase()
       );
-        
+
       if (!dialoque) {
         console.log("Получил username для написания из общей базы");
 
