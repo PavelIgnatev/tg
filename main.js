@@ -7,6 +7,8 @@ const { accountSetup } = require("./utils/accountSetup");
 const { checkBanned } = require("./modules/checkBanned");
 const { changeProxy } = require("./utils/changeProxy");
 const { getCurrentAccount } = require("./db/account");
+const util = require("util");
+const exec = util.promisify(require("child_process").exec);
 
 const main = async (accountId) => {
   if (!accountId) {
@@ -30,7 +32,11 @@ const main = async (accountId) => {
     }
 
     // если лоадер есть - ждем исчезновения
-    await page.waitForSelector(".Spinner__inner", { state: "hidden" });
+    try {
+      await page.waitForSelector(".Spinner__inner", { state: "hidden" });
+    } catch {
+      throw new Error("Спиннер есть, хотя не должен ");
+    }
 
     console.log("Аккаунт инициализирован");
     await accountSetup(page, accountId);
@@ -91,11 +97,11 @@ const startMainLoop = async () => {
 };
 
 (async () => {
-  while (true) {
-    try {
-      await startMainLoop();
-    } catch (e) {
-      console.log(e.message);
-    }
+  try {
+    await startMainLoop();
+    await exec("pm2 restart telegram");
+  } catch (e) {
+    console.log(e.message);
+    await exec("pm2 restart telegram");
   }
 })();

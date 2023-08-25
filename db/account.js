@@ -140,8 +140,6 @@ class AccountService {
       ])
       .toArray();
 
-    console.log(`Аккаунтов в простое: ${unprocessedUsers.length}`);
-
     if (unprocessedUsers.length === 0) {
       this.lock.release();
 
