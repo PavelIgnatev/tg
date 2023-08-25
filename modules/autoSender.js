@@ -1,4 +1,5 @@
 const { default: axios } = require("axios");
+const { Mutex } = require("async-mutex");
 
 const {
   updateAccountRemainingTime,
@@ -47,7 +48,7 @@ async function makePostRequest(
 
   while (true) {
     try {
-      const response = await axios.post("http://localhost/answer/", {
+      const response = await axios.post("http://95.163.229.126/answer/", {
         dialogue,
       });
 
@@ -81,6 +82,8 @@ async function makePostRequest(
 
 async function readUserName(groupId, accountId, database) {
   console.log("Начинаю получать username для написания из базы group id");
+  const lock = new Mutex();
+  await lock.acquire();
   // тут пофиксить надо короче будет чтобы мы авафывфывыф
   const usersSender = await getUsernamesByGroupId(groupId);
   const failedUsers = await getFailedUsernames();
@@ -104,6 +107,7 @@ async function readUserName(groupId, accountId, database) {
       const dialoque = await getDialogueUsername(accountId, vaUsername);
       if (!dialoque) {
         console.log("Получил username для написания из базы group id");
+        lock.release();
         return vaUsername;
       }
     }
@@ -131,6 +135,7 @@ async function readUserName(groupId, accountId, database) {
       if (!dialoque) {
         console.log("Получил username для написания из общей базы");
 
+        lock.release();
         return varUsername.username.toLowerCase();
       }
     } catch (e) {

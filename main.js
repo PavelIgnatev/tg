@@ -13,7 +13,7 @@ const main = async (accountId) => {
     throw new Error("Произошла ошибка, accountId не был передан");
   }
 
-  const [context, browser] = await initialBrowser(true, accountId);
+  const [context, browser] = await initialBrowser(false, accountId);
   const page = await createPage(context, accountId);
 
   try {
@@ -57,27 +57,45 @@ const main = async (accountId) => {
 };
 
 const startMainLoop = async () => {
-  while (true) {
-    try {
-      console.time("Время, потраченное на обработку аккаунта");
-      const username = await getCurrentAccount();
-      // отправка без звуука
-      try {
-        await changeProxy();
-        console.log("Начинаю вход в аккаунт: ", username);
+  const threadCount = 5;
+  const promises = [];
 
-        await main(username);
-      } catch (error) {
-        console.error(
-          `Ошибка обработки для пользователя ${username}: ${error}`
-        );
-      }
+  await changeProxy();
 
-      console.timeEnd("Время, потраченное на обработку аккаунта");
-    } catch (e) {
-      console.log(e.message, "ошибка в цикле");
-    }
+  for (let i = 0; i < threadCount; i++) {
+    promises.push(
+      (async () => {
+        try {
+          console.time(`Время, потраченное на обработку аккаунта ${i}`);
+          const username = await getCurrentAccount();
+          // отправка без звуука
+          try {
+            console.log("Начинаю вход в аккаунт: ", username);
+
+            await main(username);
+          } catch (error) {
+            console.error(
+              `Ошибка обработки для пользователя ${username}: ${error}`
+            );
+          }
+
+          console.timeEnd(`Время, потраченное на обработку аккаунта ${i}`);
+        } catch (e) {
+          console.log(e.message, "ошибка в цикле");
+        }
+      })()
+    );
   }
+
+  await Promise.allSettled(promises);
 };
 
-startMainLoop();
+(async () => {
+  while (true) {
+    try {
+      await startMainLoop();
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
+})();
