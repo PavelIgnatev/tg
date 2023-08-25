@@ -132,15 +132,13 @@ const accountSetup = async (page, accountId) => {
     await buttonSave?.click();
   } catch {}
   const nameRandom = getRandomName();
+  const aiRandomName = `${replaceRussianLetters(nameRandom)}_${
+    Math.floor(Math.random() * 9e5) + 1e5
+  }`;
   await firstName?.fill(nameRandom, { delay: 100 });
   await lastName?.fill("", { delay: 100 });
   await bio?.fill("", { delay: 100 });
-  await userName?.fill(
-    `${replaceRussianLetters(nameRandom)}_${
-      Math.floor(Math.random() * 9e5) + 1e5
-    }`,
-    { delay: 100 }
-  );
+  await userName?.fill(`${aiRandomName}`, { delay: 100 });
 
   try {
     const buttonSave = await page.waitForSelector('button[title="Save"]', {
@@ -169,7 +167,7 @@ const accountSetup = async (page, accountId) => {
   await updateAccount(accountId, {
     setup: true,
     name: nameRandom,
-    aiUsername: userName?.toLowerCase(),
+    aiUsername: aiRandomName?.toLowerCase(),
   });
 };
 
