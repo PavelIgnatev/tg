@@ -1,5 +1,4 @@
 const { default: axios } = require("axios");
-const { Mutex } = require("async-mutex");
 
 const {
   updateAccountRemainingTime,
@@ -33,6 +32,8 @@ function filterUnicodeSymbols(str) {
 
   return str.replace(regex, "");
 }
+
+const processAccounts = [];
 
 async function makePostRequest(
   accountData,
@@ -82,8 +83,6 @@ async function makePostRequest(
 
 async function readUserName(groupId, accountId, database) {
   console.log("Начинаю получать username для написания из базы group id");
-  const lock = new Mutex();
-  await lock.acquire();
   // тут пофиксить надо короче будет чтобы мы авафывфывыф
   const usersSender = await getUsernamesByGroupId(groupId);
   const failedUsers = await getFailedUsernames();
@@ -100,14 +99,15 @@ async function readUserName(groupId, accountId, database) {
     const vaUsername = database[i].toLowerCase();
     if (
       !usersSender.includes(vaUsername) &&
-      !failedUsers.includes(vaUsername)
+      !failedUsers.includes(vaUsername) &&
+      !processAccounts.includes(vaUsername)
     ) {
       // проверяем, имеется ли у нашего ai пользователя уже диалог с данным человеком
       // независимо от group id
       const dialoque = await getDialogueUsername(accountId, vaUsername);
       if (!dialoque) {
         console.log("Получил username для написания из базы group id");
-        lock.release();
+        processAccounts.push(vaUsername);
         return vaUsername;
       }
     }
@@ -122,7 +122,8 @@ async function readUserName(groupId, accountId, database) {
         !varUsername ||
         !varUsername.username ||
         usersSender.includes(varUsername.username.toLowerCase()) ||
-        failedUsers.includes(varUsername.username.toLowerCase())
+        failedUsers.includes(varUsername.username.toLowerCase()) ||
+        processAccounts.includes(varUsername.username.toLowerCase())
       ) {
         continue;
       }
@@ -134,8 +135,7 @@ async function readUserName(groupId, accountId, database) {
 
       if (!dialoque) {
         console.log("Получил username для написания из общей базы");
-
-        lock.release();
+        processAccounts.push(varUsername.username.toLowerCase());
         return varUsername.username.toLowerCase();
       }
     } catch (e) {
@@ -276,6 +276,11 @@ const autoSender = async (accountId, context) => {
       viewed: false,
       dateCreated: new Date(),
     });
+
+    const index = processAccounts.indexOf(userName.toLowerCase());
+    if (index !== -1) {
+      processAccounts.splice(index, 1);
+    }
 
     await updateMessage(userName, {
       dateUpdated: new Date(),
