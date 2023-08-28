@@ -63,7 +63,7 @@ const main = async (accountId) => {
 };
 
 const startMainLoop = async () => {
-  const threadCount = 5;
+  const threadCount = 1;
   const promises = [];
 
   await changeProxy();
