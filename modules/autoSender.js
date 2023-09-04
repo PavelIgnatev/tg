@@ -96,7 +96,7 @@ async function readUserName(groupId, accountId, database) {
   // чтобы не было  ебки
 
   for (let i = 0; i < database.filter(Boolean).length; i++) {
-    console.log(database[i])
+    console.log(i, database[i])
     const vaUsername = database[i].toLowerCase();
     if (
       !usersSender.includes(vaUsername) &&
