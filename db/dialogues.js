@@ -63,7 +63,7 @@ class DialoguesService {
     await this.connect();
 
     const dialogues = await this.collection.find({ groupId }).toArray();
-    return dialogues.map((dialogue) => dialogue?.username?.toLowerCase());
+    return dialogues.map((dialogue) => dialogue?.username?.toLowerCase()).filter(Boolean);
   }
 
   async convertUsernamesToLowerCase() {

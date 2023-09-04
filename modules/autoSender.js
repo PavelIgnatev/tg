@@ -94,7 +94,7 @@ async function readUserName(groupId, accountId, database) {
   // но он будет обработан первым попавшимся групп айди (на сколько понимаю)
   // вообще не крит, но по-хорошему обработать кейс потом, когда диалог уже есть
   // чтобы не было  ебки
-  for (let i = 0; i < database.filter(Boolean).length; i++) {
+  for (let i = 0; i < database.length; i++) {
 
     const vaUsername = database[i].toLowerCase();
     if (
