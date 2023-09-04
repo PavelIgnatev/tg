@@ -158,7 +158,7 @@ const autoSender = async (accountId, context) => {
           accountId,
           "ещё не наступило"
         );
-        // return;
+        return;
       }
     }
   } catch (e) {

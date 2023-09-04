@@ -1,5 +1,5 @@
 function generateRandomTime() {
-  const minTime = 7200000 * 2; // 4 hours in milliseconds
+  const minTime = 7200000 * 3; // 6 hours in milliseconds
   const maxTime = 14400000 * 2; // 8 hours in milliseconds
 
   const randomTime =
