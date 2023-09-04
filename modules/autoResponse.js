@@ -124,6 +124,7 @@ async function autoResponseDialogue(context, href, accountId) {
   try {
     while (!isSender) {
       try {
+        console.log(href)
         await senderPage.goto(href);
         await senderPage.waitForLoadState();
 
