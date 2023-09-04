@@ -62,8 +62,8 @@ const getUserInfo = async (page) => {
 
     return { phone, userName, userBio, userTitle };
   } catch (e) {
-    console.log(e.message)
-    return null;
+    console.log(e.message);
+    return { phone: null, userName: null, userBio: null, userTitle: null };
   }
 };
 

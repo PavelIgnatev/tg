@@ -50,6 +50,8 @@ const main = async (username) => {
       }
     }
   }
+  /// /// / sdadasd as/ das/ d/as /das/ d/as /das
+  // buuuuuuug
   const [userName, phone] = await getUserInfo(page);
 
   console.log(userName, phone);

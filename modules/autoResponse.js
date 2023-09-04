@@ -129,6 +129,10 @@ async function autoResponseDialogue(context, href, accountId) {
 
         const userInfo = await getUserInfo(senderPage);
         const { userName, userTitle, phone, userBio } = userInfo;
+
+        if(!userTitle) {
+          throw new Error('Имя пользователя не определено')
+        }
         const { name: aiName = "Менеджер" } = await readAccount(accountId);
         const dialogues = await getDialogues(senderPage, aiName, userTitle);
         const dialogueInfo = await getDialogue(accountId, href);
@@ -180,7 +184,7 @@ async function autoResponseDialogue(context, href, accountId) {
             groupId,
             accountId,
             href,
-            username: userName.toLowerCase(),
+            varUsername: userName?.toLowerCase(),
             bio: userBio,
             title: userTitle,
             phone,
@@ -189,6 +193,8 @@ async function autoResponseDialogue(context, href, accountId) {
             dateUpdated: new Date(),
           });
         } catch (e) {
+          await senderPage.goto("about:blank");
+
           console.error(
             "ERROR: Произошла ошибка при сохранении диалога с пользователем:",
             e.message
