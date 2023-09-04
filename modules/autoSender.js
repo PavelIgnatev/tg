@@ -94,12 +94,8 @@ async function readUserName(groupId, accountId, database) {
   // но он будет обработан первым попавшимся групп айди (на сколько понимаю)
   // вообще не крит, но по-хорошему обработать кейс потом, когда диалог уже есть
   // чтобы не было  ебки
-  console.log(JSON.stringify(usersSender))
-  console.log(JSON.stringify(failedUsers))
-  console.log(JSON.stringify(database))
-
   for (let i = 0; i < database.filter(Boolean).length; i++) {
-    console.log(i, database[i])
+
     const vaUsername = database[i].toLowerCase();
     if (
       !usersSender.includes(vaUsername) &&
