@@ -185,7 +185,7 @@ async function autoResponseDialogue(context, href, accountId) {
             groupId,
             accountId,
             href,
-            varUsername: userName?.toLowerCase(),
+            username: userName?.toLowerCase(),
             bio: userBio,
             title: userTitle,
             phone,

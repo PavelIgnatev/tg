@@ -268,7 +268,7 @@ const autoSender = async (accountId, context) => {
       groupId,
       accountId,
       href,
-      username: userName.toLowerCase(),
+      username: userName/.toLowerCase(),
       bio: userBio,
       title: userTitle,
       phone,
