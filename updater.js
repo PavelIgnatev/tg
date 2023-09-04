@@ -1,7 +1,7 @@
 const { createPage } = require("./helpers/createPage");
 const { destroyBrowser } = require("./helpers/destroyBrowser");
 const { initialBrowser } = require("./helpers/initialBrowser");
-const { getAllUsernames, readAccounts } = require("./db/account");
+const { getAllUsernames, readAccounts, deleteBannedAccounts } = require("./db/account");
 const { scrollBottom } = require("./utils/scrollBottom");
 const { getUserInfo } = require("./modules/getUserInfo");
 const { convertUsernamesToLowerCase } = require("./db/dialogues");

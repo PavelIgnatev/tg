@@ -25,6 +25,7 @@ class AccountService {
     this.incrementMessageCount = this.incrementMessageCount.bind(this);
     this.f = this.f.bind(this);
     this.getCurrentAccount = this.getCurrentAccount.bind(this);
+    this.deleteBannedAccounts = this.deleteBannedAccounts.bind(this)
   }
 
   async connect() {
@@ -55,6 +56,12 @@ class AccountService {
     });
 
     return usernames;
+  }
+
+  async deleteBannedAccounts() {
+    await this.connect();
+  
+    await this.collection.deleteMany({ banned: true });
   }
 
   // метод для получения всех аккантов
@@ -127,7 +134,7 @@ class AccountService {
 
     const unprocessedUsers = await this.collection
       .aggregate([
-        { $match: { banned: { $ne: true } } },
+        // { $match: { banned: { $ne: true } } },
         { $match: {} },
         {
           $group: {
