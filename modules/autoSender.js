@@ -95,7 +95,8 @@ async function readUserName(groupId, accountId, database) {
   // вообще не крит, но по-хорошему обработать кейс потом, когда диалог уже есть
   // чтобы не было  ебки
 
-  for (let i = 0; i < database.length; i++) {
+  for (let i = 0; i < database.filter(Boolean).length; i++) {
+    console.log(database[i])
     const vaUsername = database[i].toLowerCase();
     if (
       !usersSender.includes(vaUsername) &&
