@@ -33,6 +33,9 @@ const getUserInfo = async (page) => {
         "Username",
         ""
       );
+      if(userName.includes('@') || userName.includes(' arc')) {
+        return null
+      }
     } catch {}
 
     try {
