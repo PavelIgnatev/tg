@@ -238,7 +238,7 @@ const autoResponse = async (page, context, accountId) => {
           await element.waitForSelector(".title")
         ).textContent();
 
-        if (title === "Telegram" || title === "Spam Info Bot") {
+        if (title === "Telegram" || title === "Spam Info Bot" || title === "Deleted Account" || href.includes('-')) {
           continue;
         } else {
           links.push(href);

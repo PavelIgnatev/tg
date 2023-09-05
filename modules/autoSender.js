@@ -210,7 +210,7 @@ const autoSender = async (accountId, context) => {
             dateUpdated: new Date(),
           });
 
-          await senderPage.goto("about:blank");
+          await senderPage.goto("about:blank"); 
         }
       } catch (e) {
         retry += 1;
