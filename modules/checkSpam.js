@@ -11,7 +11,7 @@ const checkSpam = async (context) => {
       const buttonStart = await newPage.waitForSelector(
         'button:has-text("Start")',
         {
-          timeout: 2500,
+          timeout: 7500,
         }
       );
 
