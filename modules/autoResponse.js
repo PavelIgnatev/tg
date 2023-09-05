@@ -132,7 +132,8 @@ async function autoResponseDialogue(context, href, accountId) {
         const { userName, userTitle, phone, userBio } = userInfo;
 
         if(!userTitle) {
-          throw new Error('Имя пользователя не определено')
+          console.log('Имя пользователя не определено')
+          return
         }
         const { name: aiName = "Менеджер" } = await readAccount(accountId);
         const dialogues = await getDialogues(senderPage, aiName, userTitle);
