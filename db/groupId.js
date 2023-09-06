@@ -1,4 +1,5 @@
 const { MongoClient } = require("mongodb");
+const { Mutex } = require("async-mutex");
 
 const dbName = "telegram";
 const collectionName = "groupId";
@@ -6,6 +7,8 @@ const uri =
   "mongodb://qwerty:qwerty123@ac-llvczxo-shard-00-00.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-01.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-02.2ry9k50.mongodb.net:27017/?ssl=true&replicaSet=atlas-b2xf0l-shard-0&authSource=admin&retryWrites=true&w=majority";
 
 class groupIdService {
+  lock = new Mutex();
+
   constructor() {
     this.client = null;
     this.db = null;
@@ -68,6 +71,8 @@ class groupIdService {
   }
 
   async getGroupId() {
+    await this.lock.acquire();
+
     await this.connect();
 
     const fullDocs = await this.collection.find().toArray();
@@ -90,6 +95,8 @@ class groupIdService {
       { _id: nextDoc._id },
       { $set: { current: true } }
     );
+
+    this.lock.release();
 
     return nextDoc;
   }
