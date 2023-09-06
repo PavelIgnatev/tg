@@ -2,6 +2,7 @@ const { updateAccount, readAccount } = require("../db/account");
 const { getRandomName } = require("./getRandomName");
 const { getRandomImageFromFolder } = require("./getRandomUrlImage");
 const { replaceRussianLetters } = require("./replaceRussianLetters");
+const { russianName } = require("russian_name");
 
 const accountSetup = async (page, accountId) => {
   const { setup } = await readAccount(accountId);
@@ -16,6 +17,8 @@ const accountSetup = async (page, accountId) => {
 
   console.log("Сетап для пользователя", accountId, "отсутсвует");
 
+  await page.waitForTimeout(15000);
+
   const settingsButton = await page?.waitForSelector(
     ".DropdownMenu.main-menu",
     {
@@ -25,6 +28,8 @@ const accountSetup = async (page, accountId) => {
 
   await settingsButton?.click();
 
+  await page.waitForTimeout(3000);
+
   const settings = await page?.waitForSelector(
     ".MenuItem.compact:has-text('Settings')",
     {
@@ -33,6 +38,8 @@ const accountSetup = async (page, accountId) => {
   );
 
   await settings?.click();
+
+  await page.waitForTimeout(3000);
 
   const notifications = await page?.waitForSelector(
     '.ListItem:has-text("Notifications")'
@@ -54,6 +61,18 @@ const accountSetup = async (page, accountId) => {
 
   try {
     const notificationsChannels = await page?.waitForSelector(
+      '.Checkbox-main:has-text("Show Message Previews"):has-text("Enabled")',
+      {
+        state: "attached",
+        timeout: 5000,
+      }
+    );
+
+    await notificationsChannels?.click();
+  } catch {}
+
+  try {
+    const notificationsChannels = await page?.waitForSelector(
       '.Checkbox-main:has-text("Notifications for channels"):has-text("Enabled")',
       {
         state: "attached",
@@ -62,6 +81,42 @@ const accountSetup = async (page, accountId) => {
     );
 
     await notificationsChannels?.click();
+  } catch {}
+
+  try {
+    const contactJoin = await page?.waitForSelector(
+      '.Checkbox-main:has-text("Contact joined Telegram"):has-text("Enabled")',
+      {
+        state: "attached",
+        timeout: 5000,
+      }
+    );
+
+    await contactJoin?.click();
+  } catch {}
+
+  try {
+    const contactJoin = await page?.waitForSelector(
+      '.Checkbox-main:has-text("Offline notifications"):has-text("Enabled")',
+      {
+        state: "attached",
+        timeout: 5000,
+      }
+    );
+
+    await contactJoin?.click();
+  } catch {}
+
+  try {
+    const contactJoin = await page?.waitForSelector(
+      '.Checkbox-main:has-text("Web notifications"):has-text("Enabled")',
+      {
+        state: "attached",
+        timeout: 5000,
+      }
+    );
+
+    await contactJoin?.click();
   } catch {}
 
   try {
@@ -119,10 +174,10 @@ const accountSetup = async (page, accountId) => {
 
     await page.waitForLoadState();
 
-    await page.waitForTimeout(25000);
+    await page.waitForTimeout(5000);
 
     const buttonSave = await page.waitForSelector(
-      'button[title="Crop image"]',
+      'button[aria-label="Crop image"]',
       {
         state: "attached",
         timeout: 5000,
@@ -130,13 +185,15 @@ const accountSetup = async (page, accountId) => {
     );
 
     await buttonSave?.click();
+
+    await page.waitForTimeout(25000);
   } catch {}
-  const nameRandom = getRandomName();
-  const aiRandomName = `${replaceRussianLetters(nameRandom)}_${
-    Math.floor(Math.random() * 9e5) + 1e5
-  }`;
+  const { name: nameRandom, surname: surnameRandom } = russianName.one("male");
+  const aiRandomName = `${replaceRussianLetters(
+    `${nameRandom}${surnameRandom}`
+  )}_${Math.floor(Math.random() * 9e5) + 1e5}`;
   await firstName?.fill(nameRandom, { delay: 100 });
-  await lastName?.fill("", { delay: 100 });
+  await lastName?.fill(surnameRandom, { delay: 100 });
   await bio?.fill("", { delay: 100 });
   await userName?.fill(`${aiRandomName}`, { delay: 100 });
 
