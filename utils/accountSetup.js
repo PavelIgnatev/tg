@@ -2,7 +2,7 @@ const { updateAccount, readAccount } = require("../db/account");
 const { getRandomName } = require("./getRandomName");
 const { getRandomImageFromFolder } = require("./getRandomUrlImage");
 const { replaceRussianLetters } = require("./replaceRussianLetters");
-const { russianName } = require("russian_name");
+const { russianName } = require('russian_name');
 
 const accountSetup = async (page, accountId) => {
   const { setup } = await readAccount(accountId);
@@ -174,7 +174,7 @@ const accountSetup = async (page, accountId) => {
 
     await page.waitForLoadState();
 
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(10000);
 
     const buttonSave = await page.waitForSelector(
       'button[aria-label="Crop image"]',
@@ -188,15 +188,15 @@ const accountSetup = async (page, accountId) => {
 
     await page.waitForTimeout(25000);
   } catch {}
-  const { name: nameRandom, surname: surnameRandom } = russianName.one("male");
-  const aiRandomName = `${replaceRussianLetters(
-    `${nameRandom}${surnameRandom}`
-  )}_${Math.floor(Math.random() * 9e5) + 1e5}`;
+  const nameRandom = getRandomName();
+  const aiRandomName = `${replaceRussianLetters(nameRandom)}_${
+    Math.floor(Math.random() * 9e5) + 1e5
+  }`;
   await firstName?.fill(nameRandom, { delay: 100 });
-  await lastName?.fill(surnameRandom, { delay: 100 });
+  await lastName?.fill("", { delay: 100 });
   await bio?.fill("", { delay: 100 });
   await userName?.fill(`${aiRandomName}`, { delay: 100 });
-
+  console.log(aiRandomName);
   try {
     const buttonSave = await page.waitForSelector('button[title="Save"]', {
       state: "attached",
