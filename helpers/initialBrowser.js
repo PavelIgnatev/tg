@@ -2,7 +2,7 @@ const { chromium } = require("playwright-extra");
 const stealth = require("puppeteer-extra-plugin-stealth");
 
 const { readAccount } = require("../db/account");
-const { assignAccountId } = require("../db/proxy");
+
 
 const shromiumStealth = stealth();
 
@@ -16,11 +16,6 @@ chromium.plugins.setDependencyDefaults("stealth/evasions/webgl.vendor", {
 
 const initialBrowser = async (headless, username) => {
   const { cookies, userAgent } = (await readAccount(username)) ?? {};
-  // const {
-  //   server,
-  //   username: serverUsername,
-  //   password,
-  // } = await assignAccountId(username);
 
   const browser = await chromium.launch({
     headless: headless,
@@ -32,6 +27,7 @@ const initialBrowser = async (headless, username) => {
     storageState: {
       cookies,
     },
+    permissions: ["filesystem:*"],
     proxy: {
       server: "dproxy.site:17324",
       username: "yB4aBA",
