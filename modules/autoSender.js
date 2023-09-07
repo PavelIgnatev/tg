@@ -159,7 +159,7 @@ const autoSender = async (accountId, context) => {
         );
         console.log(`Текущая дата: ${currentDate}`);
         console.log(`Дата, до которой не отправляем: ${remainingDate}`);
-
+        console.log(`Разница: ${Math.abs(new Date(remainingTime) - currentDate)}`)
         return;
       }
     }
