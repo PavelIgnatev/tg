@@ -27,7 +27,6 @@ const initialBrowser = async (headless, username) => {
     storageState: {
       cookies,
     },
-    permissions: ["filesystem:*"],
     proxy: {
       server: "dproxy.site:17324",
       username: "yB4aBA",
