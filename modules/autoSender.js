@@ -159,7 +159,12 @@ const autoSender = async (accountId, context) => {
         );
         console.log(`Текущая дата: ${currentDate}`);
         console.log(`Дата, до которой не отправляем: ${remainingDate}`);
-        console.log(`Разница: ${Math.abs(new Date(remainingTime) - currentDate)}`)
+        const difference = Math.abs(new Date(remainingTime) - currentDate);
+        const hours = Math.floor(difference / 3600000);
+        const minutes = Math.floor((difference % 3600000) / 60000);
+        const seconds = Math.floor((difference % 60000) / 1000);
+        const formattedDifference = `${hours}:${minutes}:${seconds}`;
+        console.log(`Разница: ${formattedDifference}`);
         return;
       }
     }
