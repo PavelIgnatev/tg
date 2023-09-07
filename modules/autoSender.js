@@ -95,7 +95,6 @@ async function readUserName(groupId, accountId, database) {
   // вообще не крит, но по-хорошему обработать кейс потом, когда диалог уже есть
   // чтобы не было  ебки
   for (let i = 0; i < database.length; i++) {
-
     const vaUsername = database[i].toLowerCase();
     if (
       !usersSender.includes(vaUsername) &&
@@ -158,6 +157,9 @@ const autoSender = async (accountId, context) => {
           accountId,
           "ещё не наступило"
         );
+        console.log(`Текущая дата: ${currentDate}`);
+        console.log(`Дата, до которой не отправляем: ${remainingDate}`);
+
         return;
       }
     }
@@ -210,7 +212,7 @@ const autoSender = async (accountId, context) => {
             dateUpdated: new Date(),
           });
 
-          await senderPage.goto("about:blank"); 
+          await senderPage.goto("about:blank");
         }
       } catch (e) {
         retry += 1;

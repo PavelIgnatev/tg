@@ -165,6 +165,7 @@ const accountSetup = async (page, accountId) => {
   });
 
   try {
+    // сделать сюда ссылки 
     const image = getRandomImageFromFolder(
       "/Users/pikcelll/Documents/cold/telegram/images"
     );
