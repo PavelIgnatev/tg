@@ -15,7 +15,7 @@ const main = async (accountId) => {
     throw new Error("Произошла ошибка, accountId не был передан");
   }
 
-  const [context, browser] = await initialBrowser(true, accountId);
+  const [context, browser] = await initialBrowser(false, accountId);
   const page = await createPage(context, accountId);
 
   try {
@@ -63,7 +63,7 @@ const main = async (accountId) => {
 };
 
 const startMainLoop = async () => {
-  const threadCount = 3;
+  const threadCount = 1;
   const promises = [];
 
   await changeProxy();

@@ -1,9 +1,7 @@
 const { default: axios } = require("axios");
 
 async function changeProxy() {
-  let retryCount = 0;
-
-  while (retryCount < 10) {
+  while (true) {
     try {
       // const result = await axios.get(
       //   "https://frigate-proxy.ru/ru/change_ip/82d68ac1341d35f48d503c735d9a6149/1014889"
@@ -25,7 +23,6 @@ async function changeProxy() {
       );
       await new Promise((resolve) => setTimeout(resolve, 5000));
 
-      retryCount++;
     }
   }
 }
