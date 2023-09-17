@@ -165,7 +165,7 @@ const autoSender = async (accountId, context) => {
         const seconds = Math.floor((difference % 60000) / 1000);
         const formattedDifference = `${hours}:${minutes}:${seconds}`;
         console.log(`Разница: ${formattedDifference}`);
-        return;
+        // return;
       }
     }
   } catch (e) {
