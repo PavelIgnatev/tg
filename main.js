@@ -25,8 +25,6 @@ const main = async (accountId) => {
     await page.reload();
     await page.waitForLoadState();
 
-    await page.waitForTimeout(100000);
-
     const isBanned = await checkBanned(page, accountId);
 
     if (isBanned) {
