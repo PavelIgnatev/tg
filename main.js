@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const { createPage } = require("./helpers/createPage");
 const { destroyBrowser } = require("./helpers/destroyBrowser");
 const { initialBrowser } = require("./helpers/initialBrowser");
@@ -15,7 +17,7 @@ const main = async (accountId) => {
     throw new Error("Произошла ошибка, accountId не был передан");
   }
 
-  const [context, browser] = await initialBrowser(true, accountId);
+  const [context, browser] = await initialBrowser(false, accountId);
   const page = await createPage(context, accountId);
 
   try {
@@ -24,6 +26,8 @@ const main = async (accountId) => {
 
     await page.reload();
     await page.waitForLoadState();
+
+    await page.waitForTimeout(100000);
 
     const isBanned = await checkBanned(page, accountId);
 

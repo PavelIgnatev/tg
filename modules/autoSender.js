@@ -185,7 +185,7 @@ const autoSender = async (accountId, context) => {
     console.error(
       `ERROR: Не удалось получить аккаунт в спаме или нет. Ошибка: ${e.message}`
     );
-    return;
+    // return;
   }
 
   let userInfo;
