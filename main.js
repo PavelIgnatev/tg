@@ -63,7 +63,7 @@ const main = async (accountId) => {
 };
 
 const startMainLoop = async () => {
-  const threadCount = 1;
+  const threadCount = 3;
   const promises = [];
 
   await changeProxy();
@@ -73,7 +73,7 @@ const startMainLoop = async () => {
       (async () => {
         try {
           console.time(`Время, потраченное на обработку аккаунта ${i}`);
-          const username = 17658261303
+          const username = await getCurrentAccount();
           // отправка без звуука
           try {
             console.log("Начинаю вход в аккаунт: ", username);
