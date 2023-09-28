@@ -1,0 +1,20 @@
+index.ts:333 got state, time: 276.09999999962747
+index.ts:376 Will mount auth page: authStateSignQr 1695855153.783
+logger.ts:134 [0.003] [SW] init
+logger.ts:134 [0.006] [SW] got 0 windows from the start
+logger.ts:134 [0.010] [SW] installing
+logger.ts:134 [0.010] [SW] window connected 75773f07-2dc0-4884-bd12-788fbfd0023d windows before 0
+logger.ts:134 [0.010] [SW] windows Array(0)
+logger.ts:134 [0.011] [SW] sending message port for mtproto
+logger.ts:134 [0.012] [SW] skipped waiting
+logger.ts:134 [0.013] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.014] [SW] cleared assets cache
+logger.ts:134 [0.014] [SW] claimed clients
+web.telegram.org/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+console.log('—————-');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM96:1 —————-
+VM96:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+VM96:1 cookie: 
+VM96:1 localStorage: {"dc3_auth_key":"\"aeeba9481f8de862b4515a6340b048f381e449fcf47cac2c52bcdd704aca0a7b3b32824728e6f561ef29385d403c75ceec66f269c8e2421fc1d4ded813081a33c9aa7a329036589dbb8e839249083cdc81d4472c926f1ebc222fc3d315e28d12dc0867bd70914bb406cb18d42d62552f14c01826998ddd45ed6b5f24799596cfdf5468d0b8d4dd998397778d6f0974b25db5506c60819c8f672041f18110400c4598e91d2040e35a4bfabc7bc15512414d3e51ecadf93ca4ea8f1718066433401e49e7a00214461c2d231bd4894b2d08ecee9d31ff5f22b823b598c2a7d7a5a8803fcc11529d03ce952d505c0b2c9bf28e4514a1d03e1d956967574bf08ff588\"","k_build":"404","dc3_server_salt":"\"7fb8ff74f5dd13b3\"","user_auth":"{\"dcID\":2,\"date\":1695855169,\"id\":6594954075}","xt_instance":"{\"id\":465265,\"idle\":true,\"time\":1695855173509}","dc":"2","":"","dc2_auth_key":"\"7428a0f9e1d8c385bba734a906820a964b676e2ef8b435e2326ff06c9fe33935c8c185dbde05fa0c3a7305f764393bd6c292fcb6007a76fef68a45c612471e47cd84c557835d888ef40310f2be51fcf9c671adb7dc183e2f36edaa696ab2f750221605a9ac65c7c8e00f110679323e7c6ed2b8651f47f10f6c351e2e65f28972267ddd123072693d23d801c0834d57d41aebf91068918109ecc7595ea07d11fac623681ec86bd04cc1b26794a48ba8e367ef8c8cee8d49262073c23eb3bce48b6f24304432ba3f38610130d75852963742ef8817ee0504457e95f53615362bc8392d6804dd50604b1252333f5ec40c671ebcf1871fb31b05023cd5cb746e5cb0\"","tt-global-state":"","tgme_sync":"{\"canRedirect\":true,\"ts\":1695855170}","server_time_offset":"-1","dc2_server_salt":"\"8cbafc4a79268684\"","state_id":"3599055154","auth_key_fingerprint":"\"7428a0f9\"","dc1_auth_key":"\"987009254ce1be555116b631b43c7ed7b16761b7da04b0445a83276774e8ef1ee9143a44dd108c73b7dffb1f4c329124f23da9118d988c858fb6df8184c0acdec17dd6a6d8d1d16946575cc54fc34f80a5c9893de70995b6c39449171af90e90ce54dbd138ec4b3d83a22fd6939c43766c843fc2b8733c50a14b5eca0b0bde7ec9f3a4fbe0eccdf93f2e61e2c3cb3eb73b9eba956989274936d43a8a496ab370cf96ebf637384e6bc89eb1f2383fbbf2992b410f5fa885986c30f6169c4d161f0c7bfe37093501d61f6b634860c5a15a1a14889ddf4f93164af889911307a368dd065caefd593b78eb8ed1bb19fecee8e9df9337ba23cf04f14bf583dd151e6e\"","dc1_server_salt":"\"bd420fdc7bd67945\""}
+VM96:1 —————-
+undefined

@@ -1,0 +1,19 @@
+index.ts:333 got state, time: 276
+index.ts:376 Will mount auth page: authStateSignQr 1695858819.676
+logger.ts:134 [0.002] [SW] init
+logger.ts:134 [0.004] [SW] got 0 windows from the start
+logger.ts:134 [0.006] [SW] installing
+logger.ts:134 [0.007] [SW] skipped waiting
+logger.ts:134 [0.008] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.008] [SW] cleared assets cache
+logger.ts:134 [0.008] [SW] claimed clients
+logger.ts:134 [0.026] [SW] window connected 8e548c25-3c5e-4efd-9da5-e9a4289618ee windows before 0
+logger.ts:134 [0.026] [SW] windows Array(0)
+logger.ts:134 [0.027] [SW] sending message port for mtproto
+console.log('—————-');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM36:1 —————-
+VM36:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+VM36:1 cookie: 
+VM36:1 localStorage: {"dc3_auth_key":"\"396cc8b42dd277dd482b3fbd86b5cc6d89c087c572eadad8bc97e5565da50f5586489304519e18827c7cfb2b611f16ed8536e20c6f72c381cd0b32aa54dc2af31f71f7de21dc8c1e33d6e6ba5780fc36ab1dd37914d137962f3b644c8fe606efff0bf227592306c9f23d508eed2c315e3863aaa68aec7eabf4a9e3bb08a531cd307d5efd095fb03f0ce3c9b326eb677ea43445383ecc97e364b80cea33b7f305b45b87266c195227164aad8ff06d3884ec22ac7c38d33b9607c02cb85cfd3612632d0d8a0df124a41952823d3105f6298a53f2d259bf8ebd77c2a333a423be9e8d3eb5bfc3d63702888db9e81912badbcc611875b01dc08b79535e9545efca36\"","k_build":"404","dc3_server_salt":"\"b390f674b87d50c0\"","xt_instance":"{\"id\":15410700,\"idle\":true,\"time\":1695858839402}","dc":"2","dc4_auth_key":"\"3ac6492ee932d3ccccd1e80daef47e3f1aa99b95f6cf0d5a272436ffa2caa532367ff051f56f40025740ecff1d1b180d249ffb31b552de924382ade4930f73ffc1f3115cd50b5d2b0ea64d2be4e6d3a12940e04bfcabaf0c9aa2ed24722c4013a502a6e70e4d0bac0cb5d88ea0433d758475f31d1b55e6b0392baabb413f112e5557ab79312cd8d7fd218f04ec62f5c4166d1b41fc243d1d5c8c56431368b9465076f2143deedb0c8721260be195513466b326a5b392db11e7ba068d015aba1d3194f8d244c2387bad1ce5a18423cd5e806f5d1db365a4ceb3120ac701046375e6b434abed4c87e1b8368bc2175b895a6068435b8bc0b9e56f3e4adf35e52d40\"","":"","dc2_auth_key":"\"483d6302d9072648b23024abc7f9183c87da7bd2bd2830c57d9e32785bf07e838a289f1076311e8182aa66d898f9e9c603da900bd1a402bf974708066130743751378c6f2b0e8f807a1dbbd099b6d9bcf0a699aa58faf469561fe42869347a179a2266a9c48672a4148af4abcd2a29e5c75a512254400adcc9e39951f1d67a53358fb239f7f1cf9f3807c508dfa3300847daaa1f4afd09a46a08035a7dc64570b0e26d517116e982af7c890e02335d2a29ea8da5e3f73c3c097c06c3191f8a0fa892d3e05f70911fe7d5686b98839603a5d6854e8ccc73f7374884f6227d14d04c7b824206e4282562eb40707907611fae7eda9e4b7a02365502bb80d0888480\"","dc4_server_salt":"\"2ab2bbe5b97e930a\"","tgme_sync":"{\"canRedirect\":false,\"ts\":1695858819}","server_time_offset":"-1","dc2_server_salt":"\"2f273ceecb886874\"","state_id":"121747728","auth_key_fingerprint":"\"483d6302\"","dc1_auth_key":"\"28ffbf8583a2ebfd44c539b4269c5856a7265fbbbcc74f7257112a7934226cf96afdef602a6222713bf524754a85e35913f59a2357f33a84595164d0f8d914346bfac736129a7f6791d2f8faef21472fec8adb4416e7844b37028f1dfe0377ade5876332a08894ab5a8e42bdad5dabfb065a8689c71e6385e04727a495d47ab0a98937f8c3beeb9553f96b226aeaa64eb23c69063612d1f5833850a795b42e28c79dddcad8769de978e38505021a6fb2612159ec0680ae759e055925941b1cdc18a45dcc4e396140ddd90692de5ba4539b18b190576d6f15c243963ed60b70c8920d61029ad96dde8b93f9a5bb5af472620fd6759c45b029f0988c3a0c807f4a\"","dc1_server_salt":"\"1ef529406a8a28b5\"","tt-global-state":""}
+VM36:1 —————-
+undefined

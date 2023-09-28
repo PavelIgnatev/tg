@@ -1,8 +1,5 @@
 const { updateAccount, readAccount } = require("../db/account");
-const { getRandomName } = require("./getRandomName");
-const { getRandomImageFromFolder } = require("./getRandomUrlImage");
 const { replaceRussianLetters } = require("./replaceRussianLetters");
-const { russianName } = require('russian_name');
 
 const accountSetup = async (page, accountId) => {
   const { setup } = await readAccount(accountId);
@@ -16,8 +13,6 @@ const accountSetup = async (page, accountId) => {
   }
 
   console.log("Сетап для пользователя", accountId, "отсутсвует");
-
-  await page.waitForTimeout(15000);
 
   const settingsButton = await page?.waitForSelector(
     ".DropdownMenu.main-menu",
@@ -61,18 +56,6 @@ const accountSetup = async (page, accountId) => {
 
   try {
     const notificationsChannels = await page?.waitForSelector(
-      '.Checkbox-main:has-text("Show Message Previews"):has-text("Enabled")',
-      {
-        state: "attached",
-        timeout: 5000,
-      }
-    );
-
-    await notificationsChannels?.click();
-  } catch {}
-
-  try {
-    const notificationsChannels = await page?.waitForSelector(
       '.Checkbox-main:has-text("Notifications for channels"):has-text("Enabled")',
       {
         state: "attached",
@@ -81,54 +64,6 @@ const accountSetup = async (page, accountId) => {
     );
 
     await notificationsChannels?.click();
-  } catch {}
-
-  try {
-    const contactJoin = await page?.waitForSelector(
-      '.Checkbox-main:has-text("Contact joined Telegram"):has-text("Enabled")',
-      {
-        state: "attached",
-        timeout: 5000,
-      }
-    );
-
-    await contactJoin?.click();
-  } catch {}
-
-  try {
-    const contactJoin = await page?.waitForSelector(
-      '.Checkbox-main:has-text("Offline notifications"):has-text("Enabled")',
-      {
-        state: "attached",
-        timeout: 5000,
-      }
-    );
-
-    await contactJoin?.click();
-  } catch {}
-
-  try {
-    const contactJoin = await page?.waitForSelector(
-      '.Checkbox-main:has-text("Web notifications"):has-text("Enabled")',
-      {
-        state: "attached",
-        timeout: 5000,
-      }
-    );
-
-    await contactJoin?.click();
-  } catch {}
-
-  try {
-    const notificationsWeb = await page?.waitForSelector(
-      '.Checkbox-main:has-text("Web notifications"):has-text("Enabled")',
-      {
-        state: "attached",
-        timeout: 5000,
-      }
-    );
-
-    await notificationsWeb?.click();
   } catch {}
 
   const buttonElements1 = await page?.$$('button[title="Go back"]');
@@ -144,73 +79,46 @@ const accountSetup = async (page, accountId) => {
 
   await buttonElement?.click();
 
-  const firstName = await page?.waitForSelector(
+  const inputName = await page?.waitForSelector(
     'input[aria-label="First name (required)"]',
     {
       state: "attached",
     }
   );
 
-  const lastName = await page?.waitForSelector(
-    'input[aria-label="Last name (optional)"]',
-    {
-      state: "attached",
-    }
-  );
-  const bio = await page?.waitForSelector('textarea[aria-label="Bio"]', {
-    state: "attached",
-  });
+  const inputValue = await inputName?.getProperty("value");
+  const name = await inputValue?.jsonValue();
+
+  await page.waitForTimeout(15000);
   const userName = await page.waitForSelector('input[aria-label="Username"]', {
     state: "attached",
   });
-
-  try {
-    // сделать сюда ссылки 
-    const image = getRandomImageFromFolder(
-      "/Users/pikcelll/Documents/cold/telegram/images"
-    );
-
-    const uploadElement = await page.$("input[type=file]");
-    await uploadElement.setInputFiles(image);
-
-    await page.waitForLoadState();
-
-    await page.waitForTimeout(10000);
-
-    const buttonSave = await page.waitForSelector(
-      'button[aria-label="Crop image"]',
-      {
-        state: "attached",
-        timeout: 5000,
-      }
-    );
-
-    await buttonSave?.click();
-
-    await page.waitForTimeout(25000);
-  } catch {}
-  const nameRandom = getRandomName();
-  const aiRandomName = `${replaceRussianLetters(nameRandom)}_${
+  const randomNameInputValue = await userName?.getProperty("value");
+  const aiRandomNameValue = await randomNameInputValue?.jsonValue();
+  const aiRandomName = `${replaceRussianLetters(name)}_${
     Math.floor(Math.random() * 9e5) + 1e5
   }`;
-  await firstName?.fill(nameRandom, { delay: 100 });
-  await lastName?.fill("", { delay: 100 });
-  await bio?.fill("", { delay: 100 });
-  await userName?.fill(`${aiRandomName}`, { delay: 100 });
-  console.log(aiRandomName);
+
   try {
-    const buttonSave = await page.waitForSelector('button[title="Save"]', {
-      state: "attached",
-      timeout: 5000,
-    });
 
-    await buttonSave?.click();
+    if (!aiRandomNameValue) {
+      await userName?.fill(`${aiRandomName}`, { delay: 100 });
 
-    await page.waitForTimeout(15000);
+      const buttonSave = await page.waitForSelector('button[title="Save"]', {
+        state: "attached",
+        timeout: 5000,
+      });
 
-    await page.waitForFunction((button) => !button.disabled, buttonSave);
+      await page.waitForTimeout(2000);
 
-    await page.waitForTimeout(15000);
+      await buttonSave?.click();
+
+      await page.waitForTimeout(5000);
+
+      await page.waitForFunction((button) => !button.disabled, buttonSave);
+
+      await page.waitForTimeout(5000);
+    }
   } catch (e) {
     console.log(e);
   }
@@ -224,8 +132,8 @@ const accountSetup = async (page, accountId) => {
 
   await updateAccount(accountId, {
     setup: true,
-    name: nameRandom,
-    aiUsername: aiRandomName?.toLowerCase(),
+    name,
+    aiUsername: aiRandomNameValue?.toLowerCase() || aiRandomName?.toLowerCase(),
   });
 };
 
