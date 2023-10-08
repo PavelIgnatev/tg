@@ -29,12 +29,12 @@ const zanos = async () => {
       console.log(JSON.parse(extractedData.localStorage));
       console.log(`Добавлен файл ${file} в базу данных.`);
 
-    //   await insertAccount({
-    //     username: Math.floor(Math.random() * 10 ** 10) + 10 ** 10,
-    //     cookies: null,
-    //     userAgent: extractedData.navigtor,
-    //     localStorage: JSON.parse(extractedData.localStorage),
-    //   });
+      // await insertAccount({
+      //   username: Math.floor(Math.random() * 10 ** 10) + 10 ** 10,
+      //   cookies: null,
+      //   userAgent: extractedData.navigtor,
+      //   localStorage: JSON.parse(extractedData.localStorage),
+      // });
     }
   } catch (error) {
     console.error("Ошибка при обработке файлов:", error);

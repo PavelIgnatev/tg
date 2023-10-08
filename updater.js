@@ -104,14 +104,11 @@ let spam = 0;
 getAllUsernames().then(e => console.log(e.length))
 
 // readAccounts().then((e) => {
-//   console.log(e.length)
 //   // console.log(e.slice(126).length)
-//   e.slice(134).forEach((k) => {
+//   e.forEach((k) => {
 //     // console.log(k.messageCount);
 //     if (k.banned) {
-//       spam += 1
-
-//       console.log(spam);
+//       console.log(k.messageCount);
 //     }
 //   });
 // });
