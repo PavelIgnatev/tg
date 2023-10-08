@@ -1,0 +1,29 @@
+sw-2bb50b54.js:sourcemap:1 [0.001] [SW] init
+sw-2bb50b54.js:sourcemap:1 [0.002] [SW] got 0 windows from the start
+sw-2bb50b54.js:sourcemap:1 [0.004] [SW] installing
+sw-2bb50b54.js:sourcemap:1 [0.004] [SW] skipped waiting
+sw-2bb50b54.js:sourcemap:1 [0.015] [SW] window connected afd55c3e-2433-43ec-a4c5-c980c92069e1 windows before 0
+sw-2bb50b54.js:sourcemap:1 [0.015] [SW] windows Array(0)
+sw-2bb50b54.js:sourcemap:1 [0.015] [SW] sending message port for mtproto
+sw-2bb50b54.js:sourcemap:1 [0.016] [SW] activating ServiceWorkerGlobalScope
+sw-2bb50b54.js:sourcemap:1 [0.017] [SW] cleared assets cache
+sw-2bb50b54.js:sourcemap:1 [0.018] [SW] claimed clients
+sw-2bb50b54.js:sourcemap:1 [105.783] [SW] something has disconnected WindowClient
+sw-2bb50b54.js:sourcemap:1 [105.783] [SW] window disconnected, left 0
+sw-2bb50b54.js:sourcemap:1 [105.783] [SW] no windows left
+o.<computed> @ sw-2bb50b54.js:sourcemap:1
+sw-2bb50b54.js:sourcemap:1 [105.783] [SW] something has disconnected MessagePort
+sw-2bb50b54.js:sourcemap:1 [105.783] [SW] it is not a window
+o.<computed> @ sw-2bb50b54.js:sourcemap:1
+sw-2bb50b54.js:sourcemap:1 [113.682] [SW] window connected 09753c2b-ce2e-4e0e-a02f-867cbd705a11 windows before 0
+sw-2bb50b54.js:sourcemap:1 [113.682] [SW] windows Array(0)
+sw-2bb50b54.js:sourcemap:1 [113.683] [SW] sending message port for mtproto
+index-257913ec.js:sourcemap:1 got state, time: 47.39999997615814
+index-257913ec.js:sourcemap:1 Will mount IM page: 1696500670.627
+console.log('—————-');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM32:1 —————-
+VM32:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+VM32:1 cookie: 
+VM32:1 localStorage: {"dc3_auth_key":"\"220c558863b638771a535cd5f1551431807276c3b77336ed60905389be28707e4bcafc3831da44f082eae3671e41f0f4da72f2d54ee4a19adfde0eda1f98339a40c22a7ff4917eea8e4e745a36e1823024b67be404baa64f060c4b0f1a43c4cbd06da5b3b186ffbccd9b51f5e16114367df64316b8b59a1026bd5babece69f4da17355d902db6b01b8c740ae6d2c81a09b38bb7958ebd1e813427d6b04b9b23e2b907a079a13e7bb3ea22209dce5b1484e39191ea673c52891c0cfc0b152b1800def2ba0358389edd4e9d1d911accced9c28dff5044075997d1c3b68d1da81fced9ec73aadda53f19a858aa0e3a6f97d620b1ff8004812a5bec8a9ea7c61ec85\"","k_build":"418","dc5_server_salt":"\"23372d3cee81ae10\"","dc3_server_salt":"\"095208d91bcc51b1\"","user_auth":"{\"dcID\":2,\"date\":1696500673,\"id\":6403647471}","xt_instance":"{\"id\":401351,\"idle\":true,\"time\":1696500745650}","dc":"2","dc4_auth_key":"\"4c4899fc2de7482b06b54896ab6ae2a1bd9309055d121b00c66a96fd77f99d64090c0d0af45e32a1582fdbbb69680c20d09fd1045864fa288a3d14bb905657e3398c74cbe5e8cd62a2e975e8585d625bbd0947cff2d01d5576b4cbc7fab896a38f15950182763801ee19677d08e873a17430532206a099bba78af4fd96a4fa6cc84ed3bcdbdafffc4bfcd713b95c0d8903b7e3f385b79c20a05456e472b70db23bec3f690741e4c7ca662bc7c607ba44019c2af6f1e96c7987214ff0bd90fa265559df1efc37b8064dcbbca060ba6971662764fdad9f6a3e01f2a7519dfed0feed993038d08d4fe38bc671536aa1d7b1ece96c96b918dc8fe523908530301e31\"","":"","dc2_auth_key":"\"a24137485cfc50445063f4d7c529a549c7b1cc6646ea6f92383782f418eda488514df5a29e006aca86137ec0e09e49dded64adcdf367deb0e127680c8f0d5b4595075605d4b7295eb2c86a1475680c1ebb0ae2e199b5e1490672e7e022a584cef2550e6625a5436c2cf2eb166b50dae6e9ccdc6f9db7ca22fac21472ad73f12e02fadf54181b024afc591b26f1a9c5690c09270059122f1491fd689b5c15af68aa9b13ec42bf403460079ea5dbc04e78fa7302d56e56d44f1c835f55535508b4f0315ab693ee5b7650fba057b53549f29d4e653359f57376f0b3b5bd6c11a2fa0cc292371350f5418c04bcf80344625aecdb46452af51a4b541c02be2c6f8260\"","dc4_server_salt":"\"cf844a9d3479c266\"","dc1_server_salt":"\"06cb107c5bc8502d\"","server_time_offset":"-1","dc2_server_salt":"\"0df57302496b2037\"","state_id":"2839185310","auth_key_fingerprint":"\"a2413748\"","dc1_auth_key":"\"7534e5099c465c6f7bd963782fd89314f49291158a54e48ea460a1ca40fa6f7639c09239dd0fd204389a31b641620db67179630853e60cc11d25ae7786b88abfacaac65950bc874176e5a239c83927c3612310538740a03a5aa194231d884c8a4f110e3a31e4d92f3b909bec57afc46e74bb7590fa5b0db05294a5f220165e218a038c309125456e426a086cbe2db4af99977179a9b46a2982c0a33e5d07dd779e53f070fd07418494fe97aa39ecac966e3ebe14e3d5750e785f31c652d9437486a8535dcf61b097362f07a34a1fcff2f0a5978a05b413590e874147eb38205b6978c7c3181b905caa5427e281e292ab84a70cb7aae032c677fb9f9054f93bc6\"","tgme_sync":"{\"canRedirect\":true,\"ts\":1696500719}","dc5_auth_key":"\"c47602738ce6c83d8fbf7c9f45de32baa6c87724bcfbc99404a9ef696500fae228f1c9a43db8c8ff075bde5a767f75ae718180e7d5eb03e44aec24eb807d745d35492fbc1a820a95ad45608c0475d3377d89d298f46c454f434f8fd50abcec9b6a6b6e506796faef1edaeaa029922573eb198e287cebd8cf0423d1dc904c3607b05093448da80b8bcdad48b825c14e3b97ebe260c3a982e9fc7950492697a55c15648736800d5d9adaf874a69c3324efb380c4d739c9e849fcc2ff046fb6a65f17d111dd87c232db1502bb6080b779803aef6fab826f6c883265a610851c1c69e711da54e3021bbd0915439de0ddc5182c9c0eb7606a50bbbf27a7349c64600e\"","tt-global-state":""}
+VM32:1 —————-
+undefined

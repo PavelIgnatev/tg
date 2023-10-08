@@ -1,0 +1,33 @@
+sw-2bb50b54.js:sourcemap:1 [0.002] [SW] init
+sw-2bb50b54.js:sourcemap:1 [0.003] [SW] got 0 windows from the start
+sw-2bb50b54.js:sourcemap:1 [0.005] [SW] installing
+sw-2bb50b54.js:sourcemap:1 [0.005] [SW] skipped waiting
+sw-2bb50b54.js:sourcemap:1 [0.006] [SW] window connected c1cf8715-4298-47ae-9291-31d0f6eab978 windows before 0
+sw-2bb50b54.js:sourcemap:1 [0.006] [SW] windows Array(0)
+sw-2bb50b54.js:sourcemap:1 [0.006] [SW] sending message port for mtproto
+sw-2bb50b54.js:sourcemap:1 [0.007] [SW] activating ServiceWorkerGlobalScope
+sw-2bb50b54.js:sourcemap:1 [0.008] [SW] cleared assets cache
+sw-2bb50b54.js:sourcemap:1 [0.008] [SW] claimed clients
+index-257913ec.js:sourcemap:1 got state, time: 20809.5
+index-257913ec.js:sourcemap:1 Will mount auth page: authStateSignQr 1696666622.258
+web.telegram.org/:1 Uncaught (in promise) Object
+index-257913ec.js:sourcemap:1 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'id')
+    at Go.updateMyOnlineStatus (/k/mtproto.worker-017fd0e6.js:4:307893)
+    at /k/mtproto.worker-017fd0e6.js:4:771074
+    at qe (/k/mtproto.worker-017fd0e6.js:1:32918)
+    at Object.callback (/k/mtproto.worker-017fd0e6.js:4:771042)
+    at Ee.invokeListenerCallback (/k/mtproto.worker-017fd0e6.js:1:2930)
+    at Object.processInvokeTask [as invoke] (/k/mtproto.worker-017fd0e6.js:1:6955)
+    at Ee.onMessage (/k/mtproto.worker-017fd0e6.js:1:5543)
+    at /k/mtproto.worker-017fd0e6.js:1:6433
+    at Array.forEach (<anonymous>)
+    at Object.processBatchTask [as batch] (/k/mtproto.worker-017fd0e6.js:1:6407)
+web.telegram.org/:1 Uncaught (in promise) Object
+web.telegram.org/:1 Uncaught (in promise) Object
+console.log('—————-');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM274:1 —————-
+VM274:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+VM274:1 cookie: 
+VM274:1 localStorage: {"dc3_auth_key":"\"17898c087ba4db27910c2578facfbb192815dcb623d7a2f6b0c4f201bdf524327cc03ac30876f1133ef52098fbc349b1048fce33dee6ac2018c1dc5cfbd1448e3381c38538f446bf962a90a5b8bd90f552ded00012982035331706a74337447bb71c6d9a3ee9bf7feb29112353709a414a45cfeab2abb468548e548bb8f989d73de5216bbfbe2087ec60b14025be531aa832b784d34c2e3034b3b8a6c5fd2205e59665d83e6568b09fa8080a46c10620e5282d1635e45322a9de7681981c424e99287590e581971f6e84b5d14ae511eb04573c1002d7443a1620bec78e29c63581cbe8174898a10f127f16d2b8c6115aae58d3f2f4b33554d615c7294f616335\"","k_build":"418","dc3_server_salt":"\"eead3a1c2d51d6b0\"","user_auth":"{\"dcID\":2,\"date\":1696666674,\"id\":6672028145}","xt_instance":"{\"id\":82233535,\"idle\":true,\"time\":1696666686451}","dc":"2","dc4_auth_key":"\"72e9f38e9844e69338fe737be693cb0ff0ff51bfe2b3cfa852be01221954d568af64fffb6c2f59aa78858a0f70f66319e58fefb1e74793ac03c77713a2eec05f5c3c266f541da4a945c2d2353a0e8f534687d2731b933053be4a9047854068abd4c7a684f4a473bfdbbb0b321db9330a73bf149f368ae57a382d3607194e77af14850006ff5288f9839ea7cfb9106dc19b894617ff7fb9fe0b71d45d61d4c4009b51ad57439edad3966c154b1cc5adcf8edf827c8e33b356273ff484b1b1b51d108fa64506aa618c3d8440c9e5e42935906e237d2ef312822bfaa820d11a6c0011958b449007969e9fdb9ba3b04143ac29d5072744ceb6863605a407c9f6b9ea\"","":"","dc2_auth_key":"\"40454d10dadf2e7dbe8411e912e2e9b89aea37e43a6e72e0688836f23719b09b40048924af401d6b0014400da4501ef37dd929b57a0e7db3da83b8798d57f65981e4dfd02f438457d85ecec80d0683c552057768daef099df8012292b5765c93420afb5d143a8471754eeb2920eee2ec4ba1bd69746f2847b37a12babc1c6a54712a1c772cfa99994c4e95ec5fbee4a9b16a9f45601c01e4b8177b6be4750f7d7f637fd0a78892627510f1d299a6d93f1e30eaa06b35a5f74f35918233d2850437ac4162ac3fa4b2a6ae47ecfbd578e0c53fddab6fff1a06cd13fdac5df8143820f2980422838eab690d949f2eed8c5b3921506000cfd970c0b00ddf4ae8615e\"","dc4_server_salt":"\"1694116257bb9e37\"","tgme_sync":"{\"canRedirect\":true,\"ts\":1696666680}","server_time_offset":"-1","dc2_server_salt":"\"ca18b2225fda9024\"","state_id":"317955086","auth_key_fingerprint":"\"40454d10\"","dc1_auth_key":"\"b06b25d28eaf6e0f8b027bfec6bac031219f62fca0d49d09278178aeb036ba8206ae101160167d6ccdf5f2a212ba705cefdb23e2c29f707dc1085146f0c9a137a9163e52cd088ba448cc2b0693ce7c2ae10c634b1a5059b1a118f5c00de9a65f4a0773164410399b064a4844db4096d63c52b44a94e4c1790aca4a2bfe600dfc251ac1eec582eb339cd063b2b177977ebcc31270236640a06381ad4c0726a579c9e2202c1c95a1bfca4ea36049dec2fe38c3dccfe173c00601c71e2d5e936f48d984fcac93cc58387a642ade11702823227b57a34d30fd53b9948b82e2c241c36424a194bdfc2f2cf1ee2019fd6a0d5b31e880f2aa21b9f7db2d54e86ee40a52\"","dc1_server_salt":"\"5f17fab9f4a98c18\"","tt-global-state":""}
+VM274:1 —————-
+undefined

@@ -1,0 +1,33 @@
+logger.ts:134 [0.001] [SW] init
+logger.ts:134 [0.003] [SW] got 0 windows from the start
+logger.ts:134 [0.005] [SW] installing
+logger.ts:134 [0.005] [SW] skipped waiting
+logger.ts:134 [0.006] [SW] window connected 3a76fca9-3659-4824-8eba-022e7fb0250a windows before 0
+logger.ts:134 [0.006] [SW] windows Array(0)
+logger.ts:134 [0.006] [SW] sending message port for mtproto
+logger.ts:134 [0.007] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.007] [SW] cleared assets cache
+logger.ts:134 [0.008] [SW] claimed clients
+index-257913ec.js:sourcemap:1 got state, time: 15703.900000095367
+index-257913ec.js:sourcemap:1 Will mount auth page: authStateSignQr 1696679810.93
+web.telegram.org/:1 Uncaught (in promise) Object
+index-257913ec.js:sourcemap:1 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'id')
+    at Go.updateMyOnlineStatus (/k/mtproto.worker-017fd0e6.js:4:307893)
+    at /k/mtproto.worker-017fd0e6.js:4:771074
+    at qe (/k/mtproto.worker-017fd0e6.js:1:32918)
+    at Object.callback (/k/mtproto.worker-017fd0e6.js:4:771042)
+    at Ee.invokeListenerCallback (/k/mtproto.worker-017fd0e6.js:1:2930)
+    at Object.processInvokeTask [as invoke] (/k/mtproto.worker-017fd0e6.js:1:6955)
+    at Ee.onMessage (/k/mtproto.worker-017fd0e6.js:1:5543)
+    at /k/mtproto.worker-017fd0e6.js:1:6433
+    at Array.forEach (<anonymous>)
+    at Object.processBatchTask [as batch] (/k/mtproto.worker-017fd0e6.js:1:6407)
+web.telegram.org/:1 Uncaught (in promise) Object
+web.telegram.org/:1 Uncaught (in promise) Object
+console.log('—————-');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM270:1 —————-
+VM270:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+VM270:1 cookie: 
+VM270:1 localStorage: {"dc3_auth_key":"\"17f508b30235aef2fdd2e64b62439679caf32e0435ad47e7e4c3bf54e22ff726bbbfa47712ef4171928ab2e0899cf9f9979713190a355bb476d6268cc7efb664c8283aa8bee959c08b49d8caaaf889f21f5d07f1187d7ae8a6a95f5b9e3692258fbb216a22e583209c12ba373d5d0c582afeb99a19a704d7ca7d394fafa0d2a50b4a1c9067fc2ed024e32abc3af8495ef0c38e04748df1c351a122b4faaeec184cad0c0cc95cefc18cab7ef1156e25b28bf0ff5fd4bf0720d6e8f3a81c0fe9c9b7bc5239a1b832d46be67df92f1eaee3a0c805744cdf446ce5683fc90ba4a9858233af401c83668f4d741e7e61042f48abb2f0a780eef6722ca4e58517d07cb7\"","k_build":"418","dc3_server_salt":"\"39c26ceea6e5b8d0\"","user_auth":"{\"dcID\":2,\"date\":1696679848,\"id\":6553869461}","xt_instance":"{\"id\":26377045,\"idle\":true,\"time\":1696679860225}","dc":"2","":"","dc2_auth_key":"\"1601690339bc088d446af0a097edddc6d40c9421fb025f4bcd98be965a29eea2772e3d03103a7fcf0abd36feda6273c9e9ab65f23a96d352f5e19ffef38e2fbf092311aa4da1e787eb01c2a5910a53f7be36a5309d92808dc35b322bd13977f3611496d35200843563715ba5f5941b6cc158b5426617e2cb96d6801275f84f0440da3fb139809a5a4817dd94aec0c17b39784bf186b96ed2c2a6a8b1f0c2024610594ef79b47f37eb5aa1b6f784c22391fdba11e151436bbbd410492803a01dc3080ae0ea51cf5e6dbd43d17181350b76d90cf598b3e7ab8c8e7b73a05e64cf7ac75a58a0468344c8057f96b237156a350380abd91e14157d46a2a3f85339959\"","tt-global-state":"","tgme_sync":"{\"canRedirect\":true,\"ts\":1696679855}","server_time_offset":"-1","dc2_server_salt":"\"7464dfa2cdd68663\"","state_id":"2671974893","auth_key_fingerprint":"\"16016903\"","dc1_auth_key":"\"b187300e2296e88534672de29b822bac3cd65affe43ee4a0149b572f7bbb46c94e4f2e922db0b1f6014da97e60dac19269d0da81d8ad41809d9f0355179f0489e6873a92cee22564c3a1d49c6904fcb32180bd04760faad1234bf2c4957bed54b0868d311fc777f9fdf34ff196f85beeb775577e7337e92aff4adb3a7460751804f16ca048def32d0e8facd8496ffa5262995918a7d75554d049a0262b8f81487e2f932084700585cc4d9bc6cd2dace0dc140688fe86cd09dbf637a42ed77488bc18b5990339a697168ba33bff0317777930534741f0320912d7b51bbb906ce806f93ba305359e0c6be22657e50313891a33dcf0a48bdf14bae0f9d3655a4121\"","dc1_server_salt":"\"e3f15d3aeb50dcfb\""}
+VM270:1 —————-
+undefined

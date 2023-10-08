@@ -1,0 +1,20 @@
+logger.ts:134 [0.001] [SW] init
+logger.ts:134 [0.003] [SW] got 0 windows from the start
+logger.ts:134 [0.004] [SW] installing
+logger.ts:134 [0.005] [SW] skipped waiting
+logger.ts:134 [0.006] [SW] window connected 42f541e3-2939-4be1-9ab2-7c6cac4e8aa1 windows before 0
+logger.ts:134 [0.006] [SW] windows Array(0)
+logger.ts:134 [0.006] [SW] sending message port for mtproto
+logger.ts:134 [0.007] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.007] [SW] cleared assets cache
+logger.ts:134 [0.008] [SW] claimed clients
+index-257913ec.js:sourcemap:1 got state, time: 14724.300000071526
+index-257913ec.js:sourcemap:1 Will mount auth page: authStateSignQr 1696666835.468
+web.telegram.org/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+console.log('—————-');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM48:1 —————-
+VM48:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+VM48:1 cookie: 
+VM48:1 localStorage: {"dc2_auth_key":"\"17e270e610fa71f43a6d9ae92d0dd20f0547d9b671eaa47d11eb637734f1e44fe97260497f8b8a91d3b543d42fc5bad653913c4366cb3fc903f5fbc4104427400dfd8da516b1177a55c84a15cc73b046362900184b0a65daa2c9fd588ca9d2ac01d8afc320953df72e95c2c0c420fccf55a748215b60ad8890776f5a4e8705f9fd3d9fce64d9c44e10ed7e6c189d8eaff3404c2460f1b6eddefb71a31a35f59058ae8460ce0d79940234cfacc6a68248b9a267142aafd4f570c69bf0f7529082d811a965c579eb7df906a964393ea7376ad25574eac3c21be97915ce8d006e77134cf460f1dcbedaf99aebf501ab71ce63c7e2bda775c5fe124d79b301e23430\"","tt-global-state":"","tgme_sync":"{\"canRedirect\":true,\"ts\":1696666943}","dc2_server_salt":"\"17acb63ecda85bc9\"","state_id":"3892327505","auth_key_fingerprint":"\"17e270e6\"","k_build":"418","user_auth":"{\"dcID\":2,\"date\":1696666910,\"id\":6375339501}","xt_instance":"{\"id\":26262827,\"idle\":true,\"time\":1696666945743}","dc":"2","":""}
+VM48:1 —————-
+undefined

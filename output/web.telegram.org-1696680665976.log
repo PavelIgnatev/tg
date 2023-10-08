@@ -1,0 +1,20 @@
+logger.ts:134 [0.001] [SW] init
+logger.ts:134 [0.003] [SW] got 0 windows from the start
+logger.ts:134 [0.004] [SW] installing
+logger.ts:134 [0.005] [SW] skipped waiting
+logger.ts:134 [0.006] [SW] window connected e0a82f54-4010-4c00-8384-c4d9a343026a windows before 0
+logger.ts:134 [0.006] [SW] windows Array(0)
+logger.ts:134 [0.006] [SW] sending message port for mtproto
+logger.ts:134 [0.007] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.007] [SW] cleared assets cache
+logger.ts:134 [0.007] [SW] claimed clients
+index-257913ec.js:sourcemap:1 got state, time: 8958.400000095367
+index-257913ec.js:sourcemap:1 Will mount auth page: authStateSignQr 1696680613.685
+web.telegram.org/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+console.log('—————-');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM147:1 —————-
+VM147:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+VM147:1 cookie: 
+VM147:1 localStorage: {"dc2_auth_key":"\"70a8b3afd3975594817bcebd7c2debf0c6d85e0ddc3be48d2af20e003449ba52c0b4e8b6a8a6c7c57be9505779c3db8683c357a9797c77de5076c6ac7323faccdb2f7663efccaa97795cfb34437a65e9f6104b16ccbd575b82fd34fc31e66afcb9a0b38a83764d13d693ccff78ab5ebcc2db7f55ca33f497fcfd1d76aa0041d420dcc25aaeeabec30b1c13f93d5e0857c4f2c23be190d315a1f5e86658ede8eac173d436d7ad65239b3a02c735f396be78c8d1131a3b8d8230b2f8f38968d3d80d6f8203a5fa7b4fcd9684365d2b0f3352fdf1f430e2fc583183128967590038d6ce99c5e58a3e5ab28ee5f4b2a31d798d6107bbdbd535f0d7ff14529431fef3\"","tt-global-state":"","tgme_sync":"{\"canRedirect\":true,\"ts\":1696680657}","dc2_server_salt":"\"3c4807fa73795d4b\"","state_id":"3361309010","auth_key_fingerprint":"\"70a8b3af\"","k_build":"418","user_auth":"{\"dcID\":2,\"date\":1696680648,\"id\":5850321431}","xt_instance":"{\"id\":43080894,\"idle\":true,\"time\":1696680659725}","dc":"2","":""}
+VM147:1 —————-
+undefined

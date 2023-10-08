@@ -1,0 +1,20 @@
+logger.ts:134 [0.001] [SW] init
+logger.ts:134 [0.004] [SW] got 0 windows from the start
+logger.ts:134 [0.005] [SW] installing
+logger.ts:134 [0.006] [SW] skipped waiting
+logger.ts:134 [0.007] [SW] window connected d12f2800-6221-4cb9-b641-da1aaeb3240b windows before 0
+logger.ts:134 [0.007] [SW] windows Array(0)
+logger.ts:134 [0.008] [SW] sending message port for mtproto
+logger.ts:134 [0.009] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.009] [SW] cleared assets cache
+logger.ts:134 [0.010] [SW] claimed clients
+index-257913ec.js:sourcemap:1 got state, time: 11852.5
+index-257913ec.js:sourcemap:1 Will mount auth page: authStateSignQr 1696672236.526
+web.telegram.org/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+console.log('—————-');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM42:1 —————-
+VM42:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+VM42:1 cookie: 
+VM42:1 localStorage: {"dc2_auth_key":"\"5325555fc1e1e0a33bce92586a2cfa3d48f887636e06220547dc44f69d8941d14af731dbbf240647d9dd4fe9a5c8412eb2756eb2d03a11f078d1faf3b85825b0c854cf7d97168df7c24c892282da28c45b3a7b7ec67de2ca4cc1cc6aa959c51a09d81c55dfca4e0615296c91d363dbe76a30762b831eadbd0fe472098999cd87a61fff4eeb081607e6c2c8b68f153b774585b9d5660403c808daaca02a46f485c844227f4b0d4150e3818dc708ea5c8fb05aefa26f45431cb6453951d7864f7f8671951c4768a2e3fdd34e123a54bf6a208a300a0027176b8621967bc90ff831a458c68a7f8c1b3d84ebb50e85049f7ce6e53cf6a6d8e2bee41b807acc8424e5\"","tt-global-state":"","tgme_sync":"{\"canRedirect\":true,\"ts\":1696672283}","dc2_server_salt":"\"c0a5cfbddc6d8c8a\"","state_id":"3499252390","auth_key_fingerprint":"\"5325555f\"","k_build":"418","user_auth":"{\"dcID\":2,\"date\":1696672271,\"id\":6402209253}","xt_instance":"{\"id\":72299434,\"idle\":true,\"time\":1696672289677}","dc":"2","":""}
+VM42:1 —————-
+undefined

@@ -1,0 +1,33 @@
+logger.ts:134 [0.001] [SW] init
+logger.ts:134 [0.003] [SW] got 0 windows from the start
+logger.ts:134 [0.005] [SW] installing
+logger.ts:134 [0.005] [SW] skipped waiting
+logger.ts:134 [0.007] [SW] window connected 41b6237f-fab6-4635-9fe2-8e1e75fc742a windows before 0
+logger.ts:134 [0.007] [SW] windows Array(0)
+logger.ts:134 [0.007] [SW] sending message port for mtproto
+logger.ts:134 [0.008] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.009] [SW] cleared assets cache
+logger.ts:134 [0.009] [SW] claimed clients
+index-257913ec.js:sourcemap:1 got state, time: 25407.800000071526
+index-257913ec.js:sourcemap:1 Will mount auth page: authStateSignQr 1696676867.61
+web.telegram.org/:1 Uncaught (in promise) Object
+index-257913ec.js:sourcemap:1 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'id')
+    at Go.updateMyOnlineStatus (/k/mtproto.worker-017fd0e6.js:4:307893)
+    at /k/mtproto.worker-017fd0e6.js:4:771074
+    at qe (/k/mtproto.worker-017fd0e6.js:1:32918)
+    at Object.callback (/k/mtproto.worker-017fd0e6.js:4:771042)
+    at Ee.invokeListenerCallback (/k/mtproto.worker-017fd0e6.js:1:2930)
+    at Object.processInvokeTask [as invoke] (/k/mtproto.worker-017fd0e6.js:1:6955)
+    at Ee.onMessage (/k/mtproto.worker-017fd0e6.js:1:5543)
+    at /k/mtproto.worker-017fd0e6.js:1:6433
+    at Array.forEach (<anonymous>)
+    at Object.processBatchTask [as batch] (/k/mtproto.worker-017fd0e6.js:1:6407)
+web.telegram.org/:1 Uncaught (in promise) Object
+web.telegram.org/:1 Uncaught (in promise) Object
+console.log('—————-');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM272:1 —————-
+VM272:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+VM272:1 cookie: 
+VM272:1 localStorage: {"dc3_auth_key":"\"c47ddf36fbe812ab7ac99ab454da44217e0fc85d060539bd9c1531a6913861a44fc71fd686094b0a6a358403615f4b371e3548f4db38aea1451dc6296b3875b6d59db8754d10abddfa098c89fcd195589e343f9ec123d4dea23d3772751d25bb91b713132b550bb3cbff837725c7e5ca787c4753c8134da652dc4b13edce992893f6833240cb110ab5d3e5d2724d11e0b64b1a383a1058b9d00c044e2d5c5910a3290ab200c33075dc2228ba79c09f7a9b3ae823b5030e9670c8dea952c70cb4b8600afb8aab5ef949cf1b218b881876564e1bc08ffe3ec59262ba3ac9ae06e057f18848e80cb2b5a437f3daaf2eb857839cbac013b00c5ca5432c21bb5a5343\"","k_build":"418","dc3_server_salt":"\"f3d14d8d3ef9670f\"","user_auth":"{\"dcID\":2,\"date\":1696676919,\"id\":6304885381}","xt_instance":"{\"id\":53639510,\"idle\":true,\"time\":1696676932201}","dc":"2","":"","dc2_auth_key":"\"443b28697deca6daf4949ff729390cd2e2550ef65bab56e904690aaef7736b011c3f687607a560176fe6fdd138d39a03c95fbe5ba6c43ab42adf90971ec5beb71618302fe605c6b78eed301f42660f49899071bd0c30efead3b91d2f7e04ac656cdf4af4618bc179c75298a1685422a4ee8fb5d7038e14e8917ba878367a3b83382bcff8256cf11b4b45abedff634c70c826ca4188f77f2ace65d5dbb0780e0dcfabb1c7fb2b7d5e1727bd5576d54e74dabeb5f4db35cc2333dad2ff688d6c7c7923f9e360cb2bdfdee8ee076d0c6680cdb09fed31e851091df5ce9d5ab93af4d4292b81dd5d699bc4c79b12be8e9a15de168f9a1ae0f9fe97a0c5b8ba08dab4\"","tt-global-state":"","tgme_sync":"{\"canRedirect\":true,\"ts\":1696676928}","server_time_offset":"-1","dc2_server_salt":"\"52109103b2180994\"","state_id":"2156182072","auth_key_fingerprint":"\"443b2869\"","dc1_auth_key":"\"3f7c9979c5b15b583fc7f23b3ecee2457d274212283ef67aedc6f22d8b037a81cba7163cae5f3340f602be0c42fd6cebc8a440118a1eed99d37917dfc93c49c288eab968aea97668f2d03b0b77e2166f363d76dea3f86abc8882a54b349356badfc5df4f08bcd1078bd5989bcb813da014c2b201fe7c3ac8964ce068dc0b3624f9ae1ff3aaff5076a728d280abcdf985bd48c14c1cd7ff614315a28a227d319be039a2c8a980c72c8b64f72c07336568c53138f4706f2b49864c654c038fa1f40ade9580bc924389de086eb22df525741e03fceb0375cf68dfe051ac2af5a3e59232f091901b537d40a004a9644050d0d266518c58f9b1a1a27b7ad185549a74\"","dc1_server_salt":"\"a9aa852bd548d8b1\""}
+VM272:1 —————-
+undefined

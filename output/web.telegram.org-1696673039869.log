@@ -1,0 +1,33 @@
+logger.ts:134 [0.002] [SW] init
+logger.ts:134 [0.005] [SW] got 0 windows from the start
+logger.ts:134 [0.007] [SW] installing
+logger.ts:134 [0.007] [SW] skipped waiting
+logger.ts:134 [0.009] [SW] window connected b404419d-9d01-4717-be7f-2bae5d4825eb windows before 0
+logger.ts:134 [0.009] [SW] windows Array(0)
+logger.ts:134 [0.009] [SW] sending message port for mtproto
+logger.ts:134 [0.010] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.011] [SW] cleared assets cache
+logger.ts:134 [0.011] [SW] claimed clients
+index-257913ec.js:sourcemap:1 got state, time: 13428.399999976158
+index-257913ec.js:sourcemap:1 Will mount auth page: authStateSignQr 1696672976.384
+web.telegram.org/:1 Uncaught (in promise) Object
+index-257913ec.js:sourcemap:1 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'id')
+    at Go.updateMyOnlineStatus (/k/mtproto.worker-017fd0e6.js:4:307893)
+    at /k/mtproto.worker-017fd0e6.js:4:771074
+    at qe (/k/mtproto.worker-017fd0e6.js:1:32918)
+    at Object.callback (/k/mtproto.worker-017fd0e6.js:4:771042)
+    at Ee.invokeListenerCallback (/k/mtproto.worker-017fd0e6.js:1:2930)
+    at Object.processInvokeTask [as invoke] (/k/mtproto.worker-017fd0e6.js:1:6955)
+    at Ee.onMessage (/k/mtproto.worker-017fd0e6.js:1:5543)
+    at /k/mtproto.worker-017fd0e6.js:1:6433
+    at Array.forEach (<anonymous>)
+    at Object.processBatchTask [as batch] (/k/mtproto.worker-017fd0e6.js:1:6407)
+web.telegram.org/:1 Uncaught (in promise) Object
+web.telegram.org/:1 Uncaught (in promise) Object
+console.log('—————-');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM492:1 —————-
+VM492:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+VM492:1 cookie: 
+VM492:1 localStorage: {"dc2_auth_key":"\"95d4155370204a70d8562a73615ffb42973aba668492c096a2663c140ab074376aa8f35878ba667048c5d56acbedca925ba006fc532d2e74a7954b0098a2179f301e6c03ea534ab3ab4504f123568d51120e6cb4db36d21560b6a3d41faa537ccee115d0e8e3a5bebaa4544cd5fc2902d15e2d652ee10a7d5a4f19b79cc2e34d6eade45a5d3d0b1c0af46bb8d2f5f242e05b4ea18cd62c38a12341836194805733a61127564cdd3b242e07c9285ea1cd20346fe3901c8bc51cbcd13b90edc19f72b7df8f1744da1815dfb36f1da46417d590942f92126c2e0bf01b85a22691771a6b70771afae1026a4760e6b1b9a1874f245dd9b10cff4a63345b6851e3a7d1\"","tt-global-state":"","tgme_sync":"{\"canRedirect\":true,\"ts\":1696673030}","server_time_offset":"-1","dc2_server_salt":"\"3c61f4659953cadd\"","state_id":"1148488510","auth_key_fingerprint":"\"95d41553\"","dc1_auth_key":"\"930cc74e8e58191a55dd9890da0d0fd060ca996fdf0d7daacaaeb957fb446b1c0e6a476848b731cd9e28c07c5d0452bde15bebb7557ba37e491dd92492aee358b0ac2b4838be3a2bb6fee2a286ce7a50e85a115ac31262cc23ddb9075e5f93acf401d7d02e11f9cc06d2a1223018bedfd466e795407b405ca1cb9512d92b6a5616121bc4766084a183e35e0f5e99821685c73622c248a903f3d65fe2da65e769ad36fe109cea125b0972fda03aa76236045169066a0943d2f8f3e4eb74fc5d22f1a536ffe56cefe42963c995b804ef2efedfef3bacc665a7cd3ed6e290e392562921943ceef6820619a00ce566d0e0cfdd56cc06b47d9faf529bffcebf054e93\"","dc1_server_salt":"\"43315b14aff058c1\"","k_build":"418","user_auth":"{\"dcID\":2,\"date\":1696673021,\"id\":6361053576}","xt_instance":"{\"id\":2468930,\"idle\":true,\"time\":1696673033244}","dc":"2","":""}
+VM492:1 —————-
+undefined

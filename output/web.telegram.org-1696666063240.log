@@ -1,0 +1,43 @@
+logger.ts:134 [0.002] [SW] init
+logger.ts:134 [0.005] [SW] got 0 windows from the start
+logger.ts:134 [0.008] [SW] installing
+logger.ts:134 [0.008] [SW] skipped waiting
+logger.ts:134 [0.009] [SW] window connected 298aa1bc-63a8-437c-b412-be1afd0d4b31 windows before 0
+logger.ts:134 [0.009] [SW] windows Array(0)
+logger.ts:134 [0.009] [SW] sending message port for mtproto
+logger.ts:134 [0.010] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.011] [SW] cleared assets cache
+logger.ts:134 [0.011] [SW] claimed clients
+sw-2bb50b54.js:1 Uncaught (in promise) DOMException: Cache.put() encountered a network error
+The FetchEvent for "https://web.telegram.org/k/appDialogsManager-9e4e8073.css" resulted in a network error response: the promise was rejected.
+The FetchEvent for "https://web.telegram.org/k/assets/fonts/L0xTDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vrtSM1J-gEPT5Ese6hmHSh0me8iUI0.woff2" resulted in a network error response: the promise was rejected.
+cache.ts:47     Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47     Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+The FetchEvent for "https://web.telegram.org/k/assets/fonts/L0xTDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vrtSM1J-gEPT5Ese6hmHSx0me8iUI0lkQ.woff2" resulted in a network error response: the promise was rejected.
+The FetchEvent for "https://web.telegram.org/k/avatar-74c056ee.js" resulted in a network error response: the promise was rejected.
+cache.ts:47     Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47     Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+logger.ts:134 [122.459] [SW] something has disconnected WindowClient
+logger.ts:134 [122.459] [SW] window disconnected, left 0
+logger.ts:139 [122.459] [SW] no windows left
+o.<computed> @ logger.ts:139
+logger.ts:134 [122.459] [SW] something has disconnected MessagePort
+logger.ts:139 [122.459] [SW] it is not a window
+o.<computed> @ logger.ts:139
+logger.ts:134 [122.519] [SW] window connected 88058068-7888-474d-83b6-d6a1e7edf5d9 windows before 0
+logger.ts:134 [122.519] [SW] windows Array(0)
+logger.ts:134 [122.519] [SW] sending message port for mtproto
+index-257913ec.js:sourcemap:1 got state, time: 29
+index-257913ec.js:sourcemap:1 Will mount IM page: 1696666041.467
+web.telegram.org/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+console.log('—————-');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM57:1 —————-
+VM57:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+VM57:1 cookie: 
+VM57:1 localStorage: {"dc3_auth_key":"\"461811ee492750c4dec202c6a407ef89961b9fc4d6f08f01e99771dd03ba1383a506216099bef0b4586a6b6a6f0c9abd7c8392510db8379f822644637b4e2905eaf0b11d4b2e9f9dff475b202bf0d6d20b0b9080bc371425bb04a13f37f9fd61017d195b28226dcd6baa14e93a211d903da128e7eddd77bacfbab349f3508724e19282a45fc85dae20b0c87b7f3b726e9ebd91d291b0252369443ccbe4e8fa9af2815dc49e3c477b3358c70e1f8cda308279db5dfb30f8dd34364d9e407cbb38f216143fbceed2dc178c18d9f855e46d2e7a9a195274474b247f7e6eda481942d3e1d6ca9031dbfbf342411217e129ccc7b6e164c58ac269b024613158eb8d4e\"","k_build":"418","dc3_server_salt":"\"ca284ffd4b720a98\"","user_auth":"{\"dcID\":2,\"date\":1696666041,\"id\":6485385664}","xt_instance":"{\"id\":42255220,\"idle\":true,\"time\":1696666056828}","dc":"2","":"","dc2_auth_key":"\"606fd75f425908197316b05b01d737e574bdaed9d4f48f2d404cefac32571d71f637103956688633a475148b1aa1bfd44657786ae866297a7023c4222c73e69d93f68fbf86225f130647582313917f1e8f5199fc9b625bddad6c9dc521a40b6880f7787e60d6aac575824e72c50d74eee0729d022f22dd1066d93d3fa06f621ba79f77be46922d6d680b4e6e2fc26592648359eb6c829e17c9cbc241a30988683089ddbabe33e14d8a1b7999e6c6ec8f51d71f52347b81cc7de2e88ad14774aad33a2793b1c5048bdcd0a4d8cc16b6a9d9bf280f578ba93470cacf6e7135c10f57315f111a3399c8db54d51936bcabd51a722a0b1cb95a68de9054e733016ea3\"","tt-global-state":"","tgme_sync":"{\"canRedirect\":true,\"ts\":1696666054}","server_time_offset":"0","dc2_server_salt":"\"cbe80c1fe742abde\"","state_id":"1052404460","auth_key_fingerprint":"\"606fd75f\"","dc1_auth_key":"\"5e487098d510209dd9e678178bf158722853169b85dc2643ba0955470e921d9a13bef04813a351c912197c647f42d14143af7ac5fc92aa1cb37b5770aedcbf367b1047a885a82670b61813217f8bc63106cc2722400381251a9f981eb0580b3817e2165ef556083245a2d924527522832e416f42bdd213083f7c9c2d4a1157470c7bd7849b21c2df4f97cfcf889f9f05b27ebc94cd820612daab96d81d0d3db8c0789d016a3b7535dabe1a407f84a9ba8e1a72dc2076b778bd79bcbe31eb0a9c20c7b0d4c2846abc9eae8760d40e58062affb0718540caa5acf7e10ddc38dd720ccfb7df533d68951a21a305eec8ee9e7a7760232fe934530c7658f20a55d898\"","dc1_server_salt":"\"563106afc71e91ca\""}
+VM57:1 —————-
+undefined

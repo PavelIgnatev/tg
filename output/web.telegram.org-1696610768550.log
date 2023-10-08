@@ -1,0 +1,33 @@
+sw-2bb50b54.js:sourcemap:1 [0.001] [SW] init
+sw-2bb50b54.js:sourcemap:1 [0.003] [SW] got 0 windows from the start
+sw-2bb50b54.js:sourcemap:1 [0.004] [SW] installing
+sw-2bb50b54.js:sourcemap:1 [0.005] [SW] skipped waiting
+sw-2bb50b54.js:sourcemap:1 [0.006] [SW] window connected 55403ee7-e0e6-4604-8d65-3b71b064996c windows before 0
+sw-2bb50b54.js:sourcemap:1 [0.006] [SW] windows Array(0)
+sw-2bb50b54.js:sourcemap:1 [0.006] [SW] sending message port for mtproto
+sw-2bb50b54.js:sourcemap:1 [0.007] [SW] activating ServiceWorkerGlobalScope
+sw-2bb50b54.js:sourcemap:1 [0.007] [SW] cleared assets cache
+sw-2bb50b54.js:sourcemap:1 [0.008] [SW] claimed clients
+index-257913ec.js:sourcemap:1 got state, time: 14149.700000047684
+index-257913ec.js:sourcemap:1 Will mount auth page: authStateSignQr 1696610697.084
+web.telegram.org/:1 Uncaught (in promise) Object
+index-257913ec.js:sourcemap:1 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'id')
+    at Go.updateMyOnlineStatus (/k/mtproto.worker-017fd0e6.js:4:307893)
+    at /k/mtproto.worker-017fd0e6.js:4:771074
+    at qe (/k/mtproto.worker-017fd0e6.js:1:32918)
+    at Object.callback (/k/mtproto.worker-017fd0e6.js:4:771042)
+    at Ee.invokeListenerCallback (/k/mtproto.worker-017fd0e6.js:1:2930)
+    at Object.processInvokeTask [as invoke] (/k/mtproto.worker-017fd0e6.js:1:6955)
+    at Ee.onMessage (/k/mtproto.worker-017fd0e6.js:1:5543)
+    at /k/mtproto.worker-017fd0e6.js:1:6433
+    at Array.forEach (<anonymous>)
+    at Object.processBatchTask [as batch] (/k/mtproto.worker-017fd0e6.js:1:6407)
+web.telegram.org/:1 Uncaught (in promise) Object
+web.telegram.org/:1 Uncaught (in promise) Object
+console.log('—————-');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM270:1 —————-
+VM270:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+VM270:1 cookie: 
+VM270:1 localStorage: {"dc3_auth_key":"\"189f00cb93ab0b28eaf448149ad0060850d2033dc975972a6c2375f100832f68caf7d1c040324891d2a9b2270593189765ae7f08f06fed388fca44d0d2f4b7c7a1aa9168f4cf99ba5ea8991e06627b583f545315cc66b6fa4fe1da0d5a9b5911a45a2d7049147f389dedc51e3c5f6b7604468229f6e62c612de2a26b5ab2004e5319b0338764e976f08690292497bc8f4f3ee8af7690dac34ebaea1eb4c9fe0ae4c44b00ccf9444da45693532b8bd81b5f881e966a0973abcee0fb3ef00ab21784c16d6a4655f56fa78576bc0a65fd165c6c81f7e50387d686660c01bc80014c05630066c1d96b82ebda965a6128bb64479f3b21d727c80bdeaed399bd58d91f\"","k_build":"418","dc3_server_salt":"\"8f9f528e8f47f923\"","user_auth":"{\"dcID\":2,\"date\":1696610750,\"id\":6112125869}","xt_instance":"{\"id\":3715040,\"idle\":true,\"time\":1696610762933}","dc":"2","":"","dc2_auth_key":"\"289d07310d5c67367940440698324a1baa1d182f5c842aec016df3990038d265dc735760765539edc947f96d447169f41d10da115b2bfeddfd3900f634cf2a732245985bf794b184663b8e63336155645257d7d6775ece69951e414220ff9789241116cc0d949416ab57ad23a9023fe7a27353f1ea1a2eb2d5ac49e4757912ba9dcd8cd4820eb174247aaf7283f4130d5a598de0c34aa2006404c6c59e377a578447bebd214933bbd62f00c918e320a7285c5af53efe456fee69fc951c61ebf28a767de81cfbf4769d9410b073ed5fe4482dbf4e6c914a9b00efce8229123c5621c81d8fb547d91970fd5d212a352ad4e5203479a119bc3b135288a46230ffb7\"","tt-global-state":"","tgme_sync":"{\"canRedirect\":true,\"ts\":1696610759}","server_time_offset":"-3","dc2_server_salt":"\"cb3db6af5093777c\"","state_id":"1933254393","auth_key_fingerprint":"\"289d0731\"","dc1_auth_key":"\"648cc54df10f77fec23df5d1cfdd154eb797f3efb693efbf7371d6b26f98c704058b125eb9bad259eb2d24fccbd86219c52e9472d015f826652c97f7d5f19c1746131d2c5a0bcb57aa03fc4fb17ff38b2c211fe34abe07fae73cd537a12e9459776682212939e22bd116eed4aceb7540d7831c052c56c3baa983156b54d79ab809d46b5db16ea9093ab3d2f6d154f3c0505ebf6e741686ca5ec9be0c300fc436b1d891a67d4402d6eb0fa5c1309be6f1bc209937a65cdbeb58c11c32b8527b45f893eda89b556a1dd3023703fa7a1ddd036efe0136bbfbe27a7c4c91cc72a87ad4f6e49c21813fe151c1888009daba5530d260f9cef13f11f8f398db49932fd9\"","dc1_server_salt":"\"5d5b59ab848b2585\""}
+VM270:1 —————-
+undefined

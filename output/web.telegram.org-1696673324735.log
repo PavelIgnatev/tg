@@ -1,0 +1,19 @@
+logger.ts:134 [0.002] [SW] init
+logger.ts:134 [0.005] [SW] got 0 windows from the start
+logger.ts:134 [0.006] [SW] installing
+logger.ts:134 [0.006] [SW] skipped waiting
+logger.ts:134 [0.007] [SW] window connected e5353c40-868d-4d47-9841-79f4f8558db1 windows before 0
+logger.ts:134 [0.008] [SW] windows Array(0)
+logger.ts:134 [0.008] [SW] sending message port for mtproto
+logger.ts:134 [0.009] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.009] [SW] cleared assets cache
+logger.ts:134 [0.009] [SW] claimed clients
+index-257913ec.js:sourcemap:1 got state, time: 9720.699999928474
+index-257913ec.js:sourcemap:1 Will mount auth page: authStateSignQr 1696673260.782
+console.log('—————-');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM41:1 —————-
+VM41:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+VM41:1 cookie: 
+VM41:1 localStorage: {"dc2_auth_key":"\"34439138c2265bcc55400be2d7819a1841f50be1c1f2c829129a7d974e125c50e69f01aa3477c73554540409102f271b38f1f43dcad3623936f74071fca8f0be892ca9e0730576e2d8ed19c99efc1cdae1d15088df7ac812fa8424b5e2bb69e49e6edad42fa87d0a624985e85ed053098020413422b842599cf2aa3b74327b1ced5828100d22c76c5431db726853826a31cb185d106d58151001fdeee0ad9d1fdd69783c3349c0d1493e0edb7cd0eed08ceb1e814116c0a294e15f19ebab9f84d856b44372522f3e33e7d2d0d712768281f26d44d83ccef6c3c76fcc7b7c68a97800d9aaa0256cc9f8606cb75ece5c2e3641c93150af96e3ff3463102a208ee1\"","tt-global-state":"","tgme_sync":"{\"canRedirect\":true,\"ts\":1696673315}","server_time_offset":"-1","dc2_server_salt":"\"6d3630704879712f\"","state_id":"127393428","auth_key_fingerprint":"\"34439138\"","dc1_auth_key":"\"99a4510d5586abcd13f66884a67fc71e7ffc58aa9025d8a2b970bc3b78087772f922583bef65cfa3f564f76a358dc47e7212d9232ca9d5e85848b735e398f55c2f31159b702bc3f11d33df0ff7629ae3ee037d37773a6b16a86ed75e967a8e4f3029efde4f518b63641906e6e77fb53951922bde205fe36b7fb6dab36da6e903e35036c1b986c0e005c67bcbe38a987296eea15507a21613e2c813e0713aa7c9a3dd91ae368c36649a25392f17989fc5a349c4fef810ca8449faabcf9d258e3177b6935ed5aaca64c222c434cf53a1aadca76643f16b73dd740a4e74c8ccf1297a02d117fbbef3d13c53443cdd4d17f6a53ba393affcb964c509c0a5739ffcd5\"","dc1_server_salt":"\"4d2d3d7f0f8dbc84\"","k_build":"418","user_auth":"{\"dcID\":2,\"date\":1696673305,\"id\":6659489580}","xt_instance":"{\"id\":31853152,\"idle\":true,\"time\":1696673321070}","dc":"2","":""}
+VM41:1 —————-
+undefined

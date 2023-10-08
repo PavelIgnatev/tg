@@ -1,0 +1,33 @@
+logger.ts:134 [0.001] [SW] init
+logger.ts:134 [0.004] [SW] got 0 windows from the start
+logger.ts:134 [0.004] [SW] installing
+logger.ts:134 [0.004] [SW] skipped waiting
+logger.ts:134 [0.005] [SW] window connected 7511f30d-9084-4bbe-b2c6-74dd171458c0 windows before 0
+logger.ts:134 [0.005] [SW] windows Array(0)
+logger.ts:134 [0.005] [SW] sending message port for mtproto
+logger.ts:134 [0.006] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.006] [SW] cleared assets cache
+logger.ts:134 [0.007] [SW] claimed clients
+index-257913ec.js:sourcemap:1 got state, time: 9477.700000047684
+index-257913ec.js:sourcemap:1 Will mount auth page: authStateSignQr 1696678051.484
+web.telegram.org/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+index-257913ec.js:sourcemap:1 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'id')
+    at Go.updateMyOnlineStatus (/k/mtproto.worker-017fd0e6.js:4:307893)
+    at /k/mtproto.worker-017fd0e6.js:4:771074
+    at qe (/k/mtproto.worker-017fd0e6.js:1:32918)
+    at Object.callback (/k/mtproto.worker-017fd0e6.js:4:771042)
+    at Ee.invokeListenerCallback (/k/mtproto.worker-017fd0e6.js:1:2930)
+    at Object.processInvokeTask [as invoke] (/k/mtproto.worker-017fd0e6.js:1:6955)
+    at Ee.onMessage (/k/mtproto.worker-017fd0e6.js:1:5543)
+    at /k/mtproto.worker-017fd0e6.js:1:6433
+    at Array.forEach (<anonymous>)
+    at Object.processBatchTask [as batch] (/k/mtproto.worker-017fd0e6.js:1:6407)
+web.telegram.org/:1 Uncaught (in promise) Object
+web.telegram.org/:1 Uncaught (in promise) Object
+console.log('—————-');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM460:1 —————-
+VM460:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+VM460:1 cookie: 
+VM460:1 localStorage: {"dc2_auth_key":"\"4d6f83ddcda7e36178e56ddeada48a52240b5e31b6ca17d89d3305ca8fdeaeb91cbd3975286551b8f8a543e59241a8a79f1bba350c0c4ec0af71dfdc0844fe2a32b27fcdc6bdee9acb91963c1143e142a19df4dc78dd6407cf7a49eb6da9ca343dad807642f43563a69ab4325c9ad2a922b53d4f1ebccb22cbe422b5b30af735a368ab10988625d02ba0a7c35a387ee77f9fc7e146e5448d04da6162cb71e9985571a5408c0c0e0417a7a133105a6aa4f2956bb4c45da5e102af51f29d5f09e71230d2ca5a90b5f32dac4978c0cb0e5901a9ea1b07fd3d14f7cdc09624e5b4df83f0d9cd8c0e0014b253d8a0d01ac7751a033837002b528de418d1fb0a0bc953\"","tt-global-state":"","tgme_sync":"{\"canRedirect\":true,\"ts\":1696678102}","dc2_server_salt":"\"316b6c21d2f82e28\"","state_id":"1003626376","auth_key_fingerprint":"\"4d6f83dd\"","k_build":"418","user_auth":"{\"dcID\":2,\"date\":1696678094,\"id\":6565772589}","xt_instance":"{\"id\":17786394,\"idle\":true,\"time\":1696678107006}","dc":"2","":""}
+VM460:1 —————-
+undefined

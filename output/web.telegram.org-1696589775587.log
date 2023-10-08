@@ -1,0 +1,20 @@
+index.ts:333 got state, time: 647.3000000715256
+index.ts:376 Will mount auth page: authStateSignQr 1696589731.121
+logger.ts:134 [0.001] [SW] init
+logger.ts:134 [0.003] [SW] got 0 windows from the start
+logger.ts:134 [0.005] [SW] installing
+logger.ts:134 [0.005] [SW] skipped waiting
+logger.ts:134 [0.006] [SW] window connected 6d44fe2a-8563-41f7-8ad3-96ff30471415 windows before 0
+logger.ts:134 [0.006] [SW] windows Array(0)
+logger.ts:134 [0.006] [SW] sending message port for mtproto
+logger.ts:134 [0.007] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.008] [SW] cleared assets cache
+logger.ts:134 [0.008] [SW] claimed clients
+web.telegram.org/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+console.log('—————-');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM52:1 —————-
+VM52:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+VM52:1 cookie: 
+VM52:1 localStorage: {"dc2_auth_key":"\"0cfe296c1e9a142f186a4a82506dc707925cc4601d1a7a32c6d73ab9f1c530658f2478607c984bb884cd2b6c97a0064745011799a409e34a2d8d39df0706096bf41fd03dce252df3e05dac73bc8ced100c04c8e2a1567a9d815e9c6bf3fb09f01735cece5727dbc4b84171bdd0f283916d8f1fd5edcb405e3f5c1e4d99f2b2f6562f77fb7759eb7c877442c19907e755721ce923aecaa45cdc2dfc3ea1477065267655a997e2f8a7da1656139c6080c95bdd6729c1ee6a1742c541a04307e7917ae77d75c80c79dd73a5bcea53cd7d8398170a587c1ca2b787ffb459e78cf799aed2858c4e6b6649a71f957939b44a3e6843868ef1ea99ef8157f07b27f452da\"","tt-global-state":"","tgme_sync":"{\"canRedirect\":true,\"ts\":1696589766}","server_time_offset":"-1","dc2_server_salt":"\"af60181dcaac1fdd\"","state_id":"2769150233","auth_key_fingerprint":"\"0cfe296c\"","dc1_auth_key":"\"2d6b4a15d500ba57e52737b1c3f0c039f22cd597fd3079f254996e0325ab3666057542d39a86dc6a565ea746019148bf9cda5ad05c8fbdf955492138a590d788c1d044a1e975ec3459785128f11a9887c55f41a4f6be54f5b858344ea7032200409259be71d7791d11b2622d8f525e029c5ff8210da6c7c5311e903c8dbd185b2cd3c779a0b3e124401c0a553e0eb16573ff192f6e31112aea979658b2641d17fcef769b0e1718288ec899dc57642072ea605cd7c230cf6e7efe0314ab7dea405bf9f2997dcbb0ed992bf5e5d57f124f32da193747a2b14e4b22ede28202910e9c2abd158b271647287682aff7023d65332c838da37a9a355fc8d6dd47ba8777\"","dc1_server_salt":"\"6b8778d67a3b7c15\"","k_build":"418","user_auth":"{\"dcID\":2,\"date\":1696589762,\"id\":6482241940}","xt_instance":"{\"id\":20868745,\"idle\":true,\"time\":1696589770476}","dc":"2","":""}
+VM52:1 —————-
+undefined

@@ -1,0 +1,26 @@
+index-257913ec.js:sourcemap:1 got state, time: 16012.399999976158
+index-257913ec.js:sourcemap:1 Will mount auth page: authStateSignQr 1696676583.985
+index-257913ec.js:sourcemap:1 [21.102] [MP-MTPROTO] SW registration failed! TypeError: Failed to register a ServiceWorker for scope ('https://web.telegram.org/k/') with script ('https://web.telegram.org/k/sw-2bb50b54.js'): An unknown error occurred when fetching the script.
+i.<computed> @ index-257913ec.js:sourcemap:1
+telegram.me/_websync_?authed=0&version=1.9.6%20K:1     Failed to load resource: net::ERR_CONNECTION_TIMED_OUT
+t.me/_websync_?authed=0&version=1.9.6%20K:1     Failed to load resource: net::ERR_CONNECTION_TIMED_OUT
+index-257913ec.js:sourcemap:1 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'id')
+    at Go.updateMyOnlineStatus (/k/mtproto.worker-017fd0e6.js:4:307893)
+    at /k/mtproto.worker-017fd0e6.js:4:771074
+    at qe (/k/mtproto.worker-017fd0e6.js:1:32918)
+    at Object.callback (/k/mtproto.worker-017fd0e6.js:4:771042)
+    at Ee.invokeListenerCallback (/k/mtproto.worker-017fd0e6.js:1:2930)
+    at Object.processInvokeTask [as invoke] (/k/mtproto.worker-017fd0e6.js:1:6955)
+    at Ee.onMessage (/k/mtproto.worker-017fd0e6.js:1:5543)
+    at /k/mtproto.worker-017fd0e6.js:1:6433
+    at Array.forEach (<anonymous>)
+    at Object.processBatchTask [as batch] (/k/mtproto.worker-017fd0e6.js:1:6407)
+web.telegram.org/:1 Uncaught (in promise) Object
+web.telegram.org/:1 Uncaught (in promise) Object
+console.log('—————-');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM262:1 —————-
+VM262:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36
+VM262:1 cookie: 
+VM262:1 localStorage: {"dc3_auth_key":"\"0f91f644e174e3ea66b21654b6db19500000a3fcb24aac3cdcdb3bee841e046d6c96585868464e37c2c7e643083509ce5c861d4c669976f65493b689c8de342a97b49f17c136a475d7c1d745b912d3ad441103f1457ba7b43fe663a37ea7ff45a26d908b5ed1506aae5aad83833a6d49ded2a8aca0e2a7ddd1cf3fa08a9a29cfd731a58883b9dbb7d7b1566323ec9752396bf4f50f93e20c30f1934ff492ddd1fb46753040e18457485ef952ca2563f1900ef6e6017f8e4d557466c1d7496d9d563a9c4cff21ba19030378163e379809b8cfb532c759b9ad4ef455816acf563ec3a1b70a8397ea1d855039def1abb53f265d418aa4e4b43eda64e2052dcae7de\"","k_build":"418","dc3_server_salt":"\"43572aedf073c1d4\"","user_auth":"{\"dcID\":2,\"date\":1696676707,\"id\":6414549707}","xt_instance":"{\"id\":8523534,\"idle\":true,\"time\":1696676753218}","dc":"2","dc4_auth_key":"\"59acc485aebd5e0c2c5b793e0e7038a44f4e58583334fe351f2ff15dda6cb001d318daec23222094677c790313639b4a8fa656f63dcc326a2fe388717d5846d58f046983a69e2d93854450a52bdb179c6ce82360a2e8f08c1440b8ef6615537fdff13342e04489d46c739167f5863a12a67279a9221638f7eb8c6639a1339cc2bb0fb8b3ed222f7be2fe8c65389bf06030cdb69d8aa873511cc14c6cd50872420bc1c09460f346deb1c09971ee6e8f7bad872419fcd906bf292915328f86c421597cef0c193468ad8042f419c887a94eafb62f85d2b7c7ac635732206f3b64840b25122c64239b15d7649066eeeeb58447cd6dec4c282b086268fd90ce55f2f0\"","":"","dc2_auth_key":"\"3e7891fb8570767ad6489dcd9d65819376e38ba0b62952e5e3cec86ea31fd848993610180839e28f2b4c34f3bdac01bd249af37d937c52c313072b0d1493d6628923f4fe3213882982171806538b773aebace5bc494aec980b93387678a80ef51fa8a22b08c6aa77493fa1b31d6c30a6fe240ea6d9431dbda0bb827a71ba180294b5dfc4ea74a60059857e11537b15f7ac33b63240daf9b2d6dd4665eebd35843b491d84fb6f6d28df260bd58df50d4053bc706b9510eeb795df9418f859b23bf7891ea3182cac42020dc257a1796d1357784ba3b2530954e7b7182b79cdad6114a150727c4e61b42384c0731466df8a3b8fee8d0b32df49c9edd2ef3be1b746\"","dc4_server_salt":"\"e881092844c4a204\"","tgme_sync":"{\"canRedirect\":true,\"ts\":1696676751}","server_time_offset":"-1","dc2_server_salt":"\"07dd22af71a0e800\"","state_id":"3497311303","auth_key_fingerprint":"\"3e7891fb\"","dc1_auth_key":"\"82dfce7538aad6a3666fe5ed10413175b9b8a34e01fa5880978297351c2e6ed0e5a76e53ff25530ee5daa1967f3c98f1fe3369cd081538d1408029651c90fc59f1de59f0a8fd9fd774a1ebca6a9111a5a684ce5286457a3449af3500829387d2e54d3d6f589348940b215f3433c7ef8887b84e5e7db93ce03f304e0682535595f9755d6dbf3b6721207eed00f024f62f968e23c56ac30cf870117ca9efc15e6c71505643839a89c6afc33c6b58442d5cf39c7e763777a658d3e59be737070f8c94ddc90c6490e0dc5bdb9bf59b6463dcdfe3d7d1d84b914d3320a36fac323b70be3028752949502f6e51df97d30131990e8fb1143e96689ba92699208a8908c4\"","dc1_server_salt":"\"fe578f1b74087d77\"","tt-global-state":""}
+VM262:1 —————-
+undefined

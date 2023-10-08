@@ -44,6 +44,18 @@ const accountSetup = async (page, accountId) => {
 
   try {
     const notificationsGroups = await page?.waitForSelector(
+      '.Checkbox-main:has-text("Notifications for private chats"):has-text("Disabled")',
+      {
+        state: "attached",
+        timeout: 5000,
+      }
+    );
+
+    await notificationsGroups?.click();
+  } catch {}
+
+  try {
+    const notificationsGroups = await page?.waitForSelector(
       '.Checkbox-main:has-text("Notifications for groups"):has-text("Enabled")',
       {
         state: "attached",
@@ -100,7 +112,6 @@ const accountSetup = async (page, accountId) => {
   }`;
 
   try {
-
     if (!aiRandomNameValue) {
       await userName?.fill(`${aiRandomName}`, { delay: 100 });
 
