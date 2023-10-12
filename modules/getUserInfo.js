@@ -29,12 +29,18 @@ const getUserInfo = async (page) => {
           timeout: 3000,
         }
       );
-      userName = (await userNameContent?.textContent())?.replace(
+      function replaceFromEnd(inputString, search, replacement) {
+        const regex = new RegExp(search + "$");
+        return inputString.replace(regex, replacement);
+      }
+
+      userName = replaceFromEnd(
+        await userNameContent?.textContent(),
         "Username",
         ""
       );
-      if(userName.includes('@') || userName.includes(' arc')) {
-        return null
+      if (userName.includes("@") || userName.includes(" arc")) {
+        return null;
       }
     } catch {}
 
@@ -65,8 +71,8 @@ const getUserInfo = async (page) => {
 
     return { phone, userName, userBio, userTitle };
   } catch (e) {
-    console.log(e.message)
-    return { phone: null, userName: null, userBio:null, userTitle:null };;
+    console.log(e.message);
+    return { phone: null, userName: null, userBio: null, userTitle: null };
   }
 };
 

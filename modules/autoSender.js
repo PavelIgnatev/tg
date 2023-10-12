@@ -43,8 +43,8 @@ async function makePostRequest(
   const dialogue = [
     `${prompt}
     Пожалуйста, не задавай больше одного вопроса, ограничься не более 200 символами. Пиши по орфографическим правилам русского языка. Использование ссылок, спецсимволов и смайликов строко запрещено!!!
-    Имя пользователя: ${filterUnicodeSymbols(accountData)}
-    Описание пользователя: ${filterUnicodeSymbols(description)}`,
+    Имя клиента: ${filterUnicodeSymbols(accountData)}
+    Описание клиента: ${filterUnicodeSymbols(description)}`,
   ];
 
   while (true) {
@@ -74,6 +74,19 @@ async function makePostRequest(
         throw new Error("В ответе содержатся подозрительные символы");
       }
 
+      if (
+        message.toLowerCase().includes("sorry") ||
+        message.toLowerCase().includes("that") ||
+        message.toLowerCase().includes("can") ||
+        message.toLowerCase().includes("help") ||
+        message.toLowerCase().includes("hmm")
+      ) {
+        console.log(
+          `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
+        );
+        throw new Error("В ответе содержится слово 'Sorry'");
+      }
+
       return message;
     } catch (error) {
       console.log(`Ошибка запроса. ${error.message}`);
@@ -83,6 +96,7 @@ async function makePostRequest(
 
 async function readUserName(groupId, accountId, database) {
   console.log("Начинаю получать username для написания из базы group id");
+
   // тут пофиксить надо короче будет чтобы мы авафывфывыф
   const usersSender = await getUsernamesByGroupId(groupId);
   const failedUsers = await getFailedUsernames();
@@ -185,7 +199,7 @@ const autoSender = async (accountId, context) => {
     console.error(
       `ERROR: Не удалось получить аккаунт в спаме или нет. Ошибка: ${e.message}`
     );
-    // return;
+    return;
   }
 
   let userInfo;

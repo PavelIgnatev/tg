@@ -58,6 +58,19 @@ async function makePostRequest(
         throw new Error("В ответе содержатся подозрительные символы");
       }
 
+      if (
+        message.toLowerCase().includes("sorry") ||
+        message.toLowerCase().includes("that") ||
+        message.toLowerCase().includes("can") ||
+        message.toLowerCase().includes("help") ||
+        message.toLowerCase().includes("hmm")
+      ) {
+        console.log(
+          `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
+        );
+        throw new Error("В ответе содержится слово 'Sorry'");
+      }
+
       if (message.toLowerCase().includes("менеджер:")) {
         console.log(
           `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
@@ -124,16 +137,16 @@ async function autoResponseDialogue(context, href, accountId) {
   try {
     while (!isSender) {
       try {
-        console.log(href)
+        console.log(href);
         await senderPage.goto(href);
         await senderPage.waitForLoadState();
 
         const userInfo = await getUserInfo(senderPage);
         const { userName, userTitle, phone, userBio } = userInfo;
 
-        if(!userTitle) {
-          console.log('Имя пользователя не определено')
-          return
+        if (!userTitle) {
+          console.log("Имя пользователя не определено");
+          return;
         }
         const { name: aiName = "Менеджер" } = await readAccount(accountId);
         const dialogues = await getDialogues(senderPage, aiName, userTitle);
@@ -239,7 +252,12 @@ const autoResponse = async (page, context, accountId) => {
           await element.waitForSelector(".title")
         ).textContent();
 
-        if (title === "Telegram" || title === "Spam Info Bot" || title === "Deleted Account" || href.includes('-')) {
+        if (
+          title === "Telegram" ||
+          title === "Spam Info Bot" ||
+          title === "Deleted Account" ||
+          href.includes("-")
+        ) {
           continue;
         } else {
           links.push(href);
