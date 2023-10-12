@@ -44,7 +44,7 @@ async function makePostRequest(
     `${prompt}
     Пожалуйста, не задавай больше одного вопроса, ограничься не более 200 символами. Пиши по орфографическим правилам русского языка. Использование ссылок, спецсимволов и смайликов строко запрещено!!!
     Имя клиента: ${filterUnicodeSymbols(accountData)}
-    Описание клиента: ${filterUnicodeSymbols(description)}`,
+    Описание клиента: ${filterUnicodeSymbols(description)}` ,
   ];
 
   while (true) {
