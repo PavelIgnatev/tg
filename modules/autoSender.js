@@ -43,8 +43,8 @@ async function makePostRequest(
   const dialogue = [
     `${prompt}
     Пожалуйста, не задавай больше одного вопроса, ограничься не более 200 символами. Пиши по орфографическим правилам русского языка. Использование ссылок, спецсимволов и смайликов строко запрещено!!!
-    Имя клиента: ${filterUnicodeSymbols(accountData)}
-    Описание клиента: ${filterUnicodeSymbols(description)}` ,
+    Имя собеседника: ${filterUnicodeSymbols(accountData)}
+    Описание собеседника: ${filterUnicodeSymbols(description)}` ,
   ];
 
   while (true) {
