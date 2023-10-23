@@ -25,7 +25,7 @@ class AccountService {
     this.incrementMessageCount = this.incrementMessageCount.bind(this);
     this.f = this.f.bind(this);
     this.getCurrentAccount = this.getCurrentAccount.bind(this);
-    this.deleteBannedAccounts = this.deleteBannedAccounts.bind(this)
+    this.deleteBannedAccounts = this.deleteBannedAccounts.bind(this);
   }
 
   async connect() {
@@ -60,7 +60,7 @@ class AccountService {
 
   async deleteBannedAccounts() {
     await this.connect();
-  
+
     await this.collection.deleteMany({ banned: true });
   }
 
@@ -82,7 +82,11 @@ class AccountService {
   async insertAccount(account) {
     await this.connect();
 
-    await this.collection.insertOne(account);
+    const filter = { username: account.username };
+    const update = { $set: account };
+    const options = { upsert: true };
+
+    await this.collection.updateOne(filter, update, options);
   }
 
   // метод для обновления данных аккаунта

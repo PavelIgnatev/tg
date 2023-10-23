@@ -17,7 +17,7 @@ const zanos = async () => {
 
       // Используем регулярное выражение для извлечения значений
       const regex =
-        /(localStorage|navigtor):\s*([\s\S]*?)(?=(localStorage|navigtor:|$))/g;
+        /(localStorage|navigtor|username):\s*([\s\S]*?)(?=(localStorage|navigtor|username:|$))/g;
       let match;
       const extractedData = {};
 
@@ -26,16 +26,15 @@ const zanos = async () => {
         const value = match[2].trim().split("\n")[0];
         extractedData[key] = value;
       }
-      console.log(JSON.parse(extractedData.localStorage));
-      console.log(`Добавлен файл ${file} в базу данных.`);
 
-      // await insertAccount({
-      //   username: Math.floor(Math.random() * 10 ** 10) + 10 ** 10,
-      //   cookies: null,
-      //   userAgent: extractedData.navigtor,
-      //   localStorage: JSON.parse(extractedData.localStorage),
-      //   testing: true
-      // });
+      console.log(`${extractedData.username} добавлен в базу данных.`);
+
+      await insertAccount({
+        username: extractedData.username,
+        cookies: null,
+        userAgent: extractedData.navigtor,
+        localStorage: JSON.parse(extractedData.localStorage),
+      });
     }
   } catch (error) {
     console.error("Ошибка при обработке файлов:", error);

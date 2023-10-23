@@ -1,0 +1,49 @@
+index.ts:333 got state, time: 304.60000002384186
+index.ts:376 Will mount auth page: authStateSignQr 1698012593.957
+logger.ts:134 [0.004] [SW] init
+logger.ts:134 [0.014] [SW] got 0 windows from the start
+logger.ts:134 [0.018] [SW] installing
+logger.ts:134 [0.018] [SW] skipped waiting
+logger.ts:134 [0.020] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.021] [SW] cleared assets cache
+logger.ts:134 [0.021] [SW] claimed clients
+logger.ts:134 [0.029] [SW] window connected 0e87bc7c-e1ae-494a-a0c7-7a70a002f98a windows before 0
+logger.ts:134 [0.029] [SW] windows Array(0)
+logger.ts:134 [0.029] [SW] sending message port for mtproto
+k/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+sortedList.ts:252 loadPromises are still pending? Object
+(anonymous) @ sortedList.ts:252
+sortedList.ts:252 loadPromises are still pending? Object
+(anonymous) @ sortedList.ts:252
+sortedList.ts:252 loadPromises are still pending? Object
+(anonymous) @ sortedList.ts:252
+sortedList.ts:252 loadPromises are still pending? Object
+(anonymous) @ sortedList.ts:252
+sortedList.ts:252 loadPromises are still pending? Object
+(anonymous) @ sortedList.ts:252
+sortedList.ts:252 loadPromises are still pending? Object
+(anonymous) @ sortedList.ts:252
+sortedList.ts:252 loadPromises are still pending? Object
+(anonymous) @ sortedList.ts:252
+sortedList.ts:252 loadPromises are still pending? Object
+(anonymous) @ sortedList.ts:252
+sortedList.ts:252 loadPromises are still pending? Object
+(anonymous) @ sortedList.ts:252
+sortedList.ts:252 loadPromises are still pending? Object
+(anonymous) @ sortedList.ts:252
+sortedList.ts:252 loadPromises are still pending? Object
+(anonymous) @ sortedList.ts:252
+sortedList.ts:252 loadPromises are still pending? Object
+(anonymous) @ sortedList.ts:252
+sortedList.ts:252 loadPromises are still pending? Object
+(anonymous) @ sortedList.ts:252
+sortedList.ts:252 loadPromises are still pending? Object
+(anonymous) @ sortedList.ts:252
+console.log('—————-');console.log('username: ', 'bb81e0c3-e2d8-4126-8e8e-6c184cd76f3b');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM42:1 —————-
+VM42:1 username:  bb81e0c3-e2d8-4126-8e8e-6c184cd76f3b
+VM42:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36
+VM42:1 cookie: 
+VM42:1 localStorage: {"dc3_auth_key":"\"944b5023b8e9afb6d65c979de20175c2c09f564958509b76ff58d9f5269cde4c7e0a05dae4d645052c1b3e14a89f8a71c0160f3ec808eaf84bd891aa277b02a50b9ee334b5ea25fd63e4c838a4b9359246bcf07b1a0c884efb5200bb8db31bac5f96b3f3c10538d4be13ec75c9feeffbe9beaf45ab65118a49a57ebc90f06a466a9764603d98a6e2752cb1b807b854543d2704194b0ffc7dcd4fc3564afab2e62b2659d7c818005847dfdb214ee22ee427d01ee2102760a46309d326edaab7ce826128a352686d0b65c9263f38302f9dddb3b2a96e4a045d06fa9b534783edcab74d9da00d6e0c3a050c1e010e1949a96c0a95da1eb8c46b12ffdd8ee01a98d0\"","k_build":"418","dc5_server_salt":"\"5e3b2bc988cc17e4\"","dc3_server_salt":"\"be07c06801f33869\"","user_auth":"{\"dcID\":2,\"date\":1698012623,\"id\":6382378576}","xt_instance":"{\"id\":13587966,\"idle\":true,\"time\":1698012638668}","dc":"2","dc4_auth_key":"\"befc65c7a7d1135db1d55a1019b9b8d8389cbb9e8a8b57c26808e250ecc72eba475be9b1b9c00eb07c749d4e714f9b1050e44048db7bc63bbf98b8863a9443a1454a281100f4753be7010c49cbe956c5f0bff115687ef73ff289ba75fdf18cf8c33cb99365bce91785bc2c749454281491aab05418f1ce57530119eab06a14d229704f1999ef194ff03c97a5d3745fe0a8e87602a1759cdc0bc35f5310f8d9eca729d1a2927ca92aac83e9085a8f32d89c493c6a30b011471088f729c74ed14bb5f091b362f86b22ace13021fcefb95d6e1d4b1acf11f3246076de99155320643cfd01b5762ebe03cc6009fcebea9651a1d64b3bb1c034ad8e9411d5f5cb8717\"","":"","dc2_auth_key":"\"a5fb8fd88415e99174c54f11e6bb8dd2c2e95f663e8e85ab21ac19ddc112990aff87cbd9fa77a888921374e19217dda822d9b2b0f720787754458eaadf11b58069241ef7e6a5e91a676b4e182d0977354fd29a9e812ad118a58d1376de934c3606943fb177d43fc7363445d82244068d819debfece1d4d3f2758c281a0a6f7163a9e8c0ffa31b3f273a6bd198d70d9f13bef5794435f25e3df100dcd22b4283389ecfc5b8f079104e8a650dd1a4cd94fe9a3d5c0cdec5b33d2ea4a04d15d91d927f3b53fca8de5bcebd380548c93f0cfa543bd016ee0f132b3439930f3ed86338c100ec3b08d8ea059f81ec1f4e0f6cdfc9c08dfbc3cdbe8e567cecc399364de\"","dc4_server_salt":"\"b86a0697d6891ac2\"","tgme_sync":"{\"canRedirect\":true,\"ts\":1698012624}","server_time_offset":"0","dc2_server_salt":"\"ae067a251bcda1a4\"","state_id":"2115580865","auth_key_fingerprint":"\"a5fb8fd8\"","dc1_auth_key":"\"3d0d62c3d8be97267593f972d050249980de9f4d596849199b50ea0b02ff9c2c7b27428e8588773207a4f31087a5d6e2ac0743757eb857f46462d5501bfa2389db08ce98c10f719d571e4a39a8f4a4dca3b078a926853f4c01e3b6559845e4593a881c3da68eb227f34c98e38ada7a4d8cd400146969d6d4b81086702fdaeeb48051759d2b284778e40cf5c2af28fec162f9d7f257d0e120888acaa824faebf33575866524519c00e5a7910a70ee5fd76a430609a1ba5de9ba401175962e6c97bb22cec382fd2dad16f8ae4295c9a72c29e955ba108fbdba5f03ec1d87e87980e23eb848ab4852095296da9372cfa0cea8f6279e8f5da25ac9a47a0b0e53d496\"","dc1_server_salt":"\"22d8aa125c64da0b\"","dc5_auth_key":"\"67e0e57a030ca88b486a848f5aca9293ffd49fe985e66740ea68ecd92732fdc03bcdd56825383e18fcbc04217b2493359d4499ea786c26f0dd844cc3f34ce74f6e585caf58941cf2d7e829ded02e94cbbdd07fdc50c69d57cf445996134ae19f64063e69f5e1ed26edf84a5008cd38723cc3d7913c9f812723f1c836b0536800d6e3f62ef35af1d98f8b3bea6121880d0a1c9670f3a0586750bf263f69aa4ca262521f75f53be8396898d40642d2e3a9ea6eda7124de4a972d32a37b9bb67d075511c3917f4f949e1a85c2cdecb0cf5564212609338007d30a5e72b1d551ce476a930bf4e65b7ce2d1c92caf264510838c5cbf41f0f5a0657b1d08a3dfdd5083\"","tt-global-state":""}
+VM42:1 —————-
+undefined

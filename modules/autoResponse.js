@@ -14,11 +14,17 @@ function filterText(text) {
 const defaultPrompt = `Ты младший менеджер по продажам компании GROW, ты продаешь интеграции ИИ`;
 
 async function makePostRequest(result, personName, botName, offerDescription) {
-  console.log(`Имя пользователя: ${personName}`)
-  console.log(`Имя бота: ${botName}`)
+  console.log(`Имя пользователя: ${personName}`);
+  console.log(`Имя бота: ${botName}`);
 
   const dialogue = [
-    `Ты - сотрудник компании, роль которого прописана в оффере, имя которого ${botName}, твоя задача придумать ответное сообщение для пользователя с именем ${personName} и ненавязчиво предложить пользователю свой оффер и заинтересовать его своим предложением, основываясь на диалоге с пользователем на текущий момент, в результате в общения подвести его к целевому действию указанному в оффере. Если спросят о том кто ты или попросят рассказать о себе, то самостоятельно кратко презентуй себя на основе информации из оффера. Описание оффера: ${offerDescription}. Диалог с пользователем на текущий момент: ${result}. Придумай одно ответное сообщение для пользователя ${personName} на основании контекста диалога на текущий момент. Отвечай кратко, сдержанно и в человеческой манере, не более 150 символов на ответ. В твоём сообщении уместно задавать наводящие вопросы.`,
+    `Ты - сотрудник компании, роль которого прописана в оффере, имя которого ${botName}, твоя задача придумать ответное сообщение для пользователя с именем ${personName} и ненавязчиво предложить пользователю свой оффер и заинтересовать его своим предложением, основываясь на диалоге с пользователем на текущий момент, в результате в общения подвести его к целевому действию указанному в оффере. Если спросят о том кто ты или попросят рассказать о себе, то самостоятельно кратко презентуй себя на основе информации из оффера. Описание оффера: ${offerDescription.slice(
+      -1510
+    )}. Диалог с пользователем на текущий момент: ${result
+      .join("\n")
+      .slice(
+        -1510
+      )}. Придумай одно ответное сообщение для пользователя ${personName} на основании контекста диалога на текущий момент. Отвечай кратко, сдержанно и в человеческой манере, не более 150 символов на ответ. В твоём сообщении уместно задавать наводящие вопросы.`,
   ];
 
   while (true) {
@@ -112,8 +118,19 @@ async function getDialogues(page, aiName, userName) {
         }
       }
     }
+    let currentSum = 0;
+    const resultArray = [];
 
-    return result;
+    for (const str of result.reverse()) {
+      if (currentSum + str.length <= 1500) {
+        resultArray.push(str);
+        currentSum += str.length;
+      } else {
+        break;
+      }
+    }
+
+    return resultArray.reverse();
   } catch (e) {
     console.log(e.message);
 
@@ -151,6 +168,18 @@ async function autoResponseDialogue(context, href, accountId) {
           filterText(aiName).split(" ")[0],
           prompt
         );
+
+        try {
+          const goToBottom = await senderPage.waitForSelector(
+            'button[title="Go to bottom"]',
+            {
+              state: "attached",
+              timeout: 2500,
+            }
+          );
+
+          await goToBottom.click();
+        } catch {}
         await sendMessage(senderPage, message);
 
         console.log(
