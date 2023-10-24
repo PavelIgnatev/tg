@@ -12,6 +12,7 @@ const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 
 const main = async (accountId, proxy) => {
+  let isGlobalBanned = false;
   if (!accountId) {
     throw new Error("Произошла ошибка, accountId не был передан");
   }
@@ -29,6 +30,7 @@ const main = async (accountId, proxy) => {
     const isBanned = await checkBanned(page, accountId);
 
     if (isBanned) {
+      isGlobalBanned = true;
       throw new Error("Аккаунт забанен");
     }
 
@@ -50,8 +52,10 @@ const main = async (accountId, proxy) => {
   }
 
   try {
-    await destroyBrowser(accountId, page, context, browser);
-    return;
+    if (!isGlobalBanned) {
+      await destroyBrowser(accountId, page, context, browser);
+      return;
+    }
   } catch {
     console.log('Ошибка при закрытии браузера "destroyBrowser"');
   }
