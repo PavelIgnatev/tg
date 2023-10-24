@@ -19,6 +19,7 @@ class AccountService {
     this.insertAccount = this.insertAccount.bind(this);
     this.updateAccount = this.updateAccount.bind(this);
     this.getAllUsernames = this.getAllUsernames.bind(this);
+    this.getUsernames = this.getUsernames.bind(this);
     this.deleteAccount = this.deleteAccount.bind(this);
     this.updateAccountRemainingTime =
       this.updateAccountRemainingTime.bind(this);
@@ -26,6 +27,7 @@ class AccountService {
     this.f = this.f.bind(this);
     this.getCurrentAccount = this.getCurrentAccount.bind(this);
     this.deleteBannedAccounts = this.deleteBannedAccounts.bind(this);
+    this.removeAllFieldFromAccounts = this.removeAllFieldFromAccounts.bind(this)
   }
 
   async connect() {
@@ -54,6 +56,14 @@ class AccountService {
     const usernames = await this.collection.distinct("username", {
       $or: [{ banned: { $ne: true } }],
     });
+
+    return usernames;
+  }
+
+  async getUsernames() {
+    await this.connect();
+
+    const usernames = await this.collection.distinct("username");
 
     return usernames;
   }
@@ -87,6 +97,15 @@ class AccountService {
     const options = { upsert: true };
 
     await this.collection.updateOne(filter, update, options);
+  }
+
+  async removeAllFieldFromAccounts(fieldToRemove) {
+    await this.connect();
+  
+    const update = { $unset: { [fieldToRemove]: 1 } }; // Удаляем указанное поле
+  
+    // Обновляем все документы, удаляя указанное поле
+    await this.collection.updateMany({}, update);
   }
 
   // метод для обновления данных аккаунта
@@ -131,7 +150,7 @@ class AccountService {
     await this.collection.deleteOne({ username });
   }
 
-  async getCurrentAccount() {
+  async getCurrentAccount(server, threadCount) {
     await this.lock.acquire();
 
     await this.connect();
@@ -139,7 +158,7 @@ class AccountService {
     const unprocessedUsers = await this.collection
       .aggregate([
         // { $match: { banned: { $ne: true } } },
-        { $match: {} },
+        { $match: { server } },
         {
           $group: {
             _id: "$username",
@@ -150,7 +169,7 @@ class AccountService {
       ])
       .toArray();
 
-    if (unprocessedUsers.length === 0) {
+    if (unprocessedUsers.length === 0 || unprocessedUsers.length < threadCount) {
       this.lock.release();
 
       return null;

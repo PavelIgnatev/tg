@@ -9,6 +9,14 @@ const checkBanned = async (page, accountId) => {
       state: "hidden",
     });
 
+    try {
+      const itsMe = await page.waitForSelector(
+        `button:has-text("Yes, it's me")`,
+        { timeout: 1500 }
+      );
+      await itsMe.click();
+    } catch {}
+
     const isBanned = await page.$(".auth-form");
 
     if (isBanned) {

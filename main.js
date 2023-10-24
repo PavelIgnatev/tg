@@ -7,15 +7,16 @@ const { accountSetup } = require("./utils/accountSetup");
 const { checkBanned } = require("./modules/checkBanned");
 const { changeProxy } = require("./utils/changeProxy");
 const { getCurrentAccount } = require("./db/account");
+const { parseArgs } = require("./utils/parseArgs");
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 
-const main = async (accountId) => {
+const main = async (accountId, proxy) => {
   if (!accountId) {
     throw new Error("Произошла ошибка, accountId не был передан");
   }
 
-  const [context, browser] = await initialBrowser(true, accountId);
+  const [context, browser] = await initialBrowser(true, accountId, proxy);
   const page = await createPage(context, accountId);
 
   try {
@@ -63,32 +64,29 @@ const main = async (accountId) => {
 };
 
 const startMainLoop = async () => {
+  const proxy = parseArgs(process.env.args);
   const threadCount = 3;
   const promises = [];
 
-  await changeProxy();
+  await changeProxy(proxy.changeUrl);
 
   for (let i = 0; i < threadCount; i++) {
     promises.push(
       (async () => {
+        console.time(`Время, потраченное на обработку аккаунта ${i}`);
+        const username = await getCurrentAccount(proxy.server, threadCount);
+
+        // отправка без звуука
         try {
-          console.time(`Время, потраченное на обработку аккаунта ${i}`);
-          const username = await getCurrentAccount();
-          // отправка без звуука
-          try {
-            console.log("Начинаю вход в аккаунт: ", username);
-
-            await main(username);
-          } catch (error) {
-            console.error(
-              `Ошибка обработки для пользователя ${username}: ${error}`
-            );
-          }
-
-          console.timeEnd(`Время, потраченное на обработку аккаунта ${i}`);
-        } catch (e) {
-          console.log(e.message, "ошибка в цикле");
+          console.log("Начинаю вход в аккаунт: ", username);
+          await main(username, proxy);
+        } catch (error) {
+          console.error(
+            `Ошибка обработки для пользователя ${username}: ${error}`
+          );
         }
+
+        console.timeEnd(`Время, потраченное на обработку аккаунта ${i}`);
       })()
     );
   }
@@ -99,9 +97,9 @@ const startMainLoop = async () => {
 (async () => {
   try {
     await startMainLoop();
-    await exec("pm2 restart telegram");
+    await exec(`pm2 restart ${process.env.name}`);
   } catch (e) {
     console.log(e.message);
-    await exec("pm2 restart telegram");
+    await exec(`pm2 restart ${process.env.name}`);
   }
 })();

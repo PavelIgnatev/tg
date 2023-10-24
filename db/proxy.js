@@ -12,6 +12,7 @@ class ProxyService {
 
     this.connect = this.connect.bind(this);
     this.addAccount = this.addAccount.bind(this);
+    this.getProxies = this.getProxies.bind(this);
     this.assignAccountId = this.assignAccountId.bind(this);
   }
 
@@ -28,20 +29,29 @@ class ProxyService {
     this.collection = this.db.collection(collectionName);
   }
 
+  async getProxies() {
+    await this.connect();
+
+    return await this.collection.find().toArray();
+  }
+
   async addAccount(accountString) {
     await this.connect();
 
-    const [url, port, login, password] = accountString.split(":");
+    const [url, port, login, password, urlChange] = accountString.split(":");
+
     const account = {
       server: `${url}:${port}`,
       username: login,
-      password: password,
+      password: password.replace("|https", ""),
+      changeUrl: "https:" + urlChange,
     };
 
     const existingAccount = await this.collection.findOne({
       server: account.server,
       username: account.username,
       password: account.password,
+      changeUrl: account.changeUrl,
     });
 
     if (existingAccount) {

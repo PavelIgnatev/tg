@@ -36,13 +36,14 @@ const checkSpam = async (context) => {
     await newPage.waitForSelector('.last-in-list:has-text("/start")', {
       state: "hidden",
     });
-    await newPage.waitForTimeout(2000)
-    const botResponseEl = await newPage.waitForSelector(
-      ".last-in-list:has-text('I’m afraid some Telegram users found your messages annoying and forwarded them to our team'), .last-in-list:has-text('Good news, no limits are currently applied to your account'), .last-in-list:has-text('Ваш аккаунт свободен от каких-либо ограничений')"
-    );
+    await newPage.waitForTimeout(2000);
+    const botResponseEl = await newPage.waitForSelector(".last-in-list");
 
     const botResponse = await botResponseEl.textContent();
 
+    console.log(
+      `\x1b[4mОтвет от spambot:\x1b[0m \x1b[36m${botResponse}\x1b[0m`
+    );
     await newPage.close();
 
     if (
