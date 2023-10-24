@@ -97,9 +97,11 @@ const startMainLoop = async () => {
 (async () => {
   try {
     await startMainLoop();
+    console.log(`Начинаю перезапускать процесс: ${process.env.name}`);
     await exec(`pm2 restart ${process.env.name}`);
   } catch (e) {
     console.log(e.message);
+    console.log(`Начинаю перезапускать процесс: ${process.env.name}`);
     await exec(`pm2 restart ${process.env.name}`);
   }
 })();
