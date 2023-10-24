@@ -29,12 +29,12 @@ const zanos = async () => {
 
       console.log(`${extractedData.username} добавлен в базу данных.`);
 
-      await insertAccount({
-        username: extractedData.username,
-        cookies: null,
-        userAgent: extractedData.navigtor,
-        localStorage: JSON.parse(extractedData.localStorage),
-      });
+      // await insertAccount({
+      //   username: extractedData.username,
+      //   cookies: null,
+      //   userAgent: extractedData.navigtor,
+      //   localStorage: JSON.parse(extractedData.localStorage),
+      // });
     }
   } catch (error) {
     console.error("Ошибка при обработке файлов:", error);
