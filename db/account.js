@@ -27,7 +27,8 @@ class AccountService {
     this.f = this.f.bind(this);
     this.getCurrentAccount = this.getCurrentAccount.bind(this);
     this.deleteBannedAccounts = this.deleteBannedAccounts.bind(this);
-    this.removeAllFieldFromAccounts = this.removeAllFieldFromAccounts.bind(this)
+    this.removeAllFieldFromAccounts =
+      this.removeAllFieldFromAccounts.bind(this);
   }
 
   async connect() {
@@ -45,9 +46,11 @@ class AccountService {
   async f() {
     await this.connect();
 
-    const bannedAccounts = await this.collection.find().toArray();
+    const bannedAccounts = await this.collection
+      .find({ banned: true })
+      .toArray();
 
-    return bannedAccounts.map((account) => account.banned);
+    return bannedAccounts.map((account) => account);
   }
 
   async getAllUsernames() {
@@ -101,9 +104,9 @@ class AccountService {
 
   async removeAllFieldFromAccounts(fieldToRemove) {
     await this.connect();
-  
+
     const update = { $unset: { [fieldToRemove]: 1 } }; // Удаляем указанное поле
-  
+
     // Обновляем все документы, удаляя указанное поле
     await this.collection.updateMany({}, update);
   }
@@ -158,7 +161,7 @@ class AccountService {
     const unprocessedUsers = await this.collection
       .aggregate([
         // { $match: { banned: { $ne: true } } },
-        { $match: { server } },
+        { $match: { server, banned: true } },
         {
           $group: {
             _id: "$username",
@@ -169,7 +172,10 @@ class AccountService {
       ])
       .toArray();
 
-    if (unprocessedUsers.length === 0 || unprocessedUsers.length < threadCount) {
+    if (
+      unprocessedUsers.length === 0 ||
+      unprocessedUsers.length < threadCount
+    ) {
       this.lock.release();
 
       return null;
