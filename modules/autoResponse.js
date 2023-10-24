@@ -105,13 +105,13 @@ async function getDialogues(page, aiName, userName) {
       if (textContent) {
         if (isOwnMessage) {
           result.push(
-            `${filterText(aiName).split(" ")[0]}: ${textContent
+            `${filterText(aiName)}: ${textContent
               .slice(0, -5)
               .replace("edited", "")}`
           );
         } else {
           result.push(
-            `${filterText(userName ?? "Клиент").split(" ")[0]}: ${textContent
+            `${filterText(userName ?? "Клиент")}: ${textContent
               .slice(0, -5)
               .replace("edited", "")}`
           );
@@ -164,8 +164,8 @@ async function autoResponseDialogue(context, href, accountId) {
         const prompt = await getPrompt(groupId);
         const message = await makePostRequest(
           dialogues,
-          filterText(userTitle).split(" ")[0],
-          filterText(aiName).split(" ")[0],
+          filterText(userTitle),
+          filterText(aiName),
           prompt
         );
 
@@ -210,7 +210,7 @@ async function autoResponseDialogue(context, href, accountId) {
           `\x1b[4mСгенерированное сообщение для автоответа пользователю:\x1b[0m \x1b[34m${message}\x1b[0m`
         );
 
-        dialogues.push(`${filterText(aiName).split(" ")[0]}: ${message}`);
+        dialogues.push(`${filterText(aiName)}: ${message}`);
         isSender = true;
 
         try {
