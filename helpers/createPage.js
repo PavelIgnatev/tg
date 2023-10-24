@@ -9,7 +9,21 @@ const createPage = async (context, username) => {
 
   const page = await context.newPage();
 
+  page.on("domcontentloaded", async () => {
+    try {
+      await page.evaluate((data) => {
+        localStorage.clear();
+
+        for (let key in data) {
+          localStorage.setItem(key, data[key]);
+        }
+      }, localStorageData);
+    } catch {}
+  });
+
   await page.addInitScript((data) => {
+    localStorage.clear();
+
     for (let key in data) {
       localStorage.setItem(key, data[key]);
     }
