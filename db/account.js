@@ -183,7 +183,6 @@ class AccountService {
 
     const unprocessedUsers = await this.collection
       .aggregate([
-        // { $match: { banned: { $ne: true } } },
         { $match: { server } },
         {
           $group: {
@@ -203,6 +202,20 @@ class AccountService {
 
       return null;
     }
+    const currentDate = new Date();
+
+    for (const user of unprocessedUsers) {
+      if (user.remainingTime) {
+        const remainingDate = new Date(user.remainingTime);
+        if (remainingDate > currentDate) {
+          const index = unprocessedUsers.indexOf(user);
+          unprocessedUsers.splice(index, 1);
+          unprocessedUsers.unshift(user);
+          break;
+        }
+      }
+    }
+
     console.log(unprocessedUsers[0]);
     const { _id } = unprocessedUsers[0];
     await this.collection.updateOne(

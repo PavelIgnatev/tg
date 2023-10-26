@@ -34,6 +34,7 @@ const zanos = async () => {
       //   cookies: null,
       //   userAgent: extractedData.navigtor,
       //   localStorage: JSON.parse(extractedData.localStorage),
+      //   defaultLocalStorage: JSON.parse(extractedData.localStorage),
       // });
     }
   } catch (error) {
