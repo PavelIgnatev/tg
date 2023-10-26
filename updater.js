@@ -1,7 +1,7 @@
 const { createPage } = require("./helpers/createPage");
 const { destroyBrowser } = require("./helpers/destroyBrowser");
 const { initialBrowser } = require("./helpers/initialBrowser");
-const { getAllUsernames, readAccounts, deleteBannedAccounts } = require("./db/account");
+const { getAllUsernames, readAccounts, deleteBannedAccounts, getD } = require("./db/account");
 const { scrollBottom } = require("./utils/scrollBottom");
 const { getUserInfo } = require("./modules/getUserInfo");
 const { convertUsernamesToLowerCase } = require("./db/dialogues");
@@ -102,6 +102,7 @@ const startMainLoop = async () => {
 let spam = 0;
 
 getAllUsernames().then(e => console.log(e.length))
+getD().then(console.log)
 
 // readAccounts().then((e) => {
 //   // console.log(e.slice(126).length)

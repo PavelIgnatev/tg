@@ -9,6 +9,7 @@ const createPage = async (context, username) => {
 
   const page = await context.newPage();
 
+  // if force banned - initial localstorage
   page.on("domcontentloaded", async () => {
     try {
       await page.evaluate((data) => {

@@ -18,6 +18,7 @@ class AccountService {
     this.readAccount = this.readAccount.bind(this);
     this.insertAccount = this.insertAccount.bind(this);
     this.updateAccount = this.updateAccount.bind(this);
+    this.insertAccount2 = this.insertAccount2.bind(this);
     this.getAllUsernames = this.getAllUsernames.bind(this);
     this.getUsernames = this.getUsernames.bind(this);
     this.deleteAccount = this.deleteAccount.bind(this);
@@ -102,6 +103,28 @@ class AccountService {
     await this.collection.updateOne(filter, update, options);
   }
 
+  async insertAccount2(account) {
+    await this.connect();
+
+    // Проверяем, есть ли объект с полем 'banned: true' для данного 'username'
+    const filter = { username: account.username, banned: true };
+    const existingBannedAccount = await this.collection.findOne(filter);
+
+    // Если такой объект существует, выполняем вставку
+    if (existingBannedAccount) {
+      const update = { $set: account };
+      const options = { upsert: true };
+      await this.collection.updateOne(filter, update, options);
+    } else {
+      // Выводим сообщение или выбрасываем ошибку, так как вставка не разрешена
+      console.log(
+        "Нельзя вставить аккаунт. Отсутствует объект с полем banned: true."
+      );
+      // Или можно выбросить ошибку, например:
+      // throw new Error('Нельзя вставить аккаунт. Отсутствует объект с полем banned: true.');
+    }
+  }
+
   async removeAllFieldFromAccounts(fieldToRemove) {
     await this.connect();
 
@@ -161,7 +184,7 @@ class AccountService {
     const unprocessedUsers = await this.collection
       .aggregate([
         // { $match: { banned: { $ne: true } } },
-        { $match: { server } },
+        { $match: { server, banned: true } },
         {
           $group: {
             _id: "$username",
