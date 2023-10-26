@@ -40,7 +40,6 @@ async function makeRequestGPT(dialogue) {
         variantMessage.includes("sorry") ||
         variantMessage.includes("that") ||
         variantMessage.includes("can") ||
-        variantMessage.includes("help") ||
         variantMessage.includes("hmm")
       ) {
         console.log(
