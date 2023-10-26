@@ -1,161 +1,10 @@
 const { default: axios } = require("axios");
 
-const {
-  updateAccountRemainingTime,
-  readAccount,
-  incrementMessageCount,
-} = require("../db/account");
-const {
-  updateMessage,
-  getRandomMessage,
-  getFailedUsernames,
-} = require("../db/message");
-const { generateRandomTime } = require("../utils/getRandomTime");
+const { readAccount } = require("../db/account");
 const { sendMessage } = require("../utils/sendMessage");
 const { getUserInfo } = require("./getUserInfo");
-const { getGroupId, createOrUpdateCurrentCount } = require("../db/groupId");
-const {
-  postDialogue,
-  getUsernamesByGroupId,
-  getDialogueUsername,
-} = require("../db/dialogues");
 const { checkSpam } = require("../modules/checkSpam");
-
-function filterText(text) {
-  var filteredText = text.replace(/[.\[\]$@%!#^&*+\\|<>\/{}]/g, "");
-  return filteredText;
-}
-
-function filterUnicodeSymbols(str) {
-  const regex =
-    /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1F1E0}-\u{1F1FF}]/gu;
-
-  return str.replace(regex, "");
-}
-
-const processAccounts = [];
-
-async function makePostRequest(
-  accountData,
-  description,
-  prompt = `Привет, я хочу начать диалог с пользователем, чтобы установить контакт и заинтересовать его. Пожалуйста, предложи мне хороший первый вопрос, связанный с его деятельностью, который поможет нам начать продуктивный разговор. Сформируй глубокий вопрос на основе его деятельности (исходя из описания), который будет для пользователя действительно интересен. Будь искренне заинтересованным в диалоге и живым.`
-) {
-  const dialogue = [
-    `${prompt}
-    Пожалуйста, не задавай больше одного вопроса, ограничься не более 200 символами. Пиши по орфографическим правилам русского языка. Использование ссылок, спецсимволов и смайликов строко запрещено!!!
-    Имя пользователя: ${filterUnicodeSymbols(accountData)}
-    Описание пользователя: ${filterUnicodeSymbols(description)}` ,
-  ];
-
-  while (true) {
-    try {
-      const response = await axios.post("http://194.135.25.158/answer/", {
-        dialogue,
-      });
-
-      const { data } = response;
-
-      let pattern =
-        /((http|https|www):\/\/.)?([a-zA-Z0-9'\/\.\-])+\.[a-zA-Z]{2,5}([a-zA-Z0-9\/\&\;\:\.\,\?\\=\-\_\+\%\'\~]*)/g;
-      const message = data.replace("\n", "");
-      const hasTextLink = message.match(pattern);
-
-      if (hasTextLink) {
-        console.log(
-          `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
-        );
-        throw new Error("В ответе содержится ссылка");
-      }
-
-      if (message.includes("[") || message.includes("]")) {
-        console.log(
-          `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
-        );
-        throw new Error("В ответе содержатся подозрительные символы");
-      }
-
-      if (
-        message.toLowerCase().includes("sorry") ||
-        message.toLowerCase().includes("that") ||
-        message.toLowerCase().includes("can") ||
-        message.toLowerCase().includes("help") ||
-        message.toLowerCase().includes("hmm")
-      ) {
-        console.log(
-          `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
-        );
-        throw new Error("В ответе содержится слово 'Sorry'");
-      }
-
-      return message;
-    } catch (error) {
-      console.log(`Ошибка запроса. ${error.message}`);
-    }
-  }
-}
-
-async function readUserName(groupId, accountId, database) {
-  console.log("Начинаю получать username для написания из базы group id");
-
-  // тут пофиксить надо короче будет чтобы мы авафывфывыф
-  const usersSender = await getUsernamesByGroupId(groupId);
-  const failedUsers = await getFailedUsernames();
-
-  // здесь можно по факту еще проверять есть ли диалог или нет
-  // но на больших объемах врятли будут проблемы
-  // проблемы не будет только в случае, если чел не менял юзернейм
-  // но если поменял - это фиаск, мы напишем ему типо, привяжем к базе,
-  // но он будет обработан первым попавшимся групп айди (на сколько понимаю)
-  // вообще не крит, но по-хорошему обработать кейс потом, когда диалог уже есть
-  // чтобы не было  ебки
-  for (let i = 0; i < database.length; i++) {
-    const vaUsername = database[i].toLowerCase();
-    if (
-      !usersSender.includes(vaUsername) &&
-      !failedUsers.includes(vaUsername) &&
-      !processAccounts.includes(vaUsername)
-    ) {
-      // проверяем, имеется ли у нашего ai пользователя уже диалог с данным человеком
-      // независимо от group id
-      const dialoque = await getDialogueUsername(accountId, vaUsername);
-      if (!dialoque) {
-        console.log("Получил username для написания из базы group id");
-        processAccounts.push(vaUsername);
-        return vaUsername;
-      }
-    }
-  }
-
-  console.log("Начинаю получать username для написания из общей базы");
-  while (true) {
-    try {
-      const varUsername = await getRandomMessage();
-
-      if (
-        !varUsername ||
-        !varUsername.username ||
-        usersSender.includes(varUsername.username.toLowerCase()) ||
-        failedUsers.includes(varUsername.username.toLowerCase()) ||
-        processAccounts.includes(varUsername.username.toLowerCase())
-      ) {
-        continue;
-      }
-
-      const dialoque = await getDialogueUsername(
-        accountId,
-        varUsername.username.toLowerCase()
-      );
-
-      if (!dialoque) {
-        console.log("Получил username для написания из общей базы");
-        processAccounts.push(varUsername.username.toLowerCase());
-        return varUsername.username.toLowerCase();
-      }
-    } catch (e) {
-      console.log(e.message);
-    }
-  }
-}
+const { makeRequestGPT } = require("../utils/makeRequestGPT");
 
 const autoSender = async (accountId, context) => {
   // Проверяем, можем ли мы писать
@@ -204,33 +53,36 @@ const autoSender = async (accountId, context) => {
 
   let userInfo;
   let senderPage = await context.newPage();
-
-  const { groupId, propmpts, database } = await getGroupId();
-  console.log("Текущий groupId для присваивания к сообщению: ", groupId);
+  let groupId;
+  let prompts;
   let retry;
 
-  // Проверяем, существует ли пользователь
   try {
-    // реально сделать ретрай бы
-    while (!userInfo) {
+    while (!userInfo || !userInfo.userName) {
       try {
-        let username = await readUserName(groupId, accountId, database);
+        const {
+          data: { username, groupId: resGroupId, resPrompts },
+        } = await axios("http://localhost/recipient", {
+          params: { accountId },
+        });
+        groupId = resGroupId;
+        prompts = resPrompts;
 
         await senderPage.goto(
           `https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3Fdomain%3D${username}`
         );
-
         userInfo = await getUserInfo(senderPage);
 
         if (!userInfo || !userInfo.userName) {
           console.log(
             `Пользователь ${username} не найден, добавляю статус failed`
           );
-          await updateMessage(username, {
-            failed: true,
-            dateUpdated: new Date(),
+          axios.post("http://localhost/recipient", {
+            status: "error",
+            username,
+            accountId,
+            groupId,
           });
-
           await senderPage.goto("about:blank");
         }
       } catch (e) {
@@ -257,17 +109,17 @@ const autoSender = async (accountId, context) => {
     console.log("Данные пользователя для отправки: ", userInfo);
     const { userTitle, userBio, userName, phone } = userInfo;
 
-    const { first } = propmpts ?? {};
+    const { first } = prompts ?? {};
 
     if (first) {
       console.log("Текущий groupId имеет заданный первый промпт.");
     }
-
-    const message = await makePostRequest(
-      filterText(userTitle),
-      filterText(userBio),
-      first
-    );
+    const defaultPrompt = `Привет, я хочу начать диалог с пользователем, чтобы установить контакт и заинтересовать его. Пожалуйста, предложи мне хороший первый вопрос, связанный с его деятельностью, который поможет нам начать продуктивный разговор. Сформируй глубокий вопрос на основе его деятельности (исходя из описания), который будет для пользователя действительно интересен. Будь искренне заинтересованным в диалоге и живым.`;
+    const prompt = `${first || defaultPrompt}
+    Пожалуйста, не задавай больше одного вопроса, ограничься не более 200 символами. Пиши по орфографическим правилам русского языка. Использование ссылок, спецсимволов и смайликов строко запрещено!!!
+    Имя пользователя: ${userTitle}
+    Описание пользователя: ${userBio}`;
+    const message = await makeRequestGPT([prompt]);
     console.log("Текущее сообщение для пользователя: ", message);
 
     // отправляем сообщение
@@ -275,9 +127,12 @@ const autoSender = async (accountId, context) => {
       await sendMessage(senderPage, message);
     } catch (e) {
       console.log("Начинаю добавлять статус failed для сообщения в базу");
-      await updateMessage(userInfo.userName, {
-        failed: true,
-        dateUpdated: new Date(),
+
+      axios.post("http://localhost/recipient", {
+        status: "error",
+        username: userName,
+        accountId,
+        groupId,
       });
       console.log("Добавил статус failed для сообщения в базу");
       console.log(e.message);
@@ -285,36 +140,24 @@ const autoSender = async (accountId, context) => {
 
     // добавляем отправленное сообщение в общий список диалогов
     const href = await senderPage.url();
-    await postDialogue({
-      groupId,
+    axios.post("http://localhost/recipient", {
+      status: "done",
+      username: userName,
       accountId,
-      href,
-      username: userName.toLowerCase(),
-      bio: userBio,
-      title: userTitle,
-      phone,
-      messages: [`Менеджер: ${message}`],
-      viewed: false,
-      dateCreated: new Date(),
+      groupId,
+      dialogue: {
+        groupId,
+        accountId,
+        href,
+        username: userName,
+        bio: userBio,
+        title: userTitle,
+        phone,
+        messages: [`Менеджер: ${message}`],
+        viewed: false,
+        dateCreated: new Date(),
+      },
     });
-
-    const index = processAccounts.indexOf(userName.toLowerCase());
-    if (index !== -1) {
-      processAccounts.splice(index, 1);
-    }
-
-    await updateMessage(userName, {
-      dateUpdated: new Date(),
-    });
-
-    // увеличиваем счетчик отправленных сообщений с groupId на 1
-    await createOrUpdateCurrentCount(groupId);
-
-    // увеличиваем счетчик отправленных сообщений с аккаунт на 1
-    await incrementMessageCount(accountId);
-
-    // увеличиваем лимит времени, через который можно будет снова писать на аккаунте
-    await updateAccountRemainingTime(accountId, generateRandomTime());
 
     console.log(
       `Информация о отправке сообщения пользователю ${userName} сохранена`

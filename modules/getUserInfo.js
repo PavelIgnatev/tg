@@ -38,7 +38,7 @@ const getUserInfo = async (page) => {
         await userNameContent?.textContent(),
         "Username",
         ""
-      );
+      ).toLowerCase();
       if (userName.includes("@") || userName.includes(" arc")) {
         return null;
       }
