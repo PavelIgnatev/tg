@@ -189,7 +189,7 @@ class AccountService {
           $group: {
             _id: "$username",
             lastProcessedBy: { $min: "$lastProcessedBy" },
-            remainingTime: "$remainingTime"
+            remainingTime: { $min: "$remainingTime" },
           },
         },
         { $sort: { lastProcessedBy: 1 } },
@@ -208,7 +208,6 @@ class AccountService {
 
     const currentDate = new Date();
     for (const user of unprocessedUsers) {
-      console.log(user)
       if (user.remainingTime) {
         const remainingDate = new Date(user.remainingTime);
         console.log(
