@@ -203,10 +203,18 @@ class AccountService {
 
       return null;
     }
+    console.log(unprocessedUsers[0]);
+
     const currentDate = new Date();
     for (const user of unprocessedUsers) {
       if (user.remainingTime) {
         const remainingDate = new Date(user.remainingTime);
+        console.log(
+          user.remainingTime,
+          remainingDate,
+          currentDate,
+          remainingDate > currentDate
+        );
         if (remainingDate > currentDate) {
           const index = unprocessedUsers.indexOf(user);
           unprocessedUsers.splice(index, 1);

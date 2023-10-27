@@ -44,6 +44,7 @@ const autoSender = async (accountId, context) => {
     if (isSpam) {
       axios.post("http://localhost/recipient", {
         status: "spam",
+        accountId
       });
       return;
     }
