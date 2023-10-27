@@ -15,10 +15,14 @@ const sendMessage = async (page, message) => {
     );
 
     await buttonElement.click();
+    await input.type("", { delay: 10 });
+    await input.type("", { delay: 10 });
+    await input.type("", { delay: 10 });
+    await page.waitForTimeout(1000);
   } catch (e) {
     console.log(e.message);
     throw new Error("Сообщение не доставлено");
   }
 };
-
+ 
 module.exports = { sendMessage };
