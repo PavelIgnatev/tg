@@ -22,6 +22,7 @@ function filterText(text) {
 
 async function makeRequestGPT(dialogue) {
   while (true) {
+    console.log(dialogue.map(filterText))
     try {
       const response = await axios.post("http://194.135.25.158/answer/", {
         dialogue: dialogue.map(filterText),
