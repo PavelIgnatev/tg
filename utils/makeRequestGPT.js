@@ -22,7 +22,6 @@ function filterText(text) {
 
 async function makeRequestGPT(dialogue) {
   while (true) {
-    console.log(dialogue.map(filterText));
     try {
       const response = await axios.post("http://194.135.25.158/answer/", {
         dialogue: dialogue.map(filterText),
@@ -40,6 +39,7 @@ async function makeRequestGPT(dialogue) {
         );
         throw new Error("В ответе содержатся подозрительные символы");
       }
+
       const variantMessage = message.toLowerCase();
       if (
         variantMessage.includes("sorry") ||
