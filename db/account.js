@@ -209,7 +209,7 @@ class AccountService {
     for (const user of unprocessedUsers) {
       if (user.remainingTime) {
         const remainingDate = new Date(user.remainingTime);
-        if (remainingDate > currentDate) {
+        if (remainingDate < currentDate) {
           const index = unprocessedUsers.indexOf(user);
           unprocessedUsers.splice(index, 1);
           unprocessedUsers.unshift(user);
