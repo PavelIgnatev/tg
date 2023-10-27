@@ -189,6 +189,7 @@ class AccountService {
           $group: {
             _id: "$username",
             lastProcessedBy: { $min: "$lastProcessedBy" },
+            remainingTime: "$remainingTime"
           },
         },
         { $sort: { lastProcessedBy: 1 } },
