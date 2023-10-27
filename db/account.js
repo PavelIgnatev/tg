@@ -190,6 +190,7 @@ class AccountService {
             _id: "$username",
             lastProcessedBy: { $min: "$lastProcessedBy" },
             remainingTime: { $min: "$remainingTime" },
+            banned: { $min: "$banned" },
           },
         },
         { $sort: { lastProcessedBy: 1 } },
@@ -204,10 +205,9 @@ class AccountService {
 
       return null;
     }
-
     const currentDate = new Date();
     for (const user of unprocessedUsers) {
-      if (user.remainingTime) {
+      if (user.remainingTime && !user.banned) {
         const remainingDate = new Date(user.remainingTime);
         if (remainingDate < currentDate) {
           const index = unprocessedUsers.indexOf(user);
