@@ -207,6 +207,7 @@ class AccountService {
 
     const currentDate = new Date();
     for (const user of unprocessedUsers) {
+      console.log(user)
       if (user.remainingTime) {
         const remainingDate = new Date(user.remainingTime);
         console.log(
