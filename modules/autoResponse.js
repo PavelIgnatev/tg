@@ -131,7 +131,7 @@ async function getDialogues(page, aiName, userName) {
       }
     }
 
-    return [result.reverse(), resultArray.reverse()]
+    return [result.reverse(), resultArray.reverse()];
   } catch (e) {
     console.log(e.message);
 
@@ -142,10 +142,17 @@ async function getDialogues(page, aiName, userName) {
 async function autoResponseDialogue(context, href, accountId) {
   let isSender;
   let senderPage = await context.newPage();
+  let countTry = 0;
 
   // Проверяем, существует ли пользователь
   try {
     while (!isSender) {
+      if (countTry > 6) {
+        throw new Error(
+          "Максимальное количество ретраев, пользователь опоссум"
+        );
+      }
+
       try {
         console.log(href);
         await senderPage.goto(href);
@@ -159,8 +166,11 @@ async function autoResponseDialogue(context, href, accountId) {
           return;
         }
         const { name: aiName = "Менеджер" } = await readAccount(accountId);
-        const [resultDialogues, dialogues] = await getDialogues(senderPage, aiName, userTitle);
-        console.log(resultDialogues, dialogues)
+        const [resultDialogues, dialogues] = await getDialogues(
+          senderPage,
+          aiName,
+          userTitle
+        );
         const dialogueInfo = await getDialogue(accountId, href);
         const { groupId = 12343207728 } = dialogueInfo ?? {};
         const prompt = await getPrompt(groupId);
@@ -243,6 +253,7 @@ async function autoResponseDialogue(context, href, accountId) {
           "ERROR: произошла ошибка при написании сообщения пользователю:",
           e.message
         );
+        countTry += 1;
 
         await senderPage.goto("about:blank");
       }
