@@ -131,7 +131,7 @@ async function getDialogues(page, aiName, userName) {
       }
     }
 
-    return [result, resultArray.reverse()]
+    return [result, resultArray]
   } catch (e) {
     console.log(e.message);
 
