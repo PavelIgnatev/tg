@@ -107,9 +107,9 @@ getAllUsernames().then(e => console.log(e.length))
 //   // console.log(e.slice(126).length)
 //   e.forEach((k) => {
 //     // console.log(k.messageCount);
-//     if (k.banned) {
+//     // if (k.banned) {
 //       console.log(k.messageCount);
-//     }
+//     // }
 //   });
 // });
 // // 1

@@ -1,4 +1,4 @@
-const { insertAccount2 } = require("./db/account");
+const { insertAccount2, insertAccount } = require("./db/account");
 const fs = require("fs");
 const path = require("path");
 
@@ -29,11 +29,12 @@ const zanos = async () => {
 
       console.log(`${extractedData.username} добавлен в базу данных.`);
 
-      // await insertAccount2({
+      // await insertAccount({
       //   username: extractedData.username,
       //   cookies: null,
       //   userAgent: extractedData.navigtor,
       //   localStorage: JSON.parse(extractedData.localStorage),
+      //   defaultLocalStorage: JSON.parse(extractedData.localStorage),
       // });
     }
   } catch (error) {

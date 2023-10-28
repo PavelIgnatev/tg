@@ -160,6 +160,7 @@ async function autoResponseDialogue(context, href, accountId) {
         }
         const { name: aiName = "Менеджер" } = await readAccount(accountId);
         const [resultDialogues, dialogues] = await getDialogues(senderPage, aiName, userTitle);
+        console.log(resultDialogues, dialogues)
         const dialogueInfo = await getDialogue(accountId, href);
         const { groupId = 12343207728 } = dialogueInfo ?? {};
         const prompt = await getPrompt(groupId);
