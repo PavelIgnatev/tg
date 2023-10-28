@@ -131,7 +131,7 @@ async function getDialogues(page, aiName, userName) {
       }
     }
 
-    return resultArray.reverse();
+    return [result, resultArray.reverse()]
   } catch (e) {
     console.log(e.message);
 
@@ -159,7 +159,7 @@ async function autoResponseDialogue(context, href, accountId) {
           return;
         }
         const { name: aiName = "Менеджер" } = await readAccount(accountId);
-        const dialogues = await getDialogues(senderPage, aiName, userTitle);
+        const [resultDialogues, dialogues] = await getDialogues(senderPage, aiName, userTitle);
         const dialogueInfo = await getDialogue(accountId, href);
         const { groupId = 12343207728 } = dialogueInfo ?? {};
         const prompt = await getPrompt(groupId);
@@ -203,7 +203,7 @@ async function autoResponseDialogue(context, href, accountId) {
           `\x1b[4mПромпт для генерации автоответного сообщения:\x1b[0m \x1b[32m${prompt}\x1b[0m`
         );
         console.log(
-          `\x1b[4mДиалог с пользователем на текущий момент:\x1b[0m \x1b[35m${dialogues.join(
+          `\x1b[4mДиалог с пользователем на текущий момент:\x1b[0m \x1b[35m${resultDialogues.join(
             "\n"
           )}\x1b[0m`
         );
@@ -211,7 +211,7 @@ async function autoResponseDialogue(context, href, accountId) {
           `\x1b[4mСгенерированное сообщение для автоответа пользователю:\x1b[0m \x1b[34m${message}\x1b[0m`
         );
 
-        dialogues.push(`${filterText(aiName)}: ${message}`);
+        resultDialogues.push(`${filterText(aiName)}: ${message}`);
         isSender = true;
 
         try {
@@ -225,7 +225,7 @@ async function autoResponseDialogue(context, href, accountId) {
             bio: userBio,
             title: userTitle,
             phone,
-            messages: dialogues,
+            messages: resultDialogues,
             viewed: false,
             dateUpdated: new Date(),
           });
