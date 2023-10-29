@@ -103,13 +103,13 @@ let spam = 0;
 
 getAllUsernames().then(e => console.log(e.length))
 
-// readAccounts().then((e) => {
-//   // console.log(e.slice(126).length)
-//   e.forEach((k) => {
-//     // console.log(k.messageCount);
-//     // if (k.banned) {
-//       console.log(k.messageCount);
-//     // }
-//   });
-// });
-// // 1
+readAccounts().then((e) => {
+  // console.log(e.slice(126).length)
+  e.forEach((k) => {
+    // console.log(k.messageCount);
+    // if (k.banned) {
+      console.log(k.messageCount);
+    // }
+  });
+});
+// 1
