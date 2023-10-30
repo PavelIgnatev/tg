@@ -4,10 +4,12 @@ const checkBanned = async (page, accountId) => {
   try {
     const spinnerSelector = ".Spinner__inner";
 
-    await page.waitForSelector(spinnerSelector);
-    await page.waitForSelector(spinnerSelector, {
-      state: "hidden",
-    });
+    try {
+      await page.waitForSelector(spinnerSelector);
+      await page.waitForSelector(spinnerSelector, {
+        state: "hidden",
+      });
+    } catch {}
 
     try {
       const itsMe = await page.waitForSelector(
@@ -24,7 +26,9 @@ const checkBanned = async (page, accountId) => {
 
       return true;
     }
-  } catch {}
+  } catch (e) {
+    console.log(e.message);
+  }
 
   console.log("Аккаунт свободен от бана");
   await updateAccount(accountId, { banned: false });
