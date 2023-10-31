@@ -108,7 +108,7 @@ readAccounts().then((e) => {
   e.forEach((k) => {
     // console.log(k.messageCount);
     // if (k.banned) {
-      console.log(k.messageCount);
+      console.log(k.banned, k.messageCount);
     // }
   });
 });
