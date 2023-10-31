@@ -184,7 +184,7 @@ class AccountService {
     const unprocessedUsers = await this.collection
       .aggregate([
         // { $match: { banned: { $ne: true } } },
-        { $match: { server, banned: true  } },
+        { $match: { server } },
         {
           $group: {
             _id: "$username",
@@ -196,6 +196,7 @@ class AccountService {
         { $sort: { lastProcessedBy: 1 } },
       ])
       .toArray();
+
 
     if (
       unprocessedUsers.length === 0 ||
