@@ -16,7 +16,6 @@ function filterText(text) {
     .replace(regex2, "")
     .replace("sorry", "")
     .replace("that", "")
-    .replace("can", "")
     .replace("hmm", "");
 }
 
