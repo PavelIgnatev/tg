@@ -164,7 +164,7 @@ class AccountService {
       const account = await this.collection.findOne({ username });
 
       if (account && account.banned === true) {
-        updatedData["force-banned"] = true;
+        updatedData["forceBanned"] = true;
       }
     }
 
