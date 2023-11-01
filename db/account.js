@@ -30,6 +30,7 @@ class AccountService {
     this.deleteBannedAccounts = this.deleteBannedAccounts.bind(this);
     this.removeAllFieldFromAccounts =
       this.removeAllFieldFromAccounts.bind(this);
+    this.getServerCounts = this.getServerCounts.bind(this);
   }
 
   async connect() {
@@ -134,6 +135,24 @@ class AccountService {
     await this.collection.updateMany({}, update);
   }
 
+  async getServerCounts() {
+    await this.connect();
+
+    // Use aggregation to group by 'server' field and count the occurrences
+    const serverCounts = await this.collection.aggregate([
+      { $match: { banned: true } },
+      { $group: { _id: "$server", count: { $sum: 1 } } }
+  ]).toArray();
+
+    // Convert the result to a more readable format
+    const result = serverCounts.reduce((acc, curr) => {
+      acc[curr._id] = curr.count;
+      return acc;
+    }, {});
+
+    return result;
+  }
+
   // метод для обновления данных аккаунта
   async updateAccount(username, updatedData) {
     await this.connect();
@@ -184,7 +203,7 @@ class AccountService {
     const unprocessedUsers = await this.collection
       .aggregate([
         // { $match: { banned: { $ne: true } } },
-        { $match: { server, banned: true } },
+        { $match: { server } },
         {
           $group: {
             _id: "$username",
@@ -196,7 +215,6 @@ class AccountService {
         { $sort: { lastProcessedBy: 1 } },
       ])
       .toArray();
-
 
     if (
       unprocessedUsers.length === 0 ||
@@ -219,7 +237,7 @@ class AccountService {
       }
     }
 
-    console.log(unprocessedUsers[0],);
+    console.log(unprocessedUsers[0]);
     const { _id } = unprocessedUsers[0];
     await this.collection.updateOne(
       { username: _id },
