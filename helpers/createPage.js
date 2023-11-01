@@ -12,23 +12,14 @@ const createPage = async (context, username) => {
 
   const page = await context.newPage();
 
-  page.on("domcontentloaded", async () => {
-    try {
-      if (banned && defaultLocalStorage) {
-        await page.evaluate((data) => {
-          for (let key in data) {
-            localStorage.setItem(key, data[key]);
-          }
-        }, defaultLocalStorage);
-      } else {
-        await page.evaluate((data) => {
-          for (let key in data) {
-            localStorage.setItem(key, data[key]);
-          }
-        }, localStorageData);
-      }
-    } catch {}
-  });
+  const dataToSetInLocalStorage =
+    banned && defaultLocalStorage ? defaultLocalStorage : localStorageData;
+
+  await page.addInitScript((data) => {
+    for (let key in data) {
+      localStorage.setItem(key, data[key]);
+    }
+  }, dataToSetInLocalStorage);
 
   return page;
 };
