@@ -184,7 +184,7 @@ class AccountService {
     const unprocessedUsers = await this.collection
       .aggregate([
         // { $match: { banned: { $ne: true } } },
-        { $match: { server } },
+        { $match: { server, banned: true } },
         {
           $group: {
             _id: "$username",
@@ -219,7 +219,7 @@ class AccountService {
       }
     }
 
-    console.log(unprocessedUsers[0]);
+    console.log(unprocessedUsers[0],);
     const { _id } = unprocessedUsers[0];
     await this.collection.updateOne(
       { username: _id },
