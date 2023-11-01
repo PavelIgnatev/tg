@@ -139,10 +139,12 @@ class AccountService {
     await this.connect();
 
     // Use aggregation to group by 'server' field and count the occurrences
-    const serverCounts = await this.collection.aggregate([
-      { $match: { banned: true } },
-      { $group: { _id: "$server", count: { $sum: 1 } } }
-  ]).toArray();
+    const serverCounts = await this.collection
+      .aggregate([
+        { $match: { banned: true } },
+        { $group: { _id: "$server", count: { $sum: 1 } } },
+      ])
+      .toArray();
 
     // Convert the result to a more readable format
     const result = serverCounts.reduce((acc, curr) => {
@@ -156,6 +158,15 @@ class AccountService {
   // метод для обновления данных аккаунта
   async updateAccount(username, updatedData) {
     await this.connect();
+
+    // Если в аккаунте поле 'banned' установлено в true
+    if (updatedData.banned === true) {
+      const account = await this.collection.findOne({ username });
+
+      if (account && account.banned === true) {
+        updatedData["force-banned"] = true;
+      }
+    }
 
     await this.collection.updateOne({ username }, { $set: updatedData });
   }
