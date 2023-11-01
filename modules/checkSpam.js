@@ -3,7 +3,10 @@ const checkSpam = async (context) => {
     const newPage = await context.newPage();
 
     await newPage.goto(
-      `https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3Fdomain%3Dspambot`
+      `https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3Fdomain%3Dspambot`,
+      {
+        timeout: 60000,
+      }
     );
     await newPage.waitForLoadState();
 
@@ -19,7 +22,7 @@ const checkSpam = async (context) => {
     } catch {
       const input = await newPage.waitForSelector("#editable-message-text", {
         state: "attached",
-        timeout: 60000
+        timeout: 60000,
       });
 
       await input.type("/start", { delay: 10 });

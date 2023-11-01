@@ -21,7 +21,7 @@ const main = async (accountId, proxy) => {
   const page = await createPage(context, accountId);
 
   try {
-    await page.goto("https://web.telegram.org/a/");
+    await page.goto("https://web.telegram.org/a/", { timeout: 60000 });
     await page.waitForLoadState();
 
     await page.reload();

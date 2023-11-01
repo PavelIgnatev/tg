@@ -44,7 +44,7 @@ const autoSender = async (accountId, context) => {
     if (isSpam) {
       axios.post("http://localhost/recipient", {
         status: "spam",
-        accountId
+        accountId,
       });
       return;
     }
@@ -73,7 +73,8 @@ const autoSender = async (accountId, context) => {
         prompts = resPrompts;
 
         await senderPage.goto(
-          `https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3Fdomain%3D${username}`
+          `https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3Fdomain%3D${username}`,
+          { timeout: 60000 }
         );
         userInfo = await getUserInfo(senderPage);
 
