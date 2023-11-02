@@ -22,7 +22,6 @@ const checkSpam = async (context) => {
     } catch {
       const input = await newPage.waitForSelector("#editable-message-text", {
         state: "attached",
-        timeout: 60000,
       });
 
       await input.type("/start", { delay: 10 });

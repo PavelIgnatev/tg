@@ -107,31 +107,25 @@ class AccountService {
   async insertAccount2(account) {
     await this.connect();
 
-    // Проверяем, есть ли объект с полем 'banned: true' для данного 'username'
     const filter = { username: account.username, banned: true };
     const existingBannedAccount = await this.collection.findOne(filter);
 
-    // Если такой объект существует, выполняем вставку
     if (existingBannedAccount) {
       const update = { $set: account };
       const options = { upsert: true };
       await this.collection.updateOne(filter, update, options);
     } else {
-      // Выводим сообщение или выбрасываем ошибку, так как вставка не разрешена
       console.log(
         "Нельзя вставить аккаунт. Отсутствует объект с полем banned: true."
       );
-      // Или можно выбросить ошибку, например:
-      // throw new Error('Нельзя вставить аккаунт. Отсутствует объект с полем banned: true.');
     }
   }
 
   async removeAllFieldFromAccounts(fieldToRemove) {
     await this.connect();
 
-    const update = { $unset: { [fieldToRemove]: 1 } }; // Удаляем указанное поле
+    const update = { $unset: { [fieldToRemove]: 1 } };
 
-    // Обновляем все документы, удаляя указанное поле
     await this.collection.updateMany({}, update);
   }
 
