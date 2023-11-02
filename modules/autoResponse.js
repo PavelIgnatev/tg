@@ -65,6 +65,7 @@ async function makePostRequest(result, personName, botName, offerDescription) {
         console.log(
           `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
         );
+        console.log(dialogue)
         throw new Error("В ответе содержится слово 'Sorry'");
       }
 
