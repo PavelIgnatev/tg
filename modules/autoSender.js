@@ -66,13 +66,12 @@ const autoSender = async (accountId, context) => {
     while (!userInfo || !userInfo.userTitle) {
       try {
         const {
-          data: { groupId: resGroupId, resPrompts },
+          data: { username, groupId: resGroupId, resPrompts },
         } = await axios("http://localhost/recipient", {
           params: { accountId },
         });
         groupId = resGroupId;
         prompts = resPrompts;
-        const username = "+79370053012";
         userName = username;
 
         await senderPage.goto(
