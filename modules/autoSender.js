@@ -60,25 +60,31 @@ const autoSender = async (accountId, context) => {
   let groupId;
   let prompts;
   let retry;
+  let userName;
 
   try {
-    while (!userInfo || !userInfo.userName) {
+    while (!userInfo || !userInfo.userTitle) {
       try {
         const {
-          data: { username, groupId: resGroupId, resPrompts },
+          data: { groupId: resGroupId, resPrompts },
         } = await axios("http://localhost/recipient", {
           params: { accountId },
         });
         groupId = resGroupId;
         prompts = resPrompts;
+        const username = "+79370053012";
+        userName = username;
 
         await senderPage.goto(
-          `https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3Fdomain%3D${username}`,
+          `https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3F${
+            username.includes("+") ? "phone" : "domain"
+          }%3D${username}`,
           { timeout: 60000 }
         );
+
         userInfo = await getUserInfo(senderPage);
 
-        if (!userInfo || !userInfo.userName) {
+        if (!userInfo || !userInfo.userTitle) {
           console.log(
             `Пользователь ${username} не найден, добавляю статус failed`
           );
@@ -112,7 +118,7 @@ const autoSender = async (accountId, context) => {
   // Отправка сообщения
   try {
     console.log("Данные пользователя для отправки: ", userInfo);
-    const { userTitle, userBio, userName, phone } = userInfo;
+    const { userTitle, userBio, phone } = userInfo;
 
     const { first } = prompts ?? {};
 
@@ -169,7 +175,7 @@ const autoSender = async (accountId, context) => {
     );
   } catch (e) {
     console.error(
-      `ERROR: Отправка сообщения пользователю ${userInfo.userName} не удалась. Ошибка: ${e.message}`
+      `ERROR: Отправка сообщения пользователю ${userName} не удалась. Ошибка: ${e.message}`
     );
   }
   await senderPage.close();
