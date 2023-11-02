@@ -31,7 +31,7 @@ const checkBanned = async (page, accountId) => {
   }
 
   console.log("Аккаунт свободен от бана");
-  await updateAccount(accountId, { banned: false });
+  await updateAccount(accountId, { banned: false, forceBanned: false });
   return false;
 };
 
