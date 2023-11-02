@@ -17,7 +17,7 @@ const main = async (accountId, proxy) => {
     throw new Error("Произошла ошибка, accountId не был передан");
   }
 
-  const [context, browser] = await initialBrowser(false, accountId, proxy);
+  const [context, browser] = await initialBrowser(true, accountId, proxy);
   const page = await createPage(context, accountId);
 
   try {
@@ -26,8 +26,6 @@ const main = async (accountId, proxy) => {
 
     await page.reload();
     await page.waitForLoadState();
-
-    await page.waitForTimeout(100000000)
 
     const isBanned = await checkBanned(page, accountId);
 
@@ -71,16 +69,16 @@ const main = async (accountId, proxy) => {
 
 const startMainLoop = async () => {
   const proxy = parseArgs(process.env.args);
-  const threadCount = 1;
+  const threadCount = 3;
   const promises = [];
 
-  // await changeProxy(proxy.changeUrl);
+  await changeProxy(proxy.changeUrl);
 
   for (let i = 0; i < threadCount; i++) {
     promises.push(
       (async () => {
         console.time(`Время, потраченное на обработку аккаунта ${i}`);
-        const username = "d1f69205-a096-4772-938d-9b10218e3f07"
+        const username = await getCurrentAccount(proxy.server, threadCount);
 
         // отправка без звуука
         try {
