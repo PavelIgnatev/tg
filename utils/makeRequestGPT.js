@@ -46,7 +46,7 @@ async function makeRequestGPT(dialogue) {
         variantMessage.includes("hmm")
       ) {
         console.log(
-          `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
+          `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${`${message}:${dialogue.map(filterText)}`}\x1b[0m`
         );
         throw new Error("В ответе содержится слово 'Sorry'");
       }
