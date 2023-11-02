@@ -82,6 +82,7 @@ const autoSender = async (accountId, context) => {
         );
 
         userInfo = await getUserInfo(senderPage);
+        console.log(userInfo)
 
         if (!userInfo || !userInfo.userTitle) {
           console.log(

@@ -39,9 +39,9 @@ class groupIdService {
     await this.connect();
 
    return  await this.collection.insertOne({
-      groupId: 18831749340,
+      groupId: Math.floor(Math.random() * 10 ** 10) + 10 ** 10,
       target,
-      currentCount: 216,
+      currentCount: 0,
       database,
       propmpts,
       dateCreated: new Date(),
