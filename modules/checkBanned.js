@@ -16,20 +16,20 @@ const checkBanned = async (page, accountId) => {
     }
 
     try {
-      const itsMe = await page.waitForSelector(
-        `button:has-text("Yes, it's me")`,
-        { timeout: 1500 }
-      );
-      await itsMe.click();
-    } catch {}
-
-    try {
       await page.waitForSelector("#telegram-search-input", { timeout: 5000 });
     } catch {
       await updateAccount(accountId, { banned: true });
 
       return true;
     }
+
+    try {
+      const itsMe = await page.waitForSelector(
+        `button:has-text("Yes, it's me")`,
+        { timeout: 1500 }
+      );
+      await itsMe.click();
+    } catch {}
 
     const isBanned = await page.$(".auth-form");
 
