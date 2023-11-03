@@ -29,6 +29,7 @@ const checkSpam = async (context, accountId) => {
 
         await input.type("/start", { delay: 10 });
       } catch {
+        console.log('Аккаунт все же забанен')
         await updateAccount(accountId, { banned: true });
 
         return true;
