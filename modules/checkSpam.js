@@ -1,9 +1,9 @@
 const path = require('path');
 
 const checkSpam = async (context) => {
-  try {
-    const newPage = await context.newPage();
+  const newPage = await context.newPage();
 
+  try {
     await newPage.goto(
       `https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3Fdomain%3Dspambot`,
       {

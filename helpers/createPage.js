@@ -6,7 +6,7 @@ const createPage = async (context, username) => {
   }
   const {
     localStorage: localStorageData,
-    banned,
+    forceBanned,
     defaultLocalStorage,
   } = (await readAccount(username)) ?? {};
 
@@ -14,7 +14,7 @@ const createPage = async (context, username) => {
 
   page.on("domcontentloaded", async () => {
     try {
-      if (banned && defaultLocalStorage) {
+      if (forceBanned && defaultLocalStorage) {
         await page.evaluate((data) => {
           for (let key in data) {
             localStorage.setItem(key, data[key]);
