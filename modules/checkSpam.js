@@ -62,10 +62,11 @@ const checkSpam = async (context) => {
     }
 
     console.log("Аккаунт имеет спамблок");
+    await newPage.screenshot({ path: `screenshots/${Date.now()}.jpg` });
     return true;
   } catch (e) {
     console.log(e.message);
-    await newPage.screenshot({ path: `${Date.now()}.jpg` });
+    await newPage.screenshot({ path: `screenshots/${Date.now()}.jpg` });
     console.log("Аккаунт имеет спамблок");
     return true;
   }
