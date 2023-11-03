@@ -6,27 +6,17 @@ const createPage = async (context, username) => {
   }
   const {
     localStorage: localStorageData,
-    forceBanned,
-    defaultLocalStorage,
   } = (await readAccount(username)) ?? {};
 
   const page = await context.newPage();
 
   page.on("domcontentloaded", async () => {
     try {
-      if (forceBanned && defaultLocalStorage) {
-        await page.evaluate((data) => {
-          for (let key in data) {
-            localStorage.setItem(key, data[key]);
-          }
-        }, defaultLocalStorage);
-      } else {
-        await page.evaluate((data) => {
-          for (let key in data) {
-            localStorage.setItem(key, data[key]);
-          }
-        }, localStorageData);
-      }
+      await page.evaluate((data) => {
+        for (let key in data) {
+          localStorage.setItem(key, data[key]);
+        }
+      }, localStorageData);
     } catch {}
   });
 
