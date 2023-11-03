@@ -11,6 +11,7 @@ const createPage = async (context, username) => {
   const page = await context.newPage();
 
   page.on("domcontentloaded", async () => {
+    console.log('произошел domcontentloaded')
     try {
       await page.evaluate((data) => {
         for (let key in data) {

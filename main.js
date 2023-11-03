@@ -38,7 +38,7 @@ const main = async (accountId, proxy) => {
     try {
       await page.waitForSelector(".Spinner__inner", { state: "hidden" });
     } catch {
-      throw new Error("Спиннер есть, хотя не должен ");
+      throw new Error("Спиннер есть, хотя не должен");
     }
 
     console.log("Аккаунт инициализирован");
@@ -46,6 +46,7 @@ const main = async (accountId, proxy) => {
 
     await autoResponse(page, context, accountId);
 
+    // возмодно тут надо сделать глобал баннед если спам ошибка но надо тестить
     await autoSender(accountId, context);
   } catch (e) {
     console.error(e.message);
