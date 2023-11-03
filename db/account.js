@@ -59,7 +59,7 @@ class AccountService {
     await this.connect();
 
     const usernames = await this.collection.distinct("username", {
-      $or: [{ forceBanned: { $ne: true } }],
+      $or: [{ fullBanned: { $ne: true } }],
     });
 
     return usernames;
@@ -135,7 +135,7 @@ class AccountService {
     // Use aggregation to group by 'server' field and count the occurrences
     const serverCounts = await this.collection
       .aggregate([
-        { $match: { forceBanned: true } },
+        { $match: { fullBanned: true } },
         { $group: { _id: "$server", count: { $sum: 1 } } },
       ])
       .toArray();
