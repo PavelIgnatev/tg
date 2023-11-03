@@ -1,9 +1,7 @@
-const path = require('path');
-
 const checkSpam = async (context) => {
-  const newPage = await context.newPage();
-
   try {
+    const newPage = await context.newPage();
+
     await newPage.goto(
       `https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3Fdomain%3Dspambot`,
       {
@@ -62,11 +60,9 @@ const checkSpam = async (context) => {
     }
 
     console.log("Аккаунт имеет спамблок");
-    await newPage.screenshot({ path: `screenshots/${Date.now()}.jpg` });
     return true;
   } catch (e) {
     console.log(e.message);
-    await newPage.screenshot({ path: `screenshots/${Date.now()}.jpg` });
     console.log("Аккаунт имеет спамблок");
     return true;
   }

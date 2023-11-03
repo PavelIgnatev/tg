@@ -6,9 +6,7 @@ const checkBanned = async (page, accountId) => {
 
     try {
       await page.waitForSelector(spinnerSelector);
-      await page.waitForSelector(spinnerSelector, {
-        state: "hidden",
-      });
+      
     } catch {
       await updateAccount(accountId, { banned: true });
 
