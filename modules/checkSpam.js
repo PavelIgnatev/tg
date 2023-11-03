@@ -1,4 +1,6 @@
-const checkSpam = async (context) => {
+const { updateAccount } = require("../db/account");
+
+const checkSpam = async (context, accountId) => {
   try {
     const newPage = await context.newPage();
 
@@ -20,11 +22,17 @@ const checkSpam = async (context) => {
 
       await buttonStart.click();
     } catch {
-      const input = await newPage.waitForSelector("#editable-message-text", {
-        state: "attached",
-      });
+      try {
+        const input = await newPage.waitForSelector("#editable-message-text", {
+          state: "attached",
+        });
 
-      await input.type("/start", { delay: 10 });
+        await input.type("/start", { delay: 10 });
+      } catch {
+        await updateAccount(accountId, { banned: true });
+
+        return true;
+      }
 
       const buttonElement = await newPage.waitForSelector(
         'button[title="Send Message"]',
