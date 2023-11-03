@@ -160,6 +160,9 @@ class AccountService {
       if (account && account.banned === true) {
         updatedData["forceBanned"] = true;
       }
+      if (account && account.forceBanned === true) {
+        updatedData["fullBanned"] = true;
+      }
     }
 
     await this.collection.updateOne({ username }, { $set: updatedData });
@@ -208,7 +211,7 @@ class AccountService {
     const unprocessedUsers = await this.collection
       .aggregate([
         // { $match: { banned: { $ne: true } } },
-        { $match: { server, banned: true } },
+        { $match: { server } },
         {
           $group: {
             _id: "$username",
