@@ -22,7 +22,7 @@ const checkSpam = async (context) => {
     } catch {
       const input = await newPage.waitForSelector("#editable-message-text", {
         state: "attached",
-      });
+      }); 
 
       await input.type("/start", { delay: 10 });
 
