@@ -9,7 +9,11 @@ const checkBanned = async (page, accountId) => {
       await page.waitForSelector(spinnerSelector, {
         state: "hidden",
       });
-    } catch {}
+    } catch {
+      await updateAccount(accountId, { banned: true });
+
+      return true;
+    }
 
     try {
       const itsMe = await page.waitForSelector(
