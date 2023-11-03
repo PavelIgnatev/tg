@@ -6,9 +6,9 @@ const checkBanned = async (page, accountId) => {
 
     try {
       await page.waitForSelector(spinnerSelector);
-        await page.waitForSelector(spinnerSelector, {
-          state: "hidden",
-        });
+      await page.waitForSelector(spinnerSelector, {
+        state: "hidden",
+      });
     } catch {
       await updateAccount(accountId, { banned: true });
 
@@ -26,6 +26,14 @@ const checkBanned = async (page, accountId) => {
     const isBanned = await page.$(".auth-form");
 
     if (isBanned) {
+      await updateAccount(accountId, { banned: true });
+
+      return true;
+    }
+
+    try {
+      await page.waitForSelector("#telegram-search-input", { timeout: 5000 });
+    } catch {
       await updateAccount(accountId, { banned: true });
 
       return true;

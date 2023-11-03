@@ -191,7 +191,7 @@ async function autoResponseDialogue(context, href, accountId) {
             }
           );
 
-          await goToBottom.click();
+          await goToBottom.click({ force: true });
         } catch {}
         await sendMessage(senderPage, message);
 

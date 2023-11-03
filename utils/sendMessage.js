@@ -14,7 +14,7 @@ const sendMessage = async (page, message) => {
       }
     );
 
-    await buttonElement.click();
+    await buttonElement.click({ force: true });
     await input.type("", { delay: 10 });
     await input.type("", { delay: 10 });
     await input.type("", { delay: 10 });
@@ -24,5 +24,5 @@ const sendMessage = async (page, message) => {
     throw new Error("Сообщение не доставлено");
   }
 };
- 
+
 module.exports = { sendMessage };
