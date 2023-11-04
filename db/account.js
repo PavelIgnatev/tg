@@ -7,6 +7,7 @@ const uri =
   "mongodb://qwerty:qwerty123@ac-llvczxo-shard-00-00.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-01.2ry9k50.mongodb.net:27017,ac-llvczxo-shard-00-02.2ry9k50.mongodb.net:27017/?ssl=true&replicaSet=atlas-b2xf0l-shard-0&authSource=admin&retryWrites=true&w=majority";
 class AccountService {
   lock = new Mutex();
+  workingAccs = []
 
   constructor() {
     this.client = null;
@@ -232,18 +233,19 @@ class AccountService {
 
       return null;
     }
-    // const currentDate = new Date();
-    // for (const user of unprocessedUsers) {
-    //   if (user.remainingTime && !user.banned) {
-    //     const remainingDate = new Date(user.remainingTime);
-    //     if (remainingDate < currentDate) {
-    //       const index = unprocessedUsers.indexOf(user);
-    //       unprocessedUsers.splice(index, 1);
-    //       unprocessedUsers.unshift(user);
-    //       break;
-    //     }
-    //   }
-    // }
+    const currentDate = new Date();
+    for (const user of unprocessedUsers) {
+      if (user.remainingTime && !user.banned && !this.workingAccs.includes(user._id)) {
+        const remainingDate = new Date(user.remainingTime);
+        if (remainingDate < currentDate) {
+          const index = unprocessedUsers.indexOf(user);
+          unprocessedUsers.splice(index, 1);
+          unprocessedUsers.unshift(user);
+          this.workingAccs.push(user._id)
+          break;
+        }
+      }
+    }
 
     console.log(unprocessedUsers[0]);
     const { _id } = unprocessedUsers[0];
