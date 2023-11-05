@@ -1,24 +1,21 @@
 const { default: axios } = require("axios");
 
-const { readAccount } = require("../db/account");
 const { sendMessage } = require("../utils/sendMessage");
 const { getUserInfo } = require("./getUserInfo");
 const { checkSpam } = require("../modules/checkSpam");
 const { makeRequestGPT } = require("../utils/makeRequestGPT");
 
-const autoSender = async (accountId, context) => {
+const autoSender = async (accountId, context, account) => {
   // Проверяем, можем ли мы писать
   try {
-    const { remainingTime } = await readAccount(accountId);
+    const { remainingTime } = account;
     const remainingDate = new Date(remainingTime);
     const currentDate = new Date();
 
     if (remainingTime) {
       if (remainingDate > currentDate) {
         console.log(
-          "Время для отправки сообщения аккаунтом",
-          accountId,
-          "ещё не наступило"
+          `Время для отправки сообщения аккаунтом ${accountId} ещё не наступило`
         );
         console.log(`Текущая дата: ${currentDate}`);
         console.log(`Дата, до которой не отправляем: ${remainingDate}`);

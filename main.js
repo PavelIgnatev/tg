@@ -6,7 +6,7 @@ const { autoSender } = require("./modules/autoSender");
 const { accountSetup } = require("./utils/accountSetup");
 const { checkBanned } = require("./modules/checkBanned");
 const { changeProxy } = require("./utils/changeProxy");
-const { getCurrentAccount } = require("./db/account");
+const { getCurrentAccount, readAccount } = require("./db/account");
 const { parseArgs } = require("./utils/parseArgs");
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
@@ -47,7 +47,8 @@ const main = async (accountId, proxy) => {
     await autoResponse(page, context, accountId);
 
     // возмодно тут надо сделать глобал баннед если спам ошибка но надо тестить
-    await autoSender(accountId, context);
+    const account = await readAccount(accountId);
+    await autoSender(accountId, context, account);
   } catch (e) {
     console.error(e.message);
   }
