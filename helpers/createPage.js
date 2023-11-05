@@ -10,7 +10,6 @@ const createPage = async (context, username) => {
   const page = await context.newPage();
 
   await page.addInitScript((localStorageData) => {
-    console.log('init script')
     for (let key in localStorageData) {
       localStorage.setItem(key, localStorageData[key]);
     }
