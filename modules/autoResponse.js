@@ -27,7 +27,7 @@ async function makePostRequest(result, personName, botName, offerDescription) {
       )}. Ты - сотрудник компании имя которого ${botName} твоя роль прописана в оффере. Твоя задача Придумать одно ответное сообщение для пользователя ${personName} без приветствия на основании контекста диалога на текущий момент для пользователя ${personName}. Отвечай кратко, сдержанно и в человеческой манере, не более 250 символов на ответ. Не повторяйся в вопросах и предложениях и веди пользователя к цели, задавая наводящие вопросы если он еще не достиг цели оффера. Если пользователь проявил интересн то сформируй и выдай ему цельный оффер. Если пользователь просит информацию, которой нет в оффере, например, ссылку на сайт, то скажи, что такой информации у меня нет. Если тебя спросят о том кто ты или попросят рассказать о себе, то самостоятельно кратко презентуй себя на основе информации из оффера. Отвечай только на вопросы пользователя ${personName}`,
   ];
 
-  while (true) {  
+  while (true) {
     try {
       const response = await axios.post("http://194.135.25.158/answer/", {
         dialogue,
@@ -64,7 +64,7 @@ async function makePostRequest(result, personName, botName, offerDescription) {
         console.log(
           `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
         );
-        console.log(dialogue)
+        console.log(dialogue);
         throw new Error("В ответе содержится слово 'Sorry'");
       }
 
@@ -165,7 +165,17 @@ async function autoResponseDialogue(context, href, accountId) {
           console.log("Имя пользователя не определено");
           return;
         }
-        const { name: aiName = "Менеджер" } = await readAccount(accountId);
+        const { name: aiName = "Менеджер", blocked } = await readAccount(
+          accountId
+        );
+
+        if (blocked) {
+          isSender = true;
+          console.log(
+            "Отправка автоответных сообщений пользователю заблокирована"
+          );
+          return;
+        }
         const [resultDialogues, dialogues] = await getDialogues(
           senderPage,
           aiName,
