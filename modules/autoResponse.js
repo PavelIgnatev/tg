@@ -165,9 +165,15 @@ async function autoResponseDialogue(context, href, accountId) {
           console.log("Имя пользователя не определено");
           return;
         }
-        const { name: aiName = "Менеджер", blocked } = await readAccount(
-          accountId
+        const { name: aiName = "Менеджер" } = await readAccount(accountId);
+
+        const [resultDialogues, dialogues] = await getDialogues(
+          senderPage,
+          aiName,
+          userTitle
         );
+        const dialogueInfo = await getDialogue(accountId, href);
+        const { groupId = 12343207728, blocked } = dialogueInfo ?? {};
 
         if (blocked) {
           isSender = true;
@@ -176,13 +182,7 @@ async function autoResponseDialogue(context, href, accountId) {
           );
           return;
         }
-        const [resultDialogues, dialogues] = await getDialogues(
-          senderPage,
-          aiName,
-          userTitle
-        );
-        const dialogueInfo = await getDialogue(accountId, href);
-        const { groupId = 12343207728 } = dialogueInfo ?? {};
+
         const prompt = await getPrompt(groupId);
         const message = await makePostRequest(
           dialogues,
