@@ -60,7 +60,7 @@ class AccountService {
     await this.connect();
 
     const usernames = await this.collection.distinct("username", {
-      $or: [{ fullBanned: { $ne: true } }],
+      $or: [{ forceBanned: { $ne: true } }],
     });
 
     return usernames;
