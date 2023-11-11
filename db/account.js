@@ -235,23 +235,23 @@ class AccountService {
 
       return null;
     }
-    const currentDate = new Date();
-    for (const user of unprocessedUsers) {
-      if (
-        user.remainingTime &&
-        !user.banned &&
-        !this.workingAccs.includes(user._id)
-      ) {
-        const remainingDate = new Date(user.remainingTime);
-        if (remainingDate < currentDate) {
-          const index = unprocessedUsers.indexOf(user);
-          unprocessedUsers.splice(index, 1);
-          unprocessedUsers.unshift(user);
-          this.workingAccs.push(user._id);
-          break;
-        }
-      }
-    }
+    // const currentDate = new Date();
+    // for (const user of unprocessedUsers) {
+    //   if (
+    //     user.remainingTime &&
+    //     !user.banned &&
+    //     !this.workingAccs.includes(user._id)
+    //   ) {
+    //     const remainingDate = new Date(user.remainingTime);
+    //     if (remainingDate < currentDate) {
+    //       const index = unprocessedUsers.indexOf(user);
+    //       unprocessedUsers.splice(index, 1);
+    //       unprocessedUsers.unshift(user);
+    //       this.workingAccs.push(user._id);
+    //       break;
+    //     }
+    //   }
+    // }
 
     console.log(unprocessedUsers[0]);
     const { _id } = unprocessedUsers[0];

@@ -2,7 +2,11 @@ const { default: axios } = require("axios");
 
 const { sendMessage } = require("../utils/sendMessage");
 const { getUserInfo } = require("./getUserInfo");
-const { postDialogue, getDialogue } = require("../db/dialogues");
+const {
+  postDialogue,
+  getDialogue,
+  getHrefByAccountId,
+} = require("../db/dialogues");
 const { findByGroupId } = require("../db/groupId");
 const { readAccount } = require("../db/account");
 
@@ -173,23 +177,12 @@ async function autoResponseDialogue(context, href, accountId) {
           userTitle
         );
         const dialogueInfo = await getDialogue(accountId, href);
-        const { groupId = 12343207728, blocked } = dialogueInfo ?? {};
-
-        if (blocked) {
-          isSender = true;
-          console.log(
-            "Отправка автоответных сообщений пользователю заблокирована"
-          );
-          return;
-        }
-
-        const prompt = await getPrompt(groupId);
-        const message = await makePostRequest(
-          dialogues,
-          filterText(userTitle),
-          filterText(aiName),
-          prompt
-        );
+        const {
+          groupId = 12343207728,
+          blocked,
+          stopped,
+          managerMessage,
+        } = dialogueInfo ?? {};
 
         try {
           const goToBottom = await senderPage.waitForSelector(
@@ -202,7 +195,38 @@ async function autoResponseDialogue(context, href, accountId) {
 
           await goToBottom.click({ force: true });
         } catch {}
-        await sendMessage(senderPage, message);
+
+        if (blocked) {
+          isSender = true;
+          console.log(
+            "Отправка автоответных сообщений пользователю заблокирована"
+          );
+          return;
+        }
+
+        if (!stopped) {
+          const prompt = await getPrompt(groupId);
+          const message = await makePostRequest(
+            dialogues,
+            filterText(userTitle),
+            filterText(aiName),
+            prompt
+          );
+          await sendMessage(senderPage, message);
+          resultDialogues.push(`${filterText(aiName)}: ${message}`);
+          console.log(
+            `\x1b[4mСгенерированное сообщение для автоответа пользователю:\x1b[0m \x1b[34m${message}\x1b[0m`
+          );
+          console.log(
+            `\x1b[4mПромпт для генерации автоответного сообщения:\x1b[0m \x1b[32m${prompt}\x1b[0m`
+          );
+        } else if (managerMessage && managerMessage.trim()) {
+          await sendMessage(senderPage, managerMessage);
+          resultDialogues.push(`${filterText(aiName)}: ${managerMessage}`);
+          console.log(
+            `\x1b[4mСообщение для автоответа пользователю было написано с помощью менеджера:\x1b[0m \x1b[34m${managerMessage}\x1b[0m`
+          );
+        }
 
         console.log(
           "\x1b[44m\x1b[1mИнформация о пользователе и диалоге:\x1b[0m"
@@ -221,18 +245,11 @@ async function autoResponseDialogue(context, href, accountId) {
           }\x1b[0m`
         );
         console.log(
-          `\x1b[4mПромпт для генерации автоответного сообщения:\x1b[0m \x1b[32m${prompt}\x1b[0m`
-        );
-        console.log(
           `\x1b[4mДиалог с пользователем на текущий момент:\x1b[0m \x1b[35m${resultDialogues.join(
             "\n"
           )}\x1b[0m`
         );
-        console.log(
-          `\x1b[4mСгенерированное сообщение для автоответа пользователю:\x1b[0m \x1b[34m${message}\x1b[0m`
-        );
 
-        resultDialogues.push(`${filterText(aiName)}: ${message}`);
         isSender = true;
 
         try {
@@ -248,6 +265,7 @@ async function autoResponseDialogue(context, href, accountId) {
             messages: resultDialogues,
             viewed: false,
             dateUpdated: new Date(),
+            managerMessage: null,
           });
         } catch (e) {
           await senderPage.goto("about:blank");
@@ -281,8 +299,9 @@ async function autoResponseDialogue(context, href, accountId) {
 const autoResponse = async (page, context, accountId) => {
   try {
     console.log("Начинаю поиск неотвеченных сообщений");
+    const hrefs = await getHrefByAccountId(accountId);
     const elements = await page.$$(".ListItem-button");
-    const links = [];
+    let links = new Set(hrefs);
 
     for (const element of elements) {
       const isUnread = await element.$(".ChatBadge.unread:not(.muted)");
@@ -302,11 +321,11 @@ const autoResponse = async (page, context, accountId) => {
         ) {
           continue;
         } else {
-          links.push(href);
+          links.add(href);
         }
       }
     }
-
+    links = [...links];
     console.log(`Найдено ${links.length} неотвеченных сообщений`);
 
     for (const element of links) {

@@ -19,6 +19,7 @@ class DialoguesService {
     this.getUsernamesByGroupId = this.getUsernamesByGroupId.bind(this);
     this.convertUsernamesToLowerCase =
       this.convertUsernamesToLowerCase.bind(this);
+    this.getHrefByAccountId = this.getHrefByAccountId.bind(this);
   }
 
   async connect() {
@@ -32,6 +33,17 @@ class DialoguesService {
     });
     this.db = this.client.db(dbName);
     this.collection = this.db.collection(collectionName);
+  }
+
+  async getHrefByAccountId(accountId) {
+    await this.connect();
+
+    const usernames = await this.collection.distinct("href", {
+      accountId,
+      managerMessage: { $ne: null },
+    });
+
+    return usernames;
   }
 
   async postDialogue(dialogue) {
@@ -63,7 +75,9 @@ class DialoguesService {
     await this.connect();
 
     const dialogues = await this.collection.find({ groupId }).toArray();
-    return dialogues.map((dialogue) => dialogue?.username?.toLowerCase()).filter(Boolean);
+    return dialogues
+      .map((dialogue) => dialogue?.username?.toLowerCase())
+      .filter(Boolean);
   }
 
   async convertUsernamesToLowerCase() {
@@ -86,7 +100,7 @@ class DialoguesService {
         );
       }
     }
-    console.log('все')
+    console.log("все");
   }
 }
 

@@ -1,4 +1,8 @@
-const { getAllUsernames, getServerCounts, readAccounts } = require("./db/account");
+const {
+  getAllUsernames,
+  getServerCounts,
+  readAccounts,
+} = require("./db/account");
 
 getAllUsernames().then((e) => console.log(e.length));
 getServerCounts().then(console.log);
@@ -7,7 +11,7 @@ readAccounts().then((e) => {
   e.forEach((k) => {
     // console.log(k.messageCount);
     // if (k.banned) {
-      console.log(k.banned, k.messageCount);
+    console.log(k.banned, k.messageCount);
     // }
   });
 });
