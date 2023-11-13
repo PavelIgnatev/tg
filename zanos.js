@@ -28,6 +28,7 @@ const zanos = async () => {
       }
 
       console.log(`${extractedData.username} добавлен в базу данных.`);
+      const currentDate = new Date();
 
       // await insertAccount({
       //   username: extractedData.username,
@@ -35,6 +36,9 @@ const zanos = async () => {
       //   userAgent: extractedData.navigtor,
       //   localStorage: JSON.parse(extractedData.localStorage),
       //   defaultLocalStorage: JSON.parse(extractedData.localStorage),
+      //   lastProcessedBy: new Date(currentDate.getTime() - 24 * 60 * 60 * 1000),
+      //   remainingTime: new Date(currentDate.getTime() - 24 * 60 * 60 * 1000),
+      //   banned: false,
       // });
     }
   } catch (error) {
