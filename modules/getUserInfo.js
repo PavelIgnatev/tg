@@ -2,6 +2,14 @@ const getUserInfo = async (page) => {
   await page.waitForTimeout(3000);
 
   try {
+    const spinnerSelector = ".Spinner__inner";
+
+    try {
+      await page.waitForSelector(spinnerSelector, {
+        state: "hidden",
+      });
+    } catch {}
+
     const userInfo = await page.waitForSelector(".chat-info-wrapper", {
       timeout: 3000,
     });

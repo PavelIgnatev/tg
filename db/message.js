@@ -22,6 +22,7 @@ class MessageService {
     this.getRandomMessage = this.getRandomMessage.bind(this);
     this.getFailedByUsername = this.getFailedByUsername.bind(this);
     this.getFailedUsernames = this.getFailedUsernames.bind(this);
+    this.deleteFailedAccounts = this.deleteFailedAccounts.bind(this)
   }
 
   async connect() {
@@ -192,7 +193,7 @@ class MessageService {
     await this.connect();
 
     const usernames = await this.collection.distinct("username");
-    return usernames.map(username => username.toLowerCase());
+    return usernames.map((username) => username.toLowerCase());
   }
 
   async getSentMessages() {
@@ -239,6 +240,11 @@ class MessageService {
     );
   }
 
+  async deleteFailedAccounts() {
+    await this.connect();
+
+    await this.collection.deleteMany({ failed: true });
+  }
   // метод для обновления состояния отправки сообщения
   async updateMessage(username, defaultSet = { send: true }) {
     await this.connect();
