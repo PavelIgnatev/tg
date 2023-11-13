@@ -1,0 +1,424 @@
+ [0.005] [SW] init
+ [0.012] [SW] got 0 windows from the start
+ [0.019] [SW] installing
+ [0.019] [SW] window connected 6cbe3469-2c36-482c-b010-7b98cd308746 windows before 0
+ [0.020] [SW] windows Array(0)
+ [0.020] [SW] sending message port for mtproto
+ [0.023] [SW] skipped waiting
+ [0.025] [SW] activating ServiceWorkerGlobalScope
+ [0.027] [SW] cleared assets cache
+ [0.027] [SW] claimed clients
+ got state, time: 849
+ Will mount auth page: authStateSignQr 1698568813.073
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.
+sw-2bb50b54.js:1  Uncaught (in promise) 
+1f1ec-1f1e7.png:1  Failed to load resource: net::ERR_FAILED
+1f1fa-1f1fe.png:1  Failed to load resource: net::ERR_FAILED
+1f1fb-1f1ee.png:1  Failed to load resource: net::ERR_FAILED
+1f1fa-1f1f8.png:1  Failed to load resource: net::ERR_FAILED
+1f1fa-1f1ff.png:1  Failed to load resource: net::ERR_FAILED
+1f1fb-1f1fa.png:1  Failed to load resource: net::ERR_FAILED
+1f1fb-1f1ea.png:1  Failed to load resource: net::ERR_FAILED
+1f1fb-1f1f3.png:1  Failed to load resource: net::ERR_FAILED
+1f1fc-1f1eb.png:1  Failed to load resource: net::ERR_FAILED
+1f1fe-1f1ea.png:1  Failed to load resource: net::ERR_FAILED
+1f1ff-1f1f2.png:1  Failed to load resource: net::ERR_FAILED
+1f1ff-1f1fc.png:1  Failed to load resource: net::ERR_FAILED
+1f1f2-1f1ed.png:1  Failed to load resource: net::ERR_FAILED
+1f1f2-1f1f6.png:1  Failed to load resource: net::ERR_FAILED
+1f1f2-1f1f7.png:1  Failed to load resource: net::ERR_FAILED
+1f1f2-1f1fa.png:1  Failed to load resource: net::ERR_FAILED
+1f1f2-1f1fd.png:1  Failed to load resource: net::ERR_FAILED
+1f1eb-1f1f2.png:1  Failed to load resource: net::ERR_FAILED
+1f1f2-1f1e9.png:1  Failed to load resource: net::ERR_FAILED
+1f1f2-1f1e8.png:1  Failed to load resource: net::ERR_FAILED
+1f1f2-1f1f3.png:1  Failed to load resource: net::ERR_FAILED
+1f1f2-1f1ea.png:1  Failed to load resource: net::ERR_FAILED
+1f1f2-1f1f8.png:1  Failed to load resource: net::ERR_FAILED
+1f1f2-1f1e6.png:1  Failed to load resource: net::ERR_FAILED
+1f1f2-1f1ff.png:1  Failed to load resource: net::ERR_FAILED
+1f1f2-1f1f2.png:1  Failed to load resource: net::ERR_FAILED
+1f1f3-1f1e6.png:1  Failed to load resource: net::ERR_FAILED
+1f1f3-1f1f7.png:1  Failed to load resource: net::ERR_FAILED
+1f1f3-1f1f5.png:1  Failed to load resource: net::ERR_FAILED
+1f1f3-1f1f1.png:1  Failed to load resource: net::ERR_FAILED
+1f1f3-1f1e8.png:1  Failed to load resource: net::ERR_FAILED
+1f1f1-1f1fa.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+1f1f2-1f1f4.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+1f1fd-1f1f0.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+1f1f1-1f1f9.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+1f1f1-1f1fe.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+1f1f1-1f1ee.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+1f1f1-1f1f7.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+1f1f1-1f1e7.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+1f1f1-1f1f8.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+1f1f1-1f1e6.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+1f1f1-1f1fb.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+1f1f0-1f1fc.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+1f1f0-1f1ec.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+1f1f2-1f1ec.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+1f1f2-1f1fc.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+1f1f2-1f1fe.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+1f1f2-1f1fb.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+1f1f2-1f1f1.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+1f1f2-1f1f9.png:1 
+        
+        
+       Failed to load resource: net::ERR_FAILED
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+cache.ts:47 
+        
+        
+       Uncaught (in promise) TypeError: Failed to fetch
+    at Le (cache.ts:47:12)
+k/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+console.log('—————-');console.log('username: ', '3612f9ed-db9e-49d3-bd29-780815cab45c');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM40:1 —————-
+VM40:1 username:  3612f9ed-db9e-49d3-bd29-780815cab45c
+VM40:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36
+VM40:1 cookie: 
+VM40:1 localStorage: {"dc3_auth_key":"\"c11a42f90e642498223a59054a6cffe501f8514014d042c7481e1342624a9fc712367f405863c4c9f77c51bfea5041b037d1ac749abfe61cc5a99e304f7d64876b2e494d7e00fb042adc94768dc5f223591c3261c06b30090df8e50165ded2a8edfdde490b2eb411c0f84ed905aefd76c5876ece29624856248dcf18fce688553dfda639135553501affbdc73b5094871baf3f87e74b1440dc7d9c7466fc6bffdb0b9b655e596e2db001572432b0e7ea4fba16016112c92b7675e032882ec52ca841cc0288417e0cb13024897961baf15719ca6ed7a4c7c867690ce21ff1177388c0c0be234ea775ce1550f91a9f515a92738f572bcf836d1e75d1659a468d76\"","k_build":"418","dc5_server_salt":"\"e096b2aba390e1e3\"","dc3_server_salt":"\"ac80347d2547c86f\"","user_auth":"{\"dcID\":2,\"date\":1698568844,\"id\":6520895322}","xt_instance":"{\"id\":33874355,\"idle\":true,\"time\":1698568862221}","dc":"2","dc4_auth_key":"\"96572091ff0bdd401e19338969c8b300ce9b9470694857ed7a17a81fdb3acca0d33546034602c694d22ddb64b1dd940180060a30fd1845502296206ed9899dcff80ea2df332444d7ff218ba033fff5884e83e43a40f5b57b12236743ac005d5d7e54b7f422d41b8b4cf291058d7fecd668b1ae389c7540c88f970f4b33f4dbee3836b1e454a812e8df8818c1254b87d2c8eadc1c8d604baaf98767a7a72c85ef6ba54ae9ba47d1c5e11f45fbf18cbaa7833636664d6cc4c098a0152616293cadd22ce4442fe56a238e6e0d39dec4a76ba7fd07cf5024b5aaf2323529482e69dfe3931315732611e682beb23418b4b7eee16188e69aa5a0e87a9efbb74c7334d3\"","":"","dc2_auth_key":"\"39a5e75b3d4eb515c5f5b069e769ef50ffd941e76d21a6bb74ce2bead4e3ecb475a2bd337677f778f6a5d97b14fe252680dfb20bf7af561404bdec9b6069d7bf2ff8c20a6f944e0dde84606938fd22228d4df5883c79428b8979faeed1d541b6f3db133a42c67291f0d78f1b468e3cfc3d26ef70a78c0e3d5861dda0a98bfe4ca098fa29a2b75e8faa06e9a4ed15bb085501e3f7076499f6a930e8bab0b86974e669532e95cb11fabaa08981f74fd0246358a1ab5aa5a81ef7118cc20c6cad79e0b7c55f3df54ee5df7de8b579bcb911ddde453c0b2823fcc13bac911421c2b6e2271a0d76b3e5380aef0410c588424ba9c68e5e90df74c8337c4d484b8e593a\"","dc4_server_salt":"\"1ec24b31c7ae696c\"","tgme_sync":"{\"canRedirect\":true,\"ts\":1698568845}","server_time_offset":"0","dc2_server_salt":"\"de0bfecbb8f89c09\"","state_id":"4156461615","auth_key_fingerprint":"\"39a5e75b\"","dc1_auth_key":"\"b75e16fc84df9cd6b9ec5eba2fef5838205994074799adc21148b9df4630f234dbd30392a07b3dfcc46ad4da7b570c0875e5d0ab73461561890ca68f1c95888a70e96bcff90351a25c5ad7027bb1c7f6bae8727b90444af5ce62fb8f0f01c22f1a35aca7f5fcdc2146975c67118e1426e4c6fdf03b85cf45fe23318fa0abd0641acb2c6e56653f49b3c0c0a45af42b44f3bc879dfd9a9ef4daf6f1500f12eb2ee5de3925b372757f62053ac7be7ecd161835a131470def6d96b967672d46a8553c691e84ebb321fe30a833c19815cb9607f6fb1cc380b4ba4c2030b1e54b6b07584d5e7595cdd4a9a876a8384963cee3e8fa44760bb01909f9db90abcb858c15\"","dc1_server_salt":"\"e670eb0d7f3cc394\"","dc5_auth_key":"\"8d66d48fd63e5aa73ed39dcbad61ad591b482904b66e951bc9a671c862dafa126fb8dbc7c0c6093c5b4670993e5a99fdd2a2e94a369e08e1ff6ed4d8ad0be6ea2ab01629fbdf18458d9006ba30fec1c297c6b18563a22151ca1a7008d63162b0d1787359715770584fb5a08f96fb27281c7b2b6e32598d903c18672c5bf573d7dac3ae2952d01131abe9135ab1c3f099c83c6649ec45c4f3fb3b2dfc8356d196c720a6fa17c16697fc7132fb2924a38afb813e5dc5e3e690c3cc1fe690d09644675649cbc4e3c56ceb23599e8e50e2dc7e9ed9a4ba8c9c7604c75961518f32490ef9b782de5b2cdffc56649470a4e41c3375cdecadead78e41a077682b02d22c\"","tt-global-state":""}
+VM40:1 —————-
+undefined

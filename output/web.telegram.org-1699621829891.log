@@ -1,0 +1,199 @@
+logger.ts:134 [0.006] [SW] init
+logger.ts:134 [0.012] [SW] got 0 windows from the start
+logger.ts:134 [0.018] [SW] installing
+logger.ts:134 [0.020] [SW] window connected 666ab2fd-9f08-42f6-b7a9-b5a72ca7ce3d windows before 0
+logger.ts:134 [0.021] [SW] windows Array(0)
+logger.ts:134 [0.021] [SW] sending message port for mtproto
+logger.ts:134 [0.027] [SW] skipped waiting
+logger.ts:134 [0.031] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.033] [SW] cleared assets cache
+logger.ts:134 [0.033] [SW] claimed clients
+index.ts:335 got state, time: 2584.1999999284744
+index.ts:378 Will mount auth page: authStateSignQr 1699621786.22
+appDialogsManager-2e6d1ec8.js:sourcemap:6 setPeerColors Object Array(21)
+superMessagePort.ts:379 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'id')
+    at jo.updateMyOnlineStatus (k/mtproto.worker-1e59347d.js:4:308878)
+    at k/mtproto.worker-1e59347d.js:4:787765
+    at qe (k/mtproto.worker-1e59347d.js:1:32918)
+    at Object.callback (k/mtproto.worker-1e59347d.js:4:787733)
+    at Ee.invokeListenerCallback (k/mtproto.worker-1e59347d.js:1:2930)
+    at Object.processInvokeTask [as invoke] (k/mtproto.worker-1e59347d.js:1:6955)
+    at Ee.onMessage (k/mtproto.worker-1e59347d.js:1:5543)
+    at k/mtproto.worker-1e59347d.js:1:6433
+    at Array.forEach (<anonymous>)
+    at Object.processBatchTask [as batch] (k/mtproto.worker-1e59347d.js:1:6407)
+k/:1 Uncaught (in promise) Object
+k/:1 Uncaught (in promise) Object
+appDialogsManager-2e6d1ec8.js:sourcemap:23 loadPromises are still pending? {id: 515462324, index: 0, dom: {…}, dialogElement: uT}
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+Promise.then (async)
+add @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+await in (anonymous) (async)
+loadDialogs @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onChatsScroll @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onChatsScroll @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+C.checkForTriggers @ scrollable.ts:454
+(anonymous) @ scrollable.ts:243
+requestAnimationFrame (async)
+d @ scrollable.ts:63
+onScroll @ scrollable.ts:228
+onSizeChange @ scrollable.ts:309
+onListLengthChange @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onSort @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+update @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+await in update (async)
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+process @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+i @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+await in i (async)
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+Promise.then (async)
+setQueue @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+addToQueue @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+add @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+await in (anonymous) (async)
+loadDialogs @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onChatsScroll @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onChatsScroll @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onTabChange @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+setFilterIdAndChangeTab @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+S @ horizontalMenu.ts:60
+apply @ horizontalMenu.ts:52
+onStateLoaded @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+appDialogsManager-2e6d1ec8.js:sourcemap:23 loadPromises are still pending? {id: 785465629, index: 0, dom: {…}, dialogElement: uT}
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+Promise.then (async)
+add @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+await in (anonymous) (async)
+loadDialogs @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onChatsScroll @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onChatsScroll @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+C.checkForTriggers @ scrollable.ts:454
+(anonymous) @ scrollable.ts:243
+requestAnimationFrame (async)
+d @ scrollable.ts:63
+onScroll @ scrollable.ts:228
+onSizeChange @ scrollable.ts:309
+onListLengthChange @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onSort @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+update @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+await in update (async)
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+process @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+i @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+await in i (async)
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+Promise.then (async)
+setQueue @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+addToQueue @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+add @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+await in (anonymous) (async)
+loadDialogs @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onChatsScroll @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onChatsScroll @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onTabChange @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+setFilterIdAndChangeTab @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+S @ horizontalMenu.ts:60
+apply @ horizontalMenu.ts:52
+onStateLoaded @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+appDialogsManager-2e6d1ec8.js:sourcemap:23 loadPromises are still pending? {id: 339845461, index: 0, dom: {…}, dialogElement: uT}
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+Promise.then (async)
+add @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+await in (anonymous) (async)
+loadDialogs @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onChatsScroll @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onChatsScroll @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+C.checkForTriggers @ scrollable.ts:454
+(anonymous) @ scrollable.ts:243
+requestAnimationFrame (async)
+d @ scrollable.ts:63
+onScroll @ scrollable.ts:228
+onSizeChange @ scrollable.ts:309
+onListLengthChange @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onSort @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+update @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+await in update (async)
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+process @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+i @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+await in i (async)
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+Promise.then (async)
+setQueue @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+addToQueue @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+add @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+await in (anonymous) (async)
+loadDialogs @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onChatsScroll @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onChatsScroll @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onTabChange @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+setFilterIdAndChangeTab @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+S @ horizontalMenu.ts:60
+apply @ horizontalMenu.ts:52
+onStateLoaded @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+appDialogsManager-2e6d1ec8.js:sourcemap:23 loadPromises are still pending? {id: 637523875, index: 0, dom: {…}, dialogElement: uT}
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+Promise.then (async)
+add @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+await in (anonymous) (async)
+loadDialogs @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onChatsScroll @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onChatsScroll @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+C.checkForTriggers @ scrollable.ts:454
+(anonymous) @ scrollable.ts:243
+requestAnimationFrame (async)
+d @ scrollable.ts:63
+onScroll @ scrollable.ts:228
+onSizeChange @ scrollable.ts:309
+onListLengthChange @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onSort @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+update @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+await in update (async)
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+process @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+i @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+await in i (async)
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+Promise.then (async)
+setQueue @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+addToQueue @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+add @ appDialogsManager-2e6d1ec8.js:sourcemap:23
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+await in (anonymous) (async)
+loadDialogs @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onChatsScroll @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onChatsScroll @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+onTabChange @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+setFilterIdAndChangeTab @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+(anonymous) @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+S @ horizontalMenu.ts:60
+apply @ horizontalMenu.ts:52
+onStateLoaded @ appDialogsManager-2e6d1ec8.js:sourcemap:291
+k/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+console.log('—————-');console.log('username: ', '3d104799-ca1a-48bb-9309-3f7266d56010');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM36:1 —————-
+VM36:1 username:  3d104799-ca1a-48bb-9309-3f7266d56010
+VM36:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36
+VM36:1 cookie: 
+VM36:1 localStorage: {"dc3_auth_key":"\"c37c891261916a738b4544c3a16ef8ad5acce2633ea85bef6bc66ebb65cace9b0dc9dd988545c385d351291004e38cdfddd2602f8070ce095e6592e1d9f97877e73e03997a6ec8aa7af34a6f22782227988a3ab4be4eab0fa37537b02751cfa6f025c7cf9b819a1aab99d393e2a9e1e11ab867b83660ca2b996f9ad5d366454cfbc6234e4ab8aff75433500380f9e2d1dfc2ba5c39ffc692670c291d456882b02a7623587e4d07efb6b7bafd6064e68a925bef1fef1ff34e1a8f8b0d9942cfdc3e0fa20b7d505bc0fb0665a0a85bedd0ad239768a49c8da78b9f7e72e9a5578a1a2e1c210380004951a86e2bbe67831febf58b120eb62bd901e11202f83804ee\"","k_build":"423","dc5_server_salt":"\"ef200cc40c8b4eda\"","dc3_server_salt":"\"a3258b77e3da9c82\"","user_auth":"{\"dcID\":2,\"date\":1699621816,\"id\":6401129933}","xt_instance":"{\"id\":91112572,\"idle\":true,\"time\":1699621823629}","dc":"2","dc4_auth_key":"\"13bc066e0da2d9a385e6efed480d2491cb3b76ea2d72486f388511f4ea3c5abcbeadb7f4cfbb0d1ef48555ea0d9fce0f67768076f04ebacd77648003b2ab89aa000b354207209bc3628f947c8fa7632259449167d46a52e7ae2bdccf386442f30ba7e886c7ce3e9da972101df21b00dcf1fcae69e8d8e7836db567239bea92670333780658bd9ac8e826d73de216cd12d218f3e24037db4cc3a66a47bf22630b16847de1ab832c9cd94468181bb9ecec3f35f57c27fa5cf69069dcb5c2082f5ac5fb0c31df981dff4b613cc1106ccd81cdbfb81980fe6cf9b2aa90ddda703f48f6b478be6892b680e457eaab3086e544d6c3d1bd7906c1634e98a4d32c600396\"","":"","dc2_auth_key":"\"35b65dca91a5010c848ee0fd26741a88cde7d7fa93b1539502c7de5c4c967b4513c12a85e5509412499d215bcada64d15595977c5443e6be7427ca429ee3bbd6e319dfc9c3659f0f330287ab9d46cedc133d7325841b5f371442f47ddece3ba73089c0ede52a4bda586368d32e352999efb62214c4503532624b62e5b3faddedb27a25b098b8a418a8f09313cb9df15d795daba1bcb170c8e0ad3615f54833b39177832bae072b8668858560677fd5721d78b5f2940516b6e5cbe2cba7551b66805faa9dd8cf86417b3911ab1b03bfa18d58d495bae809f3499a36463dcf8310b2b0a7af7a22713319ff68f7234ff51d2161d6918885f668f1f43ef323b66efb\"","dc4_server_salt":"\"0d8cbb124159006d\"","tgme_sync":"{\"canRedirect\":true,\"ts\":1699621818}","server_time_offset":"0","dc2_server_salt":"\"f9080b37b98f0c95\"","state_id":"2688099210","auth_key_fingerprint":"\"35b65dca\"","dc1_auth_key":"\"3943daf9982fb7479bc2c7d09faaa4247af53c2a379e4a38f2d0cfb53cae365d85300a4aad7e5d633d0831ab3ea71d05b22ee44c77754067c722b105acdf0ca04211a45fb41a08f5a86a9e75fd03ac97c1d23311791f8fcb15403f179f67e200410b066709259667382f787d508e8850b4b242d51d33214d73922955c8ae42a5077f6c46d5f14def6de0b6e3d428ad65d848d29d412498bf086ade4b3539533abcfc9987cdb9b582d8ce4d43dfa9eed2de5a1fb2a64b8bcf72e0f17e1683835b2762bb9655fb453cdca89bb576c0519b8af832057aa629f678ee44eae07f278deed573e5af74a09e202f7fe166b0a8e66dcb5974f4038ba24150d2da9690567c\"","dc1_server_salt":"\"4f48920ff9049a41\"","dc5_auth_key":"\"ab8704eb8a785f8caf512fe691d2bd3ad147681dbccaa1622c79dbd03d8a57a0922617aa9f0f19ad146dd340fe3f769c6e3562ad179544beb03c2260f27e8aecc46b3d492efa399869228faf72e3edc3f6a620ff124babbacad81d08a4fb7158785fd1fa45a43d248dc1d2340472c0ae4855f62c1fe61e7db7e3a7f11aafe84badeec79eb94d8c24e65f6e08bc0f407c3b72c742914d63baefcc241c3ba6e07b30a93f9f37dfe0f0a4df4cb760a96407a7cd2575a10d6e2cd92fc21d4bf17f999fe55ebf56853b2c0ee962467f3d747dc666b62ac2d973dfb5e024cfa35f7daf2f53986c56df9d3bf81666507073db088e276753c67a15c5b4a25f676b79f073\"","tt-global-state":""}
+VM36:1 —————-
+undefined
