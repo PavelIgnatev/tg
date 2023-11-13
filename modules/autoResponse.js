@@ -126,7 +126,7 @@ async function getDialogues(page, aiName, userName) {
     let currentSum = 0;
     const resultArray = [];
 
-    for (const str of result.reverse()) {
+    for (const str of result.slice(1).reverse()) {
       if (currentSum + str.length <= 1300) {
         resultArray.push(str);
         currentSum += str.length;
@@ -135,7 +135,7 @@ async function getDialogues(page, aiName, userName) {
       }
     }
 
-    return [result.reverse(), resultArray.reverse().slice(1)];
+    return [result.reverse(), resultArray.reverse()];
   } catch (e) {
     console.log(e.message);
 
