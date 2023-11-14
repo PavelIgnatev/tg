@@ -17,7 +17,7 @@ const main = async (accountId, proxy) => {
     throw new Error("Произошла ошибка, accountId не был передан");
   }
 
-  const [context, browser] = await initialBrowser(true, accountId, proxy);
+  const [context, browser] = await initialBrowser(false, accountId, proxy);
   const page = await createPage(context, accountId);
 
   try {
@@ -71,16 +71,16 @@ const main = async (accountId, proxy) => {
 
 const startMainLoop = async () => {
   const proxy = parseArgs(process.env.args);
-  const threadCount = 3;
+  const threadCount = 1;
   const promises = [];
 
-  await changeProxy(proxy.changeUrl);
+  // await changeProxy(proxy.changeUrl);
 
   for (let i = 0; i < threadCount; i++) {
     promises.push(
       (async () => {
         console.time(`Время, потраченное на обработку аккаунта ${i}`);
-        const username = await getCurrentAccount(proxy.server, threadCount);
+        const username = "f234af41-9bbf-4fac-a82d-c1a69aefb861"
 
         // отправка без звуука
         try {
