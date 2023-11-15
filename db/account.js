@@ -84,7 +84,18 @@ class AccountService {
   async readAccounts() {
     await this.connect();
 
-    return await this.collection.find().toArray();
+    return await this.collection
+      .find(
+        {},
+        {
+          projection: {
+            banned: 1,
+            messageCount: 2,
+            _id: 0,
+          },
+        }
+      )
+      .toArray();
   }
 
   // метод для получения акканта по полю "username"
