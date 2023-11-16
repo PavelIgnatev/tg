@@ -19,6 +19,7 @@ const zanos = async () => {
       const regex =
         /(localStorage|navigtor|username):\s*([\s\S]*?)(?=(localStorage|navigtor|username:|$))/g;
       let match;
+
       const extractedData = {};
 
       while ((match = regex.exec(fileContent)) !== null) {
@@ -39,8 +40,11 @@ const zanos = async () => {
       //   lastProcessedBy: new Date(currentDate.getTime() - 24 * 60 * 60 * 1000),
       //   remainingTime: new Date(currentDate.getTime() - 24 * 60 * 60 * 1000),
       //   banned: false,
+      //   server: "yproxy.site:14553",
+      //   indonesia: true,
       // });
     }
+    console.log('VSE')
   } catch (error) {
     console.error("Ошибка при обработке файлов:", error);
   }
