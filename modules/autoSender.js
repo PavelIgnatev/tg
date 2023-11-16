@@ -38,6 +38,10 @@ const autoSender = async (accountId, context, account) => {
   try {
     const isSpam = await checkSpam(context, accountId);
 
+    if (isSpam === "banned") {
+      return isSpam;
+    }
+
     if (isSpam) {
       axios.post("http://localhost/recipient", {
         status: "spam",

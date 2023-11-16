@@ -46,9 +46,13 @@ const main = async (accountId, proxy) => {
 
     await autoResponse(page, context, accountId);
 
-    // возмодно тут надо сделать глобал баннед если спам ошибка но надо тестить
     const account = await readAccount(accountId);
-    await autoSender(accountId, context, account);
+    const senderResult = await autoSender(accountId, context, account);
+
+    if (senderResult === "banned") {
+      isGlobalBanned = true;
+      throw new Error("Аккаунт забанен");
+    }
   } catch (e) {
     console.error(e.message);
   }
