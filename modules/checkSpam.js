@@ -43,7 +43,7 @@ const checkSpam = async (context) => {
     await newPage.waitForSelector('.last-in-list:has-text("/start")', {
       state: "hidden",
     });
-    await newPage.waitForTimeout(2000);
+    await newPage.waitForTimeout(5000);
     const botResponseEl = await newPage.waitForSelector(".last-in-list");
 
     const botResponse = await botResponseEl.textContent();
