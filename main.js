@@ -75,7 +75,7 @@ const main = async (accountId, proxy) => {
 
 const startMainLoop = async () => {
   const proxy = parseArgs(process.env.args);
-  const threadCount = proxy.server === "yproxy.site:14553" ? 1 : 3;
+  const threadCount = 3;
   const promises = [];
 
   await changeProxy(proxy.changeUrl);
