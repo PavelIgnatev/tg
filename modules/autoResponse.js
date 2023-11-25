@@ -15,31 +15,38 @@ function filterText(text) {
   return filteredText;
 }
 
-const defaultPrompt = `Ты младший менеджер по продажам компании GROW, ты продаешь интеграции ИИ`;
-
-async function makePostRequest(result, personName, botName, offerDescription) {
+async function makePostRequest(personName, aiName, offer, messages) {
   console.log(`Имя пользователя: ${personName}`);
-  console.log(`Имя бота: ${botName}`);
+  console.log(`Имя бота: ${aiName}`);
+  const { aiRole, goal, companyDescription } = offer;
 
-  // Если пользователь проявил интересн то сформируй и выдай ему цельный оффер.
   const dialogue = [
-    `Описание оффера: ${offerDescription.slice(
-      -1510
-    )}. Диалог с пользователем на текущий момент: ${result
-      .join("\n")
-      .slice(
-        -1300
-      )}. Ты - сотрудник компании имя которого ${botName} твоя роль прописана в оффере. Твоя задача Придумать одно ответное сообщение для пользователя ${personName} без приветствия на основании контекста диалога на текущий момент для пользователя ${personName}. Отвечай кратко, сдержанно и в человеческой манере, не более 250 символов на ответ. Не повторяйся в вопросах и предложениях и веди пользователя к цели, задавая наводящие вопросы если он еще не достиг цели оффера. Если пользователь просит информацию, которой нет в оффере, то игнорируй вопрос и не отвечай на него Если тебя спросят о том кто ты или попросят рассказать о себе, то самостоятельно кратко презентуй себя на основе информации из оффера. Отвечай только на вопросы пользователя ${personName}`,
+    {
+      role: "system",
+      content: `Тебя зовут ${aiName}.
+Твоя роль: ${aiRole}.
+Описание компании: ${companyDescription}
+Целевое действие: ${goal}
+  
+Твоя задача: отвечать пользователю ${personName} и вести к целевому действию по воронке:: 
+1) приветствие
+2) проявление интереса к услуге из описания продукта, но без целевого действия 
+3) выдвигаем оффер с ключевым наводящим вопросом по ключевому действию, учитывая также и контекст компании 
+4) обрабатываем возражение или отвечаем на вопросы 
+5) благодарим пользователя 
+
+Длина ответного сообщения должна быть не более 25 слов. Если ты уже рассказал часть информации из "Описания компании", то повторно рассказывать не надо. Не путай этапы и не беги вперед. Не используй ссылки. Отвечай так, будто ты реальный человек. Пиши корректно и по правилам русского языка. Не приветствуй. Не здоровайся. Не извиняйся.pm2  Обрабатывай возражения пользователя, пытайся проявить у него интерес к услуге. Если пользователь уже согласен - выдвинь оффер для пользователя из целевого действия и поблагодари его за согласие, не задавая лишних вопросов, а если пока еще не согласен, то в конце ответного сообщения плавно задавай наводящий вопрос относительно оффера и описания продукта чтобы проявить интерес.`,
+    },
+    ...messages,
   ];
 
   while (true) {
     try {
-      const response = await axios.post("http://194.135.25.158/answer/", {
+      const response = await axios.post("http://81.31.245.212/chat/", {
         dialogue,
       });
 
       const { data } = response;
-
       let pattern =
         /((http|https|www):\/\/.)?([a-zA-Z0-9'\/\.\-])+\.[a-zA-Z]{2,5}([a-zA-Z0-9\/\&\;\:\.\,\?\\=\-\_\+\%\'\~]*)/g;
       const message = data.replace("\n", "");
@@ -59,27 +66,6 @@ async function makePostRequest(result, personName, botName, offerDescription) {
         throw new Error("В ответе содержатся подозрительные символы");
       }
 
-      if (
-        message.toLowerCase().includes("sorry") ||
-        message.toLowerCase().includes("that") ||
-        message.toLowerCase().includes("can") ||
-        message.toLowerCase().includes("help") ||
-        message.toLowerCase().includes("hmm")
-      ) {
-        console.log(
-          `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
-        );
-        console.log(dialogue);
-        throw new Error("В ответе содержится слово 'Sorry'");
-      }
-
-      if (message.toLowerCase().includes("менеджер:")) {
-        console.log(
-          `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
-        );
-        throw new Error("В ответе содержится слово: 'менеджер'");
-      }
-
       return message;
     } catch (error) {
       console.log(`Ошибка запроса. ${error.message}`);
@@ -87,11 +73,16 @@ async function makePostRequest(result, personName, botName, offerDescription) {
   }
 }
 
-async function getPrompt(groupId) {
+async function getOffer(groupId) {
   const dataGroupId = await findByGroupId(groupId);
-  const { propmpts: { offerDescription } = {} } = dataGroupId ?? {};
-
-  return offerDescription ?? defaultPrompt;
+  const {
+    offer: {
+      aiRole = "младший менеджер по продажам компании AiSender",
+      companyDescription = "AiSender занимается автоматизацией первой линии продаж с помощью искуственного интеллекта",
+      goal = "получить согласие на зум встречу с старшим менеджером, который расскажет про продукт, если согласие получено, то менеджер напишет в течении 24 часов.",
+    },
+  } = dataGroupId && dataGroupId.offer ? dataGroupId : { offer: {} };
+  return { aiRole, companyDescription, goal };
 }
 
 async function getDialogues(page, aiName, userName) {
@@ -100,6 +91,7 @@ async function getDialogues(page, aiName, userName) {
     const messages = await page.$$(".Message.message-list-item");
 
     let result = [];
+    const resultForAi = [];
 
     for (const element of messages) {
       const isOwnMessage = await element
@@ -112,24 +104,44 @@ async function getDialogues(page, aiName, userName) {
         if (isOwnMessage) {
           result.push(
             `${filterText(aiName)}: ${textContent
+              .replace(" AM", "")
+              .replace(" PM", "")
               .slice(0, -5)
               .replace("edited", "")}`
           );
+          resultForAi.push({
+            role: "assistant",
+            content: textContent
+              .replace(" AM", "")
+              .replace(" PM", "")
+              .slice(0, -5)
+              .replace("edited", ""),
+          });
         } else {
           result.push(
             `${filterText(userName ?? "Клиент")}: ${textContent
+              .replace(" AM", "")
+              .replace(" PM", "")
               .slice(0, -5)
               .replace("edited", "")}`
           );
+          resultForAi.push({
+            role: "user",
+            content: textContent
+              .replace(" AM", "")
+              .replace(" PM", "")
+              .slice(0, -5)
+              .replace("edited", ""),
+          });
         }
       }
     }
     let currentSum = 0;
     const resultArray = [];
-    for (const str of [...result].slice(1).reverse()) {
-      if (currentSum + str.length <= 1300) {
+    for (const str of [...resultForAi].reverse()) {
+      if (currentSum + str.content.length <= 2000) {
         resultArray.push(str);
-        currentSum += str.length;
+        currentSum += str.content.length;
       } else {
         break;
       }
@@ -139,7 +151,7 @@ async function getDialogues(page, aiName, userName) {
   } catch (e) {
     console.log(e.message);
 
-    return [[],[]];
+    return [[], []];
   }
 }
 
@@ -205,20 +217,17 @@ async function autoResponseDialogue(context, href, accountId) {
         }
 
         if (!stopped) {
-          const prompt = await getPrompt(groupId);
+          const offer = await getOffer(groupId);
           const message = await makePostRequest(
-            dialogues,
             filterText(userTitle),
             filterText(aiName),
-            prompt
+            offer,
+            dialogues
           );
           await sendMessage(senderPage, message);
           resultDialogues.push(`${filterText(aiName)}: ${message}`);
           console.log(
             `\x1b[4mСгенерированное сообщение для автоответа пользователю:\x1b[0m \x1b[34m${message}\x1b[0m`
-          );
-          console.log(
-            `\x1b[4mПромпт для генерации автоответного сообщения:\x1b[0m \x1b[32m${prompt}\x1b[0m`
           );
         } else if (managerMessage && managerMessage.trim()) {
           await sendMessage(senderPage, managerMessage);
