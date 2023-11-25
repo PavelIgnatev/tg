@@ -26,23 +26,20 @@ const zanos = async () => {
         const key = match[1];
         const value = match[2].trim().split("\n")[0];
         extractedData[key] = value;
-      }
+      } 
 
       console.log(`${extractedData.username} добавлен в базу данных.`);
       const currentDate = new Date();
 
-      // await insertAccount({
-      //   username: extractedData.username,
-      //   cookies: null,
-      //   userAgent: extractedData.navigtor,
-      //   localStorage: JSON.parse(extractedData.localStorage),
-      //   defaultLocalStorage: JSON.parse(extractedData.localStorage),
-      //   lastProcessedBy: new Date(currentDate.getTime() - 24 * 60 * 60 * 1000),
-      //   remainingTime: new Date(currentDate.getTime() - 24 * 60 * 60 * 1000),
-      //   banned: false,
-      //   server: "yproxy.site:14553",
-      //   indonesia: true,
-      // });
+      await insertAccount({
+        username: extractedData.username,
+        cookies: null,
+        userAgent: extractedData.navigtor,
+        localStorage: JSON.parse(extractedData.localStorage),
+        defaultLocalStorage: JSON.parse(extractedData.localStorage),
+        banned: false,
+        server: "yproxy.site:14553",
+      });
     }
     console.log('VSE')
   } catch (error) {

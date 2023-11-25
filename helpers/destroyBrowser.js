@@ -5,31 +5,31 @@ const destroyBrowser = async (username, page, context, browser) => {
     throw new Error("Произошла ошибка, проверьте аргументы функции");
   }
 
-  const userAgent = await page.evaluate(() => window.navigator.userAgent);
-  const localStorageData = await page.evaluate(() => {
-    const data = {};
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      const value = localStorage.getItem(key);
-      data[key] = value;
-    }
-    return data;
-  });
+  // const userAgent = await page.evaluate(() => window.navigator.userAgent);
+  // const localStorageData = await page.evaluate(() => {
+  //   const data = {};
+  //   for (let i = 0; i < localStorage.length; i++) {
+  //     const key = localStorage.key(i);
+  //     const value = localStorage.getItem(key);
+  //     data[key] = value;
+  //   }
+  //   return data;
+  // });
 
-  const existingAccount = await readAccount(username);
+  // const existingAccount = await readAccount(username);
 
-  if (existingAccount) {
-    await updateAccount(username, {
-      userAgent,
-      localStorage: localStorageData,
-    });
-  } else {
-    await insertAccount({
-      username,
-      userAgent,
-      localStorage: localStorageData,
-    });
-  }
+  // if (existingAccount) {
+  //   await updateAccount(username, {
+  //     userAgent,
+  //     localStorage: localStorageData,
+  //   });
+  // } else {
+  //   await insertAccount({
+  //     username,
+  //     userAgent,
+  //     localStorage: localStorageData,
+  //   });
+  // }
 
   await browser.close();
 };
