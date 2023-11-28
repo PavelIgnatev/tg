@@ -84,7 +84,7 @@ const startMainLoop = async () => {
     promises.push(
       (async () => {
         console.time(`Время, потраченное на обработку аккаунта ${i}`);
-        const username = await getCurrentAccount(proxy.server, threadCount);
+        const username = await getCurrentAccount(proxy.server, threadCount)
 
         // отправка без звуука
         try {

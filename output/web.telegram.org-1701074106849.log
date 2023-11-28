@@ -1,0 +1,40 @@
+index.ts:335 got state, time: 595.6999998092651
+index.ts:378 Will mount auth page: authStateSignQr 1701074053.362
+logger.ts:134 [0.003] [SW] init
+logger.ts:134 [0.006] [SW] got 0 windows from the start
+logger.ts:134 [0.011] [SW] installing
+logger.ts:134 [0.012] [SW] window connected 372423c8-50c1-4441-b6b5-83af8b151056 windows before 0
+logger.ts:134 [0.012] [SW] windows Array(0)
+logger.ts:134 [0.013] [SW] sending message port for mtproto
+logger.ts:134 [0.032] [SW] skipped waiting
+logger.ts:134 [0.036] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.037] [SW] cleared assets cache
+logger.ts:134 [0.037] [SW] claimed clients
+appDialogsManager-bd87ba7a.js:sourcemap:6 setPeerColors Object Array(21)
+k/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+console.log('—————-');console.log('username: ', '579cb713-c6c8-4e58-a9ca-2bac3cfade5d');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM36:1 —————-
+VM36:1 username:  579cb713-c6c8-4e58-a9ca-2bac3cfade5d
+VM36:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36
+VM36:1 cookie: 
+VM36:1 localStorage: {"dc3_auth_key":"\"157cd6406ddbdc357a76048ad1ab2c222d22b1b4d41a161b62e290d31a5060e8801bbe118227a7a54b8b8b54cb3bfce5bc5aade8fc8b502753f5f2de4abcdae05100b6b5b2ca3d7364aebf8d6e599a8533589b7573f56c1443d0ab7f7503ce79cd1d9670f2703ecfb481562373a95dd32620577bc94bea6d5a57a99eee9e1d700623c12045ef7355a30eddcfd1532aa7ca35083235b21c14c4b5465339afbfe1f1658683a88af08565acbaa26f76e1c071940245cfcda05b5efdd22577289a9251b9fbb7444a47352ac81d5faf55b93395521308b4b5469295ebee261eb34c09a211d54931c0477113f060c7b8cb7174d2e73584a2f288cbc7604b7d9b638c05\"","k_build":"427","dc5_server_salt":"\"c3c4c2cc26847b3c\"","dc3_server_salt":"\"cf1551508a306df0\"","user_auth":"{\"dcID\":2,\"date\":1701074087,\"id\":6614930700}","xt_instance":"{\"id\":16780720,\"idle\":true,\"time\":1701074102765}","dc":"2","dc4_auth_key":"\"8be4eb48ea7a99345e23f4f466dbebfb25e71c319e5949811d8b4fcae0c69587b7975e0d94e535018965a9962016196453297dc8600f9875d061c58a2422773c7977943fe5845cdf5a17987f61aa70a0f84d2c8764b46f65ae099db76cb48966b6a2eddce12980c10533a1c9b1f65b6f750b031f7b0ff5daa3dff82b04585dba8761b9c57eb2bd050d82bc9b828054e4f9cefbc28e61e542ae402967c95abf25aa7f0d4c547c84b3ed6f8beb7b28b103f97b3062ef463d6e6758bfd7b83479a103c0de809560d0cfd43ec4a6c881d58bf53dab213eac79495de67dbedb8f49c473188fb0c9f37dca2e17f9dd5d6c747c4ddab3b81f30eca74feea10e83c2252c\"","":"","dc2_auth_key":"\"876d7c240209030b07a6fe85369af3da085ccb9f0c6e6ee59737fcb571531aac7c8f61ec9e54b98e95094332cd38da9f6b556f70e4a641c7e0020f11f4e338fa52649429964632fe9f58d94d68b3dc85121725004af4a66c2cb1574db94e7f2d0e6dfc58814abd496c7862612193b36eb8ebc753a64c6de773e195373f9129b0aa7f573a2cbbc9f0993b85deda808ed94382b5e985e742f15523eedf402109dae0c4c4627b4ec2bd29c8bc28a68209d15d16c0e52b6320a528d6d55722adfa7737bbc7f5e2d09818e45fefa93d192a9407aa80ff7d01a32f2deaa6a73f4bbb2f320730b5a54df08e0bdac5af8c644f01a0bb7cc187a808b02790bdfabfe70cac\"","dc4_server_salt":"\"9d1915557bb8be3e\"","tgme_sync":"{\"canRedirect\":true,\"ts\":1701074088}","server_time_offset":"0","dc2_server_salt":"\"a011d88ff300a5c6\"","state_id":"337076330","auth_key_fingerprint":"\"876d7c24\"","dc1_auth_key":"\"60690435c5798d808d6dbd73e92fe5cf78deff680679b4122496d929d5715f32396804c0407378fa2030ff22097aefdb1ee7fab6c9f3ba69ae9fe7a8384b602194a4d1ba08fd4f927fdfd754c94de5b503daaf9769c89cb5cdc93186d38ebc28a21ca17f23696283fb5b47d0f628d28732ee699583b83bed1e6f604650b1d06b8bcd96d2f0b849ad4e54b5a09b68ae1794631ed93249a6f175cbae0fb84b8c921f8fcd6ed2be636427c6a05478d9b865231fc301cd2973b3cda415a5844c838b19d2a875f7dabbc9b0c04afb30bf33790d1664041428578513075a8c6af7bfea83b828b1fa517a507b96b3b76e091116a795fd5c87959989d84eaeb3520f00b0\"","dc1_server_salt":"\"a12344d30f466e2c\"","dc5_auth_key":"\"2da9cdf4862b5b348c688317f00bf584115d3e49deb0451b7bc9318d83498871202591ad6942fdb0c625cbd65055ed657244e4cb76d57cd2a782c6298e81719d21a35c16d9b311f22e81499ef00b04e051c44c2150857cd8844e6da2d61ca9200a348d8d85b29c389c38598d4859b73eb7800a00cc32cca20b14f106954be5d73c88a1561d9a6b6682dc52153432c0b3ea18c751ba6e5612f2c1763365966bc7225385472d8dd88fb3cda05b7eb6aa5ae736d2d9e676752181b45be7a4d63d5eb8697783db6ca42b0e79ffe04c6e6cb327a28d468da973f0369657c52e7a7d34b0c5d579ff4f4903104e5d3c1667e0dd13f48899a195f7904145cb4c2fc03308\"","tt-global-state":""}
+VM36:1 —————-
+undefined

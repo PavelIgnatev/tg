@@ -91,6 +91,7 @@ class AccountService {
           projection: {
             banned: 1,
             messageCount: 2,
+            username: 3,
             _id: 0,
           },
         }
@@ -224,7 +225,7 @@ class AccountService {
       .aggregate([
         // { $match: { banned: { $ne: true } } },
         // { $match: { server, fullBanned: { $ne: true } } },
-        { $match: { server, fullBanned: { $ne: true } } },
+        { $match: { server, banned: true } },
 
         {
           $group: {

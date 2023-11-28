@@ -1,0 +1,42 @@
+logger.ts:134 [0.002] [SW] init
+logger.ts:134 [0.005] [SW] got 0 windows from the start
+logger.ts:134 [0.008] [SW] installing
+logger.ts:134 [0.008] [SW] skipped waiting
+logger.ts:134 [0.009] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.011] [SW] cleared assets cache
+logger.ts:134 [0.011] [SW] claimed clients
+logger.ts:134 [0.021] [SW] window connected 224da3a8-073e-4ef3-9716-614b701eb6c9 windows before 0
+logger.ts:134 [0.021] [SW] windows Array(0)
+logger.ts:134 [0.022] [SW] sending message port for mtproto
+index.ts:335 got state, time: 1508.2999999523163
+index.ts:378 Will mount auth page: authStateSignQr 1701096396.482
+appDialogsManager-bd87ba7a.js:sourcemap:6 setPeerColors Object Array(21)
+k/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+appDialogsManager-bd87ba7a.js:sourcemap:23 loadPromises are still pending? Object
+(anonymous) @ appDialogsManager-bd87ba7a.js:sourcemap:23
+console.log('—————-');console.log('username: ', '96122c75-c9ab-426e-bf1a-6ebcda05fe7f');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM40:1 —————-
+VM40:1 username:  96122c75-c9ab-426e-bf1a-6ebcda05fe7f
+VM40:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36
+VM40:1 cookie: 
+VM40:1 localStorage: {"dc3_auth_key":"\"1e7d5b766809e6a060fa81a26d097041dd093479e141d2a524a706154aa93c888b2cc5fc321ba31385d559376044b0fe3cd79d913319d57978c23a58312524756d6c710956550bf3c5d20dfc1a4dbdfb357a29a5583de15046ddab5347e9d132a3803261ccb7ec593020ae963040fb085f3a4ea344ba83e80ef75ec55958bfec29c4ac70805b2596b34de915e10a649a2cf98e03693f81ac28585670b3df63b0e7ac0d9472ef45d2f1287c9a35129fcd2c7c718f0e8169f32a01521e75d859c8d0cdc20a59694d11d4956a828590cdf570fc787fd9449433b3570b57057d1a8ca6d976b49cbcba43ab9283479214efe66e41d410e2bbd5ef3a8eb3c6d43bcca4\"","k_build":"427","dc5_server_salt":"\"bb5ddbac016c809c\"","dc3_server_salt":"\"a2dcaf13b5052cd8\"","user_auth":"{\"dcID\":2,\"date\":1701096430,\"id\":6989963222}","xt_instance":"{\"id\":40674850,\"idle\":true,\"time\":1701096444968}","dc":"2","dc4_auth_key":"\"5059635517d1ff9dd32b9cac19e95ff0445b5a94beeec0d85791738670fa954468976672ff25807742d5ff160e204e179eb3cb0ae45a2ec304d544a12da48d7c3ec6c932cefb5065a31898dc5d2731c7f321093d3d440efbd3961780c6c4468c89ccfc3d23c2060bf5677dab0d080d065197a997d48c8a70e945e37f3c22bf4d6c9f26031baf0af0edd862d5143bba203cc2b78899db4ac54d829ebcac344af62e3deffe0fdd611796e53235d8ca37ab0a6ef92f3587eee194ae89790aeb7655bf5f624a824e90dad7a4c30f72ce43f4679f7903c88a0aea8d37e21204578e5eb99893f794c09ef9ac9fcdcda078fa41a04daecadfc10b246f515c80a38bcfee\"","":"","dc2_auth_key":"\"1ce8dc519280d43f8f8c3d9a1928e7be6aed1cabdc050c1e35edce97a93555d70068c40adc1625a0893afe8fa3b2bcd83e2f0957fa0d63cf9a0859b0322ea237b9a7e840d853ac7d2c0b83f9ac681092c72f920fc4ffc0748cf255a813e85e3236b2f5ad888bceeaf08e94f8038119e756b988a824678d02326e0825daade735de894f9c96a5a04017166d0bb33b1ec4b9b55e55da4a22f105b1b753f445ab1e3adbe1b86bb947d2ca7686f2ac74402222d6b7e110c38a9b1485e8afb83003a27ee5f942f4ae67992b5b28b351ec66b5c7571792d7c163b0242b483968ad3d5b6a4f9214d0d44cfb7493a4df2e31f296bcce6230d4b1246316d49b70521fb429\"","dc4_server_salt":"\"b575a12c434792df\"","tgme_sync":"{\"canRedirect\":true,\"ts\":1701096433}","server_time_offset":"0","dc2_server_salt":"\"d8ab8b1b9e1f15b7\"","state_id":"1441257128","auth_key_fingerprint":"\"1ce8dc51\"","dc1_auth_key":"\"04f9cbd99a750a22236f07e2047479e741f3892ad354bbe8e70d98ebd530475d0e9b9db9d143356f487e61e50fe6a240bab9e3ab74b3d141947b13be03e2f51335bee01d7d2858dd585d7710ad4855f4dbdfcc52acb0e3f35740591e1bc2de3fc578e0ccf14c2ffa1576d63996600195806f3e391e6e98a661b1d629d2f101a4bb18fb7bb829bcc03efd8b3b5b54621fcdd6d239e591afeeec3584d2d140d4ec1d7095fba1de17bbe0b081adc1de1ba8438c825a14747ad5e6eecc315ca39a84822a00102ef00284e54bdcd3fb48931de8e3af400941ed23983a84a6703630d83d95b5d4f7b2e6e789a378fc121dffb918725b045ec4c8096377856090f91080\"","dc1_server_salt":"\"ec47466644cafbed\"","dc5_auth_key":"\"19e90b573b65df8a542224a281f9e67b3d201ec804379019d67e0b87c961e4bc53a5503e9056f317ccf6deb89392465fa4665ee2ea10bb0c39e652fe7d2dd4560d5d1a25c968cd37980e204889dfac98a690ae187c5fdc8585c1f9bc7d20e51f491c7a2d55fb86b115ea823192140552a11062693e3ca6642c854c4b28949b26f439c13ab58e05f57ade7d1f7f278034422161ab5630d12660adf59ca850b0feac6e8fb81066e9db0470cc4c8cf51965390aab1ff921dfe504d32eb4d10795e42a17331dd7713294b5ca1507bd71cda5fa3bdf928f27ee35a419a842f14c8cd193a1d3ac9c59cb21bf19133c9352cd52c4e0c0fb48230e9b45f2f158814d43c5\"","tt-global-state":""}
+VM40:1 —————-
+undefined

@@ -31,15 +31,14 @@ const zanos = async () => {
       console.log(`${extractedData.username} добавлен в базу данных.`);
       const currentDate = new Date();
 
-      await insertAccount({
-        username: extractedData.username,
-        cookies: null,
-        userAgent: extractedData.navigtor,
-        localStorage: JSON.parse(extractedData.localStorage),
-        defaultLocalStorage: JSON.parse(extractedData.localStorage),
-        banned: false,
-        server: "yproxy.site:14553",
-      });
+      // await insertAccount({
+      //   username: extractedData.username,
+      //   cookies: null,
+      //   userAgent: extractedData.navigtor,
+      //   localStorage: JSON.parse(extractedData.localStorage),
+      //   defaultLocalStorage: JSON.parse(extractedData.localStorage),
+      //   banned: false,
+      // });
     }
     console.log('VSE')
   } catch (error) {

@@ -35,7 +35,7 @@ class groupIdService {
     this.collection = this.db.collection(collectionName);
   }
 
-  async createGroupId(target, database = [], propmpts = {}) {
+  async createGroupId(target, database = [], propmpts = {}, offer={}) {
     await this.connect();
 
    return  await this.collection.insertOne({
@@ -44,6 +44,7 @@ class groupIdService {
       currentCount: 0,
       database,
       propmpts,
+      offer,
       dateCreated: new Date(),
     });
   }
