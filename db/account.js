@@ -225,7 +225,7 @@ class AccountService {
       .aggregate([
         // { $match: { banned: { $ne: true } } },
         // { $match: { server, fullBanned: { $ne: true } } },
-        { $match: { server, banned: true } },
+        { $match: { server, fullBanned: { $ne: true } } },
 
         {
           $group: {
