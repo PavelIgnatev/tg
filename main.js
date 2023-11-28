@@ -51,7 +51,7 @@ const main = async (accountId, proxy) => {
 
     if (senderResult === "banned") {
       isGlobalBanned = true;
-      await updateAccount(accountId, { fullBanned: true });
+      await updateAccount(accountId, { banned: true, forceBanned: true, fullBanned: true });
       throw new Error("Аккаунт забанен");
     }
   } catch (e) {
