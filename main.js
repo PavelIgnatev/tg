@@ -91,7 +91,7 @@ const startMainLoop = async () => {
         console.time(`Время, потраченное на обработку аккаунта ${i}`);
         const username = await getCurrentAccount(proxy.server, threadCount);
 
-        // отправка без звуука
+        // отправка без звука
         try {
           console.log("Начинаю вход в аккаунт: ", username);
           await main(username, proxy);
