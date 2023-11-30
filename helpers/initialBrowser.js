@@ -26,7 +26,7 @@ const initialBrowser = async (headless, username, proxy) => {
     storageState: {
       cookies: cookies || [],
     },
-    // proxy,
+    proxy,
   });
 
   return [context, browser];

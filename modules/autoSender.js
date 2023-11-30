@@ -25,7 +25,7 @@ const autoSender = async (accountId, context, account) => {
         const seconds = Math.floor((difference % 60000) / 1000);
         const formattedDifference = `${hours}:${minutes}:${seconds}`;
         console.log(`Разница: ${formattedDifference}`);
-        // return;
+        return;
       }
     }
   } catch (e) {
@@ -66,14 +66,14 @@ const autoSender = async (accountId, context, account) => {
   try {
     while (!userInfo || !userInfo.userTitle) {
       try {
-        // const {
-        //   data: { username, groupId: resGroupId, resPrompts },
-        // } = await axios("http://localhost/recipient", {
-        //   params: { accountId },
-        // });
-        const username = "AndrewPodolsky";
-        const resGroupId = 12343207728;
-        const resPrompts = {};
+        const {
+          data: { username, groupId: resGroupId, resPrompts },
+        } = await axios("http://localhost/recipient", {
+          params: { accountId },
+        });
+        // const username = "AndrewPodolsky";
+        // const resGroupId = 12343207728;
+        // const resPrompts = {};
         groupId = resGroupId;
         prompts = resPrompts;
         userName = username;
