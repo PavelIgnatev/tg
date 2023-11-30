@@ -6,7 +6,11 @@ const { autoSender } = require("./modules/autoSender");
 const { accountSetup } = require("./utils/accountSetup");
 const { checkBanned } = require("./modules/checkBanned");
 const { changeProxy } = require("./utils/changeProxy");
-const { getCurrentAccount, readAccount, updateAccount } = require("./db/account");
+const {
+  getCurrentAccount,
+  readAccount,
+  updateAccount,
+} = require("./db/account");
 const { parseArgs } = require("./utils/parseArgs");
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
@@ -51,7 +55,7 @@ const main = async (accountId, proxy) => {
 
     if (senderResult === "banned") {
       isGlobalBanned = true;
-      await updateAccount(accountId, { banned: true, forceBanned: true, fullBanned: true });
+      await updateAccount(accountId, { banned: true, forceBanned: true });
       throw new Error("Аккаунт забанен");
     }
   } catch (e) {

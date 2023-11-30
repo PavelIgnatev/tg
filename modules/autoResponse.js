@@ -9,68 +9,11 @@ const {
 } = require("../db/dialogues");
 const { findByGroupId } = require("../db/groupId");
 const { readAccount } = require("../db/account");
+const { makeRequestGPT } = require("../utils/makeRequestGPT");
 
 function filterText(text) {
   var filteredText = text.replace(/[.\[\]$@%!#^&*+\\|<>\/{}]/g, "");
   return filteredText;
-}
-
-async function makePostRequest(personName, aiName, offer, messages) {
-  console.log(`Имя пользователя: ${personName}`);
-  console.log(`Имя бота: ${aiName}`);
-  const { aiRole, goal, companyDescription } = offer;
-
-  const dialogue = [
-    {
-      role: "system",
-      content: `Тебя зовут ${aiName}.
-Твоя роль: ${aiRole}.
-Описание компании: ${companyDescription}
-Целевое действие: ${goal}
-  
-Твоя задача: отвечать пользователю ${personName} и вести к целевому действию по воронке:: 
-1) приветствие
-2) проявление интереса к услуге из описания продукта, но без целевого действия 
-3) выдвигаем оффер с ключевым наводящим вопросом по ключевому действию, учитывая также и контекст компании 
-4) обрабатываем возражение или отвечаем на вопросы 
-5) благодарим пользователя 
-
-Длина ответного сообщения должна быть не более 25 слов. Если ты уже рассказал часть информации из "Описания компании", то повторно рассказывать не надо. Не путай этапы и не беги вперед. Не используй ссылки. Отвечай так, будто ты реальный человек. Пиши корректно и по правилам русского языка. Не приветствуй. Не здоровайся. Не извиняйся.pm2  Обрабатывай возражения пользователя, пытайся проявить у него интерес к услуге. Если пользователь уже согласен - выдвинь оффер для пользователя из целевого действия и поблагодари его за согласие, не задавая лишних вопросов, а если пока еще не согласен, то в конце ответного сообщения плавно задавай наводящий вопрос относительно оффера и описания продукта чтобы проявить интерес.`,
-    },
-    ...messages,
-  ];
-
-  while (true) {
-    try {
-      const response = await axios.post("http://81.31.245.212/chat/", {
-        dialogue,
-      });
-
-      const { data } = response;
-      let pattern =
-        /((http|https|www):\/\/.)?([a-zA-Z0-9'\/\.\-])+\.[a-zA-Z]{2,5}([a-zA-Z0-9\/\&\;\:\.\,\?\\=\-\_\+\%\'\~]*)/g;
-      const message = data.replace("\n", "");
-      const hasTextLink = message.match(pattern);
-
-      if (hasTextLink) {
-        console.log(
-          `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
-        );
-        throw new Error("В ответе содержится ссылка");
-      }
-
-      if (message.includes("[") || message.includes("]")) {
-        console.log(
-          `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
-        );
-        throw new Error("В ответе содержатся подозрительные символы");
-      }
-
-      return message;
-    } catch (error) {
-      console.log(`Ошибка запроса. ${error.message}`);
-    }
-  }
 }
 
 async function getOffer(groupId) {
@@ -218,11 +161,31 @@ async function autoResponseDialogue(context, href, accountId) {
 
         if (!stopped) {
           const offer = await getOffer(groupId);
-          const message = await makePostRequest(
-            filterText(userTitle),
-            filterText(aiName),
-            offer,
-            dialogues
+          const message = await makeRequestGPT(
+            [
+              {
+                role: "system",
+                content: `Тебя зовут ${filterText(aiName)}.
+        Твоя роль: ${offer && offer.aiRole ? offer.aiRole : ""}.
+        Описание компании: ${
+          offer && offer.companyDescription ? offer.companyDescription : ""
+        } 
+        Целевое действие:  ${offer && offer.goal ? offer.goal : ""} 
+          
+        Твоя задача: отвечать пользователю ${filterText(
+          userTitle
+        )} и вести к целевому действию по воронке:: 
+        1) приветствие
+        2) проявление интереса к услуге из описания продукта, но без целевого действия 
+        3) выдвигаем оффер с ключевым наводящим вопросом по ключевому действию, учитывая также и контекст компании 
+        4) обрабатываем возражение или отвечаем на вопросы 
+        5) благодарим пользователя 
+        
+        Длина ответного сообщения должна быть не более 25 слов. Если ты уже рассказал часть информации из "Описания компании", то повторно рассказывать не надо. Не путай этапы и не беги вперед. Не используй ссылки. Отвечай так, будто ты реальный человек. Пиши корректно и по правилам русского языка. Не приветствуй. Не здоровайся. Не извиняйся.pm2  Обрабатывай возражения пользователя, пытайся проявить у него интерес к услуге. Если пользователь уже согласен - выдвинь оффер для пользователя из целевого действия и поблагодари его за согласие, не задавая лишних вопросов, а если пока еще не согласен, то в конце ответного сообщения плавно задавай наводящий вопрос относительно оффера и описания продукта чтобы проявить интерес. Не здавай открытый вопросы, тебе нужно задавать конкретные наводящие вопро`,
+              },
+              ...dialogues,
+            ],
+            1
           );
           await sendMessage(senderPage, message);
           resultDialogues.push(`${filterText(aiName)}: ${message}`);
@@ -234,6 +197,10 @@ async function autoResponseDialogue(context, href, accountId) {
           resultDialogues.push(`${filterText(aiName)}: ${managerMessage}`);
           console.log(
             `\x1b[4mСообщение для автоответа пользователю было написано с помощью менеджера:\x1b[0m \x1b[34m${managerMessage}\x1b[0m`
+          );
+        } else {
+          console.log(
+            "Отправка автоответных сообщений пользователю остановлена, работает ИИ"
           );
         }
 

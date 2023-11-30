@@ -26,7 +26,7 @@ const checkBanned = async (page, accountId) => {
     try {
       const itsMe = await page.waitForSelector(
         `button:has-text("Yes, it's me")`,
-        { timeout: 1500 }
+        { timeout: 1500, force: true }
       );
       await itsMe.click();
     } catch {}

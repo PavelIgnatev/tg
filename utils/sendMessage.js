@@ -1,3 +1,7 @@
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const sendMessage = async (page, message) => {
   try {
     const filtredMessage = message.replace(/\n/g, "").replace(/['"`]/g, "");
@@ -5,7 +9,9 @@ const sendMessage = async (page, message) => {
       state: "attached",
     });
 
-    await input.type("         " + filtredMessage, { delay: 10 });
+    await input.type("         " + capitalizeFirstLetter(filtredMessage), {
+      delay: 10,
+    });
 
     const buttonElement = await page.waitForSelector(
       'button[title="Send Message"]',
