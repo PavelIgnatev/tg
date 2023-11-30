@@ -153,8 +153,6 @@ const autoSender = async (accountId, context, account) => {
 
       console.log("Текущее 'Первое' сообщение для пользователя: ", messageOne);
       console.log("Текущее 'Второе' сообщение для пользователя: ", message);
-
-      await senderPage.waitForTimeout(10000000);
     } catch (e) {
       console.log("Начинаю добавлять статус failed для сообщения в базу");
 
