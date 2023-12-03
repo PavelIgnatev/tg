@@ -59,11 +59,19 @@ class AccountService {
   async getAllUsernames() {
     await this.connect();
 
-    const usernames = await this.collection.distinct("username", {
-      $or: [{ forceBanned: { $ne: true } }],
+    const allUsernames = await this.collection.distinct("username");
+    const bannedUsernames = await this.collection.distinct("username", {
+      $or: [{ fullBanned: true }, { forceBanned: true }],
     });
+    console.log(`Количество всех аккаунтов: ${allUsernames.length}`);
+    console.log(`Количество забаненных аккаунтов: ${bannedUsernames.length}`);
+    console.log(
+      `Разница в аккаунтах: ${allUsernames.length - bannedUsernames.length}`
+    );
 
-    return usernames;
+    return allUsernames.filter(
+      (username) => !bannedUsernames.includes(username)
+    );
   }
 
   async getUsernames() {
@@ -90,6 +98,8 @@ class AccountService {
         {
           projection: {
             banned: 1,
+            fullBanned: 4,
+            forceBanned: 5,
             messageCount: 2,
             username: 3,
             _id: 0,

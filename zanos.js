@@ -37,7 +37,6 @@ const zanos = async () => {
       //   userAgent: extractedData.navigtor,
       //   localStorage: JSON.parse(extractedData.localStorage),
       //   defaultLocalStorage: JSON.parse(extractedData.localStorage),
-      //   banned: false,
       // });
     }
     console.log('VSE')
