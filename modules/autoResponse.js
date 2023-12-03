@@ -110,6 +110,7 @@ async function autoResponseDialogue(context, href, accountId) {
         throw new Error(
           "Максимальное количество ретраев, пользователь опоссум"
         );
+        
       }
 
       try {
