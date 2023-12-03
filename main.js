@@ -35,7 +35,7 @@ const main = async (accountId, proxy) => {
 
     if (isBanned) {
       isGlobalBanned = true;
-      throw new Error(`Аккаунт ${accountId} забанен со второго раза`);
+      throw new Error(`Аккаунт ${accountId} забанен`);
     }
 
     // если лоадер есть - ждем исчезновения
@@ -55,13 +55,16 @@ const main = async (accountId, proxy) => {
 
     if (senderResult === "banned") {
       isGlobalBanned = true;
-      await updateAccount(accountId, {
-        banned: true,
-        forceBanned: true,
-        fullBanned: true,
-      });
-      throw new Error(`Аккаунт ${accountId} забанен`);
+      await updateAccount(accountId, { banned: true });
+      throw new Error(`Аккаунт ${accountId} забанен со второго раза`);
     }
+
+    console.log("Аккаунт свободен от бана");
+    await updateAccount(accountId, {
+      banned: false,
+      forceBanned: false,
+      fullBanned: false,
+    });
   } catch (e) {
     console.error(e.message);
   }

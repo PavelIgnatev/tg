@@ -32,6 +32,7 @@ class AccountService {
     this.removeAllFieldFromAccounts =
       this.removeAllFieldFromAccounts.bind(this);
     this.getServerCounts = this.getServerCounts.bind(this);
+    this.resetAllBannedFields = this.resetAllBannedFields.bind(this);
   }
 
   async connect() {
@@ -61,7 +62,7 @@ class AccountService {
 
     const allUsernames = await this.collection.distinct("username");
     const bannedUsernames = await this.collection.distinct("username", {
-      $or: [{ fullBanned: true }, { forceBanned: true }],
+      fullBanned: true,
     });
     console.log(`Количество всех аккаунтов: ${allUsernames.length}`);
     console.log(`Количество забаненных аккаунтов: ${bannedUsernames.length}`);
@@ -172,6 +173,20 @@ class AccountService {
     return result;
   }
 
+  async resetAllBannedFields() {
+    await this.connect();
+
+    const update = {
+      $set: {
+        banned: false,
+        forceBanned: false,
+        fullBanned: false,
+      },
+    };
+
+    await this.collection.updateMany({}, update);
+  }
+
   // метод для обновления данных аккаунта
   async updateAccount(username, updatedData) {
     await this.connect();
@@ -233,9 +248,7 @@ class AccountService {
 
     const unprocessedUsers = await this.collection
       .aggregate([
-        // { $match: { banned: { $ne: true } } },
-        // { $match: { server, fullBanned: { $ne: true } } },
-        { $match: { server, fullBanned: true } },
+        { $match: { server, fullBanned: { $ne: true } } },
 
         {
           $group: {

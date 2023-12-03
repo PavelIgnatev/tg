@@ -2,6 +2,7 @@ const {
   getAllUsernames,
   getServerCounts,
   readAccounts,
+  resetAllBannedFields,
 } = require("./db/account");
 
 getAllUsernames().then((e) => console.log(e.length));
@@ -21,3 +22,5 @@ getServerCounts().then(console.log);
 //   });
 // });
 // // 1
+
+resetAllBannedFields()
