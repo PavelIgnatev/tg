@@ -28,6 +28,19 @@ async function makeRequestGPT(dialogue, temperature = 1, filter = true) {
         throw new Error("В ответе содержатся подозрительные символы");
       }
 
+      if (
+        message.toLowerCase().includes("чем я") ||
+        message.toLowerCase().includes("могу помочь") ||
+        message.toLowerCase().includes("вам помочь") ||
+        message.toLowerCase().includes("пошло не так") ||
+        message.toLowerCase().includes("что-то пошло")
+      ) {
+        console.log(
+          `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
+        );
+        throw new Error("В ответе содержатся подозретельные части сообщения");
+      }
+
       if (message.includes("more")) {
         console.log(
           `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
