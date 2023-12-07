@@ -193,7 +193,7 @@ async function autoResponseDialogue(context, href, accountId) {
               },
               ...dialogues,
             ],
-            0.5
+            0.25
           );
           await sendMessage(senderPage, message);
           resultDialogues.push(`${filterText(aiName)}: ${message}`);
