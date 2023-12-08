@@ -33,19 +33,15 @@ async function makeRequestGPT(dialogue, temperature = 1, filter = true) {
         message.toLowerCase().includes("могу помочь") ||
         message.toLowerCase().includes("вам помочь") ||
         message.toLowerCase().includes("пошло не так") ||
-        message.toLowerCase().includes("что-то пошло")
+        message.toLowerCase().includes("что-то пошло") ||
+        message.toLowerCase().includes("you today") ||
+        message.toLowerCase().includes("how can") || 
+        message.toLowerCase().includes("i assist you")
       ) {
         console.log(
           `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
         );
         throw new Error("В ответе содержатся подозретельные части сообщения");
-      }
-
-      if (message.includes("more")) {
-        console.log(
-          `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
-        );
-        throw new Error("В ответе содержится подозрительное слово more");
       }
 
       if (filter) {
