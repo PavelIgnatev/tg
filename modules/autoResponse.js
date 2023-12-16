@@ -16,6 +16,24 @@ function filterText(text) {
   return filteredText;
 }
 
+function checkFunction(d) {
+  const normalizeArr = [];
+  let isFindUser = false;
+
+  for (const l of d) {
+    if (l.role === "user") {
+      isFindUser = true;
+    }
+
+    if (!isFindUser) {
+      continue;
+    }
+
+    normalizeArr.push(l);
+  }
+  return Boolean(normalizeArr.filter((e) => e.role === "assistant").length);
+}
+
 async function getOffer(groupId) {
   const dataGroupId = await findByGroupId(groupId);
   const {
@@ -193,9 +211,7 @@ async function autoResponseDialogue(context, href, accountId) {
                     : ""
                 } 
                 ЦЕЛЬ ДИАЛОГА:  ${
-                  offer &&
-                  offer.goal &&
-                  dialogues.filter((e) => e.role === "user").length > 1
+                  offer && offer.goal && checkFunction(dialogues)
                     ? offer.goal
                     : `Ответить на вопрос '${userName}', после чего рассказать про ОПИСАНИЕ КОМПАНИИ, а дальше спросить у '${userName}' было бы ему интересно узнать больше о ОПИСАНИЕ КОМПАНИИ.`
                 }
