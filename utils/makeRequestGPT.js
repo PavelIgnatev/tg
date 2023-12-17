@@ -28,6 +28,7 @@ async function makeRequestGPT(dialogue, temperature = 1, filter = true) {
         message.toLowerCase().includes("еще вопрос") ||
         message.toLowerCase().includes("готов на них") ||
         message.toLowerCase().includes("описание компании") ||
+        message.toLowerCase().includes("описания компании") ||
         message.toLowerCase().includes("описании компании") ||
         message.toLowerCase().includes("цель диалога") ||
         message.toLowerCase().includes("цели диалога") ||
