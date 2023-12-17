@@ -86,7 +86,7 @@ const main = async (accountId, proxy) => {
 };
 
 const startMainLoop = async () => {
-  const proxy = parseArgs(process.env.args);
+  const proxy = parseArgs(process.env.args); 
   const threadCount = 3;
   const promises = [];
 
