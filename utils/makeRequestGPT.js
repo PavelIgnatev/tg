@@ -25,8 +25,10 @@ async function makeRequestGPT(dialogue, temperature = 1, filter = true) {
         message.toLowerCase().includes("чем я") ||
         message.toLowerCase().includes("могу помоч") ||
         message.toLowerCase().includes("вам помоч") ||
+        message.toLowerCase().includes("помочь вам") ||
         message.toLowerCase().includes("еще вопрос") ||
         message.toLowerCase().includes("готов на них") ||
+        message.toLowerCase().includes("готов помоч") ||
         message.toLowerCase().includes("вас интересует") ||
         message.toLowerCase().includes("описание компании") ||
         message.toLowerCase().includes("описания компании") ||
@@ -39,8 +41,8 @@ async function makeRequestGPT(dialogue, temperature = 1, filter = true) {
         message.toLowerCase().includes("конкретный вопрос") ||
         message.toLowerCase().includes("по поводу услуг") ||
         message.toLowerCase().includes("по поводу наших") ||
-        message.toLowerCase().includes("вопросы по этому") ||
-        message.toLowerCase().includes("возникнут вопросы") ||
+        message.toLowerCase().includes("вопросы по это") ||
+        message.toLowerCase().includes("возникнут вопрос") ||
         message.toLowerCase().includes("возникли у вас") ||
         message.toLowerCase().includes("у вас возникли") ||
         message.toLowerCase().includes("описании компании") ||
