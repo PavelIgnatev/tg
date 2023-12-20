@@ -158,6 +158,9 @@ const autoSender = async (accountId, context, account) => {
           userBio ? 0.5 : 0.35
         ),
       },
+      0.7,
+      true,
+      false
     ]);
     const messageOne = await makeRequestGPT([
       {
@@ -172,6 +175,9 @@ const autoSender = async (accountId, context, account) => {
           false
         ),
       },
+      0.7,
+      true,
+      false
     ]);
 
     // отправляем сообщение

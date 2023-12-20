@@ -228,9 +228,9 @@ async function autoResponseDialogue(context, href, accountId) {
         # ${botName}:`),
               },
             ],
+            0.7,
             true,
-            false,
-            0.7
+            false
           );
           await sendMessage(senderPage, message);
           resultDialogues.push(`${filterText(aiName)}: ${message}`);
