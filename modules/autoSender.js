@@ -147,40 +147,12 @@ const autoSender = async (accountId, context, account) => {
 
     const translatePrompt = `Вам будет предложено предложение на неизвестном языке, вашей задачей является перевести предложение на ${realLanguage} язык. В ответе вернуть только предложение, переведенное на ${realLanguage} язык!`;
     const message = await makeRequestGPT(
-      [
-        {
-          role: "system",
-          content: translatePrompt,
-        },
-        {
-          role: "user",
-          content: await makeRequestGPT(
-            [{ role: "system", content: prompt }],
-            userBio ? 0.5 : 0.35
-          ),
-        },
-      ],
-      0.7,
-      true,
-      false
+      [{ role: "system", content: prompt }],
+      userBio ? 0.5 : 0.35
     );
     const messageOne = await makeRequestGPT(
-      [
-        {
-          role: "system",
-          content: translatePrompt,
-        },
-        {
-          role: "user",
-          content: await makeRequestGPT(
-            [{ role: "system", content: propmtOne }],
-            0.5,
-            false
-          ),
-        },
-      ],
-      0.7,
-      false,
+      [{ role: "system", content: propmtOne }],
+      0.5,
       false
     );
 

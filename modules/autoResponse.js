@@ -196,26 +196,18 @@ async function autoResponseDialogue(context, href, accountId) {
           const offer = await getOffer(groupId);
           const userName = filterText(userTitle);
           const botName = filterText(aiName);
-          const message = await makeRequestGPT(
-            [
-              {
-                role: "system",
-                content: `Вам будет предложено предложение на неизвестном языке, вашей задачей является перевести предложение на ${offer.language} язык. В ответе вернуть только предложение, переведенное на ${offer.language} язык!`,
-              },
-              {
-                role: "user",
-                content: await makeRequestComplete(`
+          const message = await makeRequestComplete(`
         ТВОЕ ИМЯ: ${botName}
         ТВОЯ РОЛЬ: ${offer && offer.aiRole ? offer.aiRole : ""}
         ОПИСАНИЕ КОМПАНИИ: ${
           offer && offer.companyDescription ? offer.companyDescription : ""
         } 
         ЦЕЛЬ ДЛЯ ${botName}: ответить на сообщениe(я) пользователя ${userName}, проявить у него интерес к предложению компании. ${
-                  offer && offer.goal && checkFunction(dialogues)
-                    ? "В случае, если пользователь проявил активный интерес к предложению - твоей задачей является " +
-                      offer.goal
-                    : ""
-                }
+            offer && offer.goal && checkFunction(dialogues)
+              ? "В случае, если пользователь проявил активный интерес к предложению - твоей задачей является " +
+                offer.goal
+              : ""
+          }
 
         ${[...dialogues]
           .map(
@@ -225,13 +217,7 @@ async function autoResponseDialogue(context, href, accountId) {
               }`
           )
           .join("\n")}
-        # ${botName}:`),
-              },
-            ],
-            0.7,
-            true,
-            false
-          );
+        # ${botName}:`);
           await sendMessage(senderPage, message);
           resultDialogues.push(`${filterText(aiName)}: ${message}`);
           console.log(
