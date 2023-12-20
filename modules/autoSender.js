@@ -145,16 +145,54 @@ const autoSender = async (accountId, context, account) => {
     Твоя задача вернуть сообщение со словом "здравствуйте" и именем пользователя, если его получилось получить из информации о пользователе, а если не получилось - то просто слово "здравствуйте!"
     Только слово "здравствуйте" + имя (если удалось получить его из предоставленной выше информации), без фамилии и отчества, не возвращай никаких дополнительных скобок типа [], никаких вопросов и предложений, ты просто выполняешь роль функции, возвращающей текст. Запрещено возвращать в ответе  [Имя пользователя] и что-либо подобное. Само имя переведи на ${realLanguage} язык, если это возможно`;
 
-    const translatePrompt = `Вам будет предложено предложение на неизвестном языке, вашей задачей является перевести предложение на ${realLanguage} язык. В ответе вернуть только предложение, переведенное на ${realLanguage} язык!`;
-    const message = await makeRequestGPT(
-      [{ role: "system", content: prompt }],
-      userBio ? 0.5 : 0.35
-    );
-    const messageOne = await makeRequestGPT(
+    const translatePrompt =
+      "Вам будет предложено предложение, вашей задачей является перевести данное предложение на АНГЛИЙСКИЙ язык. Менять контекст запрещено. В ответе вернуть только предложение, переведенное на АНГЛИЙСКИЙ язык!";
+    const varMessageOne = await makeRequestGPT(
       [{ role: "system", content: propmtOne }],
       0.5,
       false
     );
+    const varMessage = await makeRequestGPT(
+      [{ role: "system", content: prompt }],
+      userBio ? 0.5 : 0.35
+    );
+    
+    const message =
+      language === "АНГЛИЙСКИЙ"
+        ? await makeRequestGPT(
+            [
+              {
+                role: "system",
+                content: translatePrompt,
+              },
+              {
+                role: "user",
+                content: varMessage,
+              },
+            ],
+            0.7,
+            true,
+            false
+          )
+        : varMessage;
+    const messageOne =
+      language === "АНГЛИЙСКИЙ"
+        ? await makeRequestGPT(
+            [
+              {
+                role: "system",
+                content: translatePrompt,
+              },
+              {
+                role: "user",
+                content: varMessageOne,
+              },
+            ],
+            0.7,
+            false,
+            false
+          )
+        : varMessageOne;
 
     // отправляем сообщение
     try {

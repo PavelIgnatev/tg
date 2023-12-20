@@ -196,28 +196,46 @@ async function autoResponseDialogue(context, href, accountId) {
           const offer = await getOffer(groupId);
           const userName = filterText(userTitle);
           const botName = filterText(aiName);
-          const message = await makeRequestComplete(`
-        ТВОЕ ИМЯ: ${botName}
-        ТВОЯ РОЛЬ: ${offer && offer.aiRole ? offer.aiRole : ""}
-        ОПИСАНИЕ КОМПАНИИ: ${
-          offer && offer.companyDescription ? offer.companyDescription : ""
-        } 
-        ЦЕЛЬ ДЛЯ ${botName}: ответить на сообщениe(я) пользователя ${userName}, проявить у него интерес к предложению компании. ${
+          const variantMessage = await makeRequestComplete(`
+          ТВОЕ ИМЯ: ${botName}
+          ТВОЯ РОЛЬ: ${offer && offer.aiRole ? offer.aiRole : ""}
+          ОПИСАНИЕ КОМПАНИИ: ${
+            offer && offer.companyDescription ? offer.companyDescription : ""
+          } 
+          ЦЕЛЬ ДЛЯ ${botName}: ответить на сообщениe(я) пользователя ${userName}, проявить у него интерес к предложению компании. ${
             offer && offer.goal && checkFunction(dialogues)
               ? "В случае, если пользователь проявил активный интерес к предложению - твоей задачей является " +
                 offer.goal
               : ""
           }
-
-        ${[...dialogues]
-          .map(
-            (dialog) =>
-              `# ${dialog.role === "user" ? userName : botName}: ${
-                dialog.content
-              }`
-          )
-          .join("\n")}
-        # ${botName}:`);
+  
+          ${[...dialogues]
+            .map(
+              (dialog) =>
+                `# ${dialog.role === "user" ? userName : botName}: ${
+                  dialog.content
+                }`
+            )
+            .join("\n")}
+          # ${botName}:`);
+          const message =
+            offer.language === "АНГЛИЙСКИЙ"
+              ? await makeRequestGPT(
+                  [
+                    {
+                      role: "system",
+                      content: "Вам будет предложено предложение, вашей задачей является перевести данное предложение на АНГЛИЙСКИЙ язык. Менять контекст запрещено. В ответе вернуть только предложение, переведенное на АНГЛИЙСКИЙ язык!",
+                    },
+                    {
+                      role: "user",
+                      content: variantMessage,
+                    },
+                  ],
+                  0.7,
+                  true,
+                  false
+                )
+              : variantMessage;
           await sendMessage(senderPage, message);
           resultDialogues.push(`${filterText(aiName)}: ${message}`);
           console.log(
