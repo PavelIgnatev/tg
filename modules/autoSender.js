@@ -62,12 +62,18 @@ const autoSender = async (accountId, context, account) => {
   let prompts;
   let retry;
   let userName;
+  let language;
 
   try {
     while (!userInfo || !userInfo.userTitle) {
       try {
         const {
-          data: { username, groupId: resGroupId, resPrompts },
+          data: {
+            username,
+            groupId: resGroupId,
+            resPrompts,
+            language: resLanguage = "английский",
+          },
         } = await axios("http://localhost/recipient", {
           params: { accountId },
         });
@@ -77,6 +83,7 @@ const autoSender = async (accountId, context, account) => {
         groupId = resGroupId;
         prompts = resPrompts;
         userName = username;
+        language = resLanguage;
 
         await senderPage.goto(
           `https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3F${
@@ -135,16 +142,37 @@ const autoSender = async (accountId, context, account) => {
 
     const propmtOne = `Данные о пользователе: ${userTitle} \n
     Твоя задача вернуть сообщение со словом "здравствуйте" и именем пользователя, если его получилось получить из информации о пользователе, а если не получилось - то просто слово "здравствуйте!"
-    Только слово "здравствуйте" + имя (если удалось получить его из предоставленной выше информации), без фамилии и отчества, не возвращай никаких дополнительных скобок типа [], никаких вопросов и предложений, ты просто выполняешь роль функции, возвращающей текст. Запрещено возвращать в ответе  [Имя пользователя] и что-либо подобное. Само имя переведи на русский язык, если это возможно`;
-    const message = await makeRequestGPT(
-      [{ role: "system", content: prompt }],
-      userBio ? 0.5 : 0.35
-    );
-    const messageOne = await makeRequestGPT(
-      [{ role: "system", content: propmtOne }],
-      0.5,
-      false
-    );
+    Только слово "здравствуйте" + имя (если удалось получить его из предоставленной выше информации), без фамилии и отчества, не возвращай никаких дополнительных скобок типа [], никаких вопросов и предложений, ты просто выполняешь роль функции, возвращающей текст. Запрещено возвращать в ответе  [Имя пользователя] и что-либо подобное. Само имя переведи на английский язык, если это возможно`;
+
+    const realLanguage = language || "английский";
+    const translatePrompt = `Ты выполняешь роль функции, исправляющей ошибки и переводящей переданное сообщение на ${realLanguage} язык. Увеличивать или уменьшать длину сообщения запрещено, необходимо только исправить синтаксические ошибки вместе с ошибками пунктуации. В ответе вернуть только результат - исправленное сообщение, основной язык в котором - ${realLanguage}, без дополнительных префиксов. Только ${realLanguage} язык.`;
+    const message = await makeRequestGPT([
+      {
+        role: "system",
+        content: translatePrompt,
+      },
+      {
+        role: "user",
+        content: await makeRequestGPT(
+          [{ role: "system", content: prompt }],
+          userBio ? 0.5 : 0.35
+        ),
+      },
+    ]);
+    const messageOne = await makeRequestGPT([
+      {
+        role: "system",
+        content: translatePrompt,
+      },
+      {
+        role: "user",
+        content: await makeRequestGPT(
+          [{ role: "system", content: propmtOne }],
+          0.5,
+          false
+        ),
+      },
+    ]);
 
     // отправляем сообщение
     try {

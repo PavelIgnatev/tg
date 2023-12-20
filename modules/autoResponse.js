@@ -10,6 +10,7 @@ const {
 const { findByGroupId } = require("../db/groupId");
 const { readAccount } = require("../db/account");
 const { makeRequestGPT } = require("../utils/makeRequestGPT");
+const { makeRequestComplete } = require("../utils/makeRequestComplete");
 
 function filterText(text) {
   var filteredText = text.replace(/[.\[\]$@%!#^&*+\\|<>\/{}]/g, "");
@@ -41,9 +42,10 @@ async function getOffer(groupId) {
       aiRole = "младший менеджер по продажам компании AiSender",
       companyDescription = "AiSender занимается автоматизацией первой линии продаж с помощью искуственного интеллекта",
       goal = "получить согласие на зум встречу с старшим менеджером, который расскажет про продукт, если согласие получено, то менеджер напишет в течении 24 часов.",
+      language = "РУССКИЙ",
     },
   } = dataGroupId && dataGroupId.offer ? dataGroupId : { offer: {} };
-  return { aiRole, companyDescription, goal };
+  return { aiRole, companyDescription, goal, language };
 }
 
 async function getDialogues(page, aiName, userName) {
@@ -100,7 +102,7 @@ async function getDialogues(page, aiName, userName) {
     let currentSum = 0;
     const resultArray = [];
     for (const str of [...resultForAi].reverse()) {
-      if (currentSum + str.content.length <= 4000) {
+      if (currentSum + str.content.length <= 2000) {
         resultArray.push(str);
         currentSum += str.content.length;
       } else {
@@ -198,28 +200,37 @@ async function autoResponseDialogue(context, href, accountId) {
             [
               {
                 role: "system",
-                content: `
-                Вы выполняете роль функции топ-продавца (тебя зовут'${botName}', твоя роль 'assistant'), которая возвращает лучшее сообщение c ключевым вопросом на основании переданного контекста для дальнейшего продолжения диалога и подведения к ЦЕЛИ ДИАЛОГА на основании ОПИСАНИЕ КОМПАНИИ. Вы умеете хорошо продавать, по-умному обрабатывать возражения, проявлять интерес у '${userName}' к услуге и подводить его к целевому действию. У вас есть данные о компании, интересы которой ты предсталяешь в виде РОЛИ В КОМПАНИИ, ОПИСАНИИ КОМПАНИИ, ЦЕЛИ ДИАЛОГА и ИСТОРИИ ДИАЛОГА. Общаться ты должен как реальный человек, не будь идеальным по формулировкам, будь живым. Максимальная длина ответного сообщения - 40 слов. '${userName}', с которым вы общаетесь, ничего о вас не знает и не встречался с вами раньше, надо продумать как работать с этим для достижения лучшего качества. Не возвращайте скобки в ответе: []. Если '${userName}' запрашивает информацию, которой нет в ОПИСАНИИ КОМПАНИИ, пропустите вопрос. Вы - профессиональный продавец, но не говорите об этом '${userName}'. '${userName}' не должен ничего знать о том, что вы продавец, также он не должен знать, что у вас есть ЦЕЛЬ ДИАЛОГА, держите это в секрете и не говорите ему, представьтесь только как РОЛЬ КОМПАНИИ. Действуйте только в рамках имеющегося контекста, вы не можете придумывать новые услуги, вы должны предлагать только то, что указано в ОПИСАНИИ КОМПАНИИ или ЦЕЛИ ДИАЛОГА. Если '${userName}' проявляет интерес, выдвиньте предложение из ЦЕЛИ ДИАЛОГА и поблагодарите его за согласие, не задавая лишних вопросов. Не приветствуйте '${userName}'. Не извиняйтесь перед '${userName}' и не просите у него прощения. 
-                Ниже предоставлена ДОПОЛНИТЕЛЬНАЯ информация:
-                ТВОЕ ИМЯ: ${botName}
-                РОЛЬ ВНУТРИ КОМПАНИИ: ${
-                  offer && offer.aiRole ? offer.aiRole : ""
-                }
-                ОПИСАНИЕ КОМПАНИИ: ${
-                  offer && offer.companyDescription
-                    ? offer.companyDescription
-                    : ""
-                } 
-                ЦЕЛЬ ДИАЛОГА:  ${
-                  offer && offer.goal && checkFunction(dialogues)
-                    ? offer.goal
-                    : `ОБЯЗАТЕЛЬНО Ответить на вопрос '${userName}' (если он есть), ОБЯЗАТЕЛЬНО рассказать чем занимается ОПИСАНИЕ КОМПАНИИ и спросить было бы ему интересно узнать больше о ОПИСАНИЕ КОМПАНИИ`
-                }
-                Максимальная длина ответного сообщения - 40 слов.`,
+                content: `Ты выполняешь роль функции, исправляющей ошибки и переводящей переданное сообщение на ${offer.language} язык. Увеличивать или уменьшать длину сообщения запрещено, необходимо только исправить синтаксические ошибки вместе с ошибками пунктуации. В ответе вернуть только результат - исправленное сообщение, основной язык в котором - ${offer.language}, без дополнительных префиксов. Только ${offer.language} язык.`,
               },
-              ...dialogues,
+              {
+                role: "user",
+                content: await makeRequestComplete(`
+        ТВОЕ ИМЯ: ${botName}
+        ТВОЯ РОЛЬ: ${offer && offer.aiRole ? offer.aiRole : ""}
+        ОПИСАНИЕ КОМПАНИИ: ${
+          offer && offer.companyDescription ? offer.companyDescription : ""
+        } 
+        ЦЕЛЬ ДЛЯ ${botName}: ответить на сообщениe(я) пользователя ${userName}, проявить у него интерес к предложению компании. ${
+                  offer && offer.goal && checkFunction(dialogues)
+                    ? "В случае, если пользователь проявил активный интерес к предложению - твоей задачей является " +
+                      offer.goal
+                    : ""
+                }
+
+        ${[...dialogues]
+          .map(
+            (dialog) =>
+              `# ${dialog.role === "user" ? userName : botName}: ${
+                dialog.content
+              }`
+          )
+          .join("\n")}
+        # ${botName}:`),
+              },
             ],
-            1
+            true,
+            false,
+            0.7
           );
           await sendMessage(senderPage, message);
           resultDialogues.push(`${filterText(aiName)}: ${message}`);
