@@ -146,39 +146,43 @@ const autoSender = async (accountId, context, account) => {
     Только слово "здравствуйте" + имя (если удалось получить его из предоставленной выше информации), без фамилии и отчества, не возвращай никаких дополнительных скобок типа [], никаких вопросов и предложений, ты просто выполняешь роль функции, возвращающей текст. Запрещено возвращать в ответе  [Имя пользователя] и что-либо подобное. Само имя переведи на ${realLanguage} язык, если это возможно`;
 
     const translatePrompt = `Ты выполняешь роль функции, исправляющей ошибки и переводящей переданное сообщение на ${realLanguage} язык. Увеличивать или уменьшать длину сообщения запрещено, необходимо только исправить синтаксические ошибки вместе с ошибками пунктуации. В ответе вернуть только результат - исправленное сообщение, основной язык в котором - ${realLanguage}, без дополнительных префиксов. Только ${realLanguage} язык.`;
-    const message = await makeRequestGPT([
-      {
-        role: "system",
-        content: translatePrompt,
-      },
-      {
-        role: "user",
-        content: await makeRequestGPT(
-          [{ role: "system", content: prompt }],
-          userBio ? 0.5 : 0.35
-        ),
-      },
+    const message = await makeRequestGPT(
+      [
+        {
+          role: "system",
+          content: translatePrompt,
+        },
+        {
+          role: "user",
+          content: await makeRequestGPT(
+            [{ role: "system", content: prompt }],
+            userBio ? 0.5 : 0.35
+          ),
+        },
+      ],
       0.7,
       true,
       false
-    ]);
-    const messageOne = await makeRequestGPT([
-      {
-        role: "system",
-        content: translatePrompt,
-      },
-      {
-        role: "user",
-        content: await makeRequestGPT(
-          [{ role: "system", content: propmtOne }],
-          0.5,
-          false
-        ),
-      },
+    );
+    const messageOne = await makeRequestGPT(
+      [
+        {
+          role: "system",
+          content: translatePrompt,
+        },
+        {
+          role: "user",
+          content: await makeRequestGPT(
+            [{ role: "system", content: propmtOne }],
+            0.5,
+            false
+          ),
+        },
+      ],
       0.7,
       true,
       false
-    ]);
+    );
 
     // отправляем сообщение
     try {
