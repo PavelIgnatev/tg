@@ -42,10 +42,9 @@ async function getOffer(groupId) {
       aiRole = "младший менеджер по продажам компании AiSender",
       companyDescription = "AiSender занимается автоматизацией первой линии продаж с помощью искуственного интеллекта",
       goal = "получить согласие на зум встречу с старшим менеджером, который расскажет про продукт, если согласие получено, то менеджер напишет в течении 24 часов.",
-      language = "РУССКИЙ",
     },
   } = dataGroupId && dataGroupId.offer ? dataGroupId : { offer: {} };
-  return { aiRole, companyDescription, goal, language };
+  return { aiRole, companyDescription, goal };
 }
 
 async function getDialogues(page, aiName, userName) {
@@ -164,6 +163,7 @@ async function autoResponseDialogue(context, href, accountId) {
           blocked,
           stopped,
           managerMessage,
+          language = "РУССКИЙ",
         } = dialogueInfo ?? {};
 
         try {
@@ -219,12 +219,13 @@ async function autoResponseDialogue(context, href, accountId) {
             .join("\n")}
           # ${botName}:`);
           const message =
-            offer.language === "АНГЛИЙСКИЙ"
+            language === "АНГЛИЙСКИЙ"
               ? await makeRequestGPT(
                   [
                     {
                       role: "system",
-                      content: "Вам будет предложено предложение, вашей задачей является перевести данное предложение на АНГЛИЙСКИЙ язык. Менять контекст запрещено. В ответе вернуть только предложение, переведенное на АНГЛИЙСКИЙ язык!",
+                      content:
+                        "Вам будет предложено предложение, вашей задачей является перевести данное предложение на АНГЛИЙСКИЙ язык. Менять контекст запрещено. В ответе вернуть только предложение, переведенное на АНГЛИЙСКИЙ язык!",
                     },
                     {
                       role: "user",
