@@ -180,7 +180,7 @@ const autoSender = async (accountId, context, account) => {
         },
       ],
       0.7,
-      true,
+      false,
       false
     );
 
