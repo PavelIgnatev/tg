@@ -12,6 +12,7 @@ const sendMessage = async (page, message) => {
     });
     await input.type("         " + capitalizeFirstLetter(filtredMessage), {
       delay: 25,
+      timeout: 60000,
     });
 
     await page.waitForTimeout(1000);
