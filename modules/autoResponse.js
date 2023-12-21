@@ -225,7 +225,7 @@ async function autoResponseDialogue(context, href, accountId) {
                     {
                       role: "system",
                       content:
-                        "Вам будет предложено предложение, вашей задачей является перевести данное предложение на АНГЛИЙСКИЙ язык. Менять контекст запрещено. В ответе вернуть только предложение, переведенное на АНГЛИЙСКИЙ язык!",
+                        "You will be given a sentence, your task is to translate this sentence into ENGLISH. It is forbidden to change the context. In the answer return only the sentence translated into ENGLISH!",
                     },
                     {
                       role: "user",

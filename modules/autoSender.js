@@ -145,7 +145,7 @@ const autoSender = async (accountId, context, account) => {
     Только слово "здравствуйте" + имя (если удалось получить его из предоставленной выше информации), без фамилии и отчества, не возвращай никаких дополнительных скобок типа [], никаких вопросов и предложений, ты просто выполняешь роль функции, возвращающей текст. Запрещено возвращать в ответе  [Имя пользователя] и что-либо подобное. Само имя переведи на ${language} язык, если это возможно`;
 
     const translatePrompt =
-      "Вам будет предложено предложение, вашей задачей является перевести данное предложение на АНГЛИЙСКИЙ язык. Менять контекст запрещено. В ответе вернуть только предложение, переведенное на АНГЛИЙСКИЙ язык!";
+      "You will be given a sentence, your task is to translate this sentence into ENGLISH. It is forbidden to change the context. In the answer return only the sentence translated into ENGLISH!";
     const varMessageOne = await makeRequestGPT(
       [{ role: "system", content: propmtOne }],
       0.5,
