@@ -217,7 +217,7 @@ async function autoResponseDialogue(context, href, accountId) {
             )
             .join("\n")}
           # ${botName}:`);
-          console.log("ТЕКУЩИЙ ЯЗЫК ОТВЕТА:", language);
+
           const message =
             language === "АНГЛИЙСКИЙ"
               ? await makeRequestGPT(
