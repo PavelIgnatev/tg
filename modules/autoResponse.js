@@ -37,6 +37,7 @@ function checkFunction(d) {
 
 async function getOffer(groupId) {
   const dataGroupId = await findByGroupId(groupId);
+  const language = dataGroupId?.language || "РУССКИЙ";
   const {
     offer: {
       aiRole = "младший менеджер по продажам компании AiSender",
@@ -44,7 +45,7 @@ async function getOffer(groupId) {
       goal = "получить согласие на зум встречу с старшим менеджером, который расскажет про продукт, если согласие получено, то менеджер напишет в течении 24 часов.",
     },
   } = dataGroupId && dataGroupId.offer ? dataGroupId : { offer: {} };
-  return { aiRole, companyDescription, goal };
+  return { aiRole, companyDescription, goal, language };
 }
 
 async function getDialogues(page, aiName, userName) {
@@ -150,7 +151,7 @@ async function autoResponseDialogue(context, href, accountId) {
           });
           return;
         }
-        const { name: aiName = "Менеджер", language = "РУССКИЙ" } = await readAccount(accountId);
+        const { name: aiName = "Менеджер" } = await readAccount(accountId);
 
         const [resultDialogues, dialogues] = await getDialogues(
           senderPage,
@@ -219,7 +220,7 @@ async function autoResponseDialogue(context, href, accountId) {
           # ${botName}:`);
 
           const message =
-            language === "АНГЛИЙСКИЙ"
+            offer.language === "АНГЛИЙСКИЙ"
               ? await makeRequestGPT(
                   [
                     {
