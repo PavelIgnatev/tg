@@ -150,7 +150,7 @@ async function autoResponseDialogue(context, href, accountId) {
           });
           return;
         }
-        const { name: aiName = "Менеджер" } = await readAccount(accountId);
+        const { name: aiName = "Менеджер", language = "РУССКИЙ" } = await readAccount(accountId);
 
         const [resultDialogues, dialogues] = await getDialogues(
           senderPage,
@@ -163,7 +163,6 @@ async function autoResponseDialogue(context, href, accountId) {
           blocked,
           stopped,
           managerMessage,
-          language,
         } = dialogueInfo ?? {};
 
         try {
@@ -218,10 +217,9 @@ async function autoResponseDialogue(context, href, accountId) {
             )
             .join("\n")}
           # ${botName}:`);
-          const realLanguage = language || "РУССКИЙ";
-          console.log("ТЕКУЩИЙ ЯЗЫК ОТВЕТА:", realLanguage);
+          console.log("ТЕКУЩИЙ ЯЗЫК ОТВЕТА:", language);
           const message =
-            realLanguage === "АНГЛИЙСКИЙ"
+            language === "АНГЛИЙСКИЙ"
               ? await makeRequestGPT(
                   [
                     {
