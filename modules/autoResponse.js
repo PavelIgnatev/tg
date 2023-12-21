@@ -163,7 +163,7 @@ async function autoResponseDialogue(context, href, accountId) {
           blocked,
           stopped,
           managerMessage,
-          language = "РУССКИЙ",
+          language,
         } = dialogueInfo ?? {};
 
         try {
@@ -218,8 +218,10 @@ async function autoResponseDialogue(context, href, accountId) {
             )
             .join("\n")}
           # ${botName}:`);
+          const realLanguage = language || "РУССКИЙ";
+          console.log("ТЕКУЩИЙ ЯЗЫК ОТВЕТА:", realLanguage);
           const message =
-            language === "АНГЛИЙСКИЙ"
+            realLanguage === "АНГЛИЙСКИЙ"
               ? await makeRequestGPT(
                   [
                     {

@@ -72,7 +72,7 @@ const autoSender = async (accountId, context, account) => {
             username,
             groupId: resGroupId,
             resPrompts,
-            language: resLanguage = "РУССКИЙ",
+            language: resLanguage,
           },
         } = await axios("http://localhost/recipient", {
           params: { accountId },
@@ -136,6 +136,7 @@ const autoSender = async (accountId, context, account) => {
       console.log("Текущий groupId имеет заданный первый промпт.");
     }
     const realLanguage = language || "РУССКИЙ";
+    console.log("ТЕКУЩИЙ ЯЗЫК ОТВЕТА:", realLanguage);
 
     const prompt = userBio
       ? `Задача сформировать ОДИН простой вопрос на основе деятельности пользователя, который будет для него действительно интересен. Будь искренне заинтересованным. Не обращайся к пользователю по имени или фамилии, не здоровайся и не приветствуй его. Обязательно формируй вопрос уважительно, используя обращение 'Вы' к пользователю. Придумывать деятельность пользователя запрещено. В конце вопроса заранее поблагодари его за ответ. Ответ должен быть не длиннее 150 символов и содержать только ОДИН глубокий вопрос, дополнительных вопросов быть не должно. \n !!!Описание пользователя: ${userBio}!!!`
@@ -156,7 +157,7 @@ const autoSender = async (accountId, context, account) => {
       [{ role: "system", content: prompt }],
       userBio ? 0.5 : 0.35
     );
-    
+
     const message =
       language === "АНГЛИЙСКИЙ"
         ? await makeRequestGPT(
