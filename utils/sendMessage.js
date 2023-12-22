@@ -18,9 +18,6 @@ const sendMessage = async (page, message) => {
       }
     );
     await buttonElement.click({ force: true });
-    await input.type("", { delay: 10 });
-    await input.type("", { delay: 10 });
-    await input.type("", { delay: 10 });
 
     const lastIdPrev = await page.evaluate(async () => {
       let retryCount = 0;
@@ -48,6 +45,10 @@ const sendMessage = async (page, message) => {
     await page.waitForSelector(`[data-message-id='${lastIdPrev}']`, {
       state: "hidden",
     });
+
+    await input.type("", { delay: 10 });
+    await input.type("", { delay: 10 });
+    await input.type("", { delay: 10 });
   } catch (e) {
     console.log(e.message);
     throw new Error("Сообщение не доставлено");
