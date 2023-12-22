@@ -34,7 +34,7 @@ const sendMessage = async (page, message) => {
     await input.type("", { delay: 10 });
     await input.type("", { delay: 10 });
 
-    await page.waitForSelector(`[data-message-id='${maxId + 1}']`);
+    // await page.waitForSelector(`[data-message-id='${maxId + 1}']`);
   } catch (e) {
     console.log(e.message);
     throw new Error("Сообщение не доставлено");
