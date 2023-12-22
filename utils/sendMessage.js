@@ -23,12 +23,18 @@ const sendMessage = async (page, message) => {
     await input.type("", { delay: 10 });
 
     const lastIdPrev = await page.evaluate(async () => {
+      let retryCount = 0;
       while (
         !Array.from(document.querySelectorAll("[data-message-id]"))
           .map((e) => e.getAttribute("data-message-id"))
           .filter((e) => e.includes(".")).length > 0
       ) {
+        if (retryCount >= 100) {
+          break;
+        }
+
         await new Promise((res) => setTimeout(res, 50));
+        retryCount++;
       }
 
       return Math.max(
