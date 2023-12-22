@@ -29,7 +29,7 @@ const sendMessage = async (page, message) => {
           .map((e) => e.getAttribute("data-message-id"))
           .filter((e) => e.includes(".")).length > 0
       ) {
-        if (retryCount >= 100) {
+        if (retryCount >= 50) {
           break;
         }
 
