@@ -1,5 +1,3 @@
-const { default: axios } = require("axios");
-
 const { sendMessage } = require("../utils/sendMessage");
 const { getUserInfo } = require("./getUserInfo");
 const {

@@ -1,3 +1,5 @@
+const { sendMessage } = require("../utils/sendMessage");
+
 const checkSpam = async (context) => {
   try {
     const newPage = await context.newPage();
@@ -21,29 +23,16 @@ const checkSpam = async (context) => {
       await buttonStart.click();
     } catch {
       try {
-        const input = await newPage.waitForSelector("#editable-message-text", {
-          state: "attached",
-        });
-
-        await input.type("/start", { delay: 10 });
+        await sendMessage(newPage, "/start");
       } catch {
         return "banned";
       }
-
-      const buttonElement = await newPage.waitForSelector(
-        'button[title="Send Message"]',
-        {
-          state: "attached",
-        }
-      );
-
-      await buttonElement.click();
     }
 
     await newPage.waitForSelector('.last-in-list:has-text("/start")', {
       state: "hidden",
     });
-    await newPage.waitForTimeout(5000);
+    await newPage.waitForTimeout(1000);
     const botResponseEl = await newPage.waitForSelector(".last-in-list");
 
     const botResponse = await botResponseEl.textContent();

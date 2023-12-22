@@ -4,23 +4,11 @@ function capitalizeFirstLetter(string) {
 
 const sendMessage = async (page, message) => {
   try {
+    const filtredMessage = message.replace(/\n/g, "").replace(/['"`]/g, "");
     const input = await page.waitForSelector("#editable-message-text", {
       state: "attached",
     });
-    const filtredMessage = message.replace(/\n/g, "").replace(/['"`]/g, "");
-
-    const maxId = await page.evaluate(() => {
-      const elements = document.querySelectorAll("[data-message-id]");
-      return Math.max(
-        ...Array.from(elements)
-          .map((element) => element.getAttribute("data-message-id"))
-          .map((e) => Math.floor(Number(e))),
-        -1
-      );
-    });
-
     await input.type("         " + capitalizeFirstLetter(filtredMessage), {
-      delay: 15,
       timeout: 60000,
     });
     const buttonElement = await page.waitForSelector(
@@ -34,7 +22,27 @@ const sendMessage = async (page, message) => {
     await input.type("", { delay: 10 });
     await input.type("", { delay: 10 });
 
-    // await page.waitForSelector(`[data-message-id='${maxId + 1}']`);
+    const lastIdPrev = await page.evaluate(async () => {
+      while (
+        !Array.from(document.querySelectorAll("[data-message-id]"))
+          .map((e) => e.getAttribute("data-message-id"))
+          .filter((e) => e.includes(".")).length > 0
+      ) {
+        await new Promise((res) => setTimeout(res, 50));
+      }
+
+      return Math.max(
+        ...Array.from(document.querySelectorAll("[data-message-id]"))
+          .map((e) => e.getAttribute("data-message-id"))
+          .filter((e) => e.includes("."))
+          .map(Number)
+      );
+    });
+    console.log(lastIdPrev);
+    await page.waitForSelector(`[data-message-id='${lastIdPrev}']`);
+    await page.waitForSelector(`[data-message-id='${lastIdPrev}']`, {
+      state: "hidden",
+    });
   } catch (e) {
     console.log(e.message);
     throw new Error("Сообщение не доставлено");
