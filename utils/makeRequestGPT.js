@@ -64,7 +64,6 @@ async function makeRequestGPT(
           message.toLowerCase().includes("что-то пошло") ||
           message.toLowerCase().includes("you today") ||
           message.toLowerCase().includes("how can") ||
-          message.toLowerCase().includes("вызов") ||
           message.toLowerCase().includes("i assist you"))
       ) {
         console.log(
