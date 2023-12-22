@@ -13,7 +13,6 @@ const {
 } = require("./db/account");
 const { parseArgs } = require("./utils/parseArgs");
 const util = require("util");
-const { sendMessage } = require("./utils/sendMessage");
 const exec = util.promisify(require("child_process").exec);
 
 const main = async (accountId, proxy) => {
