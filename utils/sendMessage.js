@@ -39,7 +39,6 @@ const sendMessage = async (page, message) => {
       );
     });
     console.log(lastIdPrev);
-    await page.waitForSelector(`[data-message-id='${lastIdPrev}']`);
     await page.waitForSelector(`[data-message-id='${lastIdPrev}']`, {
       state: "hidden",
     });
