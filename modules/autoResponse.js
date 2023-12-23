@@ -286,6 +286,17 @@ async function autoResponseDialogue(context, href, accountId) {
               
               Your JSON object should be both precise and informative, serving as a reliable tool for the assessment of potential leads. Ensure that your analysis is error-free and provides clear justifications for your conclusions.`,
               },
+              {
+                role: "user",
+                content: `'''${[...resultDialogues]
+                  .map(
+                    (dialog) =>
+                      `# ${
+                        dialog.role === "user" ? userNameFilter : botName
+                      }: ${dialog.content}`
+                  )
+                  .join("\n")}'''`,
+              },
             ]);
           console.log(
             `\x1b[4mДиалог лид? :\x1b[0m \x1b[30m${ai_is_lead}\x1b[0m`
