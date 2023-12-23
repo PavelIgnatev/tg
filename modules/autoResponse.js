@@ -239,6 +239,7 @@ async function autoResponseDialogue(context, href, accountId) {
               : variantMessage;
           await sendMessage(senderPage, message);
           resultDialogues.push(`${filterText(aiName)}: ${message}`);
+          dialogues.push({ role: "assistant", content: message });
           console.log(
             `\x1b[4mСгенерированное сообщение для автоответа пользователю:\x1b[0m \x1b[34m${message}\x1b[0m`
           );
@@ -288,7 +289,7 @@ async function autoResponseDialogue(context, href, accountId) {
               },
               {
                 role: "user",
-                content: `'''${[...resultDialogues]
+                content: `'''${[...dialogues]
                   .map(
                     (dialog) =>
                       `# ${
