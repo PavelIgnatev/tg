@@ -239,7 +239,7 @@ async function autoResponseDialogue(context, href, accountId) {
               : variantMessage;
           await sendMessage(senderPage, message);
           resultDialogues.push(`${filterText(aiName)}: ${message}`);
-          dialogues.push({ role: "assistant", content: message });
+
           console.log(
             `\x1b[4mСгенерированное сообщение для автоответа пользователю:\x1b[0m \x1b[34m${message}\x1b[0m`
           );
@@ -279,13 +279,8 @@ async function autoResponseDialogue(context, href, accountId) {
             await makeRequestJSONGPT([
               {
                 role: "system",
-                content: `As an expert in creating JSON objects for lead analysis, carefully examine the provided snippet of conversation between ${userNameFilter}, who holds the position of ${offer.aiRole} and ${botName}. Company description: ${offer.companyDescription}. Your assignment is to construct a JSON object that accurately evaluates the interaction for lead generation potential. Ensure that your JSON object includes the following two attributes:
-
-              1. 'is_lead': This attribute must be of boolean type, either true or false. Set it to true if the analyzed dialogue indicates that {botName} has shown interest in the company's services, or if there's an engagement that could imply potential interest. Conversely, if the dialogue lacks any indication of interest or engagement, set this attribute to false.
-              
-              2. 'explanation': This attribute should contain a nuanced and detailed analysis explaining your decision regarding the 'is_lead' status of ${userNameFilter}. Highlight specific elements of the conversation, such as questions asked, enthusiasm expressed, or any other criteria that signal ${userNameFilter}'s level of interest in the company's services.
-              
-              Your JSON object should be both precise and informative, serving as a reliable tool for the assessment of potential leads. Ensure that your analysis is error-free and provides clear justifications for your conclusions.`,
+                content: `
+                Create a JSON object with two attributes based on an analysis of a conversation between a potential client, identified as ${userNameFilter}, and an ${offer.aiRole} named ${botName}. The first attribute, 'is_lead', should be a boolean indicating if ${userNameFilter} is a potential lead showing interest in the company: ${offer.companyDescription}. The second attribute, 'explanation', must provide a detailed rationale for the decision on 'is_lead', using specific dialogue cues and interactions from the conversation as evidence.`,
               },
               {
                 role: "user",
