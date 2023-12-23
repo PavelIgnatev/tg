@@ -195,18 +195,19 @@ async function autoResponseDialogue(context, href, accountId) {
             `\x1b[4mСообщение для автоответа пользователю было написано с помощью менеджера:\x1b[0m \x1b[34m${managerMessage}\x1b[0m`
           );
         } else if (!stopped) {
-          const variantMessage = await makeRequestComplete(`
+          const variantMessage = (
+            await makeRequestComplete(`
           ТВОЕ ИМЯ: ${botName}
           ТВОЯ РОЛЬ: ${offer && offer.aiRole ? offer.aiRole : ""}
           ОПИСАНИЕ КОМПАНИИ: ${
             offer && offer.companyDescription ? offer.companyDescription : ""
           } 
           ЦЕЛЬ ДЛЯ ${botName}: ответить на сообщениe(я) пользователя ${userNameFilter}, проявить у него интерес к предложению компании. ${
-            offer && offer.goal && checkFunction(dialogues)
-              ? "В случае, если пользователь проявил активный интерес к предложению - твоей задачей является " +
-                offer.goal
-              : ""
-          }
+              offer && offer.goal && checkFunction(dialogues)
+                ? "В случае, если пользователь проявил активный интерес к предложению - твоей задачей является " +
+                  offer.goal
+                : ""
+            }
   
           ${[...dialogues]
             .map(
@@ -216,7 +217,10 @@ async function autoResponseDialogue(context, href, accountId) {
                 }`
             )
             .join("\n")}
-          # ${botName}:`);
+          # ${botName}:`)
+          )
+            .split("#")[0]
+            .split(`${userNameFilter}:`)[0];
 
           const message =
             offer.language === "АНГЛИЙСКИЙ"
