@@ -229,7 +229,7 @@ async function autoResponseDialogue(context, href, accountId) {
                     {
                       role: "system",
                       content:
-                        "You will be given a sentence, your task is to translate this sentence into ENGLISH. It is forbidden to change the context. In the answer return only the sentence translated into ENGLISH!",
+                        "Please serve as a language translator for me. You will receive sentences in various languages which you must accurately translate into English. Your main focus should be to maintain the original context, meaning, and nuances of each sentence. After translating, present only the English version of the sentence to me. Refrain from including any additional information, explanations, or modifications. Your translation should strive for precision and fidelity to the source material.",
                     },
                     {
                       role: "user",
