@@ -44,6 +44,7 @@ const sendMessage = async (page, message) => {
     console.log(lastIdPrev);
     await page.waitForSelector(`[data-message-id='${lastIdPrev}']`, {
       state: "hidden",
+      timeout: 60000,
     });
 
     await input.type("", { delay: 10 });

@@ -11,7 +11,7 @@ const getUserInfo = async (page) => {
     } catch {}
 
     const userInfo = await page.waitForSelector(".chat-info-wrapper", {
-      timeout: 3000,
+      timeout: 6000,
     });
     await userInfo.click();
 
