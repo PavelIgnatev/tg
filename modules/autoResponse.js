@@ -283,8 +283,8 @@ async function autoResponseDialogue(context, href, accountId) {
             await makeRequestJSONGPT([
               {
                 role: "system",
-                content: `
-                Create a JSON object with two attributes based on an analysis of a conversation between a potential client, identified as ${userNameFilter}, and an ${offer.aiRole} named ${botName}. The first attribute, 'is_lead', should be a boolean indicating if ${userNameFilter} is a potential lead showing interest in the company: ${offer.companyDescription}. The second attribute, 'explanation', must provide a detailed rationale for the decision on 'is_lead', using specific dialogue cues and interactions from the conversation as evidence.`,
+
+                content: `Generate a JSON object with two elements based on the interaction between a potential client referred to as '${userNameFilter}' and ${offer.aiRole} named ${botName}.' The first element, 'is_lead,' should be a boolean value reflecting whether '${userNameFilter}' appears to be a promising sales lead based on their engagement with the services outlined in '${offer.companyDescription}.' The second element, 'explanation,' should offer a well-reasoned explanation supporting the 'is_lead' value, incorporating specific quotes and key points from the dialogue that demonstrate the prospect's interest or disinterest.`,
               },
               {
                 role: "user",

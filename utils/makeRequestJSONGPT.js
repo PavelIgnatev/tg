@@ -5,7 +5,7 @@ async function makeRequestJSONGPT(dialogue) {
     try {
       const response = await axios.post("http://81.31.245.212/chat/", {
         dialogue,
-        temperature: 0.5,
+        temperature: 0.1,
       });
 
       const { data } = response;
