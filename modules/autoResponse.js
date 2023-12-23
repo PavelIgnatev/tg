@@ -9,6 +9,7 @@ const { findByGroupId } = require("../db/groupId");
 const { readAccount } = require("../db/account");
 const { makeRequestGPT } = require("../utils/makeRequestGPT");
 const { makeRequestComplete } = require("../utils/makeRequestComplete");
+const { makeRequestJSONGPT } = require("../utils/makeRequestJSONGPT");
 
 function filterText(text) {
   var filteredText = text.replace(/[.\[\]$@%!#^&*+\\|<>\/{}]/g, "");
@@ -163,6 +164,9 @@ async function autoResponseDialogue(context, href, accountId) {
           stopped,
           managerMessage,
         } = dialogueInfo ?? {};
+        const userNameFilter = filterText(userTitle);
+        const botName = filterText(aiName);
+        const offer = await getOffer(groupId);
 
         try {
           const goToBottom = await senderPage.waitForSelector(
@@ -191,16 +195,13 @@ async function autoResponseDialogue(context, href, accountId) {
             `\x1b[4mСообщение для автоответа пользователю было написано с помощью менеджера:\x1b[0m \x1b[34m${managerMessage}\x1b[0m`
           );
         } else if (!stopped) {
-          const offer = await getOffer(groupId);
-          const userName = filterText(userTitle);
-          const botName = filterText(aiName);
           const variantMessage = await makeRequestComplete(`
           ТВОЕ ИМЯ: ${botName}
           ТВОЯ РОЛЬ: ${offer && offer.aiRole ? offer.aiRole : ""}
           ОПИСАНИЕ КОМПАНИИ: ${
             offer && offer.companyDescription ? offer.companyDescription : ""
           } 
-          ЦЕЛЬ ДЛЯ ${botName}: ответить на сообщениe(я) пользователя ${userName}, проявить у него интерес к предложению компании. ${
+          ЦЕЛЬ ДЛЯ ${botName}: ответить на сообщениe(я) пользователя ${userNameFilter}, проявить у него интерес к предложению компании. ${
             offer && offer.goal && checkFunction(dialogues)
               ? "В случае, если пользователь проявил активный интерес к предложению - твоей задачей является " +
                 offer.goal
@@ -210,7 +211,7 @@ async function autoResponseDialogue(context, href, accountId) {
           ${[...dialogues]
             .map(
               (dialog) =>
-                `# ${dialog.role === "user" ? userName : botName}: ${
+                `# ${dialog.role === "user" ? userNameFilter : botName}: ${
                   dialog.content
                 }`
             )
@@ -273,7 +274,26 @@ async function autoResponseDialogue(context, href, accountId) {
 
         try {
           await senderPage.goto("about:blank");
-          await postDialogue({
+          const { is_lead: ai_is_lead, explanation: ai_explanation } =
+            await makeRequestJSONGPT([
+              {
+                role: "system",
+                content: `As an expert in creating JSON objects for lead analysis, carefully examine the provided snippet of conversation between ${userNameFilter}, who holds the position of ${offer.aiRole} and ${botName}. Company description: ${offer.companyDescription}. Your assignment is to construct a JSON object that accurately evaluates the interaction for lead generation potential. Ensure that your JSON object includes the following two attributes:
+
+              1. 'is_lead': This attribute must be of boolean type, either true or false. Set it to true if the analyzed dialogue indicates that {botName} has shown interest in the company's services, or if there's an engagement that could imply potential interest. Conversely, if the dialogue lacks any indication of interest or engagement, set this attribute to false.
+              
+              2. 'explanation': This attribute should contain a nuanced and detailed analysis explaining your decision regarding the 'is_lead' status of ${userNameFilter}. Highlight specific elements of the conversation, such as questions asked, enthusiasm expressed, or any other criteria that signal ${userNameFilter}'s level of interest in the company's services.
+              
+              Your JSON object should be both precise and informative, serving as a reliable tool for the assessment of potential leads. Ensure that your analysis is error-free and provides clear justifications for your conclusions.`,
+              },
+            ]);
+          console.log(
+            `\x1b[4mДиалог лид? :\x1b[0m \x1b[30m${ai_is_lead}\x1b[0m`
+          );
+          console.log(
+            `\x1b[4mОбъяснение :\x1b[0m \x1b[30m${ai_explanation}\x1b[0m`
+          );
+          const data = {
             groupId,
             accountId,
             href,
@@ -285,7 +305,14 @@ async function autoResponseDialogue(context, href, accountId) {
             viewed: false,
             dateUpdated: new Date(),
             managerMessage: null,
-          });
+            ai_is_lead,
+            ai_explanation,
+          };
+
+          if (ai_is_lead) {
+            data["lead"] = true;
+          }
+          await postDialogue(data);
         } catch (e) {
           await senderPage.goto("about:blank");
 
