@@ -305,13 +305,13 @@ async function autoResponseDialogue(context, href, accountId) {
             viewed: false,
             dateUpdated: new Date(),
             managerMessage: null,
-            ai_is_lead,
-            ai_explanation,
+            // ai_is_lead,
+            // ai_explanation,
           };
 
-          if (ai_is_lead) {
-            data["lead"] = true;
-          }
+          // if (ai_is_lead) {
+          //   data["lead"] = true;
+          // }
           await postDialogue(data);
         } catch (e) {
           await senderPage.goto("about:blank");

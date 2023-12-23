@@ -8,7 +8,7 @@ const sendMessage = async (page, message) => {
     const input = await page.waitForSelector("#editable-message-text", {
       state: "attached",
     });
-    await input.type("         " + capitalizeFirstLetter(filtredMessage));
+    await input.fill("         " + capitalizeFirstLetter(filtredMessage));
     const buttonElement = await page.waitForSelector(
       'button[title="Send Message"]',
       {
@@ -45,9 +45,9 @@ const sendMessage = async (page, message) => {
       timeout: 45000,
     });
 
-    await input.type("", { delay: 10 });
-    await input.type("", { delay: 10 });
-    await input.type("", { delay: 10 });
+    await input.fill("", { delay: 10 });
+    await input.fill("", { delay: 10 });
+    await input.fill("", { delay: 10 });
   } catch (e) {
     console.log(e.message);
     throw new Error("Сообщение не доставлено");
