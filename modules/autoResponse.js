@@ -124,7 +124,7 @@ async function autoResponseDialogue(context, href, accountId) {
   // Проверяем, существует ли пользователь
   try {
     while (!isSender) {
-      if (countTry > 3) {
+      if (countTry > 2) {
         throw new Error(
           "Максимальное количество ретраев, пользователь опоссум"
         );

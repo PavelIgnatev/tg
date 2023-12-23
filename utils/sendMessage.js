@@ -8,9 +8,7 @@ const sendMessage = async (page, message) => {
     const input = await page.waitForSelector("#editable-message-text", {
       state: "attached",
     });
-    await input.type("         " + capitalizeFirstLetter(filtredMessage), {
-      timeout: 60000,
-    });
+    await input.type("         " + capitalizeFirstLetter(filtredMessage));
     const buttonElement = await page.waitForSelector(
       'button[title="Send Message"]',
       {
@@ -44,7 +42,7 @@ const sendMessage = async (page, message) => {
     console.log(lastIdPrev);
     await page.waitForSelector(`[data-message-id='${lastIdPrev}']`, {
       state: "hidden",
-      timeout: 60000,
+      timeout: 45000,
     });
 
     await input.type("", { delay: 10 });
