@@ -11,13 +11,15 @@ const defaultSecondMessageWithBioPrompt =
 const defaultSecondMessageWithoutBioPrompt =
   "Примите роль составителя вопросов. Вам нужно создать вопрос, который будет кратким (до 100 символов, но не менее 30 символов), содержательным для пользователя, деятельность которого неизвестна и информации о которой нет.";
 
-const addContext = (companyDescription, userDescription, message) => {
+const addContext = (companyDescription, userDescription, aiRole, message) => {
   const companyRegExp = new RegExp("\\${companyDescription}", "g");
   const userRegExp = new RegExp("\\${userDescription}", "g");
+  const roleRegExp = new RegExp("\\${aiRole}", "g");
 
   return message
     .replace(companyRegExp, companyDescription)
-    .replace(userRegExp, userDescription);
+    .replace(userRegExp, userDescription)
+    .replace(roleRegExp, aiRole);
 };
 
 const autoSender = async (accountId, context, account) => {
@@ -80,6 +82,7 @@ const autoSender = async (accountId, context, account) => {
   let secondMessagePromptWithBio;
   let secondMessagePromptWithoutBio;
   let companyDescription;
+  let aiRole;
 
   try {
     while (!userInfo || !userInfo.userTitle) {
@@ -111,6 +114,7 @@ const autoSender = async (accountId, context, account) => {
           defaultSecondMessageWithoutBioPrompt;
         companyDescription =
           offer && offer.companyDescription ? offer.companyDescription : "";
+        aiRole = offer && offer.aiRole ? offer.aiRole : "";
 
         await senderPage.goto(
           `https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3F${
@@ -166,6 +170,7 @@ const autoSender = async (accountId, context, account) => {
     const secondMessagePrompt = addContext(
       companyDescription,
       userBio,
+      aiRole,
       `${
         userBio ? secondMessagePromptWithBio : secondMessagePromptWithoutBio
       }. ${partSecondMessagePrompt}`
