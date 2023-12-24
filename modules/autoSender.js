@@ -159,7 +159,7 @@ const autoSender = async (accountId, context, account) => {
   // Отправка сообщения
   try {
     console.log("Данные пользователя для отправки: ", userInfo);
-    const { userTitle, userBio, phone } = userInfo;
+    const { userTitle, userBio = "", phone } = userInfo;
     const userData = userTitle.replace(/[^a-zA-Zа-яА-Я\s]/g, "");
 
     const translatePrompt =
