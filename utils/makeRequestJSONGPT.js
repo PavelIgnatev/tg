@@ -15,11 +15,13 @@ async function makeRequestJSONGPT(dialogue) {
         data["is_lead"] === undefined ||
         data["explanation"] === undefined
       ) {
-        console.log(data)
-        throw new Error("Недостающие поля");
+        console.log("Недостающие поля", data);
       }
 
-      return data;
+      return {
+        is_lead: data && data["is_lead"],
+        explanation: data && data["explanation"],
+      };
     } catch (error) {
       console.log(`Ошибка запроса. ${error.message}`);
     }
@@ -27,4 +29,3 @@ async function makeRequestJSONGPT(dialogue) {
 }
 
 module.exports = { makeRequestJSONGPT };
-
