@@ -15,6 +15,7 @@ async function makeRequestJSONGPT(dialogue) {
         data["is_lead"] === undefined ||
         data["explanation"] === undefined
       ) {
+        console.log(data)
         throw new Error("Недостающие поля");
       }
 
