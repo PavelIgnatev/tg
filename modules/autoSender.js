@@ -101,7 +101,6 @@ const autoSender = async (accountId, context, account) => {
         groupId = resGroupId;
         userName = username;
         language = resLanguage || "РУССКИЙ";
-        messageType = type || 1;
         secondMessagePromptWithBio =
           resSecondMessagePromptWithBio ||
           resSecondMessagePrompt ||
