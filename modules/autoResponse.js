@@ -52,9 +52,10 @@ async function getOffer(groupId) {
       aiRole = "младший менеджер по продажам компании AiSender",
       companyDescription = "AiSender занимается автоматизацией первой линии продаж с помощью искуственного интеллекта",
       goal = "Получить согласие на зум встречу с старшим менеджером, который расскажет про продукт, если согласие получено, то ты передашь контакт Telegram пользователя менеджеру и он напишет в течении 24 часов.",
+      addedInformation = "",
     },
   } = dataGroupId && dataGroupId.offer ? dataGroupId : { offer: {} };
-  return { aiRole, companyDescription, goal, language };
+  return { aiRole, companyDescription, addedInformation, goal, language };
 }
 
 async function getDialogues(page, aiName, userName) {
