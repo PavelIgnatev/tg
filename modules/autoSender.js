@@ -200,7 +200,7 @@ const autoSender = async (accountId, context, account) => {
               },
             ],
             0.7,
-            true,
+            false,
             false
           )
         : firstMessage;
@@ -218,7 +218,7 @@ const autoSender = async (accountId, context, account) => {
               },
             ],
             0.7,
-            false,
+            true,
             false
           )
         : secondMessage;
