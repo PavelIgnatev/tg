@@ -114,31 +114,26 @@ async function makeRequestGPT(
           .replace("доброе утро", "")
           .replace("добрый вечер", "")
           .replace("добрый день", "")
-
           .replace("Hi, ", "")
           .replace("Hi! ", "")
           .replace("Hi!", "")
           .replace("Hi", "")
           .replace("hi", "")
-
           .replace("Hello, ", "")
           .replace("Hello! ", "")
           .replace("Hello!", "")
           .replace("Hello", "")
           .replace("hello", "")
-
           .replace("Good morning, ", "")
           .replace("Good morning! ", "")
           .replace("Good morning!", "")
           .replace("Good morning", "")
           .replace("good morning", "")
-
           .replace("Good evening, ", "")
           .replace("Good evening! ", "")
           .replace("Good evening!", "")
           .replace("Good evening", "")
           .replace("good evening", "")
-
           .replace("Good afternoon, ", "")
           .replace("Good afternoon! ", "")
           .replace("Good afternoon!", "")
