@@ -4,11 +4,11 @@ function capitalizeFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-async function makeRequestComplete(prompt) {
+async function makeRequestComplete(prompt, error = false) {
   while (true) {
     try {
       const response = await axios.post("http://81.31.245.212/complete/", {
-        prompt ,
+        prompt,
       });
       const { data } = response;
 
@@ -33,7 +33,7 @@ async function makeRequestComplete(prompt) {
         message.includes("[") ||
         message.includes("]") ||
         message.includes("(") ||
-        message.includes(")") || 
+        message.includes(")") ||
         message.includes("{") ||
         message.includes("}")
       ) {
@@ -41,6 +41,32 @@ async function makeRequestComplete(prompt) {
           `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
         );
         throw new Error("В ответе содержатся подозрительные символы");
+      }
+
+      if (
+        error &&
+        (message.toLowerCase().includes("чем я") ||
+          message.toLowerCase().includes("могу помоч") ||
+          message.toLowerCase().includes("вам помоч") ||
+          message.toLowerCase().includes("помочь вам") ||
+          message.toLowerCase().includes("готов на них") ||
+          message.toLowerCase().includes("готов помоч") ||
+          message.toLowerCase().includes("вопросы по данно") ||
+          message.toLowerCase().includes("вас какие-либо") ||
+          message.toLowerCase().includes("какие-либо вопрос") ||
+          message.toLowerCase().includes("какие вопро") ||
+          message.toLowerCase().includes("наших услуг") ||
+          message.toLowerCase().includes("по поводу услуг") ||
+          message.toLowerCase().includes("по поводу наших") ||
+          message.toLowerCase().includes("вопросы по это") ||
+          message.toLowerCase().includes("возникнут вопрос") ||
+          message.toLowerCase().includes("возникли у вас") ||
+          message.toLowerCase().includes("у вас возникли"))
+      ) {
+        console.log(
+          `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
+        );
+        throw new Error("В ответе содержатся подозретельные части сообщения");
       }
 
       return capitalizeFirstLetter(

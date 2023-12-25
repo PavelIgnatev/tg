@@ -196,18 +196,19 @@ async function autoResponseDialogue(context, href, accountId) {
           );
         } else if (!stopped) {
           const variantMessage = (
-            await makeRequestComplete(`
+            await makeRequestComplete(
+              `
           ТВОЕ ИМЯ: ${botName}
           ТВОЯ РОЛЬ: ${offer && offer.aiRole ? offer.aiRole : ""}
           ОПИСАНИЕ КОМПАНИИ: ${
             offer && offer.companyDescription ? offer.companyDescription : ""
           } 
           ЦЕЛЬ ДЛЯ ${botName}: ответить на сообщениe(я) пользователя ${userNameFilter}, проявить у него интерес к предложению компании. ${
-              offer && offer.goal && checkFunction(dialogues)
-                ? "В случае, если пользователь проявил активный интерес к предложению - твоей задачей является " +
-                  offer.goal
-                : ""
-            }
+                offer && offer.goal && checkFunction(dialogues)
+                  ? "В случае, если пользователь проявил активный интерес к предложению - твоей задачей является " +
+                    offer.goal
+                  : ""
+              }
   
           ${[...dialogues]
             .map(
@@ -217,7 +218,9 @@ async function autoResponseDialogue(context, href, accountId) {
                 }`
             )
             .join("\n")}
-          # ${botName}:`)
+          # ${botName}:`,
+              true
+            )
           )
             .split("#")[0]
             .split(`${userNameFilter}:`)[0];
