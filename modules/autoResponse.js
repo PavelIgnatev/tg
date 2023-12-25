@@ -210,22 +210,19 @@ async function autoResponseDialogue(context, href, accountId) {
                   : ""
               }
   
-          '''
-          ИСТОРИЯ ДИАЛОГА:
           ${[...dialogues]
             .map(
               (dialog) =>
-                `${dialog.role === "user" ? userNameFilter : botName}: ${
+                `# ${dialog.role === "user" ? userNameFilter : botName}: ${
                   dialog.content
                 }`
             )
             .join("\n")}
-          '''
-
-          ${botName}:`,
+          # ${botName}:`,
               true
             )
           )
+            .split("#")[0]
             .split(`${userNameFilter}:`)[0]
             .replace(new RegExp(`${userNameFilter}\\.`, "g"), userNameFilter)
             .replace(new RegExp(`${userNameFilter}!`, "g"), userNameFilter)
