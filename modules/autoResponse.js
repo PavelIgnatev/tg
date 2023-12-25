@@ -188,6 +188,9 @@ async function autoResponseDialogue(context, href, accountId) {
                 "сайт",
                 "коммерческое",
                 "инфо",
+                "контакт",
+                "старший",
+                "менеджер",
                 "кп ",
               ],
               dialog.content.toLowerCase()
