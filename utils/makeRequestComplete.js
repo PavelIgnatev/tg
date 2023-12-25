@@ -47,8 +47,6 @@ async function makeRequestComplete(prompt, error = false) {
         error &&
         (message.toLowerCase().includes("чем я") ||
           message.toLowerCase().includes("могу помоч") ||
-          message.toLowerCase().includes("вам помоч") ||
-          message.toLowerCase().includes("помочь вам") ||
           message.toLowerCase().includes("готов на них") ||
           message.toLowerCase().includes("готов помоч") ||
           message.toLowerCase().includes("вопросы по данно") ||
