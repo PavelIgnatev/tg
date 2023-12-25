@@ -16,6 +16,16 @@ function filterText(text) {
   return filteredText;
 }
 
+function checkArrayForSubstring(arr, substring) {
+  for (let i = 0; i < arr.length; i++) {
+    if (substring.includes(arr[i])) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 function checkFunction(d) {
   const normalizeArr = [];
   let isFindUser = false;
@@ -167,6 +177,22 @@ async function autoResponseDialogue(context, href, accountId) {
         const userNameFilter = filterText(userTitle);
         const botName = filterText(aiName);
         const offer = await getOffer(groupId);
+        const hasPromo = dialogues
+          .filter((dialog) => dialog.role === "user")
+          .some((dialog) =>
+            checkArrayForSubstring(
+              [
+                "pdf",
+                "материа",
+                "промо",
+                "сайт",
+                "коммерческое",
+                "инфо",
+                "кп ",
+              ],
+              dialog.content.toLowerCase()
+            )
+          );
 
         try {
           const goToBottom = await senderPage.waitForSelector(
@@ -203,6 +229,12 @@ async function autoResponseDialogue(context, href, accountId) {
           ОПИСАНИЕ КОМПАНИИ: ${
             offer && offer.companyDescription ? offer.companyDescription : ""
           } 
+          ${
+            hasPromo &&
+            `ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ (предоставлять, если спросят): ${
+              offer && offer.addedInformation ? offer.addedInformation : ""
+            }`
+          }
           ЦЕЛЬ ДЛЯ ${botName}: ответить на сообщениe(я) пользователя ${userNameFilter}, проявить у него интерес к предложению компании. ${
                 offer && offer.goal && checkFunction(dialogues)
                   ? "В случае, если пользователь проявил активный интерес к предложению - твоей задачей является " +
