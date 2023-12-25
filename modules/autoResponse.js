@@ -222,7 +222,6 @@ async function autoResponseDialogue(context, href, accountId) {
               true
             )
           )
-            .split("#")[0]
             .split(`${userNameFilter}:`)[0]
             .replace(new RegExp(`${userNameFilter}\\.`, "g"), userNameFilter)
             .replace(new RegExp(`${userNameFilter}!`, "g"), userNameFilter)
