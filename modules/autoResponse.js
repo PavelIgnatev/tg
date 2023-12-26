@@ -188,25 +188,25 @@ async function autoResponseDialogue(context, href, accountId) {
           (userBio ?? "") +
           dialogues.map((dialog) => dialog.content).join("");
         const offer = await getOffer(groupId, fullString);
-        const hasPromo = dialogues
-          .filter((dialog) => dialog.role === "user")
-          .some((dialog) =>
-            checkArrayForSubstring(
-              [
-                "pdf",
-                "материа",
-                "промо",
-                "сайт",
-                "коммерческое",
-                "инфо",
-                "контакт",
-                "старший",
-                "менеджер",
-                "кп ",
-              ],
-              dialog.content.toLowerCase()
-            )
-          );
+        const hasPromo = dialogues.some((dialog) =>
+          checkArrayForSubstring(
+            [
+              "pdf",
+              "материа",
+              "промо",
+              "сайт",
+              "коммерческое",
+              "инфо",
+              "контакт",
+              "старший",
+              "менеджер",
+              "кп ",
+              "чат-бот",
+              "чат бот",
+            ],
+            (dialog.content ?? "").toLowerCase()
+          )
+        );
 
         try {
           const goToBottom = await senderPage.waitForSelector(
@@ -245,7 +245,7 @@ async function autoResponseDialogue(context, href, accountId) {
           } 
           ${
             hasPromo &&
-            `ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ (предоставлять, если спросят): ${
+            `ПРОМО-МАТЕРИАЛЫ (отправлять, если в диалоге про это говорим или пользователь запрашивает): ${
               offer && offer.addedInformation ? offer.addedInformation : ""
             }`
           }
