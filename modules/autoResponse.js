@@ -200,6 +200,11 @@ async function autoResponseDialogue(context, href, accountId) {
               "кп ",
               "bot",
               "бот",
+              "zoom",
+              "зум",
+              "встреч",
+              "созвон",
+              "звонок",
             ],
             (dialog.content ?? "").toLowerCase()
           )
