@@ -196,13 +196,10 @@ async function autoResponseDialogue(context, href, accountId) {
               "промо",
               "сайт",
               "коммерческое",
-              "инфо",
-              "контакт",
-              "старший",
-              "менеджер",
+              "ссылк",
               "кп ",
-              "чат-бот",
-              "чат бот",
+              "bot",
+              "бот",
             ],
             (dialog.content ?? "").toLowerCase()
           )
@@ -238,24 +235,7 @@ async function autoResponseDialogue(context, href, accountId) {
           const variantMessage = (
             await makeRequestComplete(
               `
-          ТВОЕ ИМЯ: ${botName}
-          ТВОЯ РОЛЬ: ${offer && offer.aiRole ? offer.aiRole : ""}
-          ОПИСАНИЕ КОМПАНИИ: ${
-            offer && offer.companyDescription ? offer.companyDescription : ""
-          } 
-          ${
-            hasPromo &&
-            `ПРОМО-МАТЕРИАЛЫ (отправлять, если в диалоге про это говорим или пользователь запрашивает): ${
-              offer && offer.addedInformation ? offer.addedInformation : ""
-            }`
-          }
-          ЦЕЛЬ ДЛЯ ${botName}: ответить (на русском языке) на сообщениe(я) пользователя ${userNameFilter}, проявить у него интерес к предложению компании. ${
-                offer && offer.goal && checkFunction(dialogues)
-                  ? "В случае, если пользователь проявил активный интерес к предложению - твоей задачей является " +
-                    offer.goal
-                  : ""
-              }
-  
+          ИСТОРИЯ ДИАЛОГА:
           ${[...dialogues]
             .map(
               (dialog) =>
@@ -264,6 +244,25 @@ async function autoResponseDialogue(context, href, accountId) {
                 }`
             )
             .join("\n")}
+          ТВОЕ ИМЯ: ${botName}
+          ТВОЯ РОЛЬ: ${offer && offer.aiRole ? offer.aiRole : ""}
+          ОПИСАНИЕ КОМПАНИИ: ${
+            offer && offer.companyDescription ? offer.companyDescription : ""
+          } 
+          ${
+            hasPromo &&
+            `ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ: ${
+              offer && offer.addedInformation ? offer.addedInformation : ""
+            }`
+          }
+          ЦЕЛЬ ДЛЯ ${botName}: ответить на сообщениe(я) пользователя ${userNameFilter}, проявить у него интерес к получению подробной информации. ${
+                offer && offer.goal && checkFunction(dialogues)
+                  ? "В случае, если пользователь проявил активный интерес к получению подробной информации - " +
+                    offer.goal
+                  : ""
+              }
+  
+          Верни сообщение ТОЛЬКО для пользователя ${botName}, в котором будет содержаться основаная часть-отсылка на последнее сообщение пользователя ${userNameFilter} с наводящим вопросом для продолжения общения.
           # ${botName}:`,
               true
             )

@@ -28,6 +28,8 @@ async function makeRequestGPT(
       if (
         message.includes("[") ||
         message.includes("]") ||
+        message.includes("(") ||
+        message.includes(")") ||
         message.includes("{") ||
         message.includes("}")
       ) {
@@ -61,11 +63,11 @@ async function makeRequestGPT(
           message.toLowerCase().includes("вопросы по это") ||
           message.toLowerCase().includes("возникнут вопрос") ||
           message.toLowerCase().includes("возникли у вас") ||
-          message.toLowerCase().includes("у вас возникли") ||
-          message.toLowerCase().includes("описании компании") ||
-          message.toLowerCase().includes("цель диалога") ||
+          message.toLowerCase().includes("у вас возник") ||
+          message.toLowerCase().includes("описании компан") ||
+          message.toLowerCase().includes("цель диалог") ||
           message.toLowerCase().includes("моя роль") ||
-          message.toLowerCase().includes("цели диалога") ||
+          message.toLowerCase().includes("цели диалог") ||
           message.toLowerCase().includes("готов ответит") ||
           message.toLowerCase().includes("них ответит") ||
           message.toLowerCase().includes("чем могу") ||

@@ -44,6 +44,10 @@ async function makeRequestComplete(prompt, error = false) {
         error &&
         (message.toLowerCase().includes("чем я") ||
           message.toLowerCase().includes("могу помоч") ||
+          message.toLowerCase().includes("могу тебе") ||
+          message.toLowerCase().includes("тебе помоч") ||
+          message.toLowerCase().includes("конкретный вопрос") ||
+          message.toLowerCase().includes("конкретные вопрос") ||
           message.toLowerCase().includes("готов на них") ||
           message.toLowerCase().includes("готов помоч") ||
           message.toLowerCase().includes("вопросы по данно") ||
@@ -52,10 +56,21 @@ async function makeRequestComplete(prompt, error = false) {
           message.toLowerCase().includes("какие вопро") ||
           message.toLowerCase().includes("наших услуг") ||
           message.toLowerCase().includes("по поводу услуг") ||
-          message.toLowerCase().includes("по поводу наших") ||
+          message.toLowerCase().includes("по поводу наш ") ||
           message.toLowerCase().includes("вопросы по это") ||
+          message.toLowerCase().includes("цели диалог") ||
+          message.toLowerCase().includes("цель диалог") ||
+          message.toLowerCase().includes("моя цел") ||
+          message.toLowerCase().includes("готов ответит") ||
+          message.toLowerCase().includes("них ответит") ||
+          message.toLowerCase().includes("чем могу") ||
+          message.toLowerCase().includes("полезен быть") ||
+          message.toLowerCase().includes("быть полезен") ||
+          message.toLowerCase().includes("пошло не так") ||
+          message.toLowerCase().includes("что-то пошло") ||
           message.toLowerCase().includes("возникнут вопрос") ||
           message.toLowerCase().includes("возникли у вас") ||
+          message.toLowerCase().includes("вас заинтересовал") ||
           message.toLowerCase().includes("у вас возникли"))
       ) {
         console.log(
