@@ -243,8 +243,10 @@ async function autoResponseDialogue(context, href, accountId) {
               `
 
           ТВОЕ ИМЯ: ${botName}
-          ТВОЯ РОЛЬ: ${offer && offer.aiRole ? offer.aiRole : ""}
-          ОПИСАНИЕ КОМПАНИИ: ${
+          РОЛЬ ПОЛЬЗОВАТЕЛЯ '${botName}': ${
+                offer && offer.aiRole ? offer.aiRole : ""
+              }
+          ОПИСАНИЕ КОМПАНИИ (представитель компании '${botName}'): ${
             offer && offer.companyDescription ? offer.companyDescription : ""
           } 
           ${
