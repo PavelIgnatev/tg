@@ -255,7 +255,7 @@ async function autoResponseDialogue(context, href, accountId) {
           }
           ЦЕЛЬ ДЛЯ ${botName}: ответить на последнее сообщениe пользователя ${userNameFilter}, проявить у пользователя ${userNameFilter} интерес к предложению компании (смотри в ОПИСАНИЕ КОМПАНИИ). ${
                 offer && offer.goal && checkFunction(dialogues)
-                  ? "В случае, если пользователь проявил активный интерес к информации - " +
+                  ? "В случае, если пользователь проявил активный интерес к предложению - " +
                     offer.goal
                   : ""
               }
