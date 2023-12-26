@@ -44,9 +44,9 @@ function checkFunction(d) {
   return Boolean(normalizeArr.filter((e) => e.role === "assistant").length);
 }
 
-async function getOffer(groupId) {
+async function getOffer(groupId, fullStr) {
   const dataGroupId = await findByGroupId(groupId);
-  const language = dataGroupId?.language || "РУССКИЙ";
+  let language = dataGroupId?.language || "РУССКИЙ";
   const {
     offer: {
       aiRole = "младший менеджер по продажам компании AiSender",
@@ -55,6 +55,11 @@ async function getOffer(groupId) {
       addedInformation = "",
     },
   } = dataGroupId && dataGroupId.offer ? dataGroupId : { offer: {} };
+
+  if (/[а-яА-Я]/.test(fullStr)) {
+    language = "РУССКИЙ";
+  }
+
   return { aiRole, companyDescription, addedInformation, goal, language };
 }
 
@@ -177,7 +182,12 @@ async function autoResponseDialogue(context, href, accountId) {
         } = dialogueInfo ?? {};
         const userNameFilter = filterText(userTitle);
         const botName = filterText(aiName);
-        const offer = await getOffer(groupId);
+        const fullString =
+          (userName ?? "") +
+          (userTitle ?? "") +
+          (userBio ?? "") +
+          dialogues.map((dialog) => dialog.content).join("");
+        const offer = await getOffer(groupId, fullString);
         const hasPromo = dialogues
           .filter((dialog) => dialog.role === "user")
           .some((dialog) =>
@@ -239,7 +249,7 @@ async function autoResponseDialogue(context, href, accountId) {
               offer && offer.addedInformation ? offer.addedInformation : ""
             }`
           }
-          ЦЕЛЬ ДЛЯ ${botName}: ответить на сообщениe(я) пользователя ${userNameFilter}, проявить у него интерес к предложению компании. ${
+          ЦЕЛЬ ДЛЯ ${botName}: ответить (на русском языке) на сообщениe(я) пользователя ${userNameFilter}, проявить у него интерес к предложению компании. ${
                 offer && offer.goal && checkFunction(dialogues)
                   ? "В случае, если пользователь проявил активный интерес к предложению - твоей задачей является " +
                     offer.goal

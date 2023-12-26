@@ -75,7 +75,10 @@ async function makeRequestGPT(
           message.toLowerCase().includes("что-то пошло") ||
           message.toLowerCase().includes("you today") ||
           message.toLowerCase().includes("how can") ||
-          message.toLowerCase().includes("i assist you"))
+          message.toLowerCase().includes("i assist you") ||
+          message.toLowerCase().includes("language") ||
+          message.toLowerCase().includes("transl") ||
+          message.toLowerCase().includes("discussi"))
       ) {
         console.log(
           `\x1b[4mПотенциальное сообщение:\x1b[0m \x1b[36m${message}\x1b[0m`
