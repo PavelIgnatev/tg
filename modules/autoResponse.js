@@ -241,15 +241,7 @@ async function autoResponseDialogue(context, href, accountId) {
           const variantMessage = (
             await makeRequestComplete(
               `
-          ИСТОРИЯ ДИАЛОГА:
-          ${[...dialogues]
-            .map(
-              (dialog) =>
-                `# ${dialog.role === "user" ? userNameFilter : botName}: ${
-                  dialog.content
-                }`
-            )
-            .join("\n")}
+
           ТВОЕ ИМЯ: ${botName}
           ТВОЯ РОЛЬ: ${offer && offer.aiRole ? offer.aiRole : ""}
           ОПИСАНИЕ КОМПАНИИ: ${
@@ -261,12 +253,21 @@ async function autoResponseDialogue(context, href, accountId) {
               offer && offer.addedInformation ? offer.addedInformation : ""
             }`
           }
-          ЦЕЛЬ ДЛЯ ${botName}: ответить на сообщениe(я) пользователя ${userNameFilter}, проявить у него интерес к получению подробной информации о предложении компании (смотри в ОПИСАНИЕ КОМПАНИИ). ${
+          ЦЕЛЬ ДЛЯ ${botName}: ответить на последнее сообщениe пользователя ${userNameFilter}, проявить у пользователя ${userNameFilter} интерес к предложению компании (смотри в ОПИСАНИЕ КОМПАНИИ). ${
                 offer && offer.goal && checkFunction(dialogues)
-                  ? "В случае, если пользователь проявил активный интерес к получению подробной информации - " +
+                  ? "В случае, если пользователь проявил активный интерес к информации - " +
                     offer.goal
                   : ""
               }
+
+        ${[...dialogues]
+          .map(
+            (dialog) =>
+              `# ${dialog.role === "user" ? userNameFilter : botName}: ${
+                dialog.content
+              }`
+          )
+          .join("\n")}
           # ${botName}:`,
               true
             )
