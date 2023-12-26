@@ -267,8 +267,6 @@ async function autoResponseDialogue(context, href, accountId) {
                     offer.goal
                   : ""
               }
-  
-          Верни только одно ответное сообщение к пользователю ${userNameFilter}, в котором будет содержаться основаная часть-отсылка на последнее сообщение с наводящим вопросом для продолжения общения.
           # ${botName}:`,
               true
             )
