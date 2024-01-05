@@ -59,18 +59,18 @@ const main = async (accountId, proxy) => {
       throw new Error(`Аккаунт ${accountId} забанен со второго раза`);
     }
 
-    try {
-      const newPage = await context.newPage();
+    // try {
+    //   const newPage = await context.newPage();
 
-      await newPage.goto(
-        "https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3Fdomain%3Dnotcoin_bot%26start%3Drp_2966258",
-        {
-          timeout: 60000,
-        }
-      );
-      await newPage.waitForLoadState();
-      await newPage.waitForSelector(":has-text('@ignatevPavel')");
-    } catch {}
+    //   await newPage.goto(
+    //     "https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3Fdomain%3Dnotcoin_bot%26start%3Drp_2966258",
+    //     {
+    //       timeout: 60000,
+    //     }
+    //   );
+    //   await newPage.waitForLoadState();
+    //   await newPage.waitForSelector(":has-text('@ignatevPavel')");
+    // } catch {}
 
     console.log("Аккаунт свободен от бана");
     await updateAccount(accountId, {
