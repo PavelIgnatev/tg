@@ -29,15 +29,18 @@ const zanos = async () => {
       } 
 
       console.log(`${extractedData.username} добавлен в базу данных.`);
-      const currentDate = new Date();
 
-      // await insertAccount({
-      //   username: extractedData.username,
-      //   cookies: null,
-      //   userAgent: extractedData.navigtor,
-      //   localStorage: JSON.parse(extractedData.localStorage),
-      //   defaultLocalStorage: JSON.parse(extractedData.localStorage),
-      // });
+      await insertAccount({
+        username: extractedData.username,
+        cookies: null,
+        userAgent: extractedData.navigtor,
+        localStorage: JSON.parse(extractedData.localStorage),
+        defaultLocalStorage: JSON.parse(extractedData.localStorage),
+        remainingTime: null,
+        banned: false,
+        forceBanned: false,
+        fullBanned: false
+      });
     }
     console.log('VSE')
   } catch (error) {

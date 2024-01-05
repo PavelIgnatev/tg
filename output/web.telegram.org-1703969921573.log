@@ -1,0 +1,23 @@
+index.ts:335 got state, time: 317.3999996185303
+index.ts:378 Will mount auth page: authStateSignQr 1703969871.101
+logger.ts:134 [0.002] [SW] init
+logger.ts:134 [0.005] [SW] got 0 windows from the start
+logger.ts:134 [0.012] [SW] installing
+logger.ts:134 [0.013] [SW] window connected 018a1f6e-4a89-401e-9b28-8be273287a00 windows before 0
+logger.ts:134 [0.013] [SW] windows Array(0)
+logger.ts:134 [0.013] [SW] sending message port for mtproto
+logger.ts:134 [0.017] [SW] skipped waiting
+logger.ts:134 [0.019] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.020] [SW] cleared assets cache
+logger.ts:134 [0.020] [SW] claimed clients
+k/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+sticker.ts:726 Uncaught (in promise) Object
+k/:1 Uncaught (in promise) Object
+console.log('—————-');console.log('username: ', '0570bcfd-eabc-4626-a45c-5894ddf589a5');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM37:1 —————-
+VM37:1 username:  0570bcfd-eabc-4626-a45c-5894ddf589a5
+VM37:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+VM37:1 cookie: 
+VM37:1 localStorage: {"dc3_auth_key":"\"5975ec3e9921c1808599034f271e65fc5115cb472ae5aceaeed695598cdc9b084ae4221c7241dd9aa176d484fab00432585e9a8dc103bc791e50f1f8089bdbbe73c2f09518d1b1b57588260deaf4c11ec79661449a34dc2b332544142163c4971d42ffd4750733a6b905dee242532e9dc00a2385daeec65668c1c542ab5e50f607cc1a08cd5a88b953dd8cf6a21e5fc7771f5a67b69a799d7b7b3de13719f70f7a3a92795bdb82f7d7467c014c11d58d8ce200b3d7d97337e688c9124b3d94d3421916e01109e780cb9cdae8db3e167f7cf7574937362be21b9ea7feb8e88b2bd74fcb0b87d0d7086f85a27d0f8653b468d56a0fe4d21734d57a29aa1e5ce467\"","k_build":"460","dc5_server_salt":"\"3be5f7581eb358d7\"","dc3_server_salt":"\"083e2ed2fee786e3\"","user_auth":"{\"dcID\":2,\"date\":1703969902,\"id\":6812734608}","xt_instance":"{\"id\":392567,\"idle\":true,\"time\":1703969915781}","dc":"2","dc4_auth_key":"\"27ed0f5708c8f623c75a54b4b29c5010dee109ffbfba59bf2fca0a7b2cc0ed86d06ca7841a38e84a220a447630924c081a17078019a6e158e35f1f0c159c025949941c4cd4124f60664c6e315e66915064fea2a9e584a076965a50c26dc49189de6ce489e8227f1156a3a3051b90e3136218376c5bc26823ba2c1b7c5b78af9f738c4eacbeba15a11b3122531226dc59acf9baefc8d1174724def8984479aad2428bdd3e4e34c6c1e67fe32f301ede4dbe7ffdd7018103a02ae1a33b0dca0a785b8ac601c90e2926cf7b36f1f4179dc87880b5a245a1fb2a6e1f54683bd5e163e1af107d4357390ec91a401e4663ff50cc4535fb28041ab69d28181c5fb38d0e\"","":"","dc2_auth_key":"\"6f427d82b3720f826aecb922ebe47b8d62a8d8577c4b4049ae1cde5461c742b11748c5d53dcdd8d7597fb85940772dcbf2d8debc6550fd4fbd2d78402ce3b579bd49a4c07c0cddf7d3a9b32aac9dd26163d1cd6da35b28269e47311a32ade4d226f5b983cd534c70dad9c0a03431d6ce5057dd3c4088fea660525396ae1545a538e9575462b9516bd0d3c0cb380a6851480a632cf68b98ba47d5facb0ef017fde9f1c1e6c8c2f4de86af1fc7cbc791fefe52c50dbbbb029edb3c8d5c66b0e887564e4090f85d1b8d3ed031e93acfb078656da9084338eebf4724fd53924b9df362eef630d007a093ee9f418860090a0c2b275539dca28d7b852f2b9c63c51da2\"","dc4_server_salt":"\"c25e536e42c1f567\"","tgme_sync":"{\"canRedirect\":true,\"ts\":1703969903}","server_time_offset":"-1","dc2_server_salt":"\"958189f9cf3ec996\"","state_id":"704769055","auth_key_fingerprint":"\"6f427d82\"","dc1_auth_key":"\"95a2f3f29c51d03d5169027750c2fd1baa9705574e3056afef09baf2714311089036f9fdbafdb4e3de39fc05d4da9f6f4c68f140815ce1e1f19c4b21138c212c43e33f1d535e8ded7b92bdaf5792adb34da10af54a39c31ee5a0f9cfdcd22cc38a2ceb6730f76f0c27bafe99106ad23661c637dab33143c0c68c9a5c8d7a73aab8bdeb513c3e924af4960479db4e6c872a150aa853d37d3c2997b5fada98cbb56bddaf35c0cccaee3bd3aeadd19356e1c6bb0c594fd100b65d122030808605a3556b4118cecee0e9b49323826c6d950c7c838dffab5442b7c3340ce01622e76f54d6493f50982913b348cd00c5d2aa53694f1123499f4077c5e862aa1d6273be\"","dc1_server_salt":"\"7101bbd477cfa935\"","dc5_auth_key":"\"73baddb4c15b59765669d8bc0d751a55c3baeaae2e32247d947c8eb391e9ddc88c90110148055974fe02fe47e014ac0f51c27d4b8f1e858127bc4f82f7bd5fac7ea040c10cc37198c09e24cd2756d3d45c9b6a3be99b998988f1470f793fd2f751089bc7968570d388ff6e28850871d8f6fb26270e5a755d42c47f91a21b50910948bc8ac86498c87a72f1401bc45597b40f31fe2eb42ebecbb8c90dc9932a63d55eaa443c639186601520befc6e552ca3f4a2e6a4d96695e62b1cb4fa2d797e2d060b6ae4c209d8f9d79dd415f727cf6ca61e9ed72e7fcaaa2f277ed21d37b630e25f899342e9cfc1aa53866dd2e56f0df0c950a22e3d5d621131f4c6dee873\"","tt-global-state":""}
+VM37:1 —————-
+undefined

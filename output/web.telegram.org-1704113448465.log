@@ -1,0 +1,21 @@
+index.ts:335 got state, time: 832.8999996185303
+index.ts:378 Will mount auth page: authStateSignQr 1704113397.554
+logger.ts:134 [0.005] [SW] init
+logger.ts:134 [0.008] [SW] got 0 windows from the start
+logger.ts:134 [0.014] [SW] installing
+logger.ts:134 [0.016] [SW] window connected 4757b9c0-56ba-4f01-9320-6d6dad4e18b9 windows before 0
+logger.ts:134 [0.016] [SW] windows Array(0)
+logger.ts:134 [0.016] [SW] sending message port for mtproto
+logger.ts:134 [0.026] [SW] skipped waiting
+logger.ts:134 [0.034] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.047] [SW] cleared assets cache
+logger.ts:134 [0.047] [SW] claimed clients
+k/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+console.log('—————-');console.log('username: ', 'bd80838d-e403-48e1-bf75-bf7f2e9d138b-relmi');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM37:1 —————-
+VM37:1 username:  bd80838d-e403-48e1-bf75-bf7f2e9d138b-relmi
+VM37:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+VM37:1 cookie: 
+VM37:1 localStorage: {"dc3_auth_key":"\"175b2d6b42c60112a67936db81b87e327e2cf4e87401bdb3218ab177489b651447a33a7d27f51537d14d166c28e1ae8fe9ae160df6e18fc1a5d6f07e4e3c0010b7f971033da2b6d1f2647883791fd9f4cfa8ce15dbdda28a5b4078f03c86435d2c1be1fbf3c631f9cbea848edc6f38242a07871e342ebdf170d38f8e6fd6a370e33965adea17fa7acb2e170c1743f90b9dc362f147065cbd65bfd6b65e21da167e0f693ea57cdb3da6fe7cd97da84b19df4f428f855e34b6e5cabb573da9673840cb602d2f854daf9d4b100672d47f45d1417c320f44fc6406f05ada3da91446fba9353d5751394c356c22f575d70f0c5a70f6b08eb677ccf2fbfc600267c599\"","k_build":"460","dc3_server_salt":"\"ef5eee7ae0bfdfc5\"","user_auth":"{\"dcID\":2,\"date\":1704113430,\"id\":6913907898}","xt_instance":"{\"id\":58175090,\"idle\":true,\"time\":1704113441717}","dc":"2","dc4_auth_key":"\"09b677246570900d44dff1e222529571d0617e1cd32dd3c3392539cbe7f7d745900757eda6cb49442977d357a6c48bbdd5e8ca0b08eeaf13bea23ac44c35f25b7eb75ac3f482e142163e25c13d418256b1cef1bae7e261ea16542c04a62eae57c3bc554c0e0e31e8d3e26a38c778f85d5b8033b8e6a314ae103d5c45f765100df78f545246e5ea1ae6beda117d8c1ecd78eddac4ab5a30b6f770051d468fc97c4a53896f28cdf03f453241da951bafe9f7d2bb48fdc495144a03f79908eab9dcefb3eb1b58019c9efdb0f00d9bf7854c66b37ab5ea628c40cb4637ffcd9e80b4543e70425b81e48e2312eaee8a085b94bbe624d35b78d985f2d4e41ec9f9c36a\"","":"","dc2_auth_key":"\"85c31ac83f2b2462d89badb9bfd7bdfcac7d3dd361444cda2c2f5e7c2edd34c4fdc672233d6a93d23ed58ad8c87e6ebd0a01ac1aec70d9621e522702f7b33bc2996ae00b87d2b8ba44e72e8a50ef68de159bef7e79574778d5a29ec68a3b10a788205f228b57fb3efd7117b2667966f8ff8e7b73fda1ae738c5772d65894b74de0b65d5787570c7f407ca006261559198e83b06364b619ce093d8eb32da2b1afa53e69eaf47cfed5402845f44ade259382d6bca5342ede9fb48e0ef979b777d5d77e1fa7c39452948d94cfd95d9aa6e9a0ba7c8ff19f82043fef4691507f96e3a31c270cd38e2887700636f12b76e087a6958bd644e908b8ebf7bc54eef4c5e9\"","dc4_server_salt":"\"8c1ba5c4828789fd\"","tgme_sync":"{\"canRedirect\":true,\"ts\":1704113433}","dc1_server_salt":"\"94606bd1cb783daa\"","dc2_server_salt":"\"b91a5eaa5eb90e60\"","state_id":"3160173824","auth_key_fingerprint":"\"85c31ac8\"","dc1_auth_key":"\"178f26ae37c95d46d3451962b485f63c4d5c850c18c203c87bcdc23ac8d6629712b8813b3dea0a46816fcd0f01aca2c60bd0735547bda079a447a41e495fca192d27c512d4ca75b5a7b5b89b8e126c99d732a7ff60c17a23be13418dea801324b9bc24dfd89c4a0830566d7051b3fb8936ba9c9b7337ada8a4d30c398f2842e4d745b3a29f517e4cdd468f59e4497bc54185f9853fbddcc6fcf5e55d45d9c17f39021d0bfdfb0b1a8a9b41394c58d395c635c866feab1865ab70619a3f4a9001ca32a600d3133777c28cca95d094389704990d8eff664524107df922babc6dd9d26cd598b2d75b8452d8ae34a384b3837eeee2b4ebd01d7f2dd9c7ea1942b1bf\"","server_time_offset":"0","tt-global-state":""}
+VM37:1 —————-
+undefined

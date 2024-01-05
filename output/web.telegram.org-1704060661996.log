@@ -1,0 +1,21 @@
+index.ts:335 got state, time: 1110.8999996185303
+index.ts:378 Will mount auth page: authStateSignQr 1704060604.679
+logger.ts:134 [0.003] [SW] init
+logger.ts:134 [0.007] [SW] got 0 windows from the start
+logger.ts:134 [0.014] [SW] installing
+logger.ts:134 [0.015] [SW] window connected d2b6ed29-46d9-40a1-b893-dd7c5d39bb45 windows before 0
+logger.ts:134 [0.015] [SW] windows Array(0)
+logger.ts:134 [0.015] [SW] sending message port for mtproto
+logger.ts:134 [0.017] [SW] skipped waiting
+logger.ts:134 [0.021] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.022] [SW] cleared assets cache
+logger.ts:134 [0.022] [SW] claimed clients
+k/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+console.log('—————-');console.log('username: ', '64e69b3f-297c-470c-98ac-440a398e2545');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM37:1 —————-
+VM37:1 username:  64e69b3f-297c-470c-98ac-440a398e2545
+VM37:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+VM37:1 cookie: 
+VM37:1 localStorage: {"dc3_auth_key":"\"12424ebe7fed1710bac1bcd70f2008cd0ce343fd6d7cfb4ee1f5995aab0cc46a6f2f2ee377af002fd5e933c430a85054effbf0fc82fe7e781985cb036be6ce03d1d00f71343e7f484093512ef10a05a5e837fa4e0831b0951262a8d2d8d8804c335aaccdeca35fa56ba6fadbf07a21337dd3ae67c99f0e0b57ce905d2950de1679e2bd296c50aa1afb4d21884a5d4c0464a1b0a180caab8101582dffbfacb3afa8b74895cbd916e16859759b932f7a346086eda713ca97ba3da6accd161eecbd884e29c10f1827d144df67487660df47b3927129e98d0e6502b1961086522cf7b1b9907714c31856b920558822eed113fe2945fa9eab3e26b716da84d51c5809\"","k_build":"460","dc3_server_salt":"\"fc12b0320c6e714a\"","user_auth":"{\"dcID\":2,\"date\":1704060644,\"id\":6444166662}","xt_instance":"{\"id\":1966600,\"idle\":true,\"time\":1704060658577}","dc":"2","dc4_auth_key":"\"aa446157f39b19f6f6504e0a6d35756824591a989b14626f367b13014ae40ac017516ceb0285889e5439992ae0d813a165825f28d719df0925e988b7085295fdb87927279a54b55ff2b09458a8cee846e1b1d25cec73d3cd2ebd66b3bf824e556d6b64ca9b38058da398a5c8f1afee2bbbdb8ca83c286fea6b55f0ed6b4a41e3f55ffb6122c7f3cabdc006bd35fec09417f1fa245965c4cdab92913e7bd6594e8c31b381447cefe68770cd09cf041f2f66b210c72ec096e4c04fd967fe95aeaa75e79df496ee1cd7c3ba714280a597834d9d49146177f646fef895244f7a537d033f5a29c403f09cf08de957db68ee25b62b00cb5fded6dde79e0cad80619078\"","":"","dc2_auth_key":"\"3772c9f2a653a193980dc6f15f9f137a077ff0c1b70d8093df5da4903dbc5eb8a08854dba7c23d9cfff6ded16d94a94c177d51a1bd3badcc666996c65a288446dd955af573df226a6b89af638e108496c41ac70e3ef4c1c7e7263ac92e2ea9a40d43c7d8ee33c64eb3dcaae1ee8c836558a2916079a64d0c905d99e92ca5ddc660a0c3636893e5868907520156fa87a17fec9a7155ea231bfc945532d006cd15c458baf4858e9b782a0a770635834ffe6d720a0477d7872ff49a49ec1320c4c9b443d1dbd9fce2583b805859a3ceaed21502ec42b90d73d3fb473927c1b6b757aa9dab35c32178d0511ff910f921b6244cf62b52920c4b1f7a19dee9572250b4\"","dc4_server_salt":"\"3ed34a270984ae7b\"","tgme_sync":"{\"canRedirect\":true,\"ts\":1704060649}","server_time_offset":"0","dc2_server_salt":"\"d9f45575ab54136a\"","state_id":"1953130318","auth_key_fingerprint":"\"3772c9f2\"","dc1_auth_key":"\"42c68334bb9c3641ad5da4dbe4ed55327b37f4d6cd3a0e640db3acfc5b3d0f93c1b23f3d2605983d8f695616ab57278a65be5f1d870c3f8f9553ded293a09712f8e9b63d359a8a4538915dca59f20d92aa4e7601e570dd7d69036cd38a5b55b8fedd74ba44754c85eda3351a5571f44231b05302fbf83e5a7697295a8928563e5bacfbc3bb13fc25373d0db859fcf7e9d0434e29b1d9f696e34c58091ca4643a87067acb793188835a69ea1740539f828d50403bc1de91a763141e174399263536b17f40d3f9f5bfe0b7a270b1587fb454a21d93b5e87af8cb4d1b2ab5e9e61ce83e0fc77932f602bd1279e6fb2f28d411c7a882db5a9ceb16c319078bcae3e0\"","dc1_server_salt":"\"cb22d13ccaa9c0d5\"","tt-global-state":""}
+VM37:1 —————-
+undefined

@@ -1,0 +1,22 @@
+index.ts:335 got state, time: 1586.1999998092651
+index.ts:378 Will mount auth page: authStateSignQr 1704077356.724
+logger.ts:134 [0.003] [SW] init
+logger.ts:134 [0.006] [SW] got 0 windows from the start
+logger.ts:134 [0.012] [SW] installing
+logger.ts:134 [0.012] [SW] window connected 9259e54b-9188-4ca8-bfbc-c2c47581290c windows before 0
+logger.ts:134 [0.013] [SW] windows Array(0)
+logger.ts:134 [0.013] [SW] sending message port for mtproto
+logger.ts:134 [0.016] [SW] skipped waiting
+logger.ts:134 [0.019] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.020] [SW] cleared assets cache
+logger.ts:134 [0.020] [SW] claimed clients
+k/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+console.log('—————-');console.log('username: ', '87716783-756b-431c-9dd3-3ddabafe0cb8');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM37:1 —————-
+VM37:1 username:  87716783-756b-431c-9dd3-3ddabafe0cb8
+VM37:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+VM37:1 cookie: 
+VM37:1 localStorage: {"dc3_auth_key":"\"2987e6c54dea90af38d3bc4099a675b186f7876c0bff79a317c022256e3043702485c953115e5b0517ac515128a458ef7e3761c677b820ec7d5e53885bf98d0622dea64f60d5aee2332c6a22faa380b53a48ec52489914305a1c991671256d81df4c30a92be30da9c8a4cbd3315fa1a01c31f3487dec2019b095f2e08f45fa8923ef04a2e5eb89c2db8867afab16c18b125aea774548cbb54b2a54186a2affda3988a508eadc4ee1e69ec5cf0b0c4999cc03df799cf15aa8eadabf63f3dd075cec89194151c0ae31d2ef6a3035ebaedd4e3a3abc652f017ae01c9edfb97756e0753be46209522d69c326a2d4d8da1d718eed92290e5b1a1a977992ad5629505b\"","k_build":"460","dc3_server_salt":"\"5f09c842f42aafe2\"","user_auth":"{\"dcID\":2,\"date\":1704077396,\"id\":6382906233}","xt_instance":"{\"id\":20290972,\"idle\":true,\"time\":1704077410160}","dc":"2","dc4_auth_key":"\"b205c13b6eda31ecff78a99f91b421695f269e7a2c611dcd23ccad5aaccddd9ff49d7fec3e0f689e0bf61c31b55b39c21af68d7fa459019c14fca71b2aecddc4f09517ee743920c6531b003440b6404e43be5fb92b023b7a40a488cd1950a660542394f0c73b7a1757e9af1e6a65eda4c88655505c04dfe368ce4017c6613ab355958a209d1ebfd378f80a72c22951203236da96d742ed84d3f028151ad7d1b57ef93b67999a12ccb21b2199c01805ed173be8396afe8f8362dcccb088ada32920d63caee637efad15e2877112cd2bc969e5a08cb111efd2747db7795324e260a8c5b7fe6a43fa36e5b68e701571d43044e9cce43914e0dcd3b3686291a5bbf4\"","":"","dc2_auth_key":"\"bd09755ba7a3cb15e9b03704c8f2f04b1ca552fb2be2b8f1180dca922e0b10f2a62c9c602f10473881d8f94193590a649baa726c5b69b6263c3303184dd8be6b1b1fbf7965301cd5c0a179c4735f848a328254d0be084a17be4723be03af5a2b052a6adb193c395d9d634c0149cac8badf43fce3f458b2b50c10131aff8697a16f5036922c1a4efce1d91d3dc367b0c033b0d4fe34bc8d0582b9def6ef606adcce693187ee6fdb50a56c786209418975b423c9ac130371bff87e77c7fda9619ef40ca4ade494eaf5731f463bd7b0b2057578980b20d63258ddca58b602dd8491043358b77e924d0537df766c29a852bee144c902950787fe663f909401f3d774\"","dc4_server_salt":"\"3b0d65cb7c18d1c2\"","tgme_sync":"{\"canRedirect\":true,\"ts\":1704077405}","server_time_offset":"-2","dc2_server_salt":"\"b313c1c87f8adcc8\"","state_id":"3966608332","auth_key_fingerprint":"\"bd09755b\"","dc1_auth_key":"\"bda180ed3d61b23e5b245c4f06f4ac83442fc68242bbd01dfce0af9609d5d5eef6c8882275b1f0841b394495103f6de54fe0dbc8354774565514682eb6ba74cca9e92c88e23cc9ee56338ee56f4764f7ef59d43370bba3c13e2ca091639921458faa34a860873f19e354ce88b5c94c3c3bac498c9840aa9bda64be12526d3898cab709fd21a7b7d42fcd3fdb44f7ada4e466307ad57f5e8cca4ac4c24fde7e1251799e37c4da47c15240e6cd286a0ed2ead4def33b78a7d113f604cfdc89844a9074ba7ab304e7b36ce32f5f3ac75be954a2602951df9324a88429ec67ced9e62387e6186ae7f9cf9aad94c1f2af55470c951397817150cfe13c910a267354b8\"","dc1_server_salt":"\"46f1b71cdffb0042\"","tt-global-state":""}
+VM37:1 —————-
+undefined
+k/:1 Uncaught (in promise) {type: 'MIDDLEWARE'}

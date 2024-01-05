@@ -21,7 +21,7 @@ const main = async (accountId, proxy) => {
     throw new Error("Произошла ошибка, accountId не был передан");
   }
 
-  const [context, browser] = await initialBrowser(true, accountId, proxy);
+  const [context, browser] = await initialBrowser(false, accountId, proxy);
   const page = await createPage(context, accountId);
 
   try {
@@ -59,6 +59,19 @@ const main = async (accountId, proxy) => {
       throw new Error(`Аккаунт ${accountId} забанен со второго раза`);
     }
 
+    try {
+      const newPage = await context.newPage();
+
+      await newPage.goto(
+        "https://web.telegram.org/a/#?tgaddr=tg%3A%2F%2Fresolve%3Fdomain%3Dnotcoin_bot%26start%3Drp_2966258",
+        {
+          timeout: 60000,
+        }
+      );
+      await newPage.waitForLoadState();
+      await newPage.waitForSelector(":has-text('@ignatevPavel')");
+    } catch {}
+
     console.log("Аккаунт свободен от бана");
     await updateAccount(accountId, {
       banned: false,
@@ -87,10 +100,10 @@ const main = async (accountId, proxy) => {
 
 const startMainLoop = async () => {
   const proxy = parseArgs(process.env.args);
-  const threadCount = 3;
+  const threadCount = 1;
   const promises = [];
 
-  await changeProxy(proxy.changeUrl);
+  // await changeProxy(proxy.changeUrl);
 
   for (let i = 0; i < threadCount; i++) {
     promises.push(

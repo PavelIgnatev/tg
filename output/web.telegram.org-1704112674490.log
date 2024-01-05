@@ -1,0 +1,21 @@
+index.ts:335 got state, time: 2435.300000190735
+index.ts:378 Will mount auth page: authStateSignQr 1704112607.913
+logger.ts:134 [0.003] [SW] init
+logger.ts:134 [0.008] [SW] got 0 windows from the start
+logger.ts:134 [0.012] [SW] installing
+logger.ts:134 [0.013] [SW] window connected a236c678-59d3-49ca-9cca-13c32c037654 windows before 0
+logger.ts:134 [0.013] [SW] windows Array(0)
+logger.ts:134 [0.014] [SW] sending message port for mtproto
+logger.ts:134 [0.020] [SW] skipped waiting
+logger.ts:134 [0.023] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.024] [SW] cleared assets cache
+logger.ts:134 [0.024] [SW] claimed clients
+k/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+console.log('—————-');console.log('username: ', 'bc0d3273-cb6d-485a-bd47-bab286e91b88');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM41:1 —————-
+VM41:1 username:  bc0d3273-cb6d-485a-bd47-bab286e91b88
+VM41:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+VM41:1 cookie: 
+VM41:1 localStorage: {"dc3_auth_key":"\"58a1bd4971cd6101b19bdebddb23589e40fa4fbb3ba71bffe1cfeddd906f20a60cbaa24bd6cdf90521673a952032a38376b5641993d965ec18186444bca686cec20701752f1899e8de119d67403733251d1b16b15591b46f197cbfb97506abd69fe2e41dd12452225637b2dd5e9adab2a55b3a8d9705581dad3a6035ad2c89fd5f9438228bc891567131f8cdd0edf1eed7b5bd6193871c760759f41df56099b23001c794ae47cfe11ef4f97ef518f5f1ff70539c0e3533cd5455e8c7fb94ec65a6657aaa7027251dba1af0f8fd7ef43de52136df75e58f7398812b6aefb08b6e44bac90afe331acbb9bd64f0538b0ad61135fac92c303f7ab993483d80a2e70b\"","k_build":"460","dc3_server_salt":"\"f41041dcc8d7b08b\"","user_auth":"{\"dcID\":2,\"date\":1704112655,\"id\":6589029988}","xt_instance":"{\"id\":4177108,\"idle\":true,\"time\":1704112665564}","dc":"2","":"","dc2_auth_key":"\"2bee47be25b95a37a4edcfb22072b6d26aa11989c50c9118bd0986c47232dc360e5731f0f4a21c8b077774e05bc523bcde5d9010962b9bd22a11575be308d457b2b9aba67a1bfbc3ff1bf382decd43cf5669bd7179d6ffbbbdfac015c922338110c6f4b005be7796c93f5ba2012edb85dd13582570ba1504e5c792cfec57089732334d9727808091cfd159ce8de1c3f5ddd512d656b0ae954f0a4c490ba9a9772ff98ba84f29bc56dbbcfa9c378ff51f8057e58c51b98dfe6a035cfd1bb7d1754aca15bf91e029c61f525502edac01006917e2442fd36b33beb2a2a8250292e9e80ad64615d53dd8c45bb50271b21c7282b4a30332eb39e2b12c77b6c949a194\"","tt-global-state":"","tgme_sync":"{\"canRedirect\":true,\"ts\":1704112665}","server_time_offset":"-2","dc2_server_salt":"\"29882856ef6adff5\"","state_id":"1185985569","auth_key_fingerprint":"\"2bee47be\"","dc1_auth_key":"\"7832cec06906f086edb57e1ff87eb7780507c84163c8c2e639410aee43b241d11e39c326270227ff3686b6f812d28a762515fa3bb4d83cd1fd0e930c7a4386b7a5ae61fd724e89d4e154daeac8775ac0e9cad89a10d1c06f783ac804ec149b459fe0e4fadba86e44f36465df969db42e802b65b97916ccfb415a81b39eb785acccfcd471e5e559f775e440f3cb83e2a34604ae885da13cb9a5d6919e8f3896c2167458bdca6931e2a658b39e9b79f0ec0f3c5e5be5e3ba0a159b6b7ec41abe84d217df8f0a4973830baf2e343012924fec4fc027ac49cb7aaf7dcf4250de5e5d0eacbbeb1355f4e1ba2a3f9a813c157accda3877f5b5a403e416c42f8d8d4c3c\"","dc1_server_salt":"\"eb68818c06caebc9\""}
+VM41:1 —————-
+undefined

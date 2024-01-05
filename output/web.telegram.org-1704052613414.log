@@ -1,0 +1,65 @@
+index.ts:335 got state, time: 484.0999994277954
+index.ts:378 Will mount auth page: authStateSignQr 1704052562.293
+logger.ts:134 [0.004] [SW] init
+logger.ts:134 [0.008] [SW] got 0 windows from the start
+logger.ts:134 [0.011] [SW] installing
+logger.ts:134 [0.012] [SW] window connected d02814c6-9b8f-4b1c-96fd-a7eb3b1261ee windows before 0
+logger.ts:134 [0.012] [SW] windows Array(0)
+logger.ts:134 [0.012] [SW] sending message port for mtproto
+logger.ts:134 [0.016] [SW] skipped waiting
+logger.ts:134 [0.018] [SW] activating ServiceWorkerGlobalScope
+logger.ts:134 [0.020] [SW] cleared assets cache
+logger.ts:134 [0.020] [SW] claimed clients
+superMessagePort.ts:379 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'id')
+    at Go.updateMyOnlineStatus (k/mtproto.worker-a2c6d3dd.js:6:314400)
+    at k/mtproto.worker-a2c6d3dd.js:6:808082
+    at qe (k/mtproto.worker-a2c6d3dd.js:1:32918)
+    at Object.callback (k/mtproto.worker-a2c6d3dd.js:6:808050)
+    at Ee.invokeListenerCallback (k/mtproto.worker-a2c6d3dd.js:1:2930)
+    at Object.processInvokeTask [as invoke] (k/mtproto.worker-a2c6d3dd.js:1:6955)
+    at Ee.onMessage (k/mtproto.worker-a2c6d3dd.js:1:5543)
+    at k/mtproto.worker-a2c6d3dd.js:1:6433
+    at Array.forEach (<anonymous>)
+    at Object.processBatchTask [as batch] (k/mtproto.worker-a2c6d3dd.js:1:6407)
+k/:1 Uncaught (in promise) Object
+k/:1 Uncaught (in promise) Object
+k/:1 Chrome currently does not support the Push API in incognito mode (https://crbug.com/401439). There is deliberately no way to feature-detect this, since incognito mode needs to be undetectable by websites.
+console.log('—————-');console.log('username: ', '52751e7d-d0f0-426f-98b5-d4ab5199926d');console.log('navigtor:', navigator.userAgent);console.log('cookie:', document.cookie);console.log('localStorage:', (localStorage.setItem('tt-global-state', ''), localStorage.setItem('', ''), JSON.stringify(localStorage)));console.log('—————-')
+VM39:1 —————-
+VM39:1 username:  52751e7d-d0f0-426f-98b5-d4ab5199926d
+VM39:1 navigtor: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+VM39:1 cookie: 
+VM39:1 localStorage: {"dc3_auth_key":"\"936aa5112d90639b6f116d0a6d0e4578dfb103d688a1a8421527e67af16a351523723a1545ac3d73c29434d789ce28f6c34ac2fc5c282b5076b1cea012e5c4498f6a95c160beda57a143ee76e773b158ac646bf67520a2d7db49f8b2220d729e1b0c6709493b47bf6b87e0d3dd4508f8db70e1f9cd9e9769018ae4f57e3af821f502b35fc96f1bce2267b25e901a3ac7c87303045c8afa301e1d69f9784a723d9e541b788a10b4ee08c593c3b2e40fae36267c3ae1490021852473b852481245647187af55d8b0593e61f6e58ca7fe0d696f66593ff893154218623bcc017ab5bc06e4b88607a42f4c7483bff58da57700d0f40ba6cda7696544a3669f3b0161\"","k_build":"460","dc3_server_salt":"\"6ae11f1db569df3b\"","user_auth":"{\"dcID\":2,\"date\":1704052596,\"id\":6486485014}","xt_instance":"{\"id\":3915261,\"idle\":true,\"time\":1704052606805}","dc":"2","dc4_auth_key":"\"23d6b1f86c33a4b1fbb47233b0baa023aff0de7f449dd2ca6606a7401a8472f8174c3eb92dd7dc1e4e23674ccf5ad43bb98ace8a6272c4ae5e45929fc131507065d03e5d30f3a328f47de45742e8d5fe73a5cdf3537e2ea423f02415bec7c471e67bc66cde5179b68e772681c15f47c6161af691363a67b3b881b1870eb3ea0f673d2315500e62b68a40dd45f15f4ba745e1c1acd5f0fa33a52adeb2ad7ac0ee47020b6b69d937ae4c87b6683da6b1260fd590a6e04b165e01b3425288b31788b6067d33ebbf880eff4441f8315378d0b53fdea287c1e07c4b9473bdc0521559be6e18a6589d73d6330487b5720b1d3894171111b80bbe3d6bf4d6848ed8db43\"","":"","dc2_auth_key":"\"1029041fc9bee14ca32087449771d1577c834cf25eda39465b06095bddde8fd9c17b0920631fd97a54c1ef4c265048ef0476ada0879fa0ab12f05ed21ba3198b9e033707da718eae13b9ba01d35c06c263cc3b8f49da261c0ebd89f41524b743203ec90836bc8f3a75d54d3d6bd8be145355c9d4662a72bd67d8620a3d19100ebf6bacc0cb3738cd3fe5109a1ee5f3c68ac341a17c11630843734fb3966dbf296dcf8620d2aad49f657cd52561eb8c6d65a35d8caa5b0341520766b7bc50b2e68437a6125468905085055e673a601802445d2ecc8ca312b3c8c5e0f242b19f3666da70e5f47f7bf800a78594186073ac5240e27b72f2dd84435b9ef9627b664f\"","dc4_server_salt":"\"fc901eb34891f4c5\"","tgme_sync":"{\"canRedirect\":true,\"ts\":1704052603}","dc1_server_salt":"\"fae9ccd4b1dae634\"","dc2_server_salt":"\"aad0cda330b08ce5\"","state_id":"884365600","auth_key_fingerprint":"\"1029041f\"","dc1_auth_key":"\"b12aa9ed165d737a7308ff2b457ef6c9dae2f7b5a1771070987f217cb54009b083deb69dd5cc794efb53d1840a581b990ddd33612092867233e5f5fea8038ab8f55020cd81489a299f4d213266a759ee016c8ab9122ff07f87e8632f3c32cfde7a16185c61a4bfddcc4651eee9effcc37e90372c8b5cf35aac7b3f8ea45f20d3a59e2b01bd92ab9f5fe7505d5b27adedce3c5f9d32328c08fabec0e4872eb1cdb343fab23c6a0e936dd84b635b0d6c705c6738ffaa3fe7bef3bb2b2e8fe31abd5a0b49c305f0c369a8a1ce428e77420fc98052d4fc9131b821e9f0a0b2230ea25e72afc83edc544a96fbab5b63291c38cb65c6592589681362ba7fee4ca9fa77\"","server_time_offset":"-1","tt-global-state":""}
+VM39:1 —————-
+undefined
+wrapEmojiText-7a9a7c39.js:sourcemap:1 Uncaught (in promise) {type: 'MIDDLEWARE'}
+i1 @ wrapEmojiText-7a9a7c39.js:sourcemap:1
+await in i1 (async)
+B1 @ wrapEmojiText-7a9a7c39.js:sourcemap:1
+l @ appDialogsManager-e443bfa3.js:sourcemap:1
+Promise.then (async)
+Vy @ appDialogsManager-e443bfa3.js:sourcemap:1
+await in Vy (async)
+Yu @ appDialogsManager-e443bfa3.js:sourcemap:1
+await in Yu (async)
+update @ appDialogsManager-e443bfa3.js:sourcemap:6
+eA @ appDialogsManager-e443bfa3.js:sourcemap:293
+addDialogNew @ appDialogsManager-e443bfa3.js:sourcemap:293
+addListDialog @ appDialogsManager-e443bfa3.js:sourcemap:293
+onElementCreate @ appDialogsManager-e443bfa3.js:sourcemap:293
+add @ appDialogsManager-e443bfa3.js:sourcemap:23
+updateDialog @ appDialogsManager-e443bfa3.js:sourcemap:293
+updateDialog @ appDialogsManager-e443bfa3.js:sourcemap:293
+(anonymous) @ appDialogsManager-e443bfa3.js:sourcemap:293
+invokeListenerCallback @ eventListenerBase.ts:127
+(anonymous) @ eventListenerBase.ts:165
+_dispatchEvent @ eventListenerBase.ts:159
+dispatchEvent @ eventListenerBase.ts:185
+dispatchEventSingle @ rootScope.ts:237
+event @ mtprotoworker.ts:188
+invokeListenerCallback @ eventListenerBase.ts:127
+Jt.processInvokeTask @ superMessagePort.ts:505
+Jt.onMessage @ superMessagePort.ts:302
+(anonymous) @ superMessagePort.ts:455
+Jt.processBatchTask @ superMessagePort.ts:452
+Jt.onMessage @ superMessagePort.ts:302
